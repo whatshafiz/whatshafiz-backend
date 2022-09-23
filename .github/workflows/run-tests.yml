@@ -23,11 +23,13 @@ jobs:
           docker exec -i whatshafiz_php-fpm php artisan key:generate
           docker exec -i whatshafiz_php-fpm chmod -R 777 /var/www/storage/
           docker exec -i whatshafiz_php-fpm php artisan clear-compiled
-          sleep 11
+          docker ps
+          docker ps -a
 
       - name: Laravel Migrate
         run: |
-          docker exec -i whatshafiz_mariadb mariadb -uroot -pmy-secret-psw <<< "CREATE DATABASE IF NOT EXISTS whatshafiz;"
+          docker ps
+          docker ps -a
           docker exec -i whatshafiz_php-fpm php artisan migrate
           docker exec -i whatshafiz_php-fpm php artisan db:seed
 
