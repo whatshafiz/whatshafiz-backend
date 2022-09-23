@@ -25,7 +25,7 @@ services:
     volumes:
       - whatshafiz-mariadb-data:/var/lib/mariadb
     environment:
-       - MARIADB_ROOT_PASSWORD="{DB_ROOT_PASSWORD}
+       - MARIADB_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
        - MARIADB_DATABASE=${DB_DATABASE}
     networks:
       - whatshafiz
