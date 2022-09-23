@@ -2,4 +2,3 @@ node_modules/
 .DS_Store
 .php-cs-fixer.cache
 .idea
-.env
