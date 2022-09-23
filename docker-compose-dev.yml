@@ -1,0 +1,61 @@
+version: '3'
+
+services:
+  whatshafiz_php-fpm:
+    build:
+      context: './src'
+    container_name: whatshafiz_php-fpm
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./src:/var/www
+    networks:
+      - whatshafiz
+    environment:
+       - DB_DATABASE=${DB_DATABASE}
+       - DB_USERNAME=${DB_ROOT_USERNAME}
+       - DB_PASSWORD=${DB_ROOT_PASSWORD}
+
+  whatshafiz-mariadb:
+    image: mariadb:10.6
+    container_name: whatshafiz_mariadb
+    hostname: whatshafiz_mariadb
+    ports:
+      - "${FORWARD_DB_PORT:-3306}:3306"
+    volumes:
+      - whatshafiz-mariadb-data:/var/lib/mariadb
+    environment:
+       - MARIADB_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+       - MARIADB_DATABASE=${DB_DATABASE}
+    networks:
+      - whatshafiz
+
+  redis:
+    image: redis:5.0.5
+    container_name: whatshafiz_redis
+    ports:
+      - '${FORWARD_REDIS_PORT:-6379}:6379'
+    networks:
+      - whatshafiz
+
+  whatshafiz-nginx:
+    image: nginx:alpine
+    container_name: whatshafiz_nginx
+    stdin_open: true
+    tty: true
+    ports:
+      - "${FORWARD_NGINX_HTTP_PORT:-80}:80"
+      - "${FORWARD_NGINX_HTTPS_PORT:-443}:443"
+    volumes:
+      - ./src:/var/www/
+      - ./src/docker/nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - whatshafiz
+
+volumes:
+  whatshafiz-mariadb-data:
+    external: true
+
+networks:
+  whatshafiz:
+    driver: bridge
