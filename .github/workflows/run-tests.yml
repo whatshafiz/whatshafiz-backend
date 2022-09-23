@@ -30,6 +30,7 @@ jobs:
         run: |
           docker ps
           docker ps -a
+          docker logs whatshafiz_mariadb
           docker exec -i whatshafiz_php-fpm php artisan migrate
           docker exec -i whatshafiz_php-fpm php artisan db:seed
 
