@@ -27,7 +27,6 @@ jobs:
 
       - name: Laravel Migrate
         run: |
-          docker exec -i whatshafiz_mariadb mariadb -uroot -pmy-secret-psw <<< "CREATE DATABASE IF NOT EXISTS whatshafiz;"
           docker exec -i whatshafiz_php-fpm php artisan migrate
           docker exec -i whatshafiz_php-fpm php artisan db:seed
 
