@@ -72,12 +72,12 @@ jobs:
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          region: eu-central-1
           application_name: whatshafiz
           environment_name: whatshafiz-env
           deployment_package: deploy.zip
           version_label: ${{ steps.version.outputs.new_tag }}-${{ steps.build_id.outputs.id }}
           version_description: ${{ github.SHA }}
-          region: eu-central-1
 
       # Logout from ECR
       - name: Logout of Amazon ECR
