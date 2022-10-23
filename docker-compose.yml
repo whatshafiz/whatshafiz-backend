@@ -1,0 +1,18 @@
+version: '2.4'
+services:
+  php-app:
+    container_name: "whatshafiz_php-fpm"
+    image: "977624603912.dkr.ecr.eu-central-1.amazonaws.com/whatshafiz_php-fpm:latest"
+    volumes:
+      - "./php-fpm/public_html:/var/www/public_html"
+    mem_limit: 6000m
+  nginx-proxy:
+    image: "nginx:alpine"
+    ports:
+      - "80:80"
+    volumes:
+      - "./php-fpm/public_html:/var/www:ro"
+      - "./src/docker/nginx/conf.d:/etc/nginx/conf.d:ro"
+    mem_limit: 1000m
+    links:
+      - php-app

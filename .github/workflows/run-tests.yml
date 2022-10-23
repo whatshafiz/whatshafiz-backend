@@ -1,0 +1,34 @@
+name: Run Tests
+
+on:
+  pull_request:
+    branches:
+      - develop
+      - master
+
+jobs:
+  laravel-tests:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Docker Build & Composer Install
+        run: |
+          docker volume create whatshafiz-mariadb-data
+          cp ./src/.env.example ./src/.env
+          docker-compose -f docker-compose-dev.yml up -d
+          docker exec -i whatshafiz_php-fpm composer install
+          docker exec -i whatshafiz_php-fpm php artisan key:generate
+          docker exec -i whatshafiz_php-fpm chmod -R 777 /var/www/storage/
+          docker exec -i whatshafiz_php-fpm php artisan clear-compiled
+          sleep 3
+
+      - name: Laravel Migrate
+        run: |
+          docker exec -i whatshafiz_php-fpm php artisan migrate
+          docker exec -i whatshafiz_php-fpm php artisan db:seed
+
+      - name: Laravel Test
+        run: docker exec -i whatshafiz_php-fpm php artisan test
