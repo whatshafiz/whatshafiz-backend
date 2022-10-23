@@ -11,9 +11,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           ref: master
+
+      # Bump latest release version by the default_bump and push the new tag
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@v1
+        id: version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: true
+          RELEASE_BRANCHES: master
+
+      # Echo new version tag if everything is okay
+      - name: Echo New Version Tag
+        run: echo ${{ steps.version.outputs.new_tag }}
 
       # Configure AWS for ECR login. Getting secrets from Github Secrets
       - name: Configure AWS credentials
@@ -21,7 +34,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: eu-west-1
+          aws-region: eu-central-1
 
       # Login to ECR
       - name: Login to Amazon ECR
@@ -33,7 +46,7 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: whatshafiz_php-fpm
-          IMAGE_TAG: 'staging-latest'
+          IMAGE_TAG: ${{ steps.version.outputs.new_tag }}
         run: |
           docker build -t whatshafiz_php-fpm:$IMAGE_TAG ./src --file=./src/Dockerfile.prod
           docker tag whatshafiz_php-fpm:$IMAGE_TAG $ECR_REGISTRY/whatshafiz_php-fpm:$IMAGE_TAG
@@ -42,7 +55,7 @@ jobs:
       # Generate deployment package for EB
       - name: Generate deployment package
         env:
-          IMAGE_TAG: 'staging-latest'
+          IMAGE_TAG: ${{ steps.version.outputs.new_tag }}
         run: |
           sed -i -e "s/amazonaws.com\/whatshafiz_php-fpm.*\"/amazonaws.com\/whatshafiz_php-fpm:$IMAGE_TAG\"/g" ./docker-compose.yml
           zip deploy.zip docker-compose.yml .ebextensions/* .platform/* src/docker/* -r
@@ -55,15 +68,16 @@ jobs:
 
       # Deploy to EB
       - name: Deploy to EB
-        uses: einaregilsson/beanstalk-deploy@v10
+        uses: einaregilsson/beanstalk-deploy@v20
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: whatshafiz
           environment_name: whatshafiz-env
           deployment_package: deploy.zip
-          version_label: staging-latest-${{ steps.build_id.outputs.id }}
-          region: eu-west-1
+          version_label: ${{ steps.version.outputs.new_tag }}-${{ steps.build_id.outputs.id }}
+          version_description: ${{ github.SHA }}
+          region: eu-central-1
 
       # Logout from ECR
       - name: Logout of Amazon ECR
