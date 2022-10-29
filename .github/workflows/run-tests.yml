@@ -13,6 +13,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Docker Build & Composer Install
         run: |
@@ -24,6 +27,17 @@ jobs:
           docker exec -i whatshafiz_php-fpm chmod -R 777 /var/www/storage/
           docker exec -i whatshafiz_php-fpm php artisan clear-compiled
           sleep 3
+
+      - name: PHP Code Style Fixer
+        run: |
+          docker exec -i whatshafiz_php-fpm /var/www/vendor/bin/php-cs-fixer fix --config=/var/www/.php-cs-fixer.php
+
+      - name: Commit code style changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: php-cs-fixer fixes
+          committer_name: GitHub Actions
+          committer_email: actions@github.com
 
       - name: Laravel Migrate
         run: |
