@@ -14,6 +14,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: PHP Code Style
+        uses: ale94lko/php-cs-fixer-action@v1.0.1
+
       - name: Docker Build & Composer Install
         run: |
           docker volume create whatshafiz-mariadb-data
