@@ -3,7 +3,6 @@
 namespace Tests\Feature\User;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\BaseFeatureTest;
 
