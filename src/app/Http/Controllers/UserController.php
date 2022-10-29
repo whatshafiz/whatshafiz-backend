@@ -84,19 +84,14 @@ class UserController extends Controller
         ]);
 
 
-        if (
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
 
-            Auth::attempt($credentials)
-    )
-
-{
-$user = Auth::user();
-
-return response()->json([
-'token' => $user->newToken(),
-'profile' => $user->toArray()
-]);
-}
+            return response()->json([
+                'token' => $user->newToken(),
+                'profile' => $user->toArray()
+            ]);
+        }
 
         return response()->json(['message' => 'Telefon No veya Parola Hatalı'], Response::HTTP_BAD_REQUEST);
     }
