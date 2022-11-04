@@ -4,7 +4,6 @@ namespace Tests\Feature\Regulation;
 
 use App\Models\Regulation;
 use App\Models\User;
-use Symfony\Component\HttpFoundation\Response;
 use Tests\BaseFeatureTest;
 
 class RegulationTest extends BaseFeatureTest
