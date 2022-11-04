@@ -20,42 +20,42 @@ class RolesPermissionsSeeder extends Seeder
             'groups.*',
             'groups.show',
             'groups.list',
-            'groups.edit',
+            'groups.update',
             'groups.create',
             'groups.delete',
 
             'users.*',
             'users.show',
             'users.list',
-            'users.edit',
+            'users.update',
             'users.create',
             'users.delete',
 
             'roles.*',
             'roles.show',
             'roles.list',
-            'roles.edit',
+            'roles.update',
             'roles.create',
             'roles.delete',
 
             'quiz.*',
             'quiz.show',
             'quiz.list',
-            'quiz.edit',
+            'quiz.update',
             'quiz.create',
             'quiz.delete',
 
             'regulations.*',
             'regulations.show',
             'regulations.list',
-            'regulations.edit',
+            'regulations.update',
             'regulations.create',
             'regulations.delete',
 
             'periods.*',
             'periods.show',
             'periods.list',
-            'periods.edit',
+            'periods.update',
             'periods.create',
             'periods.delete',
         ];
@@ -86,13 +86,13 @@ class RolesPermissionsSeeder extends Seeder
                 'groups.show',
                 'groups.list',
                 'users.show',
-                'users.edit',
+                'users.update',
             ]);
         Role::create(['name' => 'Grup Başkanı'])
             ->givePermissionTo([
-                'groups.edit',
+                'groups.update',
                 'users.show',
-                'users.edit',
+                'users.update',
             ]);
         Role::create(['name' => 'HafızOl']);
         Role::create(['name' => 'HafızKal']);
