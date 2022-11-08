@@ -55,7 +55,7 @@ class User extends Authenticatable
     
     public function getFullNameAttribute()
     {
-        return trim($this->name) . ' ' . trim($this->sname);
+        return trim($this->name) . ' ' . trim($this->surname);
     }
     
 }
