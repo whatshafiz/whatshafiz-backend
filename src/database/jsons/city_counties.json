@@ -1,0 +1,4871 @@
+{
+    "data": 
+    [
+        {
+            "id": "1",
+            "city": "ADANA",
+            "county": "ALADAĞ"
+        },
+        {
+            "id": "2",
+            "city": "ADANA",
+            "county": "CEYHAN"
+        },
+        {
+            "id": "3",
+            "city": "ADANA",
+            "county": "ÇUKUROVA"
+        },
+        {
+            "id": "4",
+            "city": "ADANA",
+            "county": "FEKE"
+        },
+        {
+            "id": "5",
+            "city": "ADANA",
+            "county": "İMAMOĞLU"
+        },
+        {
+            "id": "6",
+            "city": "ADANA",
+            "county": "KARAİSALI"
+        },
+        {
+            "id": "7",
+            "city": "ADANA",
+            "county": "KARATAŞ"
+        },
+        {
+            "id": "8",
+            "city": "ADANA",
+            "county": "KOZAN"
+        },
+        {
+            "id": "9",
+            "city": "ADANA",
+            "county": "POZANTI"
+        },
+        {
+            "id": "10",
+            "city": "ADANA",
+            "county": "SAİMBEYLİ"
+        },
+        {
+            "id": "11",
+            "city": "ADANA",
+            "county": "SARIÇAM"
+        },
+        {
+            "id": "12",
+            "city": "ADANA",
+            "county": "SEYHAN"
+        },
+        {
+            "id": "13",
+            "city": "ADANA",
+            "county": "TUFANBEYLİ"
+        },
+        {
+            "id": "14",
+            "city": "ADANA",
+            "county": "YUMURTALIK"
+        },
+        {
+            "id": "15",
+            "city": "ADANA",
+            "county": "YÜREĞİR"
+        },
+        {
+            "id": "16",
+            "city": "ADIYAMAN",
+            "county": "BESNİ"
+        },
+        {
+            "id": "17",
+            "city": "ADIYAMAN",
+            "county": "ÇELİKHAN"
+        },
+        {
+            "id": "18",
+            "city": "ADIYAMAN",
+            "county": "GERGER"
+        },
+        {
+            "id": "19",
+            "city": "ADIYAMAN",
+            "county": "GÖLBAŞI"
+        },
+        {
+            "id": "20",
+            "city": "ADIYAMAN",
+            "county": "KAHTA"
+        },
+        {
+            "id": "21",
+            "city": "ADIYAMAN",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "22",
+            "city": "ADIYAMAN",
+            "county": "SAMSAT"
+        },
+        {
+            "id": "23",
+            "city": "ADIYAMAN",
+            "county": "SİNCİK"
+        },
+        {
+            "id": "24",
+            "city": "ADIYAMAN",
+            "county": "TUT"
+        },
+        {
+            "id": "25",
+            "city": "AFYONKARAHİSAR",
+            "county": "BAŞMAKÇI"
+        },
+        {
+            "id": "26",
+            "city": "AFYONKARAHİSAR",
+            "county": "BAYAT"
+        },
+        {
+            "id": "27",
+            "city": "AFYONKARAHİSAR",
+            "county": "BOLVADİN"
+        },
+        {
+            "id": "28",
+            "city": "AFYONKARAHİSAR",
+            "county": "ÇAY"
+        },
+        {
+            "id": "29",
+            "city": "AFYONKARAHİSAR",
+            "county": "ÇOBANLAR"
+        },
+        {
+            "id": "30",
+            "city": "AFYONKARAHİSAR",
+            "county": "DAZKIRI"
+        },
+        {
+            "id": "31",
+            "city": "AFYONKARAHİSAR",
+            "county": "DİNAR"
+        },
+        {
+            "id": "32",
+            "city": "AFYONKARAHİSAR",
+            "county": "EMİRDAĞ"
+        },
+        {
+            "id": "33",
+            "city": "AFYONKARAHİSAR",
+            "county": "EVCİLER"
+        },
+        {
+            "id": "34",
+            "city": "AFYONKARAHİSAR",
+            "county": "HOCALAR"
+        },
+        {
+            "id": "35",
+            "city": "AFYONKARAHİSAR",
+            "county": "İHSANİYE"
+        },
+        {
+            "id": "36",
+            "city": "AFYONKARAHİSAR",
+            "county": "İSCEHİSAR"
+        },
+        {
+            "id": "37",
+            "city": "AFYONKARAHİSAR",
+            "county": "KIZILÖREN"
+        },
+        {
+            "id": "38",
+            "city": "AFYONKARAHİSAR",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "39",
+            "city": "AFYONKARAHİSAR",
+            "county": "SANDIKLI"
+        },
+        {
+            "id": "40",
+            "city": "AFYONKARAHİSAR",
+            "county": "SİNANPAŞA"
+        },
+        {
+            "id": "41",
+            "city": "AFYONKARAHİSAR",
+            "county": "SULTANDAĞI"
+        },
+        {
+            "id": "42",
+            "city": "AFYONKARAHİSAR",
+            "county": "ŞUHUT"
+        },
+        {
+            "id": "43",
+            "city": "AĞRI",
+            "county": "DİYADİN"
+        },
+        {
+            "id": "44",
+            "city": "AĞRI",
+            "county": "DOĞUBAYAZIT"
+        },
+        {
+            "id": "45",
+            "city": "AĞRI",
+            "county": "ELEŞKİRT"
+        },
+        {
+            "id": "46",
+            "city": "AĞRI",
+            "county": "HAMUR"
+        },
+        {
+            "id": "47",
+            "city": "AĞRI",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "48",
+            "city": "AĞRI",
+            "county": "PATNOS"
+        },
+        {
+            "id": "49",
+            "city": "AĞRI",
+            "county": "TAŞLIÇAY"
+        },
+        {
+            "id": "50",
+            "city": "AĞRI",
+            "county": "TUTAK"
+        },
+        {
+            "id": "51",
+            "city": "AMASYA",
+            "county": "GÖYNÜCEK"
+        },
+        {
+            "id": "52",
+            "city": "AMASYA",
+            "county": "GÜMÜŞHACIKÖY"
+        },
+        {
+            "id": "53",
+            "city": "AMASYA",
+            "county": "HAMAMÖZÜ"
+        },
+        {
+            "id": "54",
+            "city": "AMASYA",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "55",
+            "city": "AMASYA",
+            "county": "MERZİFON"
+        },
+        {
+            "id": "56",
+            "city": "AMASYA",
+            "county": "SULUOVA"
+        },
+        {
+            "id": "57",
+            "city": "AMASYA",
+            "county": "TAŞOVA"
+        },
+        {
+            "id": "58",
+            "city": "ANKARA",
+            "county": "AKYURT"
+        },
+        {
+            "id": "59",
+            "city": "ANKARA",
+            "county": "ALTINDAĞ"
+        },
+        {
+            "id": "60",
+            "city": "ANKARA",
+            "county": "AYAŞ"
+        },
+        {
+            "id": "61",
+            "city": "ANKARA",
+            "county": "BALA"
+        },
+        {
+            "id": "62",
+            "city": "ANKARA",
+            "county": "BEYPAZARI"
+        },
+        {
+            "id": "63",
+            "city": "ANKARA",
+            "county": "ÇAMLIDERE"
+        },
+        {
+            "id": "64",
+            "city": "ANKARA",
+            "county": "ÇANKAYA"
+        },
+        {
+            "id": "65",
+            "city": "ANKARA",
+            "county": "ÇUBUK"
+        },
+        {
+            "id": "66",
+            "city": "ANKARA",
+            "county": "ELMADAĞ"
+        },
+        {
+            "id": "67",
+            "city": "ANKARA",
+            "county": "ETİMESGUT"
+        },
+        {
+            "id": "68",
+            "city": "ANKARA",
+            "county": "EVREN"
+        },
+        {
+            "id": "69",
+            "city": "ANKARA",
+            "county": "GÖLBAŞI"
+        },
+        {
+            "id": "70",
+            "city": "ANKARA",
+            "county": "GÜDÜL"
+        },
+        {
+            "id": "71",
+            "city": "ANKARA",
+            "county": "HAYMANA"
+        },
+        {
+            "id": "72",
+            "city": "ANKARA",
+            "county": "KAHRAMANKAZAN"
+        },
+        {
+            "id": "73",
+            "city": "ANKARA",
+            "county": "KALECİK"
+        },
+        {
+            "id": "74",
+            "city": "ANKARA",
+            "county": "KEÇİÖREN"
+        },
+        {
+            "id": "75",
+            "city": "ANKARA",
+            "county": "KIZILCAHAMAM"
+        },
+        {
+            "id": "76",
+            "city": "ANKARA",
+            "county": "MAMAK"
+        },
+        {
+            "id": "77",
+            "city": "ANKARA",
+            "county": "NALLIHAN"
+        },
+        {
+            "id": "78",
+            "city": "ANKARA",
+            "county": "POLATLI"
+        },
+        {
+            "id": "79",
+            "city": "ANKARA",
+            "county": "PURSAKLAR"
+        },
+        {
+            "id": "80",
+            "city": "ANKARA",
+            "county": "SİNCAN"
+        },
+        {
+            "id": "81",
+            "city": "ANKARA",
+            "county": "ŞEREFLİKOÇHİSAR"
+        },
+        {
+            "id": "82",
+            "city": "ANKARA",
+            "county": "YENİMAHALLE"
+        },
+        {
+            "id": "83",
+            "city": "ANTALYA",
+            "county": "AKSEKİ"
+        },
+        {
+            "id": "84",
+            "city": "ANTALYA",
+            "county": "AKSU"
+        },
+        {
+            "id": "85",
+            "city": "ANTALYA",
+            "county": "ALANYA"
+        },
+        {
+            "id": "86",
+            "city": "ANTALYA",
+            "county": "DEMRE"
+        },
+        {
+            "id": "87",
+            "city": "ANTALYA",
+            "county": "DÖŞEMEALTI"
+        },
+        {
+            "id": "88",
+            "city": "ANTALYA",
+            "county": "ELMALI"
+        },
+        {
+            "id": "89",
+            "city": "ANTALYA",
+            "county": "FİNİKE"
+        },
+        {
+            "id": "90",
+            "city": "ANTALYA",
+            "county": "GAZİPAŞA"
+        },
+        {
+            "id": "91",
+            "city": "ANTALYA",
+            "county": "GÜNDOĞMUŞ"
+        },
+        {
+            "id": "92",
+            "city": "ANTALYA",
+            "county": "İBRADI"
+        },
+        {
+            "id": "93",
+            "city": "ANTALYA",
+            "county": "KAŞ"
+        },
+        {
+            "id": "94",
+            "city": "ANTALYA",
+            "county": "KEMER"
+        },
+        {
+            "id": "95",
+            "city": "ANTALYA",
+            "county": "KEPEZ"
+        },
+        {
+            "id": "96",
+            "city": "ANTALYA",
+            "county": "KONYAALTI"
+        },
+        {
+            "id": "97",
+            "city": "ANTALYA",
+            "county": "KORKUTELİ"
+        },
+        {
+            "id": "98",
+            "city": "ANTALYA",
+            "county": "KUMLUCA"
+        },
+        {
+            "id": "99",
+            "city": "ANTALYA",
+            "county": "MANAVGAT"
+        },
+        {
+            "id": "100",
+            "city": "ANTALYA",
+            "county": "MURATPAŞA"
+        },
+        {
+            "id": "101",
+            "city": "ANTALYA",
+            "county": "SERİK"
+        },
+        {
+            "id": "102",
+            "city": "ARTVİN",
+            "county": "ARDANUÇ"
+        },
+        {
+            "id": "103",
+            "city": "ARTVİN",
+            "county": "ARHAVİ"
+        },
+        {
+            "id": "104",
+            "city": "ARTVİN",
+            "county": "BORÇKA"
+        },
+        {
+            "id": "105",
+            "city": "ARTVİN",
+            "county": "HOPA"
+        },
+        {
+            "id": "106",
+            "city": "ARTVİN",
+            "county": "KEMALPAŞA"
+        },
+        {
+            "id": "107",
+            "city": "ARTVİN",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "108",
+            "city": "ARTVİN",
+            "county": "MURGUL"
+        },
+        {
+            "id": "109",
+            "city": "ARTVİN",
+            "county": "ŞAVŞAT"
+        },
+        {
+            "id": "110",
+            "city": "ARTVİN",
+            "county": "YUSUFELİ"
+        },
+        {
+            "id": "111",
+            "city": "AYDIN",
+            "county": "BOZDOĞAN"
+        },
+        {
+            "id": "112",
+            "city": "AYDIN",
+            "county": "BUHARKENT"
+        },
+        {
+            "id": "113",
+            "city": "AYDIN",
+            "county": "ÇİNE"
+        },
+        {
+            "id": "114",
+            "city": "AYDIN",
+            "county": "DİDİM"
+        },
+        {
+            "id": "115",
+            "city": "AYDIN",
+            "county": "EFELER"
+        },
+        {
+            "id": "116",
+            "city": "AYDIN",
+            "county": "GERMENCİK"
+        },
+        {
+            "id": "117",
+            "city": "AYDIN",
+            "county": "İNCİRLİOVA"
+        },
+        {
+            "id": "118",
+            "city": "AYDIN",
+            "county": "KARACASU"
+        },
+        {
+            "id": "119",
+            "city": "AYDIN",
+            "county": "KARPUZLU"
+        },
+        {
+            "id": "120",
+            "city": "AYDIN",
+            "county": "KOÇARLI"
+        },
+        {
+            "id": "121",
+            "city": "AYDIN",
+            "county": "KÖŞK"
+        },
+        {
+            "id": "122",
+            "city": "AYDIN",
+            "county": "KUŞADASI"
+        },
+        {
+            "id": "123",
+            "city": "AYDIN",
+            "county": "KUYUCAK"
+        },
+        {
+            "id": "124",
+            "city": "AYDIN",
+            "county": "NAZİLLİ"
+        },
+        {
+            "id": "125",
+            "city": "AYDIN",
+            "county": "SÖKE"
+        },
+        {
+            "id": "126",
+            "city": "AYDIN",
+            "county": "SULTANHİSAR"
+        },
+        {
+            "id": "127",
+            "city": "AYDIN",
+            "county": "YENİPAZAR"
+        },
+        {
+            "id": "128",
+            "city": "BALIKESİR",
+            "county": "ALTIEYLÜL"
+        },
+        {
+            "id": "129",
+            "city": "BALIKESİR",
+            "county": "AYVALIK"
+        },
+        {
+            "id": "130",
+            "city": "BALIKESİR",
+            "county": "BALYA"
+        },
+        {
+            "id": "131",
+            "city": "BALIKESİR",
+            "county": "BANDIRMA"
+        },
+        {
+            "id": "132",
+            "city": "BALIKESİR",
+            "county": "BİGADİÇ"
+        },
+        {
+            "id": "133",
+            "city": "BALIKESİR",
+            "county": "BURHANİYE"
+        },
+        {
+            "id": "134",
+            "city": "BALIKESİR",
+            "county": "DURSUNBEY"
+        },
+        {
+            "id": "135",
+            "city": "BALIKESİR",
+            "county": "EDREMİT"
+        },
+        {
+            "id": "136",
+            "city": "BALIKESİR",
+            "county": "ERDEK"
+        },
+        {
+            "id": "137",
+            "city": "BALIKESİR",
+            "county": "GÖMEÇ"
+        },
+        {
+            "id": "138",
+            "city": "BALIKESİR",
+            "county": "GÖNEN"
+        },
+        {
+            "id": "139",
+            "city": "BALIKESİR",
+            "county": "HAVRAN"
+        },
+        {
+            "id": "140",
+            "city": "BALIKESİR",
+            "county": "İVRİNDİ"
+        },
+        {
+            "id": "141",
+            "city": "BALIKESİR",
+            "county": "KARESİ"
+        },
+        {
+            "id": "142",
+            "city": "BALIKESİR",
+            "county": "KEPSUT"
+        },
+        {
+            "id": "143",
+            "city": "BALIKESİR",
+            "county": "MANYAS"
+        },
+        {
+            "id": "144",
+            "city": "BALIKESİR",
+            "county": "MARMARA"
+        },
+        {
+            "id": "145",
+            "city": "BALIKESİR",
+            "county": "SAVAŞTEPE"
+        },
+        {
+            "id": "146",
+            "city": "BALIKESİR",
+            "county": "SINDIRGI"
+        },
+        {
+            "id": "147",
+            "city": "BALIKESİR",
+            "county": "SUSURLUK"
+        },
+        {
+            "id": "148",
+            "city": "BİLECİK",
+            "county": "BOZÜYÜK"
+        },
+        {
+            "id": "149",
+            "city": "BİLECİK",
+            "county": "GÖLPAZARI"
+        },
+        {
+            "id": "150",
+            "city": "BİLECİK",
+            "county": "İNHİSAR"
+        },
+        {
+            "id": "151",
+            "city": "BİLECİK",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "152",
+            "city": "BİLECİK",
+            "county": "OSMANELİ"
+        },
+        {
+            "id": "153",
+            "city": "BİLECİK",
+            "county": "PAZARYERİ"
+        },
+        {
+            "id": "154",
+            "city": "BİLECİK",
+            "county": "SÖĞÜT"
+        },
+        {
+            "id": "155",
+            "city": "BİLECİK",
+            "county": "YENİPAZAR"
+        },
+        {
+            "id": "156",
+            "city": "BİNGÖL",
+            "county": "ADAKLI"
+        },
+        {
+            "id": "157",
+            "city": "BİNGÖL",
+            "county": "GENÇ"
+        },
+        {
+            "id": "158",
+            "city": "BİNGÖL",
+            "county": "KARLIOVA"
+        },
+        {
+            "id": "159",
+            "city": "BİNGÖL",
+            "county": "KİĞI"
+        },
+        {
+            "id": "160",
+            "city": "BİNGÖL",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "161",
+            "city": "BİNGÖL",
+            "county": "SOLHAN"
+        },
+        {
+            "id": "162",
+            "city": "BİNGÖL",
+            "county": "YAYLADERE"
+        },
+        {
+            "id": "163",
+            "city": "BİNGÖL",
+            "county": "YEDİSU"
+        },
+        {
+            "id": "164",
+            "city": "BİTLİS",
+            "county": "ADİLCEVAZ"
+        },
+        {
+            "id": "165",
+            "city": "BİTLİS",
+            "county": "AHLAT"
+        },
+        {
+            "id": "166",
+            "city": "BİTLİS",
+            "county": "GÜROYMAK"
+        },
+        {
+            "id": "167",
+            "city": "BİTLİS",
+            "county": "HİZAN"
+        },
+        {
+            "id": "168",
+            "city": "BİTLİS",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "169",
+            "city": "BİTLİS",
+            "county": "MUTKİ"
+        },
+        {
+            "id": "170",
+            "city": "BİTLİS",
+            "county": "TATVAN"
+        },
+        {
+            "id": "171",
+            "city": "BOLU",
+            "county": "DÖRTDİVAN"
+        },
+        {
+            "id": "172",
+            "city": "BOLU",
+            "county": "GEREDE"
+        },
+        {
+            "id": "173",
+            "city": "BOLU",
+            "county": "GÖYNÜK"
+        },
+        {
+            "id": "174",
+            "city": "BOLU",
+            "county": "KIBRISCIK"
+        },
+        {
+            "id": "175",
+            "city": "BOLU",
+            "county": "MENGEN"
+        },
+        {
+            "id": "176",
+            "city": "BOLU",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "177",
+            "city": "BOLU",
+            "county": "MUDURNU"
+        },
+        {
+            "id": "178",
+            "city": "BOLU",
+            "county": "SEBEN"
+        },
+        {
+            "id": "179",
+            "city": "BOLU",
+            "county": "YENİÇAĞA"
+        },
+        {
+            "id": "180",
+            "city": "BURDUR",
+            "county": "AĞLASUN"
+        },
+        {
+            "id": "181",
+            "city": "BURDUR",
+            "county": "ALTINYAYLA"
+        },
+        {
+            "id": "182",
+            "city": "BURDUR",
+            "county": "BUCAK"
+        },
+        {
+            "id": "183",
+            "city": "BURDUR",
+            "county": "ÇAVDIR"
+        },
+        {
+            "id": "184",
+            "city": "BURDUR",
+            "county": "ÇELTİKÇİ"
+        },
+        {
+            "id": "185",
+            "city": "BURDUR",
+            "county": "GÖLHİSAR"
+        },
+        {
+            "id": "186",
+            "city": "BURDUR",
+            "county": "KARAMANLI"
+        },
+        {
+            "id": "187",
+            "city": "BURDUR",
+            "county": "KEMER"
+        },
+        {
+            "id": "188",
+            "city": "BURDUR",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "189",
+            "city": "BURDUR",
+            "county": "TEFENNİ"
+        },
+        {
+            "id": "190",
+            "city": "BURDUR",
+            "county": "YEŞİLOVA"
+        },
+        {
+            "id": "191",
+            "city": "BURSA",
+            "county": "BÜYÜKORHAN"
+        },
+        {
+            "id": "192",
+            "city": "BURSA",
+            "county": "GEMLİK"
+        },
+        {
+            "id": "193",
+            "city": "BURSA",
+            "county": "GÜRSU"
+        },
+        {
+            "id": "194",
+            "city": "BURSA",
+            "county": "HARMANCIK"
+        },
+        {
+            "id": "195",
+            "city": "BURSA",
+            "county": "İNEGÖL"
+        },
+        {
+            "id": "196",
+            "city": "BURSA",
+            "county": "İZNİK"
+        },
+        {
+            "id": "197",
+            "city": "BURSA",
+            "county": "KARACABEY"
+        },
+        {
+            "id": "198",
+            "city": "BURSA",
+            "county": "KELES"
+        },
+        {
+            "id": "199",
+            "city": "BURSA",
+            "county": "KESTEL"
+        },
+        {
+            "id": "200",
+            "city": "BURSA",
+            "county": "MUDANYA"
+        },
+        {
+            "id": "201",
+            "city": "BURSA",
+            "county": "MUSTAFAKEMALPAŞA"
+        },
+        {
+            "id": "202",
+            "city": "BURSA",
+            "county": "NİLÜFER"
+        },
+        {
+            "id": "203",
+            "city": "BURSA",
+            "county": "ORHANELİ"
+        },
+        {
+            "id": "204",
+            "city": "BURSA",
+            "county": "ORHANGAZİ"
+        },
+        {
+            "id": "205",
+            "city": "BURSA",
+            "county": "OSMANGAZİ"
+        },
+        {
+            "id": "206",
+            "city": "BURSA",
+            "county": "YENİŞEHİR"
+        },
+        {
+            "id": "207",
+            "city": "BURSA",
+            "county": "YILDIRIM"
+        },
+        {
+            "id": "208",
+            "city": "ÇANAKKALE",
+            "county": "AYVACIK"
+        },
+        {
+            "id": "209",
+            "city": "ÇANAKKALE",
+            "county": "BAYRAMİÇ"
+        },
+        {
+            "id": "210",
+            "city": "ÇANAKKALE",
+            "county": "BİGA"
+        },
+        {
+            "id": "211",
+            "city": "ÇANAKKALE",
+            "county": "BOZCAADA"
+        },
+        {
+            "id": "212",
+            "city": "ÇANAKKALE",
+            "county": "ÇAN"
+        },
+        {
+            "id": "213",
+            "city": "ÇANAKKALE",
+            "county": "ECEABAT"
+        },
+        {
+            "id": "214",
+            "city": "ÇANAKKALE",
+            "county": "EZİNE"
+        },
+        {
+            "id": "215",
+            "city": "ÇANAKKALE",
+            "county": "GELİBOLU"
+        },
+        {
+            "id": "216",
+            "city": "ÇANAKKALE",
+            "county": "GÖKÇEADA"
+        },
+        {
+            "id": "217",
+            "city": "ÇANAKKALE",
+            "county": "LAPSEKİ"
+        },
+        {
+            "id": "218",
+            "city": "ÇANAKKALE",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "219",
+            "city": "ÇANAKKALE",
+            "county": "YENİCE"
+        },
+        {
+            "id": "220",
+            "city": "ÇANKIRI",
+            "county": "ATKARACALAR"
+        },
+        {
+            "id": "221",
+            "city": "ÇANKIRI",
+            "county": "BAYRAMÖREN"
+        },
+        {
+            "id": "222",
+            "city": "ÇANKIRI",
+            "county": "ÇERKEŞ"
+        },
+        {
+            "id": "223",
+            "city": "ÇANKIRI",
+            "county": "ELDİVAN"
+        },
+        {
+            "id": "224",
+            "city": "ÇANKIRI",
+            "county": "ILGAZ"
+        },
+        {
+            "id": "225",
+            "city": "ÇANKIRI",
+            "county": "KIZILIRMAK"
+        },
+        {
+            "id": "226",
+            "city": "ÇANKIRI",
+            "county": "KORGUN"
+        },
+        {
+            "id": "227",
+            "city": "ÇANKIRI",
+            "county": "KURŞUNLU"
+        },
+        {
+            "id": "228",
+            "city": "ÇANKIRI",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "229",
+            "city": "ÇANKIRI",
+            "county": "ORTA"
+        },
+        {
+            "id": "230",
+            "city": "ÇANKIRI",
+            "county": "ŞABANÖZÜ"
+        },
+        {
+            "id": "231",
+            "city": "ÇANKIRI",
+            "county": "YAPRAKLI"
+        },
+        {
+            "id": "232",
+            "city": "ÇORUM",
+            "county": "ALACA"
+        },
+        {
+            "id": "233",
+            "city": "ÇORUM",
+            "county": "BAYAT"
+        },
+        {
+            "id": "234",
+            "city": "ÇORUM",
+            "county": "BOĞAZKALE"
+        },
+        {
+            "id": "235",
+            "city": "ÇORUM",
+            "county": "DODURGA"
+        },
+        {
+            "id": "236",
+            "city": "ÇORUM",
+            "county": "İSKİLİP"
+        },
+        {
+            "id": "237",
+            "city": "ÇORUM",
+            "county": "KARGI"
+        },
+        {
+            "id": "238",
+            "city": "ÇORUM",
+            "county": "LAÇİN"
+        },
+        {
+            "id": "239",
+            "city": "ÇORUM",
+            "county": "MECİTÖZÜ"
+        },
+        {
+            "id": "240",
+            "city": "ÇORUM",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "241",
+            "city": "ÇORUM",
+            "county": "OĞUZLAR"
+        },
+        {
+            "id": "242",
+            "city": "ÇORUM",
+            "county": "ORTAKÖY"
+        },
+        {
+            "id": "243",
+            "city": "ÇORUM",
+            "county": "OSMANCIK"
+        },
+        {
+            "id": "244",
+            "city": "ÇORUM",
+            "county": "SUNGURLU"
+        },
+        {
+            "id": "245",
+            "city": "ÇORUM",
+            "county": "UĞURLUDAĞ"
+        },
+        {
+            "id": "246",
+            "city": "DENİZLİ",
+            "county": "ACIPAYAM"
+        },
+        {
+            "id": "247",
+            "city": "DENİZLİ",
+            "county": "BABADAĞ"
+        },
+        {
+            "id": "248",
+            "city": "DENİZLİ",
+            "county": "BAKLAN"
+        },
+        {
+            "id": "249",
+            "city": "DENİZLİ",
+            "county": "BEKİLLİ"
+        },
+        {
+            "id": "250",
+            "city": "DENİZLİ",
+            "county": "BEYAĞAÇ"
+        },
+        {
+            "id": "251",
+            "city": "DENİZLİ",
+            "county": "BOZKURT"
+        },
+        {
+            "id": "252",
+            "city": "DENİZLİ",
+            "county": "BULDAN"
+        },
+        {
+            "id": "253",
+            "city": "DENİZLİ",
+            "county": "ÇAL"
+        },
+        {
+            "id": "254",
+            "city": "DENİZLİ",
+            "county": "ÇAMELİ"
+        },
+        {
+            "id": "255",
+            "city": "DENİZLİ",
+            "county": "ÇARDAK"
+        },
+        {
+            "id": "256",
+            "city": "DENİZLİ",
+            "county": "ÇİVRİL"
+        },
+        {
+            "id": "257",
+            "city": "DENİZLİ",
+            "county": "GÜNEY"
+        },
+        {
+            "id": "258",
+            "city": "DENİZLİ",
+            "county": "HONAZ"
+        },
+        {
+            "id": "259",
+            "city": "DENİZLİ",
+            "county": "KALE"
+        },
+        {
+            "id": "260",
+            "city": "DENİZLİ",
+            "county": "MERKEZEFENDİ"
+        },
+        {
+            "id": "261",
+            "city": "DENİZLİ",
+            "county": "PAMUKKALE"
+        },
+        {
+            "id": "262",
+            "city": "DENİZLİ",
+            "county": "SARAYKÖY"
+        },
+        {
+            "id": "263",
+            "city": "DENİZLİ",
+            "county": "SERİNHİSAR"
+        },
+        {
+            "id": "264",
+            "city": "DENİZLİ",
+            "county": "TAVAS"
+        },
+        {
+            "id": "265",
+            "city": "DİYARBAKIR",
+            "county": "BAĞLAR"
+        },
+        {
+            "id": "266",
+            "city": "DİYARBAKIR",
+            "county": "BİSMİL"
+        },
+        {
+            "id": "267",
+            "city": "DİYARBAKIR",
+            "county": "ÇERMİK"
+        },
+        {
+            "id": "268",
+            "city": "DİYARBAKIR",
+            "county": "ÇINAR"
+        },
+        {
+            "id": "269",
+            "city": "DİYARBAKIR",
+            "county": "ÇÜNGÜŞ"
+        },
+        {
+            "id": "270",
+            "city": "DİYARBAKIR",
+            "county": "DİCLE"
+        },
+        {
+            "id": "271",
+            "city": "DİYARBAKIR",
+            "county": "EĞİL"
+        },
+        {
+            "id": "272",
+            "city": "DİYARBAKIR",
+            "county": "ERGANİ"
+        },
+        {
+            "id": "273",
+            "city": "DİYARBAKIR",
+            "county": "HANİ"
+        },
+        {
+            "id": "274",
+            "city": "DİYARBAKIR",
+            "county": "HAZRO"
+        },
+        {
+            "id": "275",
+            "city": "DİYARBAKIR",
+            "county": "KAYAPINAR"
+        },
+        {
+            "id": "276",
+            "city": "DİYARBAKIR",
+            "county": "KOCAKÖY"
+        },
+        {
+            "id": "277",
+            "city": "DİYARBAKIR",
+            "county": "KULP"
+        },
+        {
+            "id": "278",
+            "city": "DİYARBAKIR",
+            "county": "LİCE"
+        },
+        {
+            "id": "279",
+            "city": "DİYARBAKIR",
+            "county": "SİLVAN"
+        },
+        {
+            "id": "280",
+            "city": "DİYARBAKIR",
+            "county": "SUR"
+        },
+        {
+            "id": "281",
+            "city": "DİYARBAKIR",
+            "county": "YENİŞEHİR"
+        },
+        {
+            "id": "282",
+            "city": "EDİRNE",
+            "county": "ENEZ"
+        },
+        {
+            "id": "283",
+            "city": "EDİRNE",
+            "county": "HAVSA"
+        },
+        {
+            "id": "284",
+            "city": "EDİRNE",
+            "county": "İPSALA"
+        },
+        {
+            "id": "285",
+            "city": "EDİRNE",
+            "county": "KEŞAN"
+        },
+        {
+            "id": "286",
+            "city": "EDİRNE",
+            "county": "LALAPAŞA"
+        },
+        {
+            "id": "287",
+            "city": "EDİRNE",
+            "county": "MERİÇ"
+        },
+        {
+            "id": "288",
+            "city": "EDİRNE",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "289",
+            "city": "EDİRNE",
+            "county": "SÜLOĞLU"
+        },
+        {
+            "id": "290",
+            "city": "EDİRNE",
+            "county": "UZUNKÖPRÜ"
+        },
+        {
+            "id": "291",
+            "city": "ELAZIĞ",
+            "county": "AĞIN"
+        },
+        {
+            "id": "292",
+            "city": "ELAZIĞ",
+            "county": "ALACAKAYA"
+        },
+        {
+            "id": "293",
+            "city": "ELAZIĞ",
+            "county": "ARICAK"
+        },
+        {
+            "id": "294",
+            "city": "ELAZIĞ",
+            "county": "BASKİL"
+        },
+        {
+            "id": "295",
+            "city": "ELAZIĞ",
+            "county": "KARAKOÇAN"
+        },
+        {
+            "id": "296",
+            "city": "ELAZIĞ",
+            "county": "KEBAN"
+        },
+        {
+            "id": "297",
+            "city": "ELAZIĞ",
+            "county": "KOVANCILAR"
+        },
+        {
+            "id": "298",
+            "city": "ELAZIĞ",
+            "county": "MADEN"
+        },
+        {
+            "id": "299",
+            "city": "ELAZIĞ",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "300",
+            "city": "ELAZIĞ",
+            "county": "PALU"
+        },
+        {
+            "id": "301",
+            "city": "ELAZIĞ",
+            "county": "SİVRİCE"
+        },
+        {
+            "id": "302",
+            "city": "ERZİNCAN",
+            "county": "ÇAYIRLI"
+        },
+        {
+            "id": "303",
+            "city": "ERZİNCAN",
+            "county": "İLİÇ"
+        },
+        {
+            "id": "304",
+            "city": "ERZİNCAN",
+            "county": "KEMAH"
+        },
+        {
+            "id": "305",
+            "city": "ERZİNCAN",
+            "county": "KEMALİYE"
+        },
+        {
+            "id": "306",
+            "city": "ERZİNCAN",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "307",
+            "city": "ERZİNCAN",
+            "county": "OTLUKBELİ"
+        },
+        {
+            "id": "308",
+            "city": "ERZİNCAN",
+            "county": "REFAHİYE"
+        },
+        {
+            "id": "309",
+            "city": "ERZİNCAN",
+            "county": "TERCAN"
+        },
+        {
+            "id": "310",
+            "city": "ERZİNCAN",
+            "county": "ÜZÜMLÜ"
+        },
+        {
+            "id": "311",
+            "city": "ERZURUM",
+            "county": "AŞKALE"
+        },
+        {
+            "id": "312",
+            "city": "ERZURUM",
+            "county": "AZİZİYE"
+        },
+        {
+            "id": "313",
+            "city": "ERZURUM",
+            "county": "ÇAT"
+        },
+        {
+            "id": "314",
+            "city": "ERZURUM",
+            "county": "HINIS"
+        },
+        {
+            "id": "315",
+            "city": "ERZURUM",
+            "county": "HORASAN"
+        },
+        {
+            "id": "316",
+            "city": "ERZURUM",
+            "county": "İSPİR"
+        },
+        {
+            "id": "317",
+            "city": "ERZURUM",
+            "county": "KARAÇOBAN"
+        },
+        {
+            "id": "318",
+            "city": "ERZURUM",
+            "county": "KARAYAZI"
+        },
+        {
+            "id": "319",
+            "city": "ERZURUM",
+            "county": "KÖPRÜKÖY"
+        },
+        {
+            "id": "320",
+            "city": "ERZURUM",
+            "county": "NARMAN"
+        },
+        {
+            "id": "321",
+            "city": "ERZURUM",
+            "county": "OLTU"
+        },
+        {
+            "id": "322",
+            "city": "ERZURUM",
+            "county": "OLUR"
+        },
+        {
+            "id": "323",
+            "city": "ERZURUM",
+            "county": "PALANDÖKEN"
+        },
+        {
+            "id": "324",
+            "city": "ERZURUM",
+            "county": "PASİNLER"
+        },
+        {
+            "id": "325",
+            "city": "ERZURUM",
+            "county": "PAZARYOLU"
+        },
+        {
+            "id": "326",
+            "city": "ERZURUM",
+            "county": "ŞENKAYA"
+        },
+        {
+            "id": "327",
+            "city": "ERZURUM",
+            "county": "TEKMAN"
+        },
+        {
+            "id": "328",
+            "city": "ERZURUM",
+            "county": "TORTUM"
+        },
+        {
+            "id": "329",
+            "city": "ERZURUM",
+            "county": "UZUNDERE"
+        },
+        {
+            "id": "330",
+            "city": "ERZURUM",
+            "county": "YAKUTİYE"
+        },
+        {
+            "id": "331",
+            "city": "ESKİŞEHİR",
+            "county": "ALPU"
+        },
+        {
+            "id": "332",
+            "city": "ESKİŞEHİR",
+            "county": "BEYLİKOVA"
+        },
+        {
+            "id": "333",
+            "city": "ESKİŞEHİR",
+            "county": "ÇİFTELER"
+        },
+        {
+            "id": "334",
+            "city": "ESKİŞEHİR",
+            "county": "GÜNYÜZÜ"
+        },
+        {
+            "id": "335",
+            "city": "ESKİŞEHİR",
+            "county": "HAN"
+        },
+        {
+            "id": "336",
+            "city": "ESKİŞEHİR",
+            "county": "İNÖNÜ"
+        },
+        {
+            "id": "337",
+            "city": "ESKİŞEHİR",
+            "county": "MAHMUDİYE"
+        },
+        {
+            "id": "338",
+            "city": "ESKİŞEHİR",
+            "county": "MİHALGAZİ"
+        },
+        {
+            "id": "339",
+            "city": "ESKİŞEHİR",
+            "county": "MİHALIÇÇIK"
+        },
+        {
+            "id": "340",
+            "city": "ESKİŞEHİR",
+            "county": "ODUNPAZARI"
+        },
+        {
+            "id": "341",
+            "city": "ESKİŞEHİR",
+            "county": "SARICAKAYA"
+        },
+        {
+            "id": "342",
+            "city": "ESKİŞEHİR",
+            "county": "SEYİTGAZİ"
+        },
+        {
+            "id": "343",
+            "city": "ESKİŞEHİR",
+            "county": "SİVRİHİSAR"
+        },
+        {
+            "id": "344",
+            "city": "ESKİŞEHİR",
+            "county": "TEPEBAŞI"
+        },
+        {
+            "id": "345",
+            "city": "GAZİANTEP",
+            "county": "ARABAN"
+        },
+        {
+            "id": "346",
+            "city": "GAZİANTEP",
+            "county": "İSLAHİYE"
+        },
+        {
+            "id": "347",
+            "city": "GAZİANTEP",
+            "county": "KARKAMIŞ"
+        },
+        {
+            "id": "348",
+            "city": "GAZİANTEP",
+            "county": "NİZİP"
+        },
+        {
+            "id": "349",
+            "city": "GAZİANTEP",
+            "county": "NURDAĞI"
+        },
+        {
+            "id": "350",
+            "city": "GAZİANTEP",
+            "county": "OĞUZELİ"
+        },
+        {
+            "id": "351",
+            "city": "GAZİANTEP",
+            "county": "ŞAHİNBEY"
+        },
+        {
+            "id": "352",
+            "city": "GAZİANTEP",
+            "county": "ŞEHİTKAMİL"
+        },
+        {
+            "id": "353",
+            "city": "GAZİANTEP",
+            "county": "YAVUZELİ"
+        },
+        {
+            "id": "354",
+            "city": "GİRESUN",
+            "county": "ALUCRA"
+        },
+        {
+            "id": "355",
+            "city": "GİRESUN",
+            "county": "BULANCAK"
+        },
+        {
+            "id": "356",
+            "city": "GİRESUN",
+            "county": "ÇAMOLUK"
+        },
+        {
+            "id": "357",
+            "city": "GİRESUN",
+            "county": "ÇANAKÇI"
+        },
+        {
+            "id": "358",
+            "city": "GİRESUN",
+            "county": "DERELİ"
+        },
+        {
+            "id": "359",
+            "city": "GİRESUN",
+            "county": "DOĞANKENT"
+        },
+        {
+            "id": "360",
+            "city": "GİRESUN",
+            "county": "ESPİYE"
+        },
+        {
+            "id": "361",
+            "city": "GİRESUN",
+            "county": "EYNESİL"
+        },
+        {
+            "id": "362",
+            "city": "GİRESUN",
+            "county": "GÖRELE"
+        },
+        {
+            "id": "363",
+            "city": "GİRESUN",
+            "county": "GÜCE"
+        },
+        {
+            "id": "364",
+            "city": "GİRESUN",
+            "county": "KEŞAP"
+        },
+        {
+            "id": "365",
+            "city": "GİRESUN",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "366",
+            "city": "GİRESUN",
+            "county": "PİRAZİZ"
+        },
+        {
+            "id": "367",
+            "city": "GİRESUN",
+            "county": "ŞEBİNKARAHİSAR"
+        },
+        {
+            "id": "368",
+            "city": "GİRESUN",
+            "county": "TİREBOLU"
+        },
+        {
+            "id": "369",
+            "city": "GİRESUN",
+            "county": "YAĞLIDERE"
+        },
+        {
+            "id": "370",
+            "city": "GÜMÜŞHANE",
+            "county": "KELKİT"
+        },
+        {
+            "id": "371",
+            "city": "GÜMÜŞHANE",
+            "county": "KÖSE"
+        },
+        {
+            "id": "372",
+            "city": "GÜMÜŞHANE",
+            "county": "KÜRTÜN"
+        },
+        {
+            "id": "373",
+            "city": "GÜMÜŞHANE",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "374",
+            "city": "GÜMÜŞHANE",
+            "county": "ŞİRAN"
+        },
+        {
+            "id": "375",
+            "city": "GÜMÜŞHANE",
+            "county": "TORUL"
+        },
+        {
+            "id": "376",
+            "city": "HAKKARİ",
+            "county": "ÇUKURCA"
+        },
+        {
+            "id": "377",
+            "city": "HAKKARİ",
+            "county": "DERECİK"
+        },
+        {
+            "id": "378",
+            "city": "HAKKARİ",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "379",
+            "city": "HAKKARİ",
+            "county": "ŞEMDİNLİ"
+        },
+        {
+            "id": "380",
+            "city": "HAKKARİ",
+            "county": "YÜKSEKOVA"
+        },
+        {
+            "id": "381",
+            "city": "HATAY",
+            "county": "ALTINÖZÜ"
+        },
+        {
+            "id": "382",
+            "city": "HATAY",
+            "county": "ANTAKYA"
+        },
+        {
+            "id": "383",
+            "city": "HATAY",
+            "county": "ARSUZ"
+        },
+        {
+            "id": "384",
+            "city": "HATAY",
+            "county": "BELEN"
+        },
+        {
+            "id": "385",
+            "city": "HATAY",
+            "county": "DEFNE"
+        },
+        {
+            "id": "386",
+            "city": "HATAY",
+            "county": "DÖRTYOL"
+        },
+        {
+            "id": "387",
+            "city": "HATAY",
+            "county": "ERZİN"
+        },
+        {
+            "id": "388",
+            "city": "HATAY",
+            "county": "HASSA"
+        },
+        {
+            "id": "389",
+            "city": "HATAY",
+            "county": "İSKENDERUN"
+        },
+        {
+            "id": "390",
+            "city": "HATAY",
+            "county": "KIRIKHAN"
+        },
+        {
+            "id": "391",
+            "city": "HATAY",
+            "county": "KUMLU"
+        },
+        {
+            "id": "392",
+            "city": "HATAY",
+            "county": "PAYAS"
+        },
+        {
+            "id": "393",
+            "city": "HATAY",
+            "county": "REYHANLI"
+        },
+        {
+            "id": "394",
+            "city": "HATAY",
+            "county": "SAMANDAĞ"
+        },
+        {
+            "id": "395",
+            "city": "HATAY",
+            "county": "YAYLADAĞI"
+        },
+        {
+            "id": "396",
+            "city": "ISPARTA",
+            "county": "AKSU"
+        },
+        {
+            "id": "397",
+            "city": "ISPARTA",
+            "county": "ATABEY"
+        },
+        {
+            "id": "398",
+            "city": "ISPARTA",
+            "county": "EĞİRDİR"
+        },
+        {
+            "id": "399",
+            "city": "ISPARTA",
+            "county": "GELENDOST"
+        },
+        {
+            "id": "400",
+            "city": "ISPARTA",
+            "county": "GÖNEN"
+        },
+        {
+            "id": "401",
+            "city": "ISPARTA",
+            "county": "KEÇİBORLU"
+        },
+        {
+            "id": "402",
+            "city": "ISPARTA",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "403",
+            "city": "ISPARTA",
+            "county": "SENİRKENT"
+        },
+        {
+            "id": "404",
+            "city": "ISPARTA",
+            "county": "SÜTÇÜLER"
+        },
+        {
+            "id": "405",
+            "city": "ISPARTA",
+            "county": "ŞARKİKARAAĞAÇ"
+        },
+        {
+            "id": "406",
+            "city": "ISPARTA",
+            "county": "ULUBORLU"
+        },
+        {
+            "id": "407",
+            "city": "ISPARTA",
+            "county": "YALVAÇ"
+        },
+        {
+            "id": "408",
+            "city": "ISPARTA",
+            "county": "YENİŞARBADEMLİ"
+        },
+        {
+            "id": "409",
+            "city": "MERSİN",
+            "county": "AKDENİZ"
+        },
+        {
+            "id": "410",
+            "city": "MERSİN",
+            "county": "ANAMUR"
+        },
+        {
+            "id": "411",
+            "city": "MERSİN",
+            "county": "AYDINCIK"
+        },
+        {
+            "id": "412",
+            "city": "MERSİN",
+            "county": "BOZYAZI"
+        },
+        {
+            "id": "413",
+            "city": "MERSİN",
+            "county": "ÇAMLIYAYLA"
+        },
+        {
+            "id": "414",
+            "city": "MERSİN",
+            "county": "ERDEMLİ"
+        },
+        {
+            "id": "415",
+            "city": "MERSİN",
+            "county": "GÜLNAR"
+        },
+        {
+            "id": "416",
+            "city": "MERSİN",
+            "county": "MEZİTLİ"
+        },
+        {
+            "id": "417",
+            "city": "MERSİN",
+            "county": "MUT"
+        },
+        {
+            "id": "418",
+            "city": "MERSİN",
+            "county": "SİLİFKE"
+        },
+        {
+            "id": "419",
+            "city": "MERSİN",
+            "county": "TARSUS"
+        },
+        {
+            "id": "420",
+            "city": "MERSİN",
+            "county": "TOROSLAR"
+        },
+        {
+            "id": "421",
+            "city": "MERSİN",
+            "county": "YENİŞEHİR"
+        },
+        {
+            "id": "422",
+            "city": "İSTANBUL",
+            "county": "ADALAR"
+        },
+        {
+            "id": "423",
+            "city": "İSTANBUL",
+            "county": "ARNAVUTKÖY"
+        },
+        {
+            "id": "424",
+            "city": "İSTANBUL",
+            "county": "ATAŞEHİR"
+        },
+        {
+            "id": "425",
+            "city": "İSTANBUL",
+            "county": "AVCILAR"
+        },
+        {
+            "id": "426",
+            "city": "İSTANBUL",
+            "county": "BAĞCILAR"
+        },
+        {
+            "id": "427",
+            "city": "İSTANBUL",
+            "county": "BAHÇELİEVLER"
+        },
+        {
+            "id": "428",
+            "city": "İSTANBUL",
+            "county": "BAKIRKÖY"
+        },
+        {
+            "id": "429",
+            "city": "İSTANBUL",
+            "county": "BAŞAKŞEHİR"
+        },
+        {
+            "id": "430",
+            "city": "İSTANBUL",
+            "county": "BAYRAMPAŞA"
+        },
+        {
+            "id": "431",
+            "city": "İSTANBUL",
+            "county": "BEŞİKTAŞ"
+        },
+        {
+            "id": "432",
+            "city": "İSTANBUL",
+            "county": "BEYKOZ"
+        },
+        {
+            "id": "433",
+            "city": "İSTANBUL",
+            "county": "BEYLİKDÜZÜ"
+        },
+        {
+            "id": "434",
+            "city": "İSTANBUL",
+            "county": "BEYOĞLU"
+        },
+        {
+            "id": "435",
+            "city": "İSTANBUL",
+            "county": "BÜYÜKÇEKMECE"
+        },
+        {
+            "id": "436",
+            "city": "İSTANBUL",
+            "county": "ÇATALCA"
+        },
+        {
+            "id": "437",
+            "city": "İSTANBUL",
+            "county": "ÇEKMEKÖY"
+        },
+        {
+            "id": "438",
+            "city": "İSTANBUL",
+            "county": "ESENLER"
+        },
+        {
+            "id": "439",
+            "city": "İSTANBUL",
+            "county": "ESENYURT"
+        },
+        {
+            "id": "440",
+            "city": "İSTANBUL",
+            "county": "EYÜPSULTAN"
+        },
+        {
+            "id": "441",
+            "city": "İSTANBUL",
+            "county": "FATİH"
+        },
+        {
+            "id": "442",
+            "city": "İSTANBUL",
+            "county": "GAZİOSMANPAŞA"
+        },
+        {
+            "id": "443",
+            "city": "İSTANBUL",
+            "county": "GÜNGÖREN"
+        },
+        {
+            "id": "444",
+            "city": "İSTANBUL",
+            "county": "KADIKÖY"
+        },
+        {
+            "id": "445",
+            "city": "İSTANBUL",
+            "county": "KAĞITHANE"
+        },
+        {
+            "id": "446",
+            "city": "İSTANBUL",
+            "county": "KARTAL"
+        },
+        {
+            "id": "447",
+            "city": "İSTANBUL",
+            "county": "KÜÇÜKÇEKMECE"
+        },
+        {
+            "id": "448",
+            "city": "İSTANBUL",
+            "county": "MALTEPE"
+        },
+        {
+            "id": "449",
+            "city": "İSTANBUL",
+            "county": "PENDİK"
+        },
+        {
+            "id": "450",
+            "city": "İSTANBUL",
+            "county": "SANCAKTEPE"
+        },
+        {
+            "id": "451",
+            "city": "İSTANBUL",
+            "county": "SARIYER"
+        },
+        {
+            "id": "452",
+            "city": "İSTANBUL",
+            "county": "SİLİVRİ"
+        },
+        {
+            "id": "453",
+            "city": "İSTANBUL",
+            "county": "SULTANBEYLİ"
+        },
+        {
+            "id": "454",
+            "city": "İSTANBUL",
+            "county": "SULTANGAZİ"
+        },
+        {
+            "id": "455",
+            "city": "İSTANBUL",
+            "county": "ŞİLE"
+        },
+        {
+            "id": "456",
+            "city": "İSTANBUL",
+            "county": "ŞİŞLİ"
+        },
+        {
+            "id": "457",
+            "city": "İSTANBUL",
+            "county": "TUZLA"
+        },
+        {
+            "id": "458",
+            "city": "İSTANBUL",
+            "county": "ÜMRANİYE"
+        },
+        {
+            "id": "459",
+            "city": "İSTANBUL",
+            "county": "ÜSKÜDAR"
+        },
+        {
+            "id": "460",
+            "city": "İSTANBUL",
+            "county": "ZEYTİNBURNU"
+        },
+        {
+            "id": "461",
+            "city": "İZMİR",
+            "county": "ALİAĞA"
+        },
+        {
+            "id": "462",
+            "city": "İZMİR",
+            "county": "BALÇOVA"
+        },
+        {
+            "id": "463",
+            "city": "İZMİR",
+            "county": "BAYINDIR"
+        },
+        {
+            "id": "464",
+            "city": "İZMİR",
+            "county": "BAYRAKLI"
+        },
+        {
+            "id": "465",
+            "city": "İZMİR",
+            "county": "BERGAMA"
+        },
+        {
+            "id": "466",
+            "city": "İZMİR",
+            "county": "BEYDAĞ"
+        },
+        {
+            "id": "467",
+            "city": "İZMİR",
+            "county": "BORNOVA"
+        },
+        {
+            "id": "468",
+            "city": "İZMİR",
+            "county": "BUCA"
+        },
+        {
+            "id": "469",
+            "city": "İZMİR",
+            "county": "ÇEŞME"
+        },
+        {
+            "id": "470",
+            "city": "İZMİR",
+            "county": "ÇİĞLİ"
+        },
+        {
+            "id": "471",
+            "city": "İZMİR",
+            "county": "DİKİLİ"
+        },
+        {
+            "id": "472",
+            "city": "İZMİR",
+            "county": "FOÇA"
+        },
+        {
+            "id": "473",
+            "city": "İZMİR",
+            "county": "GAZİEMİR"
+        },
+        {
+            "id": "474",
+            "city": "İZMİR",
+            "county": "GÜZELBAHÇE"
+        },
+        {
+            "id": "475",
+            "city": "İZMİR",
+            "county": "KARABAĞLAR"
+        },
+        {
+            "id": "476",
+            "city": "İZMİR",
+            "county": "KARABURUN"
+        },
+        {
+            "id": "477",
+            "city": "İZMİR",
+            "county": "KARŞIYAKA"
+        },
+        {
+            "id": "478",
+            "city": "İZMİR",
+            "county": "KEMALPAŞA"
+        },
+        {
+            "id": "479",
+            "city": "İZMİR",
+            "county": "KINIK"
+        },
+        {
+            "id": "480",
+            "city": "İZMİR",
+            "county": "KİRAZ"
+        },
+        {
+            "id": "481",
+            "city": "İZMİR",
+            "county": "KONAK"
+        },
+        {
+            "id": "482",
+            "city": "İZMİR",
+            "county": "MENDERES"
+        },
+        {
+            "id": "483",
+            "city": "İZMİR",
+            "county": "MENEMEN"
+        },
+        {
+            "id": "484",
+            "city": "İZMİR",
+            "county": "NARLIDERE"
+        },
+        {
+            "id": "485",
+            "city": "İZMİR",
+            "county": "ÖDEMİŞ"
+        },
+        {
+            "id": "486",
+            "city": "İZMİR",
+            "county": "SEFERİHİSAR"
+        },
+        {
+            "id": "487",
+            "city": "İZMİR",
+            "county": "SELÇUK"
+        },
+        {
+            "id": "488",
+            "city": "İZMİR",
+            "county": "TİRE"
+        },
+        {
+            "id": "489",
+            "city": "İZMİR",
+            "county": "TORBALI"
+        },
+        {
+            "id": "490",
+            "city": "İZMİR",
+            "county": "URLA"
+        },
+        {
+            "id": "491",
+            "city": "KARS",
+            "county": "AKYAKA"
+        },
+        {
+            "id": "492",
+            "city": "KARS",
+            "county": "ARPAÇAY"
+        },
+        {
+            "id": "493",
+            "city": "KARS",
+            "county": "DİGOR"
+        },
+        {
+            "id": "494",
+            "city": "KARS",
+            "county": "KAĞIZMAN"
+        },
+        {
+            "id": "495",
+            "city": "KARS",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "496",
+            "city": "KARS",
+            "county": "SARIKAMIŞ"
+        },
+        {
+            "id": "497",
+            "city": "KARS",
+            "county": "SELİM"
+        },
+        {
+            "id": "498",
+            "city": "KARS",
+            "county": "SUSUZ"
+        },
+        {
+            "id": "499",
+            "city": "KASTAMONU",
+            "county": "ABANA"
+        },
+        {
+            "id": "500",
+            "city": "KASTAMONU",
+            "county": "AĞLI"
+        },
+        {
+            "id": "501",
+            "city": "KASTAMONU",
+            "county": "ARAÇ"
+        },
+        {
+            "id": "502",
+            "city": "KASTAMONU",
+            "county": "AZDAVAY"
+        },
+        {
+            "id": "503",
+            "city": "KASTAMONU",
+            "county": "BOZKURT"
+        },
+        {
+            "id": "504",
+            "city": "KASTAMONU",
+            "county": "CİDE"
+        },
+        {
+            "id": "505",
+            "city": "KASTAMONU",
+            "county": "ÇATALZEYTİN"
+        },
+        {
+            "id": "506",
+            "city": "KASTAMONU",
+            "county": "DADAY"
+        },
+        {
+            "id": "507",
+            "city": "KASTAMONU",
+            "county": "DEVREKANİ"
+        },
+        {
+            "id": "508",
+            "city": "KASTAMONU",
+            "county": "DOĞANYURT"
+        },
+        {
+            "id": "509",
+            "city": "KASTAMONU",
+            "county": "HANÖNÜ"
+        },
+        {
+            "id": "510",
+            "city": "KASTAMONU",
+            "county": "İHSANGAZİ"
+        },
+        {
+            "id": "511",
+            "city": "KASTAMONU",
+            "county": "İNEBOLU"
+        },
+        {
+            "id": "512",
+            "city": "KASTAMONU",
+            "county": "KÜRE"
+        },
+        {
+            "id": "513",
+            "city": "KASTAMONU",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "514",
+            "city": "KASTAMONU",
+            "county": "PINARBAŞI"
+        },
+        {
+            "id": "515",
+            "city": "KASTAMONU",
+            "county": "SEYDİLER"
+        },
+        {
+            "id": "516",
+            "city": "KASTAMONU",
+            "county": "ŞENPAZAR"
+        },
+        {
+            "id": "517",
+            "city": "KASTAMONU",
+            "county": "TAŞKÖPRÜ"
+        },
+        {
+            "id": "518",
+            "city": "KASTAMONU",
+            "county": "TOSYA"
+        },
+        {
+            "id": "519",
+            "city": "KAYSERİ",
+            "county": "AKKIŞLA"
+        },
+        {
+            "id": "520",
+            "city": "KAYSERİ",
+            "county": "BÜNYAN"
+        },
+        {
+            "id": "521",
+            "city": "KAYSERİ",
+            "county": "DEVELİ"
+        },
+        {
+            "id": "522",
+            "city": "KAYSERİ",
+            "county": "FELAHİYE"
+        },
+        {
+            "id": "523",
+            "city": "KAYSERİ",
+            "county": "HACILAR"
+        },
+        {
+            "id": "524",
+            "city": "KAYSERİ",
+            "county": "İNCESU"
+        },
+        {
+            "id": "525",
+            "city": "KAYSERİ",
+            "county": "KOCASİNAN"
+        },
+        {
+            "id": "526",
+            "city": "KAYSERİ",
+            "county": "MELİKGAZİ"
+        },
+        {
+            "id": "527",
+            "city": "KAYSERİ",
+            "county": "ÖZVATAN"
+        },
+        {
+            "id": "528",
+            "city": "KAYSERİ",
+            "county": "PINARBAŞI"
+        },
+        {
+            "id": "529",
+            "city": "KAYSERİ",
+            "county": "SARIOĞLAN"
+        },
+        {
+            "id": "530",
+            "city": "KAYSERİ",
+            "county": "SARIZ"
+        },
+        {
+            "id": "531",
+            "city": "KAYSERİ",
+            "county": "TALAS"
+        },
+        {
+            "id": "532",
+            "city": "KAYSERİ",
+            "county": "TOMARZA"
+        },
+        {
+            "id": "533",
+            "city": "KAYSERİ",
+            "county": "YAHYALI"
+        },
+        {
+            "id": "534",
+            "city": "KAYSERİ",
+            "county": "YEŞİLHİSAR"
+        },
+        {
+            "id": "535",
+            "city": "KIRKLARELİ",
+            "county": "BABAESKİ"
+        },
+        {
+            "id": "536",
+            "city": "KIRKLARELİ",
+            "county": "DEMİRKÖY"
+        },
+        {
+            "id": "537",
+            "city": "KIRKLARELİ",
+            "county": "KOFÇAZ"
+        },
+        {
+            "id": "538",
+            "city": "KIRKLARELİ",
+            "county": "LÜLEBURGAZ"
+        },
+        {
+            "id": "539",
+            "city": "KIRKLARELİ",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "540",
+            "city": "KIRKLARELİ",
+            "county": "PEHLİVANKÖY"
+        },
+        {
+            "id": "541",
+            "city": "KIRKLARELİ",
+            "county": "PINARHİSAR"
+        },
+        {
+            "id": "542",
+            "city": "KIRKLARELİ",
+            "county": "VİZE"
+        },
+        {
+            "id": "543",
+            "city": "KIRŞEHİR",
+            "county": "AKÇAKENT"
+        },
+        {
+            "id": "544",
+            "city": "KIRŞEHİR",
+            "county": "AKPINAR"
+        },
+        {
+            "id": "545",
+            "city": "KIRŞEHİR",
+            "county": "BOZTEPE"
+        },
+        {
+            "id": "546",
+            "city": "KIRŞEHİR",
+            "county": "ÇİÇEKDAĞI"
+        },
+        {
+            "id": "547",
+            "city": "KIRŞEHİR",
+            "county": "KAMAN"
+        },
+        {
+            "id": "548",
+            "city": "KIRŞEHİR",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "549",
+            "city": "KIRŞEHİR",
+            "county": "MUCUR"
+        },
+        {
+            "id": "550",
+            "city": "KOCAELİ",
+            "county": "BAŞİSKELE"
+        },
+        {
+            "id": "551",
+            "city": "KOCAELİ",
+            "county": "ÇAYIROVA"
+        },
+        {
+            "id": "552",
+            "city": "KOCAELİ",
+            "county": "DARICA"
+        },
+        {
+            "id": "553",
+            "city": "KOCAELİ",
+            "county": "DERİNCE"
+        },
+        {
+            "id": "554",
+            "city": "KOCAELİ",
+            "county": "DİLOVASI"
+        },
+        {
+            "id": "555",
+            "city": "KOCAELİ",
+            "county": "GEBZE"
+        },
+        {
+            "id": "556",
+            "city": "KOCAELİ",
+            "county": "GÖLCÜK"
+        },
+        {
+            "id": "557",
+            "city": "KOCAELİ",
+            "county": "İZMİT"
+        },
+        {
+            "id": "558",
+            "city": "KOCAELİ",
+            "county": "KANDIRA"
+        },
+        {
+            "id": "559",
+            "city": "KOCAELİ",
+            "county": "KARAMÜRSEL"
+        },
+        {
+            "id": "560",
+            "city": "KOCAELİ",
+            "county": "KARTEPE"
+        },
+        {
+            "id": "561",
+            "city": "KOCAELİ",
+            "county": "KÖRFEZ"
+        },
+        {
+            "id": "562",
+            "city": "KONYA",
+            "county": "AHIRLI"
+        },
+        {
+            "id": "563",
+            "city": "KONYA",
+            "county": "AKÖREN"
+        },
+        {
+            "id": "564",
+            "city": "KONYA",
+            "county": "AKŞEHİR"
+        },
+        {
+            "id": "565",
+            "city": "KONYA",
+            "county": "ALTINEKİN"
+        },
+        {
+            "id": "566",
+            "city": "KONYA",
+            "county": "BEYŞEHİR"
+        },
+        {
+            "id": "567",
+            "city": "KONYA",
+            "county": "BOZKIR"
+        },
+        {
+            "id": "568",
+            "city": "KONYA",
+            "county": "CİHANBEYLİ"
+        },
+        {
+            "id": "569",
+            "city": "KONYA",
+            "county": "ÇELTİK"
+        },
+        {
+            "id": "570",
+            "city": "KONYA",
+            "county": "ÇUMRA"
+        },
+        {
+            "id": "571",
+            "city": "KONYA",
+            "county": "DERBENT"
+        },
+        {
+            "id": "572",
+            "city": "KONYA",
+            "county": "DEREBUCAK"
+        },
+        {
+            "id": "573",
+            "city": "KONYA",
+            "county": "DOĞANHİSAR"
+        },
+        {
+            "id": "574",
+            "city": "KONYA",
+            "county": "EMİRGAZİ"
+        },
+        {
+            "id": "575",
+            "city": "KONYA",
+            "county": "EREĞLİ"
+        },
+        {
+            "id": "576",
+            "city": "KONYA",
+            "county": "GÜNEYSINIR"
+        },
+        {
+            "id": "577",
+            "city": "KONYA",
+            "county": "HADİM"
+        },
+        {
+            "id": "578",
+            "city": "KONYA",
+            "county": "HALKAPINAR"
+        },
+        {
+            "id": "579",
+            "city": "KONYA",
+            "county": "HÜYÜK"
+        },
+        {
+            "id": "580",
+            "city": "KONYA",
+            "county": "ILGIN"
+        },
+        {
+            "id": "581",
+            "city": "KONYA",
+            "county": "KADINHANI"
+        },
+        {
+            "id": "582",
+            "city": "KONYA",
+            "county": "KARAPINAR"
+        },
+        {
+            "id": "583",
+            "city": "KONYA",
+            "county": "KARATAY"
+        },
+        {
+            "id": "584",
+            "city": "KONYA",
+            "county": "KULU"
+        },
+        {
+            "id": "585",
+            "city": "KONYA",
+            "county": "MERAM"
+        },
+        {
+            "id": "586",
+            "city": "KONYA",
+            "county": "SARAYÖNÜ"
+        },
+        {
+            "id": "587",
+            "city": "KONYA",
+            "county": "SELÇUKLU"
+        },
+        {
+            "id": "588",
+            "city": "KONYA",
+            "county": "SEYDİŞEHİR"
+        },
+        {
+            "id": "589",
+            "city": "KONYA",
+            "county": "TAŞKENT"
+        },
+        {
+            "id": "590",
+            "city": "KONYA",
+            "county": "TUZLUKÇU"
+        },
+        {
+            "id": "591",
+            "city": "KONYA",
+            "county": "YALIHÜYÜK"
+        },
+        {
+            "id": "592",
+            "city": "KONYA",
+            "county": "YUNAK"
+        },
+        {
+            "id": "593",
+            "city": "KÜTAHYA",
+            "county": "ALTINTAŞ"
+        },
+        {
+            "id": "594",
+            "city": "KÜTAHYA",
+            "county": "ASLANAPA"
+        },
+        {
+            "id": "595",
+            "city": "KÜTAHYA",
+            "county": "ÇAVDARHİSAR"
+        },
+        {
+            "id": "596",
+            "city": "KÜTAHYA",
+            "county": "DOMANİÇ"
+        },
+        {
+            "id": "597",
+            "city": "KÜTAHYA",
+            "county": "DUMLUPINAR"
+        },
+        {
+            "id": "598",
+            "city": "KÜTAHYA",
+            "county": "EMET"
+        },
+        {
+            "id": "599",
+            "city": "KÜTAHYA",
+            "county": "GEDİZ"
+        },
+        {
+            "id": "600",
+            "city": "KÜTAHYA",
+            "county": "HİSARCIK"
+        },
+        {
+            "id": "601",
+            "city": "KÜTAHYA",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "602",
+            "city": "KÜTAHYA",
+            "county": "PAZARLAR"
+        },
+        {
+            "id": "603",
+            "city": "KÜTAHYA",
+            "county": "SİMAV"
+        },
+        {
+            "id": "604",
+            "city": "KÜTAHYA",
+            "county": "ŞAPHANE"
+        },
+        {
+            "id": "605",
+            "city": "KÜTAHYA",
+            "county": "TAVŞANLI"
+        },
+        {
+            "id": "606",
+            "city": "MALATYA",
+            "county": "AKÇADAĞ"
+        },
+        {
+            "id": "607",
+            "city": "MALATYA",
+            "county": "ARAPGİR"
+        },
+        {
+            "id": "608",
+            "city": "MALATYA",
+            "county": "ARGUVAN"
+        },
+        {
+            "id": "609",
+            "city": "MALATYA",
+            "county": "BATTALGAZİ"
+        },
+        {
+            "id": "610",
+            "city": "MALATYA",
+            "county": "DARENDE"
+        },
+        {
+            "id": "611",
+            "city": "MALATYA",
+            "county": "DOĞANŞEHİR"
+        },
+        {
+            "id": "612",
+            "city": "MALATYA",
+            "county": "DOĞANYOL"
+        },
+        {
+            "id": "613",
+            "city": "MALATYA",
+            "county": "HEKİMHAN"
+        },
+        {
+            "id": "614",
+            "city": "MALATYA",
+            "county": "KALE"
+        },
+        {
+            "id": "615",
+            "city": "MALATYA",
+            "county": "KULUNCAK"
+        },
+        {
+            "id": "616",
+            "city": "MALATYA",
+            "county": "PÜTÜRGE"
+        },
+        {
+            "id": "617",
+            "city": "MALATYA",
+            "county": "YAZIHAN"
+        },
+        {
+            "id": "618",
+            "city": "MALATYA",
+            "county": "YEŞİLYURT"
+        },
+        {
+            "id": "619",
+            "city": "MANİSA",
+            "county": "AHMETLİ"
+        },
+        {
+            "id": "620",
+            "city": "MANİSA",
+            "county": "AKHİSAR"
+        },
+        {
+            "id": "621",
+            "city": "MANİSA",
+            "county": "ALAŞEHİR"
+        },
+        {
+            "id": "622",
+            "city": "MANİSA",
+            "county": "DEMİRCİ"
+        },
+        {
+            "id": "623",
+            "city": "MANİSA",
+            "county": "GÖLMARMARA"
+        },
+        {
+            "id": "624",
+            "city": "MANİSA",
+            "county": "GÖRDES"
+        },
+        {
+            "id": "625",
+            "city": "MANİSA",
+            "county": "KIRKAĞAÇ"
+        },
+        {
+            "id": "626",
+            "city": "MANİSA",
+            "county": "KÖPRÜBAŞI"
+        },
+        {
+            "id": "627",
+            "city": "MANİSA",
+            "county": "KULA"
+        },
+        {
+            "id": "628",
+            "city": "MANİSA",
+            "county": "SALİHLİ"
+        },
+        {
+            "id": "629",
+            "city": "MANİSA",
+            "county": "SARIGÖL"
+        },
+        {
+            "id": "630",
+            "city": "MANİSA",
+            "county": "SARUHANLI"
+        },
+        {
+            "id": "631",
+            "city": "MANİSA",
+            "county": "SELENDİ"
+        },
+        {
+            "id": "632",
+            "city": "MANİSA",
+            "county": "SOMA"
+        },
+        {
+            "id": "633",
+            "city": "MANİSA",
+            "county": "ŞEHZADELER"
+        },
+        {
+            "id": "634",
+            "city": "MANİSA",
+            "county": "TURGUTLU"
+        },
+        {
+            "id": "635",
+            "city": "MANİSA",
+            "county": "YUNUSEMRE"
+        },
+        {
+            "id": "636",
+            "city": "KAHRAMANMARAŞ",
+            "county": "AFŞİN"
+        },
+        {
+            "id": "637",
+            "city": "KAHRAMANMARAŞ",
+            "county": "ANDIRIN"
+        },
+        {
+            "id": "638",
+            "city": "KAHRAMANMARAŞ",
+            "county": "ÇAĞLAYANCERİT"
+        },
+        {
+            "id": "639",
+            "city": "KAHRAMANMARAŞ",
+            "county": "DULKADİROĞLU"
+        },
+        {
+            "id": "640",
+            "city": "KAHRAMANMARAŞ",
+            "county": "EKİNÖZÜ"
+        },
+        {
+            "id": "641",
+            "city": "KAHRAMANMARAŞ",
+            "county": "ELBİSTAN"
+        },
+        {
+            "id": "642",
+            "city": "KAHRAMANMARAŞ",
+            "county": "GÖKSUN"
+        },
+        {
+            "id": "643",
+            "city": "KAHRAMANMARAŞ",
+            "county": "NURHAK"
+        },
+        {
+            "id": "644",
+            "city": "KAHRAMANMARAŞ",
+            "county": "ONİKİŞUBAT"
+        },
+        {
+            "id": "645",
+            "city": "KAHRAMANMARAŞ",
+            "county": "PAZARCIK"
+        },
+        {
+            "id": "646",
+            "city": "KAHRAMANMARAŞ",
+            "county": "TÜRKOĞLU"
+        },
+        {
+            "id": "647",
+            "city": "MARDİN",
+            "county": "ARTUKLU"
+        },
+        {
+            "id": "648",
+            "city": "MARDİN",
+            "county": "DARGEÇİT"
+        },
+        {
+            "id": "649",
+            "city": "MARDİN",
+            "county": "DERİK"
+        },
+        {
+            "id": "650",
+            "city": "MARDİN",
+            "county": "KIZILTEPE"
+        },
+        {
+            "id": "651",
+            "city": "MARDİN",
+            "county": "MAZIDAĞI"
+        },
+        {
+            "id": "652",
+            "city": "MARDİN",
+            "county": "MİDYAT"
+        },
+        {
+            "id": "653",
+            "city": "MARDİN",
+            "county": "NUSAYBİN"
+        },
+        {
+            "id": "654",
+            "city": "MARDİN",
+            "county": "ÖMERLİ"
+        },
+        {
+            "id": "655",
+            "city": "MARDİN",
+            "county": "SAVUR"
+        },
+        {
+            "id": "656",
+            "city": "MARDİN",
+            "county": "YEŞİLLİ"
+        },
+        {
+            "id": "657",
+            "city": "MUĞLA",
+            "county": "BODRUM"
+        },
+        {
+            "id": "658",
+            "city": "MUĞLA",
+            "county": "DALAMAN"
+        },
+        {
+            "id": "659",
+            "city": "MUĞLA",
+            "county": "DATÇA"
+        },
+        {
+            "id": "660",
+            "city": "MUĞLA",
+            "county": "FETHİYE"
+        },
+        {
+            "id": "661",
+            "city": "MUĞLA",
+            "county": "KAVAKLIDERE"
+        },
+        {
+            "id": "662",
+            "city": "MUĞLA",
+            "county": "KÖYCEĞİZ"
+        },
+        {
+            "id": "663",
+            "city": "MUĞLA",
+            "county": "MARMARİS"
+        },
+        {
+            "id": "664",
+            "city": "MUĞLA",
+            "county": "MENTEŞE"
+        },
+        {
+            "id": "665",
+            "city": "MUĞLA",
+            "county": "MİLAS"
+        },
+        {
+            "id": "666",
+            "city": "MUĞLA",
+            "county": "ORTACA"
+        },
+        {
+            "id": "667",
+            "city": "MUĞLA",
+            "county": "SEYDİKEMER"
+        },
+        {
+            "id": "668",
+            "city": "MUĞLA",
+            "county": "ULA"
+        },
+        {
+            "id": "669",
+            "city": "MUĞLA",
+            "county": "YATAĞAN"
+        },
+        {
+            "id": "670",
+            "city": "MUŞ",
+            "county": "BULANIK"
+        },
+        {
+            "id": "671",
+            "city": "MUŞ",
+            "county": "HASKÖY"
+        },
+        {
+            "id": "672",
+            "city": "MUŞ",
+            "county": "KORKUT"
+        },
+        {
+            "id": "673",
+            "city": "MUŞ",
+            "county": "MALAZGİRT"
+        },
+        {
+            "id": "674",
+            "city": "MUŞ",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "675",
+            "city": "MUŞ",
+            "county": "VARTO"
+        },
+        {
+            "id": "676",
+            "city": "NEVŞEHİR",
+            "county": "ACIGÖL"
+        },
+        {
+            "id": "677",
+            "city": "NEVŞEHİR",
+            "county": "AVANOS"
+        },
+        {
+            "id": "678",
+            "city": "NEVŞEHİR",
+            "county": "DERİNKUYU"
+        },
+        {
+            "id": "679",
+            "city": "NEVŞEHİR",
+            "county": "GÜLŞEHİR"
+        },
+        {
+            "id": "680",
+            "city": "NEVŞEHİR",
+            "county": "HACIBEKTAŞ"
+        },
+        {
+            "id": "681",
+            "city": "NEVŞEHİR",
+            "county": "KOZAKLI"
+        },
+        {
+            "id": "682",
+            "city": "NEVŞEHİR",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "683",
+            "city": "NEVŞEHİR",
+            "county": "ÜRGÜP"
+        },
+        {
+            "id": "684",
+            "city": "NİĞDE",
+            "county": "ALTUNHİSAR"
+        },
+        {
+            "id": "685",
+            "city": "NİĞDE",
+            "county": "BOR"
+        },
+        {
+            "id": "686",
+            "city": "NİĞDE",
+            "county": "ÇAMARDI"
+        },
+        {
+            "id": "687",
+            "city": "NİĞDE",
+            "county": "ÇİFTLİK"
+        },
+        {
+            "id": "688",
+            "city": "NİĞDE",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "689",
+            "city": "NİĞDE",
+            "county": "ULUKIŞLA"
+        },
+        {
+            "id": "690",
+            "city": "ORDU",
+            "county": "AKKUŞ"
+        },
+        {
+            "id": "691",
+            "city": "ORDU",
+            "county": "ALTINORDU"
+        },
+        {
+            "id": "692",
+            "city": "ORDU",
+            "county": "AYBASTI"
+        },
+        {
+            "id": "693",
+            "city": "ORDU",
+            "county": "ÇAMAŞ"
+        },
+        {
+            "id": "694",
+            "city": "ORDU",
+            "county": "ÇATALPINAR"
+        },
+        {
+            "id": "695",
+            "city": "ORDU",
+            "county": "ÇAYBAŞI"
+        },
+        {
+            "id": "696",
+            "city": "ORDU",
+            "county": "FATSA"
+        },
+        {
+            "id": "697",
+            "city": "ORDU",
+            "county": "GÖLKÖY"
+        },
+        {
+            "id": "698",
+            "city": "ORDU",
+            "county": "GÜLYALI"
+        },
+        {
+            "id": "699",
+            "city": "ORDU",
+            "county": "GÜRGENTEPE"
+        },
+        {
+            "id": "700",
+            "city": "ORDU",
+            "county": "İKİZCE"
+        },
+        {
+            "id": "701",
+            "city": "ORDU",
+            "county": "KABADÜZ"
+        },
+        {
+            "id": "702",
+            "city": "ORDU",
+            "county": "KABATAŞ"
+        },
+        {
+            "id": "703",
+            "city": "ORDU",
+            "county": "KORGAN"
+        },
+        {
+            "id": "704",
+            "city": "ORDU",
+            "county": "KUMRU"
+        },
+        {
+            "id": "705",
+            "city": "ORDU",
+            "county": "MESUDİYE"
+        },
+        {
+            "id": "706",
+            "city": "ORDU",
+            "county": "PERŞEMBE"
+        },
+        {
+            "id": "707",
+            "city": "ORDU",
+            "county": "ULUBEY"
+        },
+        {
+            "id": "708",
+            "city": "ORDU",
+            "county": "ÜNYE"
+        },
+        {
+            "id": "709",
+            "city": "RİZE",
+            "county": "ARDEŞEN"
+        },
+        {
+            "id": "710",
+            "city": "RİZE",
+            "county": "ÇAMLIHEMŞİN"
+        },
+        {
+            "id": "711",
+            "city": "RİZE",
+            "county": "ÇAYELİ"
+        },
+        {
+            "id": "712",
+            "city": "RİZE",
+            "county": "DEREPAZARI"
+        },
+        {
+            "id": "713",
+            "city": "RİZE",
+            "county": "FINDIKLI"
+        },
+        {
+            "id": "714",
+            "city": "RİZE",
+            "county": "GÜNEYSU"
+        },
+        {
+            "id": "715",
+            "city": "RİZE",
+            "county": "HEMŞİN"
+        },
+        {
+            "id": "716",
+            "city": "RİZE",
+            "county": "İKİZDERE"
+        },
+        {
+            "id": "717",
+            "city": "RİZE",
+            "county": "İYİDERE"
+        },
+        {
+            "id": "718",
+            "city": "RİZE",
+            "county": "KALKANDERE"
+        },
+        {
+            "id": "719",
+            "city": "RİZE",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "720",
+            "city": "RİZE",
+            "county": "PAZAR"
+        },
+        {
+            "id": "721",
+            "city": "SAKARYA",
+            "county": "ADAPAZARI"
+        },
+        {
+            "id": "722",
+            "city": "SAKARYA",
+            "county": "AKYAZI"
+        },
+        {
+            "id": "723",
+            "city": "SAKARYA",
+            "county": "ARİFİYE"
+        },
+        {
+            "id": "724",
+            "city": "SAKARYA",
+            "county": "ERENLER"
+        },
+        {
+            "id": "725",
+            "city": "SAKARYA",
+            "county": "FERİZLİ"
+        },
+        {
+            "id": "726",
+            "city": "SAKARYA",
+            "county": "GEYVE"
+        },
+        {
+            "id": "727",
+            "city": "SAKARYA",
+            "county": "HENDEK"
+        },
+        {
+            "id": "728",
+            "city": "SAKARYA",
+            "county": "KARAPÜRÇEK"
+        },
+        {
+            "id": "729",
+            "city": "SAKARYA",
+            "county": "KARASU"
+        },
+        {
+            "id": "730",
+            "city": "SAKARYA",
+            "county": "KAYNARCA"
+        },
+        {
+            "id": "731",
+            "city": "SAKARYA",
+            "county": "KOCAALİ"
+        },
+        {
+            "id": "732",
+            "city": "SAKARYA",
+            "county": "PAMUKOVA"
+        },
+        {
+            "id": "733",
+            "city": "SAKARYA",
+            "county": "SAPANCA"
+        },
+        {
+            "id": "734",
+            "city": "SAKARYA",
+            "county": "SERDİVAN"
+        },
+        {
+            "id": "735",
+            "city": "SAKARYA",
+            "county": "SÖĞÜTLÜ"
+        },
+        {
+            "id": "736",
+            "city": "SAKARYA",
+            "county": "TARAKLI"
+        },
+        {
+            "id": "737",
+            "city": "SAMSUN",
+            "county": "ALAÇAM"
+        },
+        {
+            "id": "738",
+            "city": "SAMSUN",
+            "county": "ASARCIK"
+        },
+        {
+            "id": "739",
+            "city": "SAMSUN",
+            "county": "ATAKUM"
+        },
+        {
+            "id": "740",
+            "city": "SAMSUN",
+            "county": "AYVACIK"
+        },
+        {
+            "id": "741",
+            "city": "SAMSUN",
+            "county": "BAFRA"
+        },
+        {
+            "id": "742",
+            "city": "SAMSUN",
+            "county": "CANİK"
+        },
+        {
+            "id": "743",
+            "city": "SAMSUN",
+            "county": "ÇARŞAMBA"
+        },
+        {
+            "id": "744",
+            "city": "SAMSUN",
+            "county": "HAVZA"
+        },
+        {
+            "id": "745",
+            "city": "SAMSUN",
+            "county": "İLKADIM"
+        },
+        {
+            "id": "746",
+            "city": "SAMSUN",
+            "county": "KAVAK"
+        },
+        {
+            "id": "747",
+            "city": "SAMSUN",
+            "county": "LADİK"
+        },
+        {
+            "id": "748",
+            "city": "SAMSUN",
+            "county": "SALIPAZARI"
+        },
+        {
+            "id": "749",
+            "city": "SAMSUN",
+            "county": "TEKKEKÖY"
+        },
+        {
+            "id": "750",
+            "city": "SAMSUN",
+            "county": "TERME"
+        },
+        {
+            "id": "751",
+            "city": "SAMSUN",
+            "county": "VEZİRKÖPRÜ"
+        },
+        {
+            "id": "752",
+            "city": "SAMSUN",
+            "county": "YAKAKENT"
+        },
+        {
+            "id": "753",
+            "city": "SAMSUN",
+            "county": "19 MAYIS"
+        },
+        {
+            "id": "754",
+            "city": "SİİRT",
+            "county": "BAYKAN"
+        },
+        {
+            "id": "755",
+            "city": "SİİRT",
+            "county": "ERUH"
+        },
+        {
+            "id": "756",
+            "city": "SİİRT",
+            "county": "KURTALAN"
+        },
+        {
+            "id": "757",
+            "city": "SİİRT",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "758",
+            "city": "SİİRT",
+            "county": "PERVARİ"
+        },
+        {
+            "id": "759",
+            "city": "SİİRT",
+            "county": "ŞİRVAN"
+        },
+        {
+            "id": "760",
+            "city": "SİİRT",
+            "county": "TİLLO"
+        },
+        {
+            "id": "761",
+            "city": "SİNOP",
+            "county": "AYANCIK"
+        },
+        {
+            "id": "762",
+            "city": "SİNOP",
+            "county": "BOYABAT"
+        },
+        {
+            "id": "763",
+            "city": "SİNOP",
+            "county": "DİKMEN"
+        },
+        {
+            "id": "764",
+            "city": "SİNOP",
+            "county": "DURAĞAN"
+        },
+        {
+            "id": "765",
+            "city": "SİNOP",
+            "county": "ERFELEK"
+        },
+        {
+            "id": "766",
+            "city": "SİNOP",
+            "county": "GERZE"
+        },
+        {
+            "id": "767",
+            "city": "SİNOP",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "768",
+            "city": "SİNOP",
+            "county": "SARAYDÜZÜ"
+        },
+        {
+            "id": "769",
+            "city": "SİNOP",
+            "county": "TÜRKELİ"
+        },
+        {
+            "id": "770",
+            "city": "SİVAS",
+            "county": "AKINCILAR"
+        },
+        {
+            "id": "771",
+            "city": "SİVAS",
+            "county": "ALTINYAYLA"
+        },
+        {
+            "id": "772",
+            "city": "SİVAS",
+            "county": "DİVRİĞİ"
+        },
+        {
+            "id": "773",
+            "city": "SİVAS",
+            "county": "DOĞANŞAR"
+        },
+        {
+            "id": "774",
+            "city": "SİVAS",
+            "county": "GEMEREK"
+        },
+        {
+            "id": "775",
+            "city": "SİVAS",
+            "county": "GÖLOVA"
+        },
+        {
+            "id": "776",
+            "city": "SİVAS",
+            "county": "GÜRÜN"
+        },
+        {
+            "id": "777",
+            "city": "SİVAS",
+            "county": "HAFİK"
+        },
+        {
+            "id": "778",
+            "city": "SİVAS",
+            "county": "İMRANLI"
+        },
+        {
+            "id": "779",
+            "city": "SİVAS",
+            "county": "KANGAL"
+        },
+        {
+            "id": "780",
+            "city": "SİVAS",
+            "county": "KOYULHİSAR"
+        },
+        {
+            "id": "781",
+            "city": "SİVAS",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "782",
+            "city": "SİVAS",
+            "county": "SUŞEHRİ"
+        },
+        {
+            "id": "783",
+            "city": "SİVAS",
+            "county": "ŞARKIŞLA"
+        },
+        {
+            "id": "784",
+            "city": "SİVAS",
+            "county": "ULAŞ"
+        },
+        {
+            "id": "785",
+            "city": "SİVAS",
+            "county": "YILDIZELİ"
+        },
+        {
+            "id": "786",
+            "city": "SİVAS",
+            "county": "ZARA"
+        },
+        {
+            "id": "787",
+            "city": "TEKİRDAĞ",
+            "county": "ÇERKEZKÖY"
+        },
+        {
+            "id": "788",
+            "city": "TEKİRDAĞ",
+            "county": "ÇORLU"
+        },
+        {
+            "id": "789",
+            "city": "TEKİRDAĞ",
+            "county": "ERGENE"
+        },
+        {
+            "id": "790",
+            "city": "TEKİRDAĞ",
+            "county": "HAYRABOLU"
+        },
+        {
+            "id": "791",
+            "city": "TEKİRDAĞ",
+            "county": "KAPAKLI"
+        },
+        {
+            "id": "792",
+            "city": "TEKİRDAĞ",
+            "county": "MALKARA"
+        },
+        {
+            "id": "793",
+            "city": "TEKİRDAĞ",
+            "county": "MARMARAEREĞLİSİ"
+        },
+        {
+            "id": "794",
+            "city": "TEKİRDAĞ",
+            "county": "MURATLI"
+        },
+        {
+            "id": "795",
+            "city": "TEKİRDAĞ",
+            "county": "SARAY"
+        },
+        {
+            "id": "796",
+            "city": "TEKİRDAĞ",
+            "county": "SÜLEYMANPAŞA"
+        },
+        {
+            "id": "797",
+            "city": "TEKİRDAĞ",
+            "county": "ŞARKÖY"
+        },
+        {
+            "id": "798",
+            "city": "TOKAT",
+            "county": "ALMUS"
+        },
+        {
+            "id": "799",
+            "city": "TOKAT",
+            "county": "ARTOVA"
+        },
+        {
+            "id": "800",
+            "city": "TOKAT",
+            "county": "BAŞÇİFTLİK"
+        },
+        {
+            "id": "801",
+            "city": "TOKAT",
+            "county": "ERBAA"
+        },
+        {
+            "id": "802",
+            "city": "TOKAT",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "803",
+            "city": "TOKAT",
+            "county": "NİKSAR"
+        },
+        {
+            "id": "804",
+            "city": "TOKAT",
+            "county": "PAZAR"
+        },
+        {
+            "id": "805",
+            "city": "TOKAT",
+            "county": "REŞADİYE"
+        },
+        {
+            "id": "806",
+            "city": "TOKAT",
+            "county": "SULUSARAY"
+        },
+        {
+            "id": "807",
+            "city": "TOKAT",
+            "county": "TURHAL"
+        },
+        {
+            "id": "808",
+            "city": "TOKAT",
+            "county": "YEŞİLYURT"
+        },
+        {
+            "id": "809",
+            "city": "TOKAT",
+            "county": "ZİLE"
+        },
+        {
+            "id": "810",
+            "city": "TRABZON",
+            "county": "AKÇAABAT"
+        },
+        {
+            "id": "811",
+            "city": "TRABZON",
+            "county": "ARAKLI"
+        },
+        {
+            "id": "812",
+            "city": "TRABZON",
+            "county": "ARSİN"
+        },
+        {
+            "id": "813",
+            "city": "TRABZON",
+            "county": "BEŞİKDÜZÜ"
+        },
+        {
+            "id": "814",
+            "city": "TRABZON",
+            "county": "ÇARŞIBAŞI"
+        },
+        {
+            "id": "815",
+            "city": "TRABZON",
+            "county": "ÇAYKARA"
+        },
+        {
+            "id": "816",
+            "city": "TRABZON",
+            "county": "DERNEKPAZARI"
+        },
+        {
+            "id": "817",
+            "city": "TRABZON",
+            "county": "DÜZKÖY"
+        },
+        {
+            "id": "818",
+            "city": "TRABZON",
+            "county": "HAYRAT"
+        },
+        {
+            "id": "819",
+            "city": "TRABZON",
+            "county": "KÖPRÜBAŞI"
+        },
+        {
+            "id": "820",
+            "city": "TRABZON",
+            "county": "MAÇKA"
+        },
+        {
+            "id": "821",
+            "city": "TRABZON",
+            "county": "OF"
+        },
+        {
+            "id": "822",
+            "city": "TRABZON",
+            "county": "ORTAHİSAR"
+        },
+        {
+            "id": "823",
+            "city": "TRABZON",
+            "county": "SÜRMENE"
+        },
+        {
+            "id": "824",
+            "city": "TRABZON",
+            "county": "ŞALPAZARI"
+        },
+        {
+            "id": "825",
+            "city": "TRABZON",
+            "county": "TONYA"
+        },
+        {
+            "id": "826",
+            "city": "TRABZON",
+            "county": "VAKFIKEBİR"
+        },
+        {
+            "id": "827",
+            "city": "TRABZON",
+            "county": "YOMRA"
+        },
+        {
+            "id": "828",
+            "city": "TUNCELİ",
+            "county": "ÇEMİŞGEZEK"
+        },
+        {
+            "id": "829",
+            "city": "TUNCELİ",
+            "county": "HOZAT"
+        },
+        {
+            "id": "830",
+            "city": "TUNCELİ",
+            "county": "MAZGİRT"
+        },
+        {
+            "id": "831",
+            "city": "TUNCELİ",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "832",
+            "city": "TUNCELİ",
+            "county": "NAZIMİYE"
+        },
+        {
+            "id": "833",
+            "city": "TUNCELİ",
+            "county": "OVACIK"
+        },
+        {
+            "id": "834",
+            "city": "TUNCELİ",
+            "county": "PERTEK"
+        },
+        {
+            "id": "835",
+            "city": "TUNCELİ",
+            "county": "PÜLÜMÜR"
+        },
+        {
+            "id": "836",
+            "city": "ŞANLIURFA",
+            "county": "AKÇAKALE"
+        },
+        {
+            "id": "837",
+            "city": "ŞANLIURFA",
+            "county": "BİRECİK"
+        },
+        {
+            "id": "838",
+            "city": "ŞANLIURFA",
+            "county": "BOZOVA"
+        },
+        {
+            "id": "839",
+            "city": "ŞANLIURFA",
+            "county": "CEYLANPINAR"
+        },
+        {
+            "id": "840",
+            "city": "ŞANLIURFA",
+            "county": "EYYÜBİYE"
+        },
+        {
+            "id": "841",
+            "city": "ŞANLIURFA",
+            "county": "HALFETİ"
+        },
+        {
+            "id": "842",
+            "city": "ŞANLIURFA",
+            "county": "HALİLİYE"
+        },
+        {
+            "id": "843",
+            "city": "ŞANLIURFA",
+            "county": "HARRAN"
+        },
+        {
+            "id": "844",
+            "city": "ŞANLIURFA",
+            "county": "HİLVAN"
+        },
+        {
+            "id": "845",
+            "city": "ŞANLIURFA",
+            "county": "KARAKÖPRÜ"
+        },
+        {
+            "id": "846",
+            "city": "ŞANLIURFA",
+            "county": "SİVEREK"
+        },
+        {
+            "id": "847",
+            "city": "ŞANLIURFA",
+            "county": "SURUÇ"
+        },
+        {
+            "id": "848",
+            "city": "ŞANLIURFA",
+            "county": "VİRANŞEHİR"
+        },
+        {
+            "id": "849",
+            "city": "UŞAK",
+            "county": "BANAZ"
+        },
+        {
+            "id": "850",
+            "city": "UŞAK",
+            "county": "EŞME"
+        },
+        {
+            "id": "851",
+            "city": "UŞAK",
+            "county": "KARAHALLI"
+        },
+        {
+            "id": "852",
+            "city": "UŞAK",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "853",
+            "city": "UŞAK",
+            "county": "SİVASLI"
+        },
+        {
+            "id": "854",
+            "city": "UŞAK",
+            "county": "ULUBEY"
+        },
+        {
+            "id": "855",
+            "city": "VAN",
+            "county": "BAHÇESARAY"
+        },
+        {
+            "id": "856",
+            "city": "VAN",
+            "county": "BAŞKALE"
+        },
+        {
+            "id": "857",
+            "city": "VAN",
+            "county": "ÇALDIRAN"
+        },
+        {
+            "id": "858",
+            "city": "VAN",
+            "county": "ÇATAK"
+        },
+        {
+            "id": "859",
+            "city": "VAN",
+            "county": "EDREMİT"
+        },
+        {
+            "id": "860",
+            "city": "VAN",
+            "county": "ERCİŞ"
+        },
+        {
+            "id": "861",
+            "city": "VAN",
+            "county": "GEVAŞ"
+        },
+        {
+            "id": "862",
+            "city": "VAN",
+            "county": "GÜRPINAR"
+        },
+        {
+            "id": "863",
+            "city": "VAN",
+            "county": "İPEKYOLU"
+        },
+        {
+            "id": "864",
+            "city": "VAN",
+            "county": "MURADİYE"
+        },
+        {
+            "id": "865",
+            "city": "VAN",
+            "county": "ÖZALP"
+        },
+        {
+            "id": "866",
+            "city": "VAN",
+            "county": "SARAY"
+        },
+        {
+            "id": "867",
+            "city": "VAN",
+            "county": "TUŞBA"
+        },
+        {
+            "id": "868",
+            "city": "YOZGAT",
+            "county": "AKDAĞMADENİ"
+        },
+        {
+            "id": "869",
+            "city": "YOZGAT",
+            "county": "AYDINCIK"
+        },
+        {
+            "id": "870",
+            "city": "YOZGAT",
+            "county": "BOĞAZLIYAN"
+        },
+        {
+            "id": "871",
+            "city": "YOZGAT",
+            "county": "ÇANDIR"
+        },
+        {
+            "id": "872",
+            "city": "YOZGAT",
+            "county": "ÇAYIRALAN"
+        },
+        {
+            "id": "873",
+            "city": "YOZGAT",
+            "county": "ÇEKEREK"
+        },
+        {
+            "id": "874",
+            "city": "YOZGAT",
+            "county": "KADIŞEHRİ"
+        },
+        {
+            "id": "875",
+            "city": "YOZGAT",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "876",
+            "city": "YOZGAT",
+            "county": "SARAYKENT"
+        },
+        {
+            "id": "877",
+            "city": "YOZGAT",
+            "county": "SARIKAYA"
+        },
+        {
+            "id": "878",
+            "city": "YOZGAT",
+            "county": "SORGUN"
+        },
+        {
+            "id": "879",
+            "city": "YOZGAT",
+            "county": "ŞEFAATLİ"
+        },
+        {
+            "id": "880",
+            "city": "YOZGAT",
+            "county": "YENİFAKILI"
+        },
+        {
+            "id": "881",
+            "city": "YOZGAT",
+            "county": "YERKÖY"
+        },
+        {
+            "id": "882",
+            "city": "ZONGULDAK",
+            "county": "ALAPLI"
+        },
+        {
+            "id": "883",
+            "city": "ZONGULDAK",
+            "county": "ÇAYCUMA"
+        },
+        {
+            "id": "884",
+            "city": "ZONGULDAK",
+            "county": "DEVREK"
+        },
+        {
+            "id": "885",
+            "city": "ZONGULDAK",
+            "county": "EREĞLİ"
+        },
+        {
+            "id": "886",
+            "city": "ZONGULDAK",
+            "county": "GÖKÇEBEY"
+        },
+        {
+            "id": "887",
+            "city": "ZONGULDAK",
+            "county": "KİLİMLİ"
+        },
+        {
+            "id": "888",
+            "city": "ZONGULDAK",
+            "county": "KOZLU"
+        },
+        {
+            "id": "889",
+            "city": "ZONGULDAK",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "890",
+            "city": "AKSARAY",
+            "county": "AĞAÇÖREN"
+        },
+        {
+            "id": "891",
+            "city": "AKSARAY",
+            "county": "ESKİL"
+        },
+        {
+            "id": "892",
+            "city": "AKSARAY",
+            "county": "GÜLAĞAÇ"
+        },
+        {
+            "id": "893",
+            "city": "AKSARAY",
+            "county": "GÜZELYURT"
+        },
+        {
+            "id": "894",
+            "city": "AKSARAY",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "895",
+            "city": "AKSARAY",
+            "county": "ORTAKÖY"
+        },
+        {
+            "id": "896",
+            "city": "AKSARAY",
+            "county": "SARIYAHŞİ"
+        },
+        {
+            "id": "897",
+            "city": "AKSARAY",
+            "county": "SULTANHANI"
+        },
+        {
+            "id": "898",
+            "city": "BAYBURT",
+            "county": "AYDINTEPE"
+        },
+        {
+            "id": "899",
+            "city": "BAYBURT",
+            "county": "DEMİRÖZÜ"
+        },
+        {
+            "id": "900",
+            "city": "BAYBURT",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "901",
+            "city": "KARAMAN",
+            "county": "AYRANCI"
+        },
+        {
+            "id": "902",
+            "city": "KARAMAN",
+            "county": "BAŞYAYLA"
+        },
+        {
+            "id": "903",
+            "city": "KARAMAN",
+            "county": "ERMENEK"
+        },
+        {
+            "id": "904",
+            "city": "KARAMAN",
+            "county": "KAZIMKARABEKİR"
+        },
+        {
+            "id": "905",
+            "city": "KARAMAN",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "906",
+            "city": "KARAMAN",
+            "county": "SARIVELİLER"
+        },
+        {
+            "id": "907",
+            "city": "KIRIKKALE",
+            "county": "BAHŞİLİ"
+        },
+        {
+            "id": "908",
+            "city": "KIRIKKALE",
+            "county": "BALIŞEYH"
+        },
+        {
+            "id": "909",
+            "city": "KIRIKKALE",
+            "county": "ÇELEBİ"
+        },
+        {
+            "id": "910",
+            "city": "KIRIKKALE",
+            "county": "DELİCE"
+        },
+        {
+            "id": "911",
+            "city": "KIRIKKALE",
+            "county": "KARAKEÇİLİ"
+        },
+        {
+            "id": "912",
+            "city": "KIRIKKALE",
+            "county": "KESKİN"
+        },
+        {
+            "id": "913",
+            "city": "KIRIKKALE",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "914",
+            "city": "KIRIKKALE",
+            "county": "SULAKYURT"
+        },
+        {
+            "id": "915",
+            "city": "KIRIKKALE",
+            "county": "YAHŞİHAN"
+        },
+        {
+            "id": "916",
+            "city": "BATMAN",
+            "county": "BEŞİRİ"
+        },
+        {
+            "id": "917",
+            "city": "BATMAN",
+            "county": "GERCÜŞ"
+        },
+        {
+            "id": "918",
+            "city": "BATMAN",
+            "county": "HASANKEYF"
+        },
+        {
+            "id": "919",
+            "city": "BATMAN",
+            "county": "KOZLUK"
+        },
+        {
+            "id": "920",
+            "city": "BATMAN",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "921",
+            "city": "BATMAN",
+            "county": "SASON"
+        },
+        {
+            "id": "922",
+            "city": "ŞIRNAK",
+            "county": "BEYTÜŞŞEBAP"
+        },
+        {
+            "id": "923",
+            "city": "ŞIRNAK",
+            "county": "CİZRE"
+        },
+        {
+            "id": "924",
+            "city": "ŞIRNAK",
+            "county": "GÜÇLÜKONAK"
+        },
+        {
+            "id": "925",
+            "city": "ŞIRNAK",
+            "county": "İDİL"
+        },
+        {
+            "id": "926",
+            "city": "ŞIRNAK",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "927",
+            "city": "ŞIRNAK",
+            "county": "SİLOPİ"
+        },
+        {
+            "id": "928",
+            "city": "ŞIRNAK",
+            "county": "ULUDERE"
+        },
+        {
+            "id": "929",
+            "city": "BARTIN",
+            "county": "AMASRA"
+        },
+        {
+            "id": "930",
+            "city": "BARTIN",
+            "county": "KURUCAŞİLE"
+        },
+        {
+            "id": "931",
+            "city": "BARTIN",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "932",
+            "city": "BARTIN",
+            "county": "ULUS"
+        },
+        {
+            "id": "933",
+            "city": "ARDAHAN",
+            "county": "ÇILDIR"
+        },
+        {
+            "id": "934",
+            "city": "ARDAHAN",
+            "county": "DAMAL"
+        },
+        {
+            "id": "935",
+            "city": "ARDAHAN",
+            "county": "GÖLE"
+        },
+        {
+            "id": "936",
+            "city": "ARDAHAN",
+            "county": "HANAK"
+        },
+        {
+            "id": "937",
+            "city": "ARDAHAN",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "938",
+            "city": "ARDAHAN",
+            "county": "POSOF"
+        },
+        {
+            "id": "939",
+            "city": "IĞDIR",
+            "county": "ARALIK"
+        },
+        {
+            "id": "940",
+            "city": "IĞDIR",
+            "county": "KARAKOYUNLU"
+        },
+        {
+            "id": "941",
+            "city": "IĞDIR",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "942",
+            "city": "IĞDIR",
+            "county": "TUZLUCA"
+        },
+        {
+            "id": "943",
+            "city": "YALOVA",
+            "county": "ALTINOVA"
+        },
+        {
+            "id": "944",
+            "city": "YALOVA",
+            "county": "ARMUTLU"
+        },
+        {
+            "id": "945",
+            "city": "YALOVA",
+            "county": "ÇINARCIK"
+        },
+        {
+            "id": "946",
+            "city": "YALOVA",
+            "county": "ÇİFTLİKKÖY"
+        },
+        {
+            "id": "947",
+            "city": "YALOVA",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "948",
+            "city": "YALOVA",
+            "county": "TERMAL"
+        },
+        {
+            "id": "949",
+            "city": "KARABÜK",
+            "county": "EFLANİ"
+        },
+        {
+            "id": "950",
+            "city": "KARABÜK",
+            "county": "ESKİPAZAR"
+        },
+        {
+            "id": "951",
+            "city": "KARABÜK",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "952",
+            "city": "KARABÜK",
+            "county": "OVACIK"
+        },
+        {
+            "id": "953",
+            "city": "KARABÜK",
+            "county": "SAFRANBOLU"
+        },
+        {
+            "id": "954",
+            "city": "KARABÜK",
+            "county": "YENİCE"
+        },
+        {
+            "id": "955",
+            "city": "KİLİS",
+            "county": "ELBEYLİ"
+        },
+        {
+            "id": "956",
+            "city": "KİLİS",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "957",
+            "city": "KİLİS",
+            "county": "MUSABEYLİ"
+        },
+        {
+            "id": "958",
+            "city": "KİLİS",
+            "county": "POLATELİ"
+        },
+        {
+            "id": "959",
+            "city": "OSMANİYE",
+            "county": "BAHÇE"
+        },
+        {
+            "id": "960",
+            "city": "OSMANİYE",
+            "county": "DÜZİÇİ"
+        },
+        {
+            "id": "961",
+            "city": "OSMANİYE",
+            "county": "HASANBEYLİ"
+        },
+        {
+            "id": "962",
+            "city": "OSMANİYE",
+            "county": "KADİRLİ"
+        },
+        {
+            "id": "963",
+            "city": "OSMANİYE",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "964",
+            "city": "OSMANİYE",
+            "county": "SUMBAS"
+        },
+        {
+            "id": "965",
+            "city": "OSMANİYE",
+            "county": "TOPRAKKALE"
+        },
+        {
+            "id": "966",
+            "city": "DÜZCE",
+            "county": "AKÇAKOCA"
+        },
+        {
+            "id": "967",
+            "city": "DÜZCE",
+            "county": "CUMAYERİ"
+        },
+        {
+            "id": "968",
+            "city": "DÜZCE",
+            "county": "ÇİLİMLİ"
+        },
+        {
+            "id": "969",
+            "city": "DÜZCE",
+            "county": "GÖLYAKA"
+        },
+        {
+            "id": "970",
+            "city": "DÜZCE",
+            "county": "GÜMÜŞOVA"
+        },
+        {
+            "id": "971",
+            "city": "DÜZCE",
+            "county": "KAYNAŞLI"
+        },
+        {
+            "id": "972",
+            "city": "DÜZCE",
+            "county": "MERKEZ"
+        },
+        {
+            "id": "973",
+            "city": "DÜZCE",
+            "county": "YIĞILCA"
+        }
+    ]
+
+}

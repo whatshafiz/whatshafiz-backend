@@ -1,0 +1,1599 @@
+ 
+ {
+    "data": 
+    [
+        {
+            "uni_id": "1",
+            "uni_name": "ABANT İZZET BAYSAL ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi (KKTC Uyruklu)\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"M\\u00fchendislik-Mimarl\\u0131k Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Ziraat ve Do\\u011fa Bilimleri Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Bolu Meslek Y\\u00fcksekokulu\",\"Mehmet Tanr\\u0131kulu Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Gerede Meslek Y\\u00fcksekokulu\",\"Mengen Meslek Y\\u00fcksekokulu\",\"Mudurnu S\\u00fcreyya Astarc\\u0131 Meslek Y\\u00fcksekokulu\",\"Yeni\\u00e7a\\u011fa Ya\\u015far \\u00c7elik Meslek Y\\u00fcksekokulu\",\"Seben \\u0130zzet Baysal Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "BOLU"
+        },
+        
+        {
+            "uni_id": "2",
+            "uni_name": "ABDULLAH GÜL ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Mimarl\\u0131k Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Ya\\u015fam ve Do\\u011fa Bilimleri Fak\\u00fcltesi\",\"Y\\u00f6netim Bilimleri Fak\\u00fcltesi\"]",
+            "uni_myo": "",
+            "uni_sehir": "KAYSERİ"
+        },
+        
+        {
+            "uni_id": "3",
+            "uni_name": "ACIBADEM MEHMET ALİ AYDINLAR ÜNİVERSİTESİ",
+            "uni_fak": "[\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "4",
+            "uni_name": "ADANA BİLİM VE TEKNOLOJİ ÜNİVERSİTESİ",
+            "uni_fak": "[\"\\u0130\\u015fletme Fak\\u00fcltesi\",\"M\\u00fchendislik ve Do\\u011fa Bilimleri Fak\\u00fcltesi\",\"Siyasal Bilgiler Fak\\u00fcltesi\"]",
+            "uni_myo": "",
+            "uni_sehir": "ADANA"
+        },
+        
+        {
+            "uni_id": "5",
+            "uni_name": "ADIYAMAN ÜNİVERSİTESİ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130slami \\u0130limler Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Tar\\u0131m Bilimleri ve Teknolojileri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Turizm Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Besni Meslek Y\\u00fcksekokulu\",\"G\\u00f6lba\\u015f\\u0131 Meslek Y\\u00fcksekokulu\",\"Kahta Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "ADIYAMAN"
+        },
+        
+        {
+            "uni_id": "6",
+            "uni_name": "ADNAN MENDERES ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Ayd\\u0131n \\u0130ktisat Fak\\u00fcltesi\",\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"Hem\\u015firelik Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Turizm Fak\\u00fcltesi\",\"Veteriner Fak\\u00fcltesi\",\"Ziraat Fak\\u00fcltesi\",\"Nazilli \\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"S\\u00f6ke \\u0130\\u015fletme Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Ayd\\u0131n Meslek Y\\u00fcksekokulu\",\"At\\u00e7a Meslek Y\\u00fcksekokulu\",\"Bozdo\\u011fan Meslek Y\\u00fcksekokulu\",\"Buharkent Meslek Y\\u00fcksekokulu\",\"\\u00c7ine Meslek Y\\u00fcksekokulu\",\"Davutlar Meslek Y\\u00fcksekokulu\",\"Didim Meslek Y\\u00fcksekokulu\",\"Karacasu Memnune \\u0130nci Meslek Y\\u00fcksekokulu\",\"Ko\\u00e7arl\\u0131 Meslek Y\\u00fcksekokulu\",\"K\\u00f6\\u015fk Meslek Y\\u00fcksekokulu\",\"Kuyucak Meslek Y\\u00fcksekokulu\",\"Nazilli Meslek Y\\u00fcksekokulu\",\"Nazilli Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"S\\u00f6ke Meslek Y\\u00fcksekokulu\",\"S\\u00f6ke Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Sultanhisar Meslek Y\\u00fcksekokulu\",\"Yenipazar Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "AYDIN"
+        },
+        
+        {
+            "uni_id": "7",
+            "uni_name": "AFYON KOCATEPE ÜNİVERSİTESİ ",
+            "uni_fak": "[\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130slami \\u0130limler Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Teknoloji Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Turizm Fak\\u00fcltesi\",\"Veteriner Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Afyon Meslek Y\\u00fcksekokulu\",\"Atat\\u00fcrk Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Uzaktan E\\u011fitim Meslek Y\\u00fcksekokulu\",\"Ba\\u015fmak\\u00e7\\u0131 Meslek Y\\u00fcksekokulu\",\"Bayat Meslek Y\\u00fcksekokulu\",\"Bolvadin Meslek Y\\u00fcksekokulu\",\"\\u00c7ay Meslek Y\\u00fcksekokulu\",\"Dazk\\u0131r\\u0131 Meslek Y\\u00fcksekokulu\",\"Dinar Meslek Y\\u00fcksekokulu\",\"Emirda\\u011f Meslek Y\\u00fcksekokulu\",\"\\u0130scehisar Meslek Y\\u00fcksekokulu\",\"Sand\\u0131kl\\u0131 Meslek Y\\u00fcksekokulu\",\"Sinanpa\\u015fa Meslek Y\\u00fcksekokulu\",\"Sultanda\\u011f\\u0131 Meslek Y\\u00fcksekokulu\",\"\\u015euhut Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "AFYONKARAHİSAR"
+        },
+        
+        {
+            "uni_id": "8",
+            "uni_name": "AĞRI İBRAHİM ÇEÇEN ÜNİVERSİTESİ",
+            "uni_fak": "[\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130slami \\u0130limler Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Do\\u011fubayaz\\u0131t Ahmed-i Hani Meslek Y\\u00fcksekokulu\",\"Ele\\u015fkirt Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "AĞRI"
+        },
+        
+        {
+            "uni_id": "9",
+            "uni_name": "AHİ EVRAN ÜNİVERSİTESİ ",
+            "uni_fak": "[\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"M\\u00fchendislik-Mimarl\\u0131k Fak\\u00fcltesi\",\"Ziraat Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"\\u00c7i\\u00e7ekda\\u011f\\u0131 Meslek Y\\u00fcksekokulu\",\"Kaman Meslek Y\\u00fcksekokulu\",\"Mucur Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "KIRŞEHİR"
+        },
+        
+        {
+            "uni_id": "10",
+            "uni_name": "AKDENİZ ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"Edebiyat Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar Fak\\u00fcltesi\",\"Hem\\u015firelik Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Su \\u00dcr\\u00fcnleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Turizm Fak\\u00fcltesi\",\"Uygulamal\\u0131 Bilimler Fak\\u00fcltesi\",\"Ziraat Fak\\u00fcltesi\",\"Kumluca Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Manavgat Turizm Fak\\u00fcltesi\",\"Serik \\u0130\\u015fletme Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Adalet Meslek Y\\u00fcksekokulu\",\"Elmal\\u0131 Meslek Y\\u00fcksekokulu\",\"Finike Meslek Y\\u00fcksekokulu\",\"G\\u00f6yn\\u00fck Mutfak Sanatlar\\u0131 Meslek Y\\u00fcksekokulu\",\"Korkuteli Meslek Y\\u00fcksekokulu\",\"Kumluca Meslek Y\\u00fcksekokulu\",\"Manavgat Meslek Y\\u00fcksekokulu\",\"Serik G\\u00fcls\\u00fcn-S\\u00fcleyman S\\u00fcral Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "ANTALYA"
+        },
+        
+        {
+            "uni_id": "11",
+            "uni_name": "AKSARAY ÜNİVERSİTESİ",
+            "uni_fak": "[\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"\\u0130slami \\u0130limler Fak\\u00fcltesi\",\"Mimarl\\u0131k ve Tasar\\u0131m Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Turizm Fak\\u00fcltesi\",\"Veteriner Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Aksaray Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Aksaray Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Eskil Meslek Y\\u00fcksekokulu\",\"G\\u00fczelyurt Meslek Y\\u00fcksekokulu\",\"Ortak\\u00f6y Meslek Y\\u00fcksekokulu\",\"\\u015eerefliko\\u00e7hisar Berat C\\u00f6merto\\u011flu Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "AKSARAY"
+        },
+        
+        {
+            "uni_id": "12",
+            "uni_name": "ALANYA ALAADDİN KEYKUBAT ÜNİVERSİTESİ ",
+            "uni_fak": "[\"E\\u011fitim Fak\\u00fcltesi\",\"\\u0130\\u015fletme Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Turizm Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Alanya Ticaret ve Sanayi Odas\\u0131 Meslek Y\\u00fcksekokulu\",\"Alanya Ticaret ve Sanayi Odas\\u0131 Turizm Meslek Y\\u00fcksekokulu\",\"Akseki Meslek Y\\u00fcksekokulu\",\"Gazipa\\u015fa Mustafa Rahmi B\\u00fcy\\u00fckball\\u0131 Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "ANTALYA"
+        },
+        
+        {
+            "uni_id": "13",
+            "uni_name": "ALANYA HAMDULLAH EMİN PAŞA ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Mimarl\\u0131k Fak\\u00fcltesi\",\"Turizm Fak\\u00fcltesi\"]",
+            "uni_myo": "",
+            "uni_sehir": "ANTALYA"
+        },
+        
+        {
+            "uni_id": "14",
+            "uni_name": "ALTINBAŞ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi \",\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi \",\"G\\u00fczel Sanatlar ve Tasar\\u0131m Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130\\u015fletme Fak\\u00fcltesi\",\"\\u0130ktisadi\",\" \\u0130dari ve Sosyal Bilimler Fak\\u00fcltesi\",\"M\\u00fchendislik ve Do\\u011fa Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi (\\u0130ngilizce)\",\"Uygulamal\\u0131 Bilimler Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "15",
+            "uni_name": "AMASYA ÜNİVERSİTESİ",
+            "uni_fak": "[\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"Teknoloji Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Amasya Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Amasya Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Sabuncuo\\u011flu \\u015eerefeddin Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Tasar\\u0131m Meslek Y\\u00fcksekokulu\",\"G\\u00fcm\\u00fc\\u015fhac\\u0131k\\u00f6y Hasan Duman Meslek Y\\u00fcksekokulu\",\"Merzifon Meslek Y\\u00fcksekokulu\",\"Suluova Meslek Y\\u00fcksekokulu\",\"Ta\\u015fova Y\\u00fcksel Ak\\u0131n Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "AMASYA"
+        },
+        
+        {
+            "uni_id": "16",
+            "uni_name": "ANADOLU ÜNİVERSİTESİ ",
+            "uni_fak": "[\"A\\u00e7\\u0131k\\u00f6\\u011fretim Fak\\u00fcltesi\",\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi\",\"Edebiyat Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen Fak\\u00fcltesi\",\"Havac\\u0131l\\u0131k ve Uzay Bilimleri Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130ktisat Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Bilimleri Fak\\u00fcltesi\",\"\\u0130\\u015fletme Fak\\u00fcltesi\",\"Mimarl\\u0131k ve Tasar\\u0131m Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Spor Bilimleri Fak\\u00fcltesi\",\"Turizm Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Engelliler Entegre Y\\u00fcksekokulu\",\"Eski\\u015fehir Meslek Y\\u00fcksekokulu\",\"Porsuk Meslek Y\\u00fcksekokulu\",\"Ula\\u015ft\\u0131rma Meslek Y\\u00fcksekokulu\",\"Yunus Emre Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "ESKİŞEHİR"
+        },
+        
+        {
+            "uni_id": "17",
+            "uni_name": "ANKARA SOSYAL BİLİMLER ÜNİVERSİTESİ",
+            "uni_fak": "[\"Siyasal Bilgiler Fak\\u00fcltesi\",\"Yabanc\\u0131 Diller Fak\\u00fcltesi\"]",
+            "uni_myo": "",
+            "uni_sehir": "ANKARA"
+        },
+        
+        {
+            "uni_id": "18",
+            "uni_name": "ANKARA ÜNİVERSİTESİ",
+            "uni_fak": "[\"Dil ve Tarih Co\\u011frafya Fak\\u00fcltesi\",\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi\",\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi (\\u0130ngilizce)\",\"E\\u011fitim Bilimleri Fak\\u00fcltesi\",\"Fen Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Siyasal Bilgiler Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Uygulamal\\u0131 Bilimler Fak\\u00fcltesi\",\"Veteriner Fak\\u00fcltesi\",\"Veteriner Fak\\u00fcltesi (\\u0130ngilizce)\",\"Ziraat Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Adalet Meslek Y\\u00fcksekokulu\",\"GAMA Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Aya\\u015f Meslek Y\\u00fcksekokulu\",\"Beypazar\\u0131 Meslek Y\\u00fcksekokulu\",\"Elmada\\u011f Meslek Y\\u00fcksekokulu\",\"Haymana Meslek Y\\u00fcksekokulu\",\"Kalecik Meslek Y\\u00fcksekokulu\",\"K\\u0131z\\u0131lcahamam Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Nall\\u0131han Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "ANKARA"
+        },
+        
+        {
+            "uni_id": "19",
+            "uni_name": "ANKARA YILDIRIM BEYAZIT ÜNİVERSİTESİ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130nsan ve Toplum Bilimleri Fak\\u00fcltesi\",\"\\u0130slami \\u0130limler Fak\\u00fcltesi\",\"\\u0130\\u015fletme Fak\\u00fcltesi\",\"M\\u00fchendislik ve Do\\u011fa Bilimleri Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Siyasal Bilgiler Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi (KKTC Uyruklu)\",\"T\\u0131p Fak\\u00fcltesi (\\u0130ngilizce)\"]",
+            "uni_myo": "[\"Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "ANKARA"
+        },
+        
+        {
+            "uni_id": "20",
+            "uni_name": "ANTALYA AKEV ÜNİVERSİTESİ",
+            "uni_fak": "[\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130nsani Bilimler Fak\\u00fcltesi\",\"Sanat ve Tasar\\u0131m Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "ANTALYA"
+        },
+        
+        {
+            "uni_id": "21",
+            "uni_name": "ANTALYA BİLİM",
+            "uni_fak": "[\"G\\u00fczel Sanatlar ve Mimarl\\u0131k Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Turizm Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"<br \\\/>\\r\\n<b>Warning<\\\/b>:  implode(): Invalid arguments passed in <b>C:\\\\xampp\\\\htdocs\\\\korku\\\\app\\\\views\\\\Admin\\\\uniler\\\\uniler_update_hm.php<\\\/b> on line <b>32<\\\/b><br \\\/>\"]",
+            "uni_sehir": "ANTALYA"
+        },
+        
+        {
+            "uni_id": "22",
+            "uni_name": "ARDAHAN ÜNİVERSİTESİ",
+            "uni_fak": "[\"Ardahan \\u0130nsani Bilimler ve Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Ardahan Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Ardahan Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Ardahan Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"\\u00c7\\u0131ld\\u0131r Meslek Y\\u00fcksekokulu\",\"Nihat Delibalta G\\u00f6le Meslek Y\\u00fcksekokulu\",\"Posof Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "ARDAHAN"
+        },
+        
+        {
+            "uni_id": "23",
+            "uni_name": "ARTVİN ÇORUH ÜNİVERSİTESİ",
+            "uni_fak": "[\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"Orman Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Hopa \\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Artvin Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Arhavi Meslek Y\\u00fcksekokulu\",\"Bor\\u00e7ka Acarlar Meslek Y\\u00fcksekokulu\",\"Hopa Meslek Y\\u00fcksekokulu\",\"\\u015eav\\u015fat Meslek Y\\u00fcksekokulu\",\"Yusufeli Meslek Y\\u00fcksekokulu\",\"Ata\\u015fehir Ad\\u0131g\\u00fczel Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "ARTVİN"
+        },
+        
+        {
+            "uni_id": "24",
+            "uni_name": "ATATÜRK ÜNİVERSİTESİ ",
+            "uni_fak": "[\"A\\u00e7\\u0131k\\u00f6\\u011fretim Fak\\u00fcltesi\",\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi\",\"Edebiyat Fak\\u00fcltesi\",\"Fen Fak\\u00fcltesi\",\"Hem\\u015firelik Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi (\\u0130\\u00d6)\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"Kaz\\u0131m Karabekir E\\u011fitim Fak\\u00fcltesi\",\"Mimarl\\u0131k ve Tasar\\u0131m Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Su \\u00dcr\\u00fcnleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi (KKTC Uyruklu)\",\"T\\u0131p Fak\\u00fcltesi (\\u0130ngilizce)\",\"Turizm Fak\\u00fcltesi\",\"Veteriner Fak\\u00fcltesi\",\"Ziraat Fak\\u00fcltesi\",\"Oltu Be\\u015feri ve Sosyal Bilimler Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Adalet Meslek Y\\u00fcksekokulu\",\"Erzurum Meslek Y\\u00fcksekokulu\",\"A\\u015fkale Meslek Y\\u00fcksekokulu\",\"H\\u0131n\\u0131s Meslek Y\\u00fcksekokulu\",\"Horasan Meslek Y\\u00fcksekokulu\",\"\\u0130spir Hamza Polat Meslek Y\\u00fcksekokulu\",\"Narman Meslek Y\\u00fcksekokulu\",\"Oltu Meslek Y\\u00fcksekokulu\",\"Pasinler Meslek Y\\u00fcksekokulu\",\"Tortum Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "ERZURUM"
+        },
+        
+        {
+            "uni_id": "25",
+            "uni_name": "ATILIM ÜNİVERSİTESİ",
+            "uni_fak": "[\"Fen-Edebiyat Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar Tasar\\u0131m ve Mimarl\\u0131k Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi \",\"\\u0130\\u015fletme Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"At\\u0131l\\u0131m Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "ANKARA"
+        },
+        
+        {
+            "uni_id": "26",
+            "uni_name": "AVRASYA ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"M\\u00fchendislik ve Mimarl\\u0131k Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Avrupa Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "TRABZON"
+        },
+        
+        {
+            "uni_id": "27",
+            "uni_name": "BAHÇEŞEHİR ÜNİVERSİTESİ",
+            "uni_fak": "[\"E\\u011fitim Bilimleri Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi \",\"\\u0130ktisadi\",\" \\u0130dari ve Sosyal Bilimler Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"Mimarl\\u0131k ve Tasar\\u0131m Fak\\u00fcltesi\",\"M\\u00fchendislik ve Do\\u011fa Bilimleri Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi (\\u0130ngilizce)\",\"T\\u0131p Fak\\u00fcltesi (\\u0130ngilizce)\"]",
+            "uni_myo": "[\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "28",
+            "uni_name": "BALIKESİR ÜNİVERSİTESİ",
+            "uni_fak": "[\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Necatibey E\\u011fitim Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Turizm Fak\\u00fcltesi\",\"Veteriner Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Bal\\u0131kesir Meslek Y\\u00fcksekokulu\",\"Alt\\u0131noluk Meslek Y\\u00fcksekokulu\",\"Ayval\\u0131k Meslek Y\\u00fcksekokulu\",\"Bigadi\\u00e7 Meslek Y\\u00fcksekokulu\",\"Burhaniye Meslek Y\\u00fcksekokulu\",\"Dursunbey Meslek Y\\u00fcksekokulu\",\"Edremit Meslek Y\\u00fcksekokulu\",\"Havran Meslek Y\\u00fcksekokulu\",\"\\u0130vrindi Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Kepsut Meslek Y\\u00fcksekokulu\",\"Sava\\u015ftepe Meslek Y\\u00fcksekokulu\",\"S\\u0131nd\\u0131rg\\u0131 Meslek Y\\u00fcksekokulu\",\"Susurluk Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "BALIKESİR"
+        },
+        
+        {
+            "uni_id": "29",
+            "uni_name": "BANDIRMA ONYEDİ EYLÜL ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Denizcilik Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u00d6mer Seyfettin Uygulamal\\u0131 Bilimler Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Band\\u0131rma Meslek Y\\u00fcksekokulu\",\"Erdek Meslek Y\\u00fcksekokulu\",\"G\\u00f6nen Meslek Y\\u00fcksekokulu\",\"Manyas Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "BALIKESİR"
+        },
+        
+        {
+            "uni_id": "30",
+            "uni_name": "BARTIN ÜNİVERSİTESİ",
+            "uni_fak": "[\"Bart\\u0131n Orman Fak\\u00fcltesi\",\"Edebiyat Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130slami \\u0130limler Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Bart\\u0131n Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Ulus Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "BARTIN"
+        },
+        
+        {
+            "uni_id": "31",
+            "uni_name": "BAŞKENT ÜNİVERSİTESİ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar Tasar\\u0131m ve Mimarl\\u0131k Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi \",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Ticari Bilimler Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Kazan Meslek Y\\u00fcksekokulu\",\"Adana Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Konya Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "ANKARA"
+        },
+        
+        {
+            "uni_id": "32",
+            "uni_name": "BATMAN ÜNİVERSİTESİ",
+            "uni_fak": "[\"Fen-Edebiyat Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130slami \\u0130limler Fak\\u00fcltesi\",\"M\\u00fchendislik-Mimarl\\u0131k Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Kozluk Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "BATMAN"
+        },
+        
+        {
+            "uni_id": "33",
+            "uni_name": "BAYBURT ÜNİVERSİTESİ",
+            "uni_fak": "[\"Bayburt E\\u011fitim Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"\\u0130nsan ve Toplum Bilimleri Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Adalet Meslek Y\\u00fcksekokulu\",\"Bayburt Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Ayd\\u0131ntepe Meslek Y\\u00fcksekokulu\",\"Demir\\u00f6z\\u00fc Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "BAYBURT"
+        },
+        
+        {
+            "uni_id": "34",
+            "uni_name": "BEYKENT ÜNİVERSİTESİ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"M\\u00fchendislik-Mimarl\\u0131k Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "35",
+            "uni_name": "BEYKOZ ÜNİVERSİTESİ ",
+            "uni_fak": "[\"\\u0130\\u015fletme ve Y\\u00f6netim Bilimleri Fak\\u00fcltesi\",\"Sanat ve Tasar\\u0131m Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Beykoz Lojistik Meslek Y\\u00fcksekokulu\",\"Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "36",
+            "uni_name": "BEZM-İ ÂLEM VAKIF ÜNİVERSİTESİ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "37",
+            "uni_name": "BİLECİK ŞEYH EDEBALİ ÜNİVERSİTESİ",
+            "uni_fak": "[\"Fen-Edebiyat Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar ve Tasar\\u0131m Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130slami \\u0130limler Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Ziraat ve Do\\u011fa Bilimleri Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Boz\\u00fcy\\u00fck Meslek Y\\u00fcksekokulu\",\"G\\u00f6lpazar\\u0131 Meslek Y\\u00fcksekokulu\",\"Osmaneli Meslek Y\\u00fcksekokulu\",\"Pazaryeri Meslek Y\\u00fcksekokulu\",\"S\\u00f6\\u011f\\u00fct Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "BİLECİK"
+        },
+        
+        {
+            "uni_id": "38",
+            "uni_name": "BİNGÖL ÜNİVERSİTESİ",
+            "uni_fak": "[\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi (\\u0130\\u00d6)\",\"M\\u00fchendislik-Mimarl\\u0131k Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Veteriner Fak\\u00fcltesi\",\"Ziraat Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Bing\\u00f6l Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Bing\\u00f6l Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Gen\\u00e7 Meslek Y\\u00fcksekokulu\",\"Solhan Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "BİNGÖL"
+        },
+        
+        {
+            "uni_id": "39",
+            "uni_name": "BİRUNİ ÜNİVERSİTESİ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"M\\u00fchendislik ve Do\\u011fa Bilimleri Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "40",
+            "uni_name": "BİTLİS EREN ÜNİVERSİTESİ",
+            "uni_fak": "[\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130slami \\u0130limler Fak\\u00fcltesi\",\"M\\u00fchendislik-Mimarl\\u0131k Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Adilcevaz Meslek Y\\u00fcksekokulu\",\"Ahlat Meslek Y\\u00fcksekokulu\",\"Hizan Meslek Y\\u00fcksekokulu\",\"Tatvan Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "BİTLİS"
+        },
+        
+        {
+            "uni_id": "41",
+            "uni_name": "BOĞAZİÇİ ÜNİVERSİTESİ ",
+            "uni_fak": "[\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\"]",
+            "uni_myo": "",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "42",
+            "uni_name": "BOZOK ÜNİVERSİTESİ ",
+            "uni_fak": "[\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"M\\u00fchendislik-Mimarl\\u0131k Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Ziraat Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Akda\\u011fmadeni Meslek Y\\u00fcksekokulu\",\"Bo\\u011fazl\\u0131yan Meslek Y\\u00fcksekokulu\",\"Sorgun Meslek Y\\u00fcksekokulu\",\"Yerk\\u00f6y Adalet Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "YOZGAT"
+        },
+        
+        {
+            "uni_id": "43",
+            "uni_name": "BURSA TEKNİK ÜNİVERSİTESİ",
+            "uni_fak": "[\"Do\\u011fa Bilimleri, Mimarl\\u0131k ve M\\u00fchendislik Fak\\u00fcltesi\",\"\\u0130nsan ve Toplum Bilimleri Fak\\u00fcltesi\",\"Orman Fak\\u00fcltesi\"]",
+            "uni_myo": "",
+            "uni_sehir": "BURSA"
+        },
+        
+        {
+            "uni_id": "44",
+            "uni_name": "BÜLENT ECEVİT ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Denizcilik Fak\\u00fcltesi\",\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Ere\\u011fli E\\u011fitim Fak\\u00fcltesi\",\"Karadeniz Ere\\u011fli Turizm Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Zonguldak Meslek Y\\u00fcksekokulu\",\"Alapl\\u0131 Meslek Y\\u00fcksekokulu\",\"\\u00c7aycuma G\\u0131da ve Tar\\u0131m Meslek Y\\u00fcksekokulu\",\"\\u00c7aycuma Meslek Y\\u00fcksekokulu\",\"Devrek Meslek Y\\u00fcksekokulu\",\"G\\u00f6k\\u00e7ebey Mithat-Mehmet \\u00c7anak\\u00e7\\u0131 Meslek Y\\u00fcksekokulu\",\"Karadeniz Ere\\u011fli Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "ZONGULDAK"
+        },
+        
+        {
+            "uni_id": "45",
+            "uni_name": "CUMHURİYET ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi\",\"Edebiyat Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Teknoloji Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Veteriner Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Cumhuriyet Meslek Y\\u00fcksekokulu\",\"Sivas Meslek Y\\u00fcksekokulu\",\"Divri\\u011fi Nuri Demira\\u011f Meslek Y\\u00fcksekokulu\",\"Gemerek Meslek Y\\u00fcksekokulu\",\"G\\u00fcr\\u00fcn Meslek Y\\u00fcksekokulu\",\"Hafik Kamer \\u00d6rnek Meslek Y\\u00fcksekokulu\",\"\\u0130mranl\\u0131 Meslek Y\\u00fcksekokulu\",\"Kangal Meslek Y\\u00fcksekokulu\",\"Koyulhisar Meslek Y\\u00fcksekokulu\",\"Su\\u015fehri Timur Karabal Meslek Y\\u00fcksekokulu\",\"\\u015eark\\u0131\\u015fla A\\u015f\\u0131k Veysel Meslek Y\\u00fcksekokulu\",\"Y\\u0131ld\\u0131zeli Meslek Y\\u00fcksekokulu\",\"Zara Ahmet \\u00c7uhadaro\\u011flu Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "SİVAS"
+        },
+        
+        {
+            "uni_id": "46",
+            "uni_name": "ÇAĞ ÜNİVERSİTESİ",
+            "uni_fak": "[\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "MERSİN"
+        },
+        
+        {
+            "uni_id": "47",
+            "uni_name": "ÇANAKKALE ONSEKİZ MART ÜNİVERSİTESİ",
+            "uni_fak": "[\"Deniz Bilimleri ve Teknolojisi Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen ve Edebiyat Fak\\u00fcltesi\",\"Siyasal Bilgiler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"Mimarl\\u0131k ve Tasar\\u0131m Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Turizm Fak\\u00fcltesi\",\"Ziraat Fak\\u00fcltesi\",\"Biga \\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"\\u00c7anakkale Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"\\u00c7anakkale Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"\\u00c7anakkale Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Deniz Teknolojileri Meslek Y\\u00fcksekokulu\",\"Ayvac\\u0131k Meslek Y\\u00fcksekokulu\",\"Bayrami\\u00e7 Meslek Y\\u00fcksekokulu\",\"Biga Meslek Y\\u00fcksekokulu\",\"\\u00c7an Meslek Y\\u00fcksekokulu\",\"Ezine Meslek Y\\u00fcksekokulu\",\"Gelibolu Piri Reis Meslek Y\\u00fcksekokulu\",\"G\\u00f6k\\u00e7eada Meslek Y\\u00fcksekokulu\",\"Lapseki Meslek Y\\u00fcksekokulu\",\"Yenice Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "ÇANAKKALE"
+        },
+        
+        {
+            "uni_id": "48",
+            "uni_name": "ÇANKAYA ÜNİVERSİTESİ",
+            "uni_fak": "[\"Fen-Edebiyat Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Adalet Meslek Y\\u00fcksekokulu\",\"\\u00c7ankaya Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "ANKARA"
+        },
+        
+        {
+            "uni_id": "49",
+            "uni_name": "ÇANKIRI KARATEKİN ÜNİVERSİTESİ",
+            "uni_fak": "[\"Edebiyat Fak\\u00fcltesi\",\"Fen Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Orman Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Meslek Y\\u00fcksekokulu\",\"\\u00c7erke\\u015f Meslek Y\\u00fcksekokulu\",\"Eldivan Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"K\\u0131z\\u0131l\\u0131rmak Meslek Y\\u00fcksekokulu\",\"Yaprakl\\u0131 Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "ÇANKIRI"
+        },
+        
+        {
+            "uni_id": "50",
+            "uni_name": "ÇUKUROVA ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"M\\u00fchendislik-Mimarl\\u0131k Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Su \\u00dcr\\u00fcnleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi (KKTC Uyruklu)\",\"Ziraat Fak\\u00fcltesi\",\"Ceyhan M\\u00fchendislik Fak\\u00fcltesi\",\"Ceyhan Veteriner Fak\\u00fcltesi\",\"Kozan \\u0130\\u015fletme Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Adana Meslek Y\\u00fcksekokulu\",\"Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Alada\\u011f Meslek Y\\u00fcksekokulu\",\"Ceyhan Meslek Y\\u00fcksekokulu\",\"\\u0130mamo\\u011flu Meslek Y\\u00fcksekokulu\",\"Karaisal\\u0131 Meslek Y\\u00fcksekokulu\",\"Kozan Meslek Y\\u00fcksekokulu\",\"Pozant\\u0131 Meslek Y\\u00fcksekokulu\",\"Tufanbeyli Meslek Y\\u00fcksekokulu\",\"Yumurtal\\u0131k Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "ADANA"
+        },
+        
+        {
+            "uni_id": "51",
+            "uni_name": "DİCLE ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi\",\"Edebiyat Fak\\u00fcltesi\",\"Fen Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Veteriner Fak\\u00fcltesi\",\"Ziraat Fak\\u00fcltesi\",\"Ziya G\\u00f6kalp E\\u011fitim Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Adalet Meslek Y\\u00fcksekokulu\",\"Atat\\u00fcrk Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Diyarbak\\u0131r Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Diyarbak\\u0131r Tar\\u0131m Meslek Y\\u00fcksekokulu\",\"Diyarbak\\u0131r Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Bismil Meslek Y\\u00fcksekokulu\",\"\\u00c7ermik Meslek Y\\u00fcksekokulu\",\"\\u00c7\\u00fcng\\u00fc\\u015f Mehmet Ad\\u0131g\\u00fczel Meslek Y\\u00fcksekokulu\",\"Ergani Meslek Y\\u00fcksekokulu\",\"Silvan Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "DİYARBAKIR"
+        },
+        
+        {
+            "uni_id": "52",
+            "uni_name": "DOĞUŞ ÜNİVERSİTESİ",
+            "uni_fak": "[\"Fen-Edebiyat Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sanat ve Tasar\\u0131m Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "53",
+            "uni_name": "DOKUZ EYLÜL ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Buca E\\u011fitim Fak\\u00fcltesi\",\"Denizcilik Fak\\u00fcltesi\",\"Edebiyat Fak\\u00fcltesi\",\"Fen Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar Fak\\u00fcltesi\",\"Hem\\u015firelik Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"\\u0130\\u015fletme Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Reha Midilli Fo\\u00e7a Turizm Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Adalet Meslek Y\\u00fcksekokulu\",\"\\u0130zmir Meslek Y\\u00fcksekokulu\",\"Bergama Meslek Y\\u00fcksekokulu\",\"Efes Meslek Y\\u00fcksekokulu\",\"Torbal\\u0131 Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İZMİR"
+        },
+        
+        {
+            "uni_id": "54",
+            "uni_name": "DUMLUPINAR ÜNİVERSİTESİ ",
+            "uni_fak": "[\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130slami \\u0130limler Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Simav Teknoloji Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"K\\u00fctahya G\\u00fczel Sanatlar Meslek Y\\u00fcksekokulu\",\"K\\u00fctahya Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"K\\u00fctahya Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Alt\\u0131nta\\u015f Meslek Y\\u00fcksekokulu\",\"Domani\\u00e7 Hayme Ana Meslek Y\\u00fcksekokulu\",\"Emet Meslek Y\\u00fcksekokulu\",\"Gediz Meslek Y\\u00fcksekokulu\",\"Gediz Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Hisarc\\u0131k Meslek Y\\u00fcksekokulu\",\"Pazarlar Meslek Y\\u00fcksekokulu\",\"Simav Meslek Y\\u00fcksekokulu\",\"Simav Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"\\u015eaphane Meslek Y\\u00fcksekokulu\",\"Tav\\u015fanl\\u0131 Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "KÜTAHYA"
+        },
+        
+        {
+            "uni_id": "55",
+            "uni_name": "DÜZCE ÜNİVERSİTESİ ",
+            "uni_fak": "[\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"\\u0130\\u015fletme Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Orman Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Sanat, Tasar\\u0131m ve Mimarl\\u0131k Fak\\u00fcltesi\",\"Teknoloji Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Ziraat ve Do\\u011fa Bilimleri Fak\\u00fcltesi\",\"Ak\\u00e7akoca Bey Siyasal Bilgiler Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Meslek Y\\u00fcksekokulu\",\"Ormanc\\u0131l\\u0131k Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Ak\\u00e7akoca Meslek Y\\u00fcksekokulu\",\"Dr. Engin Pak Cumayeri Meslek Y\\u00fcksekokulu\",\"\\u00c7ilimli Meslek Y\\u00fcksekokulu\",\"G\\u00f6lyaka Meslek Y\\u00fcksekokulu\",\"G\\u00fcm\\u00fc\\u015fova Meslek Y\\u00fcksekokulu\",\"Kayna\\u015fl\\u0131 Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "DÜZCE"
+        },
+        
+        {
+            "uni_id": "56",
+            "uni_name": "EGE ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi\",\"Edebiyat Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen Fak\\u00fcltesi\",\"Hem\\u015firelik Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Su \\u00dcr\\u00fcnleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Ziraat Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Atat\\u00fcrk Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Ege Meslek Y\\u00fcksekokulu\",\"Emel Ak\\u0131n Meslek Y\\u00fcksekokulu\",\"Havac\\u0131l\\u0131k Meslek Y\\u00fcksekokulu\",\"Alia\\u011fa Meslek Y\\u00fcksekokulu\",\"Bay\\u0131nd\\u0131r Meslek Y\\u00fcksekokulu\",\"Bergama Meslek Y\\u00fcksekokulu\",\"\\u00d6demi\\u015f Meslek Y\\u00fcksekokulu\",\"Tire Kutsan Meslek Y\\u00fcksekokulu\",\"Urla Denizcilik Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İZMİR"
+        },
+        
+        {
+            "uni_id": "57",
+            "uni_name": "ERCİYES ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi (KKTC Uyruklu)\",\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi\",\"Edebiyat Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen Fak\\u00fcltesi\",\"Havac\\u0131l\\u0131k ve Uzay Bilimleri Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Seyrani Ziraat Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Turizm Fak\\u00fcltesi\",\"Veteriner Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Adalet Meslek Y\\u00fcksekokulu\",\"Kayseri Meslek Y\\u00fcksekokulu\",\"Halil Bayraktar Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Mustafa \\u00c7\\u0131kr\\u0131k\\u00e7\\u0131o\\u011flu Meslek Y\\u00fcksekokulu\",\"Develi H\\u00fcseyin \\u015eahin Meslek Y\\u00fcksekokulu\",\"P\\u0131narba\\u015f\\u0131 Meslek Y\\u00fcksekokulu\",\"Tomarza Mustafa Ak\\u0131nc\\u0131o\\u011flu Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "KAYSERİ"
+        },
+        
+        {
+            "uni_id": "58",
+            "uni_name": "ERZİNCAN ÜNİVERSİTESİ",
+            "uni_fak": "[\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Adalet Meslek Y\\u00fcksekokulu\",\"Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Turizm ve Otelcilik Meslek Y\\u00fcksekokulu\",\"\\u00c7ay\\u0131rl\\u0131 Meslek Y\\u00fcksekokulu\",\"\\u0130li\\u00e7 Dursun Y\\u0131ld\\u0131r\\u0131m Meslek Y\\u00fcksekokulu\",\"Kemah Meslek Y\\u00fcksekokulu\",\"Kemaliye Hac\\u0131 Ali Ak\\u0131n Meslek Y\\u00fcksekokulu\",\"Refahiye Meslek Y\\u00fcksekokulu\",\"Tercan Meslek Y\\u00fcksekokulu\",\"\\u00dcz\\u00fcml\\u00fc Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "ERZİNCAN"
+        },
+        
+        {
+            "uni_id": "59",
+            "uni_name": "ERZURUM TEKNİK ÜNİVERSİTESİ",
+            "uni_fak": "[\"Edebiyat Fak\\u00fcltesi\",\"Fen Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"M\\u00fchendislik ve Mimarl\\u0131k Fak\\u00fcltesi\"]",
+            "uni_myo": "",
+            "uni_sehir": "ERZURUM"
+        },
+        
+        {
+            "uni_id": "60",
+            "uni_name": "ESKİŞEHİR OSMANGAZİ ÜNİVERSİTESİ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi (KKTC Uyruklu)\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"M\\u00fchendislik-Mimarl\\u0131k Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Sanat ve Tasar\\u0131m Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Turizm Fak\\u00fcltesi\",\"Ziraat Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Eski\\u015fehir Meslek Y\\u00fcksekokulu\",\"Sivrihisar Meslek Y\\u00fcksekokulu\",\"Mahmudiye At\\u00e7\\u0131l\\u0131k Meslek Y\\u00fcksekokulu\",\"Faruk Sara\\u00e7 Tasar\\u0131m Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "ESKİŞEHİR"
+        },
+        
+        {
+            "uni_id": "61",
+            "uni_name": "FATİH SULTAN MEHMET VAKIF ÜNİVERSİTESİ",
+            "uni_fak": "[\"Edebiyat Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130slami \\u0130limler Fak\\u00fcltesi\",\"Mimarl\\u0131k ve Tasar\\u0131m Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"G\\u00fczel Sanatlar Meslek Y\\u00fcksekokulu\",\"Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "62",
+            "uni_name": "FIRAT ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"\\u0130nsani ve Sosyal Bilimler Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Spor Bilimleri Fak\\u00fcltesi\",\"Su \\u00dcr\\u00fcnleri Fak\\u00fcltesi\",\"Teknoloji Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Veteriner Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Baskil Meslek Y\\u00fcksekokulu\",\"Karako\\u00e7an Meslek Y\\u00fcksekokulu\",\"Keban Meslek Y\\u00fcksekokulu\",\"Kovanc\\u0131lar Meslek Y\\u00fcksekokulu\",\"Elaz\\u0131\\u011f Organize Sanayi B\\u00f6lgesi Maden Meslek Y\\u00fcksekokulu\",\"Sivrice Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "ELAZIĞ"
+        },
+        
+        {
+            "uni_id": "63",
+            "uni_name": "GALATASARAY ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Fen-Edebiyat Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"M\\u00fchendislik ve Teknoloji Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "64",
+            "uni_name": "GAZİ ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi\",\"Edebiyat Fak\\u00fcltesi\",\"Fen Fak\\u00fcltesi\",\"Gazi E\\u011fitim Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Sanat ve Tasar\\u0131m Fak\\u00fcltesi\",\"Spor Bilimleri Fak\\u00fcltesi\",\"Teknoloji Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi (KKTC Uyruklu)\",\"T\\u0131p Fak\\u00fcltesi (\\u0130ngilizce)\",\"Turizm Fak\\u00fcltesi\",\"Polatl\\u0131 Fen-Edebiyat Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Adalet Meslek Y\\u00fcksekokulu\",\"Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"TUSA\\u015e-Kazan Meslek Y\\u00fcksekokulu\",\"Polatl\\u0131 Sosyal Bilimler Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "ANKARA"
+        },
+        
+        {
+            "uni_id": "65",
+            "uni_name": "GAZİANTEP ÜNİVERSİTESİ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"Gaziantep E\\u011fitim Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar Fak\\u00fcltesi\",\"Havac\\u0131l\\u0131k ve Uzay Bilimleri Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi (\\u0130ngilizce)\",\"\\u0130slahiye \\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"Nizip E\\u011fitim Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Naci Top\\u00e7uo\\u011flu Meslek Y\\u00fcksekokulu\",\"Turizm ve Otelcilik Meslek Y\\u00fcksekokulu\",\"Araban Meslek Y\\u00fcksekokulu\",\"\\u0130slahiye Meslek Y\\u00fcksekokulu\",\"Nizip Meslek Y\\u00fcksekokulu\",\"Nurda\\u011f\\u0131 Meslek Y\\u00fcksekokulu\",\"O\\u011fuzeli Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "GAZİANTEP"
+        },
+        
+        {
+            "uni_id": "66",
+            "uni_name": "GAZİOSMANPAŞA ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"M\\u00fchendislik ve Do\\u011fa Bilimleri Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Ziraat Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Tokat Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Tokat Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Almus Meslek Y\\u00fcksekokulu\",\"Artova Meslek Y\\u00fcksekokulu\",\"Erbaa Meslek Y\\u00fcksekokulu\",\"Niksar Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Niksar Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Pazar Meslek Y\\u00fcksekokulu\",\"Re\\u015fadiye Meslek Y\\u00fcksekokulu\",\"Turhal Meslek Y\\u00fcksekokulu\",\"Zile Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "TOKAT"
+        },
+        
+        {
+            "uni_id": "67",
+            "uni_name": "GEBZE TEKNİK ÜNİVERSİTESİ",
+            "uni_fak": "[\"\\u0130\\u015fletme Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Temel Bilimler Fak\\u00fcltesi\"]",
+            "uni_myo": "",
+            "uni_sehir": "GEBZE"
+        },
+        
+        {
+            "uni_id": "68",
+            "uni_name": "GİRESUN ÜNİVERSİTESİ",
+            "uni_fak": "[\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130slami \\u0130limler Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Tirebolu \\u0130leti\\u015fim Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Alucra Turan Bulut\\u00e7u Meslek Y\\u00fcksekokulu\",\"Dereli Meslek Y\\u00fcksekokulu\",\"Espiye Meslek Y\\u00fcksekokulu\",\"Eynesil Kamil Nalbant Meslek Y\\u00fcksekokulu\",\"Ke\\u015fap Meslek Y\\u00fcksekokulu\",\"\\u015eebinkarahisar Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"\\u015eebinkarahisar Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Tirebolu Mehmet Bayrak Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "GİRESUN"
+        },
+        
+        {
+            "uni_id": "69",
+            "uni_name": "GÜMÜŞHANE ÜNİVERSİTESİ",
+            "uni_fak": "[\"Edebiyat Fak\\u00fcltesi\",\"G\\u00fcm\\u00fc\\u015fhane \\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"M\\u00fchendislik ve Do\\u011fa Bilimleri Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Turizm Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"G\\u00fcm\\u00fc\\u015fhane Meslek Y\\u00fcksekokulu\",\"G\\u00fcm\\u00fc\\u015fhane Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"\\u0130rfan Can K\\u00f6se Meslek Y\\u00fcksekokulu\",\"Kelkit Ayd\\u0131n Do\\u011fan Meslek Y\\u00fcksekokulu\",\"Kelkit Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"K\\u00fcrt\\u00fcn Meslek Y\\u00fcksekokulu\",\"\\u015eiran Mustafa Beyaz Meslek Y\\u00fcksekokulu\",\"Torul Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "GÜMÜŞHANE"
+        },
+        
+        {
+            "uni_id": "70",
+            "uni_name": "HACETTEPE ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi\",\"Edebiyat Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar Fak\\u00fcltesi\",\"Hem\\u015firelik Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Hacettepe Ankara Sanayi Odas\\u0131 1. OSB Meslek Y\\u00fcksekokulu\",\"Ba\\u015fkent OSB Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Sosyal Bilimler Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "ANKARA"
+        },
+        
+        {
+            "uni_id": "71",
+            "uni_name": "HAKKARİ ÜNİVERSİTESİ",
+            "uni_fak": "[\"E\\u011fitim Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"\\u00c7\\u00f6lemerik Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Y\\u00fcksekova Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "HAKKARİ"
+        },
+        
+        {
+            "uni_id": "72",
+            "uni_name": "HALİÇ ÜNİVERSİTESİ",
+            "uni_fak": "[\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130\\u015fletme Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "73",
+            "uni_name": "HARRAN ÜNİVERSİTESİ ",
+            "uni_fak": "[\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Veteriner Fak\\u00fcltesi\",\"Ziraat Fak\\u00fcltesi\",\"Siverek Uygulamal\\u0131 Bilimler Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"\\u015eanl\\u0131urfa Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"\\u015eanl\\u0131urfa Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Ak\\u00e7akale Meslek Y\\u00fcksekokulu\",\"Birecik Meslek Y\\u00fcksekokulu\",\"Bozova Meslek Y\\u00fcksekokulu\",\"Ceylanp\\u0131nar Tar\\u0131m Meslek Y\\u00fcksekokulu\",\"Hilvan Meslek Y\\u00fcksekokulu\",\"Siverek Meslek Y\\u00fcksekokulu\",\"Suru\\u00e7 Meslek Y\\u00fcksekokulu\",\"Viran\\u015fehir Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "ŞANLIURFA"
+        },
+        
+        {
+            "uni_id": "74",
+            "uni_name": "HASAN KALYONCU ÜNİVERSİTESİ",
+            "uni_fak": "[\"E\\u011fitim Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar ve Mimarl\\u0131k Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi\",\" \\u0130dari ve Sosyal Bilimler Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "GAZİANTEP"
+        },
+        
+        {
+            "uni_id": "75",
+            "uni_name": "HİTİT ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi (\\u0130\\u00d6)\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Alaca Avni \\u00c7elik Meslek Y\\u00fcksekokulu\",\"\\u0130skilip Meslek Y\\u00fcksekokulu\",\"Osmanc\\u0131k \\u00d6mer Derindere Meslek Y\\u00fcksekokulu\",\"Sungurlu Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "ÇORUM"
+        },
+        
+        {
+            "uni_id": "76",
+            "uni_name": "IĞDIR ÜNİVERSİTESİ",
+            "uni_fak": "[\"Fen-Edebiyat Fak\\u00fcltesi\",\"I\\u011fd\\u0131r Ziraat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"I\\u011fd\\u0131r Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"I\\u011fd\\u0131r Meslek Y\\u00fcksekokulu\",\"I\\u011fd\\u0131r Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Tuzluca Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "IĞDIR"
+        },
+        
+        {
+            "uni_id": "77",
+            "uni_name": "IŞIK ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Fen-Edebiyat Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"Mimarl\\u0131k ve Tasar\\u0131m Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "78",
+            "uni_name": "İBN HALDUN ÜNİVERSİTESİ",
+            "uni_fak": "[\"E\\u011fitim Bilimleri Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"\\u0130nsan ve Toplum Bilimleri Fak\\u00fcltesi\",\"\\u0130slami \\u0130limler Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"<br \\\/>\\r\\n<b>Warning<\\\/b>:  implode(): Invalid arguments passed in <b>C:\\\\xampp\\\\htdocs\\\\korku\\\\app\\\\views\\\\Admin\\\\uniler\\\\uniler_update_hm.php<\\\/b> on line <b>32<\\\/b><br \\\/>\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "79",
+            "uni_name": "İHSAN DOĞRAMACI BİLKENT ÜNİVERSİTESİ",
+            "uni_fak": "[\"Fen Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar Tasar\\u0131m ve Mimarl\\u0131k Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi\",\" \\u0130dari ve Sosyal Bilimler Fak\\u00fcltesi\",\"\\u0130nsani Bilimler ve Edebiyat Fak\\u00fcltesi\",\"\\u0130\\u015fletme Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"<br \\\/>\\r\\n<b>Warning<\\\/b>:  implode(): Invalid arguments passed in <b>C:\\\\xampp\\\\htdocs\\\\korku\\\\app\\\\views\\\\Admin\\\\uniler\\\\uniler_update_hm.php<\\\/b> on line <b>32<\\\/b><br \\\/>\"]",
+            "uni_sehir": "ANKARA"
+        },
+        
+        {
+            "uni_id": "80",
+            "uni_name": "İNÖNÜ ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar ve Tasar\\u0131m Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Spor Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi (\\u0130ngilizce)\",\"Ziraat Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Adalet Meslek Y\\u00fcksekokulu\",\"Malatya Meslek Y\\u00fcksekokulu\",\"Ak\\u00e7ada\\u011f Meslek Y\\u00fcksekokulu\",\"Arapgir Meslek Y\\u00fcksekokulu\",\"Battalgazi Meslek Y\\u00fcksekokulu\",\"Darende Bekir Il\\u0131cak Meslek Y\\u00fcksekokulu\",\"Do\\u011fan\\u015fehir Meslek Y\\u00fcksekokulu\",\"Hekimhan Mehmet Emin Sungur Meslek Y\\u00fcksekokulu\",\"Kale Turizm ve Otel \\u0130\\u015fletmecili\\u011fi Meslek Y\\u00fcksekokulu\",\"Ye\\u015filyurt Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "MALATYA"
+        },
+        
+        {
+            "uni_id": "81",
+            "uni_name": "İSKENDERUN TEKNİK ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Barbaros Hayrettin Gemi \\u0130n\\u015faat\\u0131 ve Denizcilik Fak\\u00fcltesi\",\"Deniz Bilimleri ve Teknolojisi Fak\\u00fcltesi\",\"M\\u00fchendislik ve Do\\u011fa Bilimleri Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Denizcilik Meslek Y\\u00fcksekokulu\",\"\\u0130skenderun Meslek Y\\u00fcksekokulu\",\"D\\u00f6rtyol Meslek Y\\u00fcksekokulu\",\"Erzin Teknik Bilimler Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "HATAY"
+        },
+        
+        {
+            "uni_id": "82",
+            "uni_name": "İSTANBUL 29 MAYIS ÜNİVERSİTESİ",
+            "uni_fak": "[\"Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"Uluslararas\\u0131 \\u0130slam ve Din Bilimleri Fak\\u00fcltesi\"]",
+            "uni_myo": "",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "83",
+            "uni_name": "İSTANBUL AREL ÜNİVERSİTESİ",
+            "uni_fak": "[\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"M\\u00fchendislik-Mimarl\\u0131k Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "84",
+            "uni_name": "İSTANBUL AYDIN ÜNİVERSİTESİ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"Mimarl\\u0131k ve Tasar\\u0131m Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Adalet Meslek Y\\u00fcksekokulu\",\"Anadolu B\\u0130L Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "85",
+            "uni_name": "İSTANBUL AYVANSARAY ÜNİVERSİTESİ",
+            "uni_fak": "[\"G\\u00fczel Sanatlar, Tasar\\u0131m ve Mimarl\\u0131k Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Plato Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "86",
+            "uni_name": "İSTANBUL BİLGİ ÜNİVERSİTESİ",
+            "uni_fak": "[\"Hukuk Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"\\u0130\\u015fletme Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"M\\u00fchendislik ve Do\\u011fa Bilimleri Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Sosyal ve Be\\u015feri Bilimler Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Adalet Meslek Y\\u00fcksekokulu\",\"Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "87",
+            "uni_name": "İSTANBUL BİLİM ÜNİVERSİTESİ",
+            "uni_fak": "[\"Fen-Edebiyat Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "88",
+            "uni_name": "İSTANBUL ESENYURT ÜNİVERSİTESİ",
+            "uni_fak": "[\"\\u0130\\u015fletme ve Y\\u00f6netim Bilimleri Fak\\u00fcltesi\",\"M\\u00fchendislik ve Mimarl\\u0131k Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Sanat ve Sosyal Bilimler Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "89",
+            "uni_name": "İSTANBUL GEDİK ÜNİVERSİTESİ",
+            "uni_fak": "[\"G\\u00fczel Sanatlar ve Mimarl\\u0131k Fak\\u00fcltesi\",\"\\u0130ktisadi, \\u0130dari ve Sosyal Bilimler Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Gedik Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "90",
+            "uni_name": "İSTANBUL GELİŞİM ÜNİVERSİTESİ",
+            "uni_fak": "[\"G\\u00fczel Sanatlar Fak\\u00fcltesi\",\"\\u0130ktisadi, \\u0130dari ve Sosyal Bilimler Fak\\u00fcltesi\",\"M\\u00fchendislik-Mimarl\\u0131k Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"\\u0130stanbul Geli\\u015fim Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"\\u0130stanbul Kavram Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "91",
+            "uni_name": "İSTANBUL KENT ÜNİVERSİTESİ",
+            "uni_fak": "[\"\\u0130nsan ve Toplum Bilimleri Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "92",
+            "uni_name": "İSTANBUL KÜLTÜR ÜNİVERSİTESİ",
+            "uni_fak": "[\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Sanat ve Tasar\\u0131m Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Adalet Meslek Y\\u00fcksekokulu\",\"\\u0130\\u015fletmecilik Meslek Y\\u00fcksekokulu\",\"Teknik Bilimler Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "93",
+            "uni_name": "İSTANBUL MEDENİYET ÜNİVERSİTESİ",
+            "uni_fak": "[\"E\\u011fitim Bilimleri Fak\\u00fcltesi\",\"Edebiyat Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"M\\u00fchendislik ve Do\\u011fa Bilimleri Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Siyasal Bilgiler Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi (KKTC Uyruklu)\",\"Turizm Fak\\u00fcltesi\"]",
+            "uni_myo": "",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "94",
+            "uni_name": "İSTANBUL MEDİPOL ÜNİVERSİTESİ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar Tasar\\u0131m ve Mimarl\\u0131k Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"\\u0130nsan ve Toplum Bilimleri Fak\\u00fcltesi\",\"\\u0130\\u015fletme ve Y\\u00f6netim Bilimleri Fak\\u00fcltesi\",\"M\\u00fchendislik ve Do\\u011fa Bilimleri Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Uluslararas\\u0131 T\\u0131p Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Adalet Meslek Y\\u00fcksekokulu\",\"Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Sosyal Bilimler Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "95",
+            "uni_name": "İSTANBUL RUMELİ ÜNİVERSİTESİ",
+            "uni_fak": "[\"\\u0130ktisadi, \\u0130dari ve Sosyal Bilimler Fak\\u00fcltesi\",\"M\\u00fchendislik ve Mimarl\\u0131k Fak\\u00fcltesi\",\"Sanat ve Tasar\\u0131m Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "96",
+            "uni_name": "İSTANBUL SABAHATTİN ZAİM ÜNİVERSİTESİ",
+            "uni_fak": "[\"E\\u011fitim Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130nsan ve Toplum Bilimleri Fak\\u00fcltesi\",\"\\u0130slami \\u0130limler Fak\\u00fcltesi\",\"\\u0130\\u015fletme ve Y\\u00f6netim Bilimleri Fak\\u00fcltesi\",\"M\\u00fchendislik ve Do\\u011fa Bilimleri Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "97",
+            "uni_name": "İSTANBUL ŞEHİR ÜNİVERSİTESİ",
+            "uni_fak": "[\"Hukuk Fak\\u00fcltesi \",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"\\u0130nsan ve Toplum Bilimleri Fak\\u00fcltesi\",\"\\u0130slami \\u0130limler Fak\\u00fcltesi\",\"\\u0130\\u015fletme ve Y\\u00f6netim Bilimleri Fak\\u00fcltesi\",\"M\\u00fchendislik ve Do\\u011fa Bilimleri Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Meslek Y\\u00fcksekokulu\",\"\\u0130stanbul \\u015ei\\u015fli Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "98",
+            "uni_name": "İSTANBUL TEKNİK ÜNİVERSİTESİ",
+            "uni_fak": "[\"Bilgisayar ve Bili\\u015fim Fak\\u00fcltesi\",\"Denizcilik Fak\\u00fcltesi\",\"Elektrik-Elektronik Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"Gemi \\u0130n\\u015faat\\u0131 ve Deniz Bilimleri Fak\\u00fcltesi\",\"\\u0130n\\u015faat Fak\\u00fcltesi\",\"\\u0130\\u015fletme Fak\\u00fcltesi\",\"Kimya-Metalurji Fak\\u00fcltesi\",\"Maden Fak\\u00fcltesi\",\"Makine Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"Tekstil Teknolojileri ve Tasar\\u0131m\\u0131 Fak\\u00fcltesi\",\"U\\u00e7ak ve Uzay Bilimleri Fak\\u00fcltesi\"]",
+            "uni_myo": "",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "99",
+            "uni_name": "İSTANBUL TİCARET ÜNİVERSİTESİ",
+            "uni_fak": "[\"\\u0130nsan ve Toplum Bilimleri Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"\\u0130\\u015fletme Fak\\u00fcltesi\",\"Mimarl\\u0131k ve Tasar\\u0131m Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "100",
+            "uni_name": "İSTANBUL ÜNİVERSİTESİ ",
+            "uni_fak": "[\"A\\u00e7\\u0131k ve Uzaktan E\\u011fitim Fak\\u00fcltesi\",\"Cerrahpa\\u015fa T\\u0131p Fak\\u00fcltesi\",\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi\",\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi (\\u0130ngilizce)\",\"Edebiyat Fak\\u00fcltesi\",\"Fen Fak\\u00fcltesi\",\"Hasan Ali Y\\u00fccel E\\u011fitim Fak\\u00fcltesi\",\"Florence Nightingale Hem\\u015firelik Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi (\\u0130\\u00d6)\",\"\\u0130ktisat Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"\\u0130stanbul T\\u0131p Fak\\u00fcltesi\",\"\\u0130\\u015fletme Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Orman Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Siyasal Bilgiler Fak\\u00fcltesi\",\"Su Bilimleri Fak\\u00fcltesi\",\"Ula\\u015ft\\u0131rma ve Lojistik Fak\\u00fcltesi\",\"Veteriner Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Adalet Meslek Y\\u00fcksekokulu\",\"Meslek Y\\u00fcksekokulu\",\"Ormanc\\u0131l\\u0131k Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "101",
+            "uni_name": "İSTANBUL YENİ YÜZYIL ÜNİVERSİTESİ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"M\\u00fchendislik-Mimarl\\u0131k Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "102",
+            "uni_name": "İSTİNYE ÜNİVERSİTESİ",
+            "uni_fak": "[\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi\",\"\\u0130dari ve Sosyal Bilimler Fak\\u00fcltesi\",\"Mimarl\\u0131k ve Tasar\\u0131m Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "103",
+            "uni_name": "İZMİR DEMOKRASİ ÜNİVERSİTESİ",
+            "uni_fak": "[\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\"]",
+            "uni_myo": "",
+            "uni_sehir": "İZMİR"
+        },
+        
+        {
+            "uni_id": "104",
+            "uni_name": "İZMİR EKONOMİ ÜNİVERSİTESİ",
+            "uni_fak": "[\"Fen-Edebiyat Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar ve Tasar\\u0131m Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130\\u015fletme Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Adalet Meslek Y\\u00fcksekokulu\",\"Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İZMİR"
+        },
+        
+        {
+            "uni_id": "105",
+            "uni_name": "İZMİR KATİP ÇELEBİ ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi (\\u0130ngilizce)\",\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi (\\u0130ngilizce) (KKTC Uyruklu)\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130slami \\u0130limler Fak\\u00fcltesi\",\"M\\u00fchendislik ve Mimarl\\u0131k Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Sosyal ve Be\\u015feri Bilimler Fak\\u00fcltesi\",\"Su \\u00dcr\\u00fcnleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi (KKTC Uyruklu)\",\"Turizm Fak\\u00fcltesi\",\"Fen Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İZMİR"
+        },
+        
+        {
+            "uni_id": "106",
+            "uni_name": "KADİR HAS ÜNİVERSİTESİ",
+            "uni_fak": "[\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi\",\" \\u0130dari ve Sosyal Bilimler Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"\\u0130\\u015fletme Fak\\u00fcltesi\",\"M\\u00fchendislik ve Do\\u011fa Bilimleri Fak\\u00fcltesi\",\"Sanat ve Tasar\\u0131m Fak\\u00fcltesi\",\"Uygulamal\\u0131 Bilimler Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Adalet Meslek Y\\u00fcksekokulu\",\"Kadir Has Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "107",
+            "uni_name": "KAFKAS ÜNİVERSİTESİ ",
+            "uni_fak": "[\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"M\\u00fchendislik-Mimarl\\u0131k Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Veteriner Fak\\u00fcltesi\",\"Sar\\u0131kam\\u0131\\u015f Turizm Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Kars Meslek Y\\u00fcksekokulu\",\"Adalet Meslek Y\\u00fcksekokulu\",\"Atat\\u00fcrk Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Kaz\\u0131m Karabekir Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Ka\\u011f\\u0131zman Meslek Y\\u00fcksekokulu\",\"Sar\\u0131kam\\u0131\\u015f Meslek Y\\u00fcksekokulu\",\"Susuz Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "KARS"
+        },
+        
+        {
+            "uni_id": "108",
+            "uni_name": "KAHRAMANMARAŞ SÜTÇÜ İMAM ÜNİVERSİTESİ",
+            "uni_fak": "[\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"M\\u00fchendislik-Mimarl\\u0131k Fak\\u00fcltesi\",\"Orman Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Ziraat Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Kahramanmara\\u015f Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Af\\u015fin Meslek Y\\u00fcksekokulu\",\"And\\u0131r\\u0131n Meslek Y\\u00fcksekokulu\",\"Elbistan Meslek Y\\u00fcksekokulu\",\"G\\u00f6ksun Meslek Y\\u00fcksekokulu\",\"Pazarc\\u0131k Meslek Y\\u00fcksekokulu\",\"T\\u00fcrko\\u011flu Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "KAHRAMANMARAŞ"
+        },
+        
+        {
+            "uni_id": "109",
+            "uni_name": "KARABÜK ÜNİVERSİTESİ",
+            "uni_fak": "[\"Edebiyat Fak\\u00fcltesi\",\"Fen Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"\\u0130\\u015fletme Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Teknoloji Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Safranbolu Fethi Toker G\\u00fczel Sanatlar ve Tasar\\u0131m Fak\\u00fcltesi\",\"Safranbolu Turizm Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Adalet Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"T\\u00fcrkiye Odalar ve Borsalar Birli\\u011fi Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Eflani Hayvansal \\u00dcretim ve Y\\u00f6netim Meslek Y\\u00fcksekokulu\",\"Eskipazar Meslek Y\\u00fcksekokulu\",\"Safranbolu Meslek Y\\u00fcksekokulu\",\"Yenice Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "KARABÜK"
+        },
+        
+        {
+            "uni_id": "110",
+            "uni_name": "KARADENİZ TEKNİK ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi\",\"Edebiyat Fak\\u00fcltesi\",\"Fatih E\\u011fitim Fak\\u00fcltesi\",\"Fen Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi (\\u0130\\u00d6)\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Orman Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Of Teknoloji Fak\\u00fcltesi\",\"S\\u00fcrmene Deniz Bilimleri Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Trabzon Meslek Y\\u00fcksekokulu\",\"Turizm ve Otelcilik Meslek Y\\u00fcksekokulu\",\"Arakl\\u0131 Meslek Y\\u00fcksekokulu\",\"Arsin Meslek Y\\u00fcksekokulu\",\"Be\\u015fikd\\u00fcz\\u00fc Meslek Y\\u00fcksekokulu\",\"Ma\\u00e7ka Meslek Y\\u00fcksekokulu\",\"S\\u00fcrmene Abdullah Kanca Meslek Y\\u00fcksekokulu\",\"Tonya Meslek Y\\u00fcksekokulu\",\"Vakf\\u0131kebir Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "TRABZON"
+        },
+        
+        {
+            "uni_id": "111",
+            "uni_name": "KARAMANOĞLU MEHMETBEY ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Edebiyat Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130slami \\u0130limler Fak\\u00fcltesi\",\"Kamil \\u00d6zda\\u011f Fen Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Ermenek Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "KARAMAN"
+        },
+        
+        {
+            "uni_id": "112",
+            "uni_name": "KASTAMONU ÜNİVERSİTESİ",
+            "uni_fak": "[\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"M\\u00fchendislik ve Mimarl\\u0131k Fak\\u00fcltesi\",\"Orman Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Turizm Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Meslek Y\\u00fcksekokulu\",\"Abana Sabahat Mesut Y\\u0131lmaz Meslek Y\\u00fcksekokulu\",\"Ara\\u00e7 Rafet Vergili Meslek Y\\u00fcksekokulu\",\"Bozkurt Meslek Y\\u00fcksekokulu\",\"Cide R\\u0131fat Ilgaz Meslek Y\\u00fcksekokulu\",\"\\u00c7atalzeytin Meslek Y\\u00fcksekokulu\",\"Daday Nafi ve \\u00dcmit \\u00c7eri Meslek Y\\u00fcksekokulu\",\"Devrekani Meslek Y\\u00fcksekokulu\",\"\\u0130hsangazi Meslek Y\\u00fcksekokulu\",\"\\u0130nebolu Meslek Y\\u00fcksekokulu\",\"K\\u00fcre Meslek Y\\u00fcksekokulu\",\"Ta\\u015fk\\u00f6pr\\u00fc Meslek Y\\u00fcksekokulu\",\"Tosya Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "KASTAMONU"
+        },
+        
+        {
+            "uni_id": "113",
+            "uni_name": "KIRIKKALE ÜNİVERSİTESİ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi (\\u0130\\u00d6)\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130slami \\u0130limler Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Spor Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi (KKTC Uyruklu)\",\"Veteriner Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Adalet Meslek Y\\u00fcksekokulu\",\"Fatma \\u015eenses Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"K\\u0131r\\u0131kkale Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Delice Meslek Y\\u00fcksekokulu\",\"Hac\\u0131lar H\\u00fcseyin Aytemiz Meslek Y\\u00fcksekokulu\",\"Keskin Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "KIRIKKALE"
+        },
+        
+        {
+            "uni_id": "114",
+            "uni_name": "KIRKLARELİ ÜNİVERSİTESİ",
+            "uni_fak": "[\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Teknoloji Fak\\u00fcltesi\",\"Turizm Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Babaeski Meslek Y\\u00fcksekokulu\",\"L\\u00fcleburgaz Meslek Y\\u00fcksekokulu\",\"P\\u0131narhisar Meslek Y\\u00fcksekokulu\",\"Vize Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "KIRKLARELİ"
+        },
+        
+        {
+            "uni_id": "115",
+            "uni_name": "KİLİS 7 ARALIK ÜNİVERSİTESİ",
+            "uni_fak": "[\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"Muallim R\\u0131fat E\\u011fitim Fak\\u00fcltesi\",\"M\\u00fchendislik-Mimarl\\u0131k Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Turizm ve Otelcilik Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "KİLİS"
+        },
+        
+        {
+            "uni_id": "116",
+            "uni_name": "KOCAELİ ÜNİVERSİTESİ",
+            "uni_fak": "[\"Denizcilik Fak\\u00fcltesi\",\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"Havac\\u0131l\\u0131k ve Uzay Bilimleri Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"Mimarl\\u0131k ve Tasar\\u0131m Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Spor Bilimleri Fak\\u00fcltesi\",\"Teknoloji Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Adalet Meslek Y\\u00fcksekokulu\",\"Kocaeli Meslek Y\\u00fcksekokulu\",\"Kocaeli Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Ali R\\u0131za Veziro\\u011flu Meslek Y\\u00fcksekokulu\",\"Arslanbey Meslek Y\\u00fcksekokulu\",\"As\\u0131m Kocab\\u0131y\\u0131k Meslek Y\\u00fcksekokulu\",\"De\\u011firmendere Ali \\u00d6zbay Meslek Y\\u00fcksekokulu\",\"Kartepe At\\u00e7\\u0131l\\u0131k Meslek Y\\u00fcksekokulu\",\"Kartepe Turizm Meslek Y\\u00fcksekokulu\",\"Ford Otosan \\u0130hsaniye Otomotiv Meslek Y\\u00fcksekokulu\",\"Gazanfer Bilge Meslek Y\\u00fcksekokulu\",\"G\\u0131da ve Tar\\u0131m Meslek Y\\u00fcksekokulu\",\"G\\u00f6lc\\u00fck Meslek Y\\u00fcksekokulu\",\"Hereke Meslek Y\\u00fcksekokulu\",\"Hereke \\u00d6mer \\u0130smet Uzunyol Meslek Y\\u00fcksekokulu\",\"\\u0130zmit Meslek Y\\u00fcksekokulu\",\"Kand\\u0131ra Meslek Y\\u00fcksekokulu\",\"Karam\\u00fcrsel Meslek Y\\u00fcksekokulu\",\"K\\u00f6sek\\u00f6y Meslek Y\\u00fcksekokulu\",\"Uzun\\u00e7iftlik Nuh \\u00c7imento Meslek Y\\u00fcksekokulu\",\"Yahya Kaptan Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "KOCAELİ"
+        },
+        
+        {
+            "uni_id": "117",
+            "uni_name": "KOÇ ÜNİVERSİTESİ",
+            "uni_fak": "[\"Fen Fak\\u00fcltesi\",\"Hem\\u015firelik Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130nsani Bilimler ve Edebiyat Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "118",
+            "uni_name": "KONYA GIDA VE TARIM ÜNİVERSİTESİ",
+            "uni_fak": "[\"M\\u00fchendislik ve Mimarl\\u0131k Fak\\u00fcltesi\",\"Sosyal ve Be\\u015feri Bilimler Fak\\u00fcltesi\",\"Tar\\u0131m ve Do\\u011fa Bilimleri Fak\\u00fcltesi\"]",
+            "uni_myo": "",
+            "uni_sehir": "KONYA"
+        },
+        
+        {
+            "uni_id": "119",
+            "uni_name": "KTO KARATAY ÜNİVERSİTESİ",
+            "uni_fak": "[\"G\\u00fczel Sanatlar ve Tasar\\u0131m Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130\\u015fletme ve Y\\u00f6netim Bilimleri Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sosyal ve Be\\u015feri Bilimler Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Adalet Meslek Y\\u00fcksekokulu (\\u00dccretli)\",\"Adalet Meslek Y\\u00fcksekokulu (Tam Burslu)\",\"Adalet Meslek Y\\u00fcksekokulu (%75 Burslu)\",\"Adalet Meslek Y\\u00fcksekokulu (%50 Burslu)\"]",
+            "uni_sehir": "KONYA"
+        },
+        
+        {
+            "uni_id": "120",
+            "uni_name": "MALTEPE ÜNİVERSİTESİ",
+            "uni_fak": "[\"E\\u011fitim Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"\\u0130nsan ve Toplum Bilimleri Fak\\u00fcltesi\",\"\\u0130\\u015fletme ve Y\\u00f6netim Bilimleri Fak\\u00fcltesi\",\"Mimarl\\u0131k ve Tasar\\u0131m Fak\\u00fcltesi\",\"M\\u00fchendislik ve Do\\u011fa Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "121",
+            "uni_name": "MANİSA CELÂL BAYAR ÜNİVERSİTESİ",
+            "uni_fak": "[\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"Hasan Ferdi Turgutlu Teknoloji Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130\\u015fletme Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi (KKTC Uyruklu)\",\"Salihli \\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Manisa Meslek Y\\u00fcksekokulu\",\"Ahmetli Meslek Y\\u00fcksekokulu\",\"Akhisar Meslek Y\\u00fcksekokulu\",\"Ala\\u015fehir Meslek Y\\u00fcksekokulu\",\"Demirci Meslek Y\\u00fcksekokulu\",\"G\\u00f6rdes Meslek Y\\u00fcksekokulu\",\"K\\u0131rka\\u011fa\\u00e7 Meslek Y\\u00fcksekokulu\",\"K\\u00f6pr\\u00fcba\\u015f\\u0131 Meslek Y\\u00fcksekokulu\",\"Kula Meslek Y\\u00fcksekokulu\",\"Salihli Meslek Y\\u00fcksekokulu\",\"Sar\\u0131g\\u00f6l Meslek Y\\u00fcksekokulu\",\"Saruhanl\\u0131 Meslek Y\\u00fcksekokulu\",\"Soma Meslek Y\\u00fcksekokulu\",\"Turgutlu Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "MANİSA"
+        },
+        
+        {
+            "uni_id": "122",
+            "uni_name": "MARDİN ARTUKLU ÜNİVERSİTESİ",
+            "uni_fak": "[\"Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130slami \\u0130limler Fak\\u00fcltesi\",\"M\\u00fchendislik-Mimarl\\u0131k Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"K\\u0131z\\u0131ltepe Meslek Y\\u00fcksekokulu\",\"Midyat Meslek Y\\u00fcksekokulu\",\"Nusaybin Meslek Y\\u00fcksekokulu\",\"\\u00d6merli Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "MARDİN"
+        },
+        
+        {
+            "uni_id": "123",
+            "uni_name": "MARMARA ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Atat\\u00fcrk E\\u011fitim Fak\\u00fcltesi\",\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi (\\u0130\\u00d6)\",\"\\u0130ktisat Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"\\u0130\\u015fletme Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Siyasal Bilgiler Fak\\u00fcltesi\",\"Teknoloji Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi (\\u0130ngilizce)\",\"T\\u0131p Fak\\u00fcltesi (\\u0130ngilizce) (KKTC Uyruklu)\"]",
+            "uni_myo": "[\"Adalet Meslek Y\\u00fcksekokulu\",\"Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Teknik Bilimler Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "124",
+            "uni_name": "MEF ÜNİVERSİTESİ",
+            "uni_fak": "[\"E\\u011fitim Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi\",\" \\u0130dari ve Sosyal Bilimler Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sanat\",\" Tasar\\u0131m ve Mimarl\\u0131k Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "125",
+            "uni_name": "MEHMET AKİF ERSOY ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Bucak \\u0130\\u015fletme Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"M\\u00fchendislik-Mimarl\\u0131k Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Veteriner Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Burdur G\\u0131da Tar\\u0131m ve Hayvanc\\u0131l\\u0131k Meslek Y\\u00fcksekokulu\",\"Burdur Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"A\\u011flasun Meslek Y\\u00fcksekokulu\",\"Alt\\u0131nyayla Mehmet Tu\\u011frul Meslek Y\\u00fcksekokulu\",\"Bucak Emin G\\u00fclmez Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Bucak Hikmet Tolunay Meslek Y\\u00fcksekokulu\",\"\\u00c7avd\\u0131r Meslek Y\\u00fcksekokulu\",\"G\\u00f6lhisar Meslek Y\\u00fcksekokulu\",\"G\\u00f6lhisar Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Tefenni Meslek Y\\u00fcksekokulu\",\"Ye\\u015filova \\u0130smail Ak\\u0131n Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "BURDUR"
+        },
+        
+        {
+            "uni_id": "126",
+            "uni_name": "MERSİN ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Denizcilik Fak\\u00fcltesi\",\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Su \\u00dcr\\u00fcnleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Turizm Fak\\u00fcltesi\",\"Tarsus Teknoloji Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Denizcilik Meslek Y\\u00fcksekokulu\",\"Mersin Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Anamur Meslek Y\\u00fcksekokulu\",\"Erdemli Meslek Y\\u00fcksekokulu\",\"Mustafa Baysan Meslek Y\\u00fcksekokulu\",\"Mut Meslek Y\\u00fcksekokulu\",\"Silifke Meslek Y\\u00fcksekokulu\",\"Tarsus Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "MERSİN"
+        },
+        
+        {
+            "uni_id": "127",
+            "uni_name": "MİMAR SİNAN GÜZEL SANATLAR ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Fen-Edebiyat Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "128",
+            "uni_name": "MUĞLA SITKI KOÇMAN ÜNİVERSİTESİ",
+            "uni_fak": "[\"Edebiyat Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Su \\u00dcr\\u00fcnleri Fak\\u00fcltesi\",\"Teknoloji Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi (\\u0130ngilizce)\",\"Turizm Fak\\u00fcltesi\",\"Fethiye \\u0130\\u015fletme Fak\\u00fcltesi\",\"Fethiye Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Mu\\u011fla Meslek Y\\u00fcksekokulu\",\"Bodrum Denizcilik Meslek Y\\u00fcksekokulu\",\"Dalaman Meslek Y\\u00fcksekokulu\",\"Dat\\u00e7a Kaz\\u0131m Y\\u0131lmaz Meslek Y\\u00fcksekokulu\",\"Fethiye Ali S\\u0131tk\\u0131-Mefharet Ko\\u00e7man Meslek Y\\u00fcksekokulu\",\"Fethiye Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"K\\u00f6yce\\u011fiz Meslek Y\\u00fcksekokulu\",\"Marmaris Turizm Meslek Y\\u00fcksekokulu\",\"Milas Meslek Y\\u00fcksekokulu\",\"Ortaca Meslek Y\\u00fcksekokulu\",\"Ula Ali Ko\\u00e7man Meslek Y\\u00fcksekokulu\",\"Yata\\u011fan Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "MUĞLA"
+        },
+        
+        {
+            "uni_id": "129",
+            "uni_name": "MUNZUR ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Tunceli Meslek Y\\u00fcksekokulu\",\"\\u00c7emi\\u015fkezek Meslek Y\\u00fcksekokulu\",\"Pertek Sakine Gen\\u00e7 Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "TUNCELİ"
+        },
+        
+        {
+            "uni_id": "130",
+            "uni_name": "MUSTAFA KEMAL ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"Tayfur Ata S\\u00f6kmen T\\u0131p Fak\\u00fcltesi\",\"Veteriner Fak\\u00fcltesi\",\"Ziraat Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Antakya Meslek Y\\u00fcksekokulu\",\"Hatay Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Sanat ve Tasar\\u0131m Meslek Y\\u00fcksekokulu\",\"Alt\\u0131n\\u00f6z\\u00fc Tar\\u0131m Bilimleri Meslek Y\\u00fcksekokulu\",\"Hassa Meslek Y\\u00fcksekokulu\",\"K\\u0131r\\u0131khan Meslek Y\\u00fcksekokulu\",\"Reyhanl\\u0131 Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Samanda\\u011f Meslek Y\\u00fcksekokulu\",\"Yaylada\\u011f\\u0131 Sosyal Bilimler Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "HATAY"
+        },
+        
+        {
+            "uni_id": "131",
+            "uni_name": "MUŞ ALPARSLAN ÜNİVERSİTESİ",
+            "uni_fak": "[\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130slami \\u0130limler Fak\\u00fcltesi\",\"M\\u00fchendislik-Mimarl\\u0131k Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Malazgirt Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "MUŞ"
+        },
+        
+        {
+            "uni_id": "132",
+            "uni_name": "NAMIK KEMAL ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Fen-Edebiyat Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar, Tasar\\u0131m ve Mimarl\\u0131k Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Veteriner Fak\\u00fcltesi\",\"Ziraat Fak\\u00fcltesi\",\"\\u00c7orlu M\\u00fchendislik Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"\\u00c7erkezk\\u00f6y Meslek Y\\u00fcksekokulu\",\"\\u00c7orlu Meslek Y\\u00fcksekokulu\",\"Hayrabolu Meslek Y\\u00fcksekokulu\",\"Malkara Meslek Y\\u00fcksekokulu\",\"Muratl\\u0131 Meslek Y\\u00fcksekokulu\",\"Saray Meslek Y\\u00fcksekokulu\",\"\\u015eark\\u00f6y Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "TEKİRDAĞ"
+        },
+        
+        {
+            "uni_id": "133",
+            "uni_name": "NECMETTİN ERBAKAN ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Ahmet Kele\\u015fo\\u011flu E\\u011fitim Fak\\u00fcltesi\",\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi (KKTC Uyruklu)\",\"Fen Fak\\u00fcltesi\",\"Havac\\u0131l\\u0131k ve Uzay Bilimleri Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi (\\u0130\\u00d6)\",\"Ahmet Kele\\u015fo\\u011flu \\u0130lahiyat Fak\\u00fcltesi\",\"Meram T\\u0131p Fak\\u00fcltesi\",\"M\\u00fchendislik ve Mimarl\\u0131k Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Sosyal ve Be\\u015feri Bilimler Fak\\u00fcltesi\",\"Turizm Fak\\u00fcltesi\",\"Uygulamal\\u0131 Bilimler Fak\\u00fcltesi\",\"Ere\\u011fli E\\u011fitim Fak\\u00fcltesi\",\"Ere\\u011fli M\\u00fchendislik ve Do\\u011fa Bilimleri Fak\\u00fcltesi\",\"Seydi\\u015fehir Ahmet Cengiz M\\u00fchendislik Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Adalet Meslek Y\\u00fcksekokulu\",\"Ere\\u011fli Adalet Meslek Y\\u00fcksekokulu\",\"Meram Meslek Y\\u00fcksekokulu\",\"Konya Ere\\u011fli Kemal Akman Meslek Y\\u00fcksekokulu\",\"Seydi\\u015fehir Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "KONYA"
+        },
+        
+        {
+            "uni_id": "134",
+            "uni_name": "NEVŞEHİR HACI BEKTAŞ VELİ ÜNİVERSİTESİ",
+            "uni_fak": "[\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"M\\u00fchendislik-Mimarl\\u0131k Fak\\u00fcltesi\",\"Turizm Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Avanos Meslek Y\\u00fcksekokulu\",\"G\\u00fcl\\u015fehir Meslek Y\\u00fcksekokulu\",\"Hac\\u0131bekta\\u015f Meslek Y\\u00fcksekokulu\",\"Kozakl\\u0131 Meslek Y\\u00fcksekokulu\",\"\\u00dcrg\\u00fcp Sebahat ve Erol Toks\\u00f6z Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "NEVŞEHİR"
+        },
+        
+        {
+            "uni_id": "135",
+            "uni_name": "NİĞDE ÖMER HALİSDEMİR ÜNİVERSİTESİ ",
+            "uni_fak": "[\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"\\u0130slami \\u0130limler Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Tar\\u0131m Bilimleri ve Teknolojileri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Ni\\u011fde Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Ni\\u011fde Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Bor Halil-Z\\u00f6hre Ataman Meslek Y\\u00fcksekokulu\",\"Bor Meslek Y\\u00fcksekokulu\",\"Uluk\\u0131\\u015fla Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "NİĞDE"
+        },
+        
+        {
+            "uni_id": "136",
+            "uni_name": "NİŞANTAŞI ÜNİVERSİTESİ ",
+            "uni_fak": "[\"\\u0130ktisadi, \\u0130dari ve Sosyal Bilimler Fak\\u00fcltesi\",\"M\\u00fchendislik-Mimarl\\u0131k Fak\\u00fcltesi\",\"Sanat ve Tasar\\u0131m Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Ni\\u015fanta\\u015f\\u0131 Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "137",
+            "uni_name": "NUH NACİ YAZGAN ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Fen-Edebiyat Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar ve Tasar\\u0131m Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\"]",
+            "uni_myo": "",
+            "uni_sehir": "KAYSERİ"
+        },
+        
+        {
+            "uni_id": "138",
+            "uni_name": "OKAN ÜNİVERSİTESİ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130\\u015fletme ve Y\\u00f6netim Bilimleri Fak\\u00fcltesi\",\"\\u0130nsan ve Toplum Bilimleri Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Sanat\",\" Tasar\\u0131m ve Mimarl\\u0131k Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "139",
+            "uni_name": "ONDOKUZ MAYIS ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Ali Fuad Ba\\u015fgil Hukuk Fak\\u00fcltesi\",\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar Fak\\u00fcltesi\",\"Havac\\u0131l\\u0131k ve Uzay Bilimleri Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi (\\u0130ngilizce)\",\"Turizm Fak\\u00fcltesi\",\"Veteriner Fak\\u00fcltesi\",\"Ziraat Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Adalet Meslek Y\\u00fcksekokulu\",\"Samsun Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Ye\\u015filyurt Demir \\u00c7elik Meslek Y\\u00fcksekokulu\",\"Ala\\u00e7am Meslek Y\\u00fcksekokulu\",\"Bafra Meslek Y\\u00fcksekokulu\",\"\\u00c7ar\\u015famba Ticaret Borsas\\u0131 Meslek Y\\u00fcksekokulu\",\"Havza Meslek Y\\u00fcksekokulu\",\"Kavak Meslek Y\\u00fcksekokulu\",\"Terme Meslek Y\\u00fcksekokulu\",\"Vezirk\\u00f6pr\\u00fc Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "SAMSUN"
+        },
+        
+        {
+            "uni_id": "140",
+            "uni_name": "ORDU ÜNİVERSİTESİ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Ziraat Fak\\u00fcltesi\",\"Fatsa Deniz Bilimleri Fak\\u00fcltesi\",\"\\u00dcnye \\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Akku\\u015f Meslek Y\\u00fcksekokulu\",\"Fatsa Meslek Y\\u00fcksekokulu\",\"\\u0130kizce Meslek Y\\u00fcksekokulu\",\"Mesudiye Meslek Y\\u00fcksekokulu\",\"Ulubey Meslek Y\\u00fcksekokulu\",\"\\u00dcnye Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "ORDU"
+        },
+        
+        {
+            "uni_id": "141",
+            "uni_name": "ORTA DOĞU TEKNİK ÜNİVERSİTESİ ",
+            "uni_fak": "[\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\"]",
+            "uni_myo": "",
+            "uni_sehir": "ANKARA"
+        },
+        
+        {
+            "uni_id": "142",
+            "uni_name": "OSMANİYE KORKUT ATA ÜNİVERSİTESİ",
+            "uni_fak": "[\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Kadirli Sosyal ve Be\\u015feri Bilimler Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Osmaniye Meslek Y\\u00fcksekokulu\",\"Bah\\u00e7e Meslek Y\\u00fcksekokulu\",\"D\\u00fczi\\u00e7i Meslek Y\\u00fcksekokulu\",\"Kadirli Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "OSMANİYE"
+        },
+        
+        {
+            "uni_id": "143",
+            "uni_name": "ÖZYEĞİN ÜNİVERSİTESİ",
+            "uni_fak": "[\"Havac\\u0131l\\u0131k ve Uzay Bilimleri Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130\\u015fletme Fak\\u00fcltesi\",\"Mimarl\\u0131k ve Tasar\\u0131m Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sosyal Bilimler Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "144",
+            "uni_name": "PAMUKKALE ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"Mimarl\\u0131k ve Tasar\\u0131m Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Spor Bilimleri Fak\\u00fcltesi\",\"Teknoloji Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi (KKTC Uyruklu)\",\"Turizm Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Denizli Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Denizli Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Ac\\u0131payam Meslek Y\\u00fcksekokulu\",\"Bekilli Meslek Y\\u00fcksekokulu\",\"Buldan Meslek Y\\u00fcksekokulu\",\"\\u00c7al Meslek Y\\u00fcksekokulu\",\"\\u00c7ivril Atasay Kamer Meslek Y\\u00fcksekokulu\",\"Honaz Meslek Y\\u00fcksekokulu\",\"Kale Meslek Y\\u00fcksekokulu\",\"Tavas Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "DENİZLİ"
+        },
+        
+        {
+            "uni_id": "145",
+            "uni_name": "PİRİ REİS ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Denizcilik Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Denizcilik Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "146",
+            "uni_name": "RECEP TAYYİP ERDOĞAN ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar Tasar\\u0131m ve Mimarl\\u0131k Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Su \\u00dcr\\u00fcnleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Ziraat ve Do\\u011fa Bilimleri Fak\\u00fcltesi\",\"Arde\\u015fen Turizm Fak\\u00fcltesi\",\"Turgut K\\u0131ran Denizcilik Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Adalet Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Arde\\u015fen Meslek Y\\u00fcksekokulu\",\"Pazar Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "RİZE"
+        },
+        
+        {
+            "uni_id": "147",
+            "uni_name": "SABANCI ÜNİVERSİTESİ ",
+            "uni_fak": "[\"M\\u00fchendislik ve Do\\u011fa Bilimleri Fak\\u00fcltesi\",\"Sanat ve Sosyal Bilimler Fak\\u00fcltesi\",\"Y\\u00f6netim Bilimleri Fak\\u00fcltesi\"]",
+            "uni_myo": "",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "148",
+            "uni_name": "SAĞLIK BİLİMLERİ ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi\",\"Hem\\u015firelik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"G\\u00fclhane Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"G\\u00fclhane T\\u0131p Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"G\\u00fclhane Sa\\u011fl\\u0131k Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "149",
+            "uni_name": "SAKARYA ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Bilgisayar ve Bili\\u015fim Bilimleri Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"Sanat, Tasar\\u0131m ve Mimarl\\u0131k Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"\\u0130\\u015fletme Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Siyasal Bilgiler Fak\\u00fcltesi\",\"Spor Bilimleri Fak\\u00fcltesi\",\"Teknoloji Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Turizm Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Sakarya Meslek Y\\u00fcksekokulu\",\"Sakarya Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Adapazar\\u0131 Meslek Y\\u00fcksekokulu\",\"Akyaz\\u0131 Meslek Y\\u00fcksekokulu\",\"Ali Fuat Cebesoy Meslek Y\\u00fcksekokulu\",\"Arifiye Meslek Y\\u00fcksekokulu\",\"Ferizli Meslek Y\\u00fcksekokulu\",\"Geyve Meslek Y\\u00fcksekokulu\",\"Hendek Meslek Y\\u00fcksekokulu\",\"Karasu Meslek Y\\u00fcksekokulu\",\"Kaynarca Seyfettin Selim Meslek Y\\u00fcksekokulu\",\"K\\u0131rkp\\u0131nar Turizm Meslek Y\\u00fcksekokulu\",\"Pamukova Meslek Y\\u00fcksekokulu\",\"Sapanca Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "SAKARYA"
+        },
+        
+        {
+            "uni_id": "150",
+            "uni_name": "SANKO ÜNİVERSİTESİ",
+            "uni_fak": "[\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"\"]",
+            "uni_sehir": "GAZİANTEP"
+        },
+        
+        {
+            "uni_id": "151",
+            "uni_name": "SELÇUK ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi\",\"Edebiyat Fak\\u00fcltesi\",\"Fen Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi (\\u0130\\u00d6)\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"\\u0130slami \\u0130limler Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Sanat ve Tasar\\u0131m Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Teknoloji Fak\\u00fcltesi\",\"Turizm Fak\\u00fcltesi\",\"Veteriner Fak\\u00fcltesi\",\"Ziraat Fak\\u00fcltesi\",\"Ak\\u015fehir \\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"Bey\\u015fehir Ali Akkanat \\u0130\\u015fletme Fak\\u00fcltesi\",\"Bey\\u015fehir Ali Akkanat Turizm Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Adalet Meslek Y\\u00fcksekokulu\",\"Ak\\u015fehir Meslek Y\\u00fcksekokulu\",\"Bey\\u015fehir Ali Akkanat Meslek Y\\u00fcksekokulu\",\"Bozk\\u0131r Meslek Y\\u00fcksekokulu\",\"Cihanbeyli Meslek Y\\u00fcksekokulu\",\"\\u00c7umra Meslek Y\\u00fcksekokulu\",\"Do\\u011fanhisar Meslek Y\\u00fcksekokulu\",\"G\\u00fcneys\\u0131n\\u0131r Meslek Y\\u00fcksekokulu\",\"Hadim Meslek Y\\u00fcksekokulu\",\"Hu\\u011flu Meslek Y\\u00fcksekokulu\",\"Ilg\\u0131n Meslek Y\\u00fcksekokulu\",\"Kad\\u0131nhan\\u0131 Faik \\u0130\\u00e7il Meslek Y\\u00fcksekokulu\",\"Karap\\u0131nar Aydo\\u011fanlar Meslek Y\\u00fcksekokulu\",\"Kulu Meslek Y\\u00fcksekokulu\",\"Saray\\u00f6n\\u00fc Meslek Y\\u00fcksekokulu\",\"Ta\\u015fkent Meslek Y\\u00fcksekokulu\",\"Yunak Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "KONYA"
+        },
+        
+        {
+            "uni_id": "152",
+            "uni_name": "SİİRT ÜNİVERSİTESİ",
+            "uni_fak": "[\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"M\\u00fchendislik-Mimarl\\u0131k Fak\\u00fcltesi\",\"Veteriner Fak\\u00fcltesi\",\"Ziraat Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Eruh Meslek Y\\u00fcksekokulu\",\"Kurtalan Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "SİİRT"
+        },
+        
+        {
+            "uni_id": "153",
+            "uni_name": "SİNOP ÜNİVERSİTESİ",
+            "uni_fak": "[\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"M\\u00fchendislik ve Mimarl\\u0131k Fak\\u00fcltesi\",\"Su \\u00dcr\\u00fcnleri Fak\\u00fcltesi\",\"Boyabat \\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Ayanc\\u0131k Meslek Y\\u00fcksekokulu\",\"Boyabat Meslek Y\\u00fcksekokulu\",\"Gerze Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "SİNOP"
+        },
+        
+        {
+            "uni_id": "154",
+            "uni_name": "SÜLEYMAN DEMİREL ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Orman Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Teknoloji Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Ziraat Fak\\u00fcltesi\",\"E\\u011firdir Su \\u00dcr\\u00fcnleri Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Adalet Meslek Y\\u00fcksekokulu\",\"Isparta Meslek Y\\u00fcksekokulu\",\"Isparta Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Uzaktan E\\u011fitim Meslek Y\\u00fcksekokulu\",\"Aksu Mehmet S\\u00fcreyya Demiraslan Meslek Y\\u00fcksekokulu\",\"Atabey Meslek Y\\u00fcksekokulu\",\"E\\u011firdir Meslek Y\\u00fcksekokulu\",\"E\\u011firdir Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Gelendost Meslek Y\\u00fcksekokulu\",\"G\\u00f6nen Meslek Y\\u00fcksekokulu\",\"Ke\\u00e7iborlu Meslek Y\\u00fcksekokulu\",\"Senirkent Meslek Y\\u00fcksekokulu\",\"S\\u00fct\\u00e7\\u00fcler Prof.Dr.Hasan G\\u00fcrb\\u00fcz Meslek Y\\u00fcksekokulu\",\"\\u015earkikaraa\\u011fa\\u00e7 Meslek Y\\u00fcksekokulu\",\"\\u015earkikaraa\\u011fa\\u00e7 Turizm Meslek Y\\u00fcksekokulu\",\"Uluborlu Selahattin Karasoy Meslek Y\\u00fcksekokulu\",\"Atayalva\\u00e7 Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Yalva\\u00e7 Meslek Y\\u00fcksekokulu\",\"Yalva\\u00e7 Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Yeni\\u015farbademli Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "ISPARTA"
+        },
+        
+        {
+            "uni_id": "155",
+            "uni_name": "ŞIRNAK ÜNİVERSİTESİ",
+            "uni_fak": "[\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Ziraat Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"\\u015e\\u0131rnak Meslek Y\\u00fcksekokulu\",\"Cizre Meslek Y\\u00fcksekokulu\",\"\\u0130dil Meslek Y\\u00fcksekokulu\",\"Silopi Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "ŞIRNAK"
+        },
+        
+        {
+            "uni_id": "156",
+            "uni_name": "TED ÜNİVERSİTESİ ",
+            "uni_fak": "[\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\"]",
+            "uni_myo": "",
+            "uni_sehir": "ANKARA"
+        },
+        
+        {
+            "uni_id": "157",
+            "uni_name": "TOBB EKONOMİ VE TEKNOLOJİ ÜNİVERSİTESİ",
+            "uni_fak": "[\"Fen-Edebiyat Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar\",\" Tasar\\u0131m ve Mimarl\\u0131k Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"\"]",
+            "uni_sehir": "ANKARA"
+        },
+        
+        {
+            "uni_id": "158",
+            "uni_name": "TOROS ÜNİVERSİTESİ ",
+            "uni_fak": "[\"G\\u00fczel Sanatlar, Tasar\\u0131m ve Mimarl\\u0131k Fak\\u00fcltesi\",\"\\u0130ktisadi, \\u0130dari ve Sosyal Bilimler Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "MERSİN"
+        },
+        
+        {
+            "uni_id": "159",
+            "uni_name": "TRAKYA ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Edebiyat Fak\\u00fcltesi\",\"Fen Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Edirne Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Edirne Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"\\u015eehit Ressam Hasan R\\u0131za G\\u00fczel Sanatlar Meslek Y\\u00fcksekokulu\",\"Tunca Meslek Y\\u00fcksekokulu\",\"Arda Meslek Y\\u00fcksekokulu\",\"Havsa Meslek Y\\u00fcksekokulu\",\"\\u0130psala Meslek Y\\u00fcksekokulu\",\"Ke\\u015fan Meslek Y\\u00fcksekokulu\",\"Uzunk\\u00f6pr\\u00fc Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "EDİRNE"
+        },
+        
+        {
+            "uni_id": "160",
+            "uni_name": "TÜRK-ALMAN ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Fen Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"K\\u00fclt\\u00fcr ve Sosyal Bilimler Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\"]",
+            "uni_myo": "",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "161",
+            "uni_name": "TÜRK HAVA KURUMU ÜNİVERSİTESİ ",
+            "uni_fak": "[\"\\u0130\\u015fletme Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Ankara Havac\\u0131l\\u0131k Meslek Y\\u00fcksekokulu\",\"\\u0130zmir Havac\\u0131l\\u0131k Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "ANKARA"
+        },
+        
+        {
+            "uni_id": "162",
+            "uni_name": "UFUK ÜNİVERSİTESİ",
+            "uni_fak": "[\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Adalet Meslek Y\\u00fcksekokulu\",\"Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "ANKARA"
+        },
+        
+        {
+            "uni_id": "163",
+            "uni_name": "ULUDAĞ ÜNİVERSİTESİ ",
+            "uni_fak": "[\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Veteriner Fak\\u00fcltesi\",\"Ziraat Fak\\u00fcltesi\",\"\\u0130neg\\u00f6l \\u0130\\u015fletme Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"B\\u00fcy\\u00fckorhan Meslek Y\\u00fcksekokulu\",\"Gemlik As\\u0131m Kocab\\u0131y\\u0131k Meslek Y\\u00fcksekokulu\",\"Harmanc\\u0131k Meslek Y\\u00fcksekokulu\",\"\\u0130neg\\u00f6l Meslek Y\\u00fcksekokulu\",\"\\u0130znik Meslek Y\\u00fcksekokulu\",\"Karacabey Meslek Y\\u00fcksekokulu\",\"Keles Meslek Y\\u00fcksekokulu\",\"Mennan Pasinli Meslek Y\\u00fcksekokulu\",\"Orhaneli Meslek Y\\u00fcksekokulu\",\"Orhangazi Meslek Y\\u00fcksekokulu\",\"Yeni\\u015fehir \\u0130brahim Orhan Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "BURSA"
+        },
+        
+        {
+            "uni_id": "164",
+            "uni_name": "UŞAK ÜNİVERSİTESİ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"\\u0130slami \\u0130limler Fak\\u00fcltesi\",\"Mimarl\\u0131k ve Tasar\\u0131m Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Ziraat ve Do\\u011fa Bilimleri Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Adalet Meslek Y\\u00fcksekokulu\",\"Sivil Havac\\u0131l\\u0131k Meslek Y\\u00fcksekokulu\",\"Sosyal Bilimler Meslek Y\\u00fcksekokulu\",\"Teknik Bilimler Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Banaz Meslek Y\\u00fcksekokulu\",\"E\\u015fme Meslek Y\\u00fcksekokulu\",\"Karahall\\u0131 Meslek Y\\u00fcksekokulu\",\"Sivasl\\u0131 Meslek Y\\u00fcksekokulu\",\"Ulubey Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "UŞAK"
+        },
+        
+        {
+            "uni_id": "165",
+            "uni_name": "ÜSKÜDAR ÜNİVERSİTESİ ",
+            "uni_fak": "[\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"\\u0130nsan ve Toplum Bilimleri Fak\\u00fcltesi\",\"M\\u00fchendislik ve Do\\u011fa Bilimleri Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "166",
+            "uni_name": "VAN YÜZÜNCÜ YIL ÜNİVERSİTESİ",
+            "uni_fak": "[\"Denizcilik Fak\\u00fcltesi\",\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi\",\"Edebiyat Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"Mimarl\\u0131k ve Tasar\\u0131m Fak\\u00fcltesi\",\"M\\u00fchendislik-Mimarl\\u0131k Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Veteriner Fak\\u00fcltesi\",\"Ziraat Fak\\u00fcltesi\",\"Erci\\u015f \\u0130\\u015fletme Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Van G\\u00fcvenlik Meslek Y\\u00fcksekokulu\",\"Van Meslek Y\\u00fcksekokulu\",\"Ba\\u015fkale Meslek Y\\u00fcksekokulu\",\"Erci\\u015f Meslek Y\\u00fcksekokulu\",\"Geva\\u015f Meslek Y\\u00fcksekokulu\",\"Muradiye Meslek Y\\u00fcksekokulu\",\"\\u00d6zalp Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "VAN"
+        },
+        
+        {
+            "uni_id": "167",
+            "uni_name": "YALOVA ÜNİVERSİTESİ",
+            "uni_fak": "[\"Hukuk Fak\\u00fcltesi\",\"\\u0130slami \\u0130limler Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sanat ve Tasar\\u0131m Fak\\u00fcltesi\",\"Yalova \\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Yalova Meslek Y\\u00fcksekokulu\",\"Armutlu Meslek Y\\u00fcksekokulu\",\"\\u00c7\\u0131narc\\u0131k Meslek Y\\u00fcksekokulu\",\"Termal Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "YALOVA"
+        },
+        
+        {
+            "uni_id": "168",
+            "uni_name": "YAŞAR ÜNİVERSİTESİ",
+            "uni_fak": "[\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"\\u0130nsan ve Toplum Bilimleri Fak\\u00fcltesi\",\"\\u0130\\u015fletme Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sanat ve Tasar\\u0131m Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Adalet Meslek Y\\u00fcksekokulu\",\"Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "İZMİR"
+        },
+        
+        {
+            "uni_id": "169",
+            "uni_name": "YEDİTEPE ÜNİVERSİTESİ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Ticari Bilimler Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"\"]",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "170",
+            "uni_name": "YILDIZ TEKNİK ÜNİVERSİTESİ ",
+            "uni_fak": "[\"E\\u011fitim Fak\\u00fcltesi\",\"Elektrik-Elektronik Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"Gemi \\u0130n\\u015faat\\u0131 ve Denizcilik Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130n\\u015faat Fak\\u00fcltesi\",\"Kimya-Metalurji Fak\\u00fcltesi\",\"Makine Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"Sanat ve Tasar\\u0131m Fak\\u00fcltesi\"]",
+            "uni_myo": "",
+            "uni_sehir": "İSTANBUL"
+        },
+        
+        {
+            "uni_id": "171",
+            "uni_name": "YÜKSEK İHTİSAS ÜNİVERSİTESİ",
+            "uni_fak": "[\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "ANKARA"
+        },
+        
+        {
+            "uni_id": "172",
+            "uni_name": "HOCA AHMET YESEVİ ULUSLARARASI TÜRK-KAZAK ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"T\\u00fcrkistan Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "TÜRKİSTAN-KAZAKİSTAN"
+        },
+        
+        {
+            "uni_id": "173",
+            "uni_name": "KIRGIZİSTAN-TÜRKİYE MANAS ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Edebiyat Fak\\u00fcltesi\",\"Fen Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Veteriner Fak\\u00fcltesi\",\"Ziraat Fak\\u00fcltesi\"]",
+            "uni_myo": "",
+            "uni_sehir": "BİŞKEK-KIRGIZİSTAN"
+        },
+        
+        {
+            "uni_id": "174",
+            "uni_name": "DOĞU AKDENİZ ÜNİVERSİTESİ",
+            "uni_fak": "[\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen ve Edebiyat Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"\\u0130\\u015fletme ve Ekonomi Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Adalet Meslek Y\\u00fcksekokulu\",\"Bilgisayar ve Teknoloji Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Y\\u00fcksekokulu\",\"Turizm ve Otelcilik Y\\u00fcksekokulu\"]",
+            "uni_sehir": "KKTC-GAZİMAĞUSA"
+        },
+        
+        {
+            "uni_id": "175",
+            "uni_name": "GİRNE AMERİKAN ÜNİVERSİTESİ",
+            "uni_fak": "[\"Be\\u015feri Bilimler Fak\\u00fcltesi\",\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"\\u0130\\u015fletme Fak\\u00fcltesi\",\"Siyasal Bilimler Fak\\u00fcltesi\",\"Mimarl\\u0131k\",\" Tasar\\u0131m ve G\\u00fczel Sanatlar Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "KKTC-GİRNE"
+        },
+        
+        {
+            "uni_id": "176",
+            "uni_name": "GİRNE ÜNİVERSİTESİ",
+            "uni_fak": "[\"Deniz Bilimleri Fak\\u00fcltesi\",\"Deniz \\u0130\\u015fletmecili\\u011fi ve Y\\u00f6netimi Fak\\u00fcltesi\",\"Denizcilik Fak\\u00fcltesi\",\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Havac\\u0131l\\u0131k ve Uzay Bilimleri Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Denizcilik Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "KKTC-GİRNE"
+        },
+        
+        {
+            "uni_id": "177",
+            "uni_name": "KIBRIS AMERİKAN ÜNİVERSİTESİ ",
+            "uni_fak": "[\"G\\u00fczel Sanatlar Fak\\u00fcltesi\",\"\\u0130\\u015fletme ve Ekonomi Fak\\u00fcltesi\",\"Siyasal Bilgiler Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Sa\\u011fl\\u0131k Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "KKTC-LEFKOŞA"
+        },
+        
+        {
+            "uni_id": "178",
+            "uni_name": "KIBRIS İLİM ÜNİVERSİTESİ",
+            "uni_fak": "[\"E\\u011fitim Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi\",\" \\u0130dari ve Sosyal Bilimler Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Adalet Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Uygulamal\\u0131 Bilimler Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "KKTC-GİRNE"
+        },
+        
+        {
+            "uni_id": "179",
+            "uni_name": "KIBRIS SAĞLIK VE TOPLUM BİLİMLERİ ÜNİVERSİTESİ",
+            "uni_fak": "[\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"Sosyal ve Be\\u015feri Bilimler Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "KKTC-GÜZELYURT"
+        },
+        
+        {
+            "uni_id": "180",
+            "uni_name": "KIBRIS SOSYAL BİLİMLER ÜNİVERSİTESİ",
+            "uni_fak": "[\"Dini \\u0130limler Fak\\u00fcltesi\",\"E\\u011fitim Bilimleri Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130nsan ve Toplum Bilimleri Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"\"]",
+            "uni_sehir": "KKTC-LEFKOŞA"
+        },
+        
+        {
+            "uni_id": "181",
+            "uni_name": "LEFKE AVRUPA ÜNİVERSİTESİ",
+            "uni_fak": "[\"Dr. Faz\\u0131l K\\u00fc\\u00e7\\u00fck E\\u011fitim Fak\\u00fcltesi\",\"Fen ve Edebiyat Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Bilimleri Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Tar\\u0131m Bilimleri ve Teknolojileri Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Adalet Meslek Y\\u00fcksekokulu\",\"Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "KKTC-LEFKE"
+        },
+        
+        {
+            "uni_id": "182",
+            "uni_name": "ULUSLARARASI FİNAL ÜNİVERSİTESİ ",
+            "uni_fak": "[\"E\\u011fitim Bilimleri Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"Mimarl\\u0131k ve G\\u00fczel Sanatlar Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\"]",
+            "uni_myo": "",
+            "uni_sehir": "KKTC-GİRNE"
+        },
+        
+        {
+            "uni_id": "183",
+            "uni_name": "ULUSLARARASI KIBRIS ÜNİVERSİTESİ",
+            "uni_fak": "[\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi\",\"E\\u011fitim Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"G\\u00fczel Sanatlar Tasar\\u0131m ve Mimarl\\u0131k Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"Tar\\u0131m Bilimleri ve Teknolojileri Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Adalet Meslek Y\\u00fcksekokulu\",\"Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Bilimleri Meslek Y\\u00fcksekokulu\",\"Turizm ve Otel \\u0130\\u015fletmecili\\u011fi Y\\u00fcksekokulu\"]",
+            "uni_sehir": "KKTC-LEFKOŞA"
+        },
+        
+        {
+            "uni_id": "184",
+            "uni_name": "YAKIN DOĞU ÜNİVERSİTESİ",
+            "uni_fak": "[\"Atat\\u00fcrk E\\u011fitim Fak\\u00fcltesi\",\"Di\\u015f Hekimli\\u011fi Fak\\u00fcltesi\",\"Eczac\\u0131l\\u0131k Fak\\u00fcltesi\",\"Fen-Edebiyat Fak\\u00fcltesi\",\"Hukuk Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130lahiyat Fak\\u00fcltesi\",\"Mimarl\\u0131k Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sa\\u011fl\\u0131k Bilimleri Fak\\u00fcltesi\",\"T\\u0131p Fak\\u00fcltesi\",\"Veteriner Fak\\u00fcltesi\"]",
+            "uni_myo": "[\"Meslek Y\\u00fcksekokulu\",\"Sa\\u011fl\\u0131k Hizmetleri Meslek Y\\u00fcksekokulu\",\"Turizm ve Otel \\u0130\\u015fletmecili\\u011fi Meslek Y\\u00fcksekokulu\"]",
+            "uni_sehir": "KKTC-LEFKOŞA"
+        },
+        
+        {
+            "uni_id": "185",
+            "uni_name": "AZERBAYCAN DİLLER ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Avrupa \\u00c7al\\u0131\\u015fmalar\\u0131 ve Uluslararas\\u0131 \\u0130li\\u015fkiler Fak\\u00fcltesi\",\"\\u0130ngiliz Dili Fak\\u00fcltesi\"]",
+            "uni_myo": "",
+            "uni_sehir": "BAKÜ-AZERBAYCAN"
+        },
+        
+        {
+            "uni_id": "186",
+            "uni_name": "AZERBAYCAN DEVLET İKTİSAT ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Ekonomi Fak\\u00fcltesi\"]",
+            "uni_myo": "",
+            "uni_sehir": "BAKÜ-AZERBAYCAN"
+        },
+        
+        {
+            "uni_id": "187",
+            "uni_name": "AZERBAYCAN DEVLET PEDAGOJİ ÜNİVERSİTESİ ",
+            "uni_fak": "[\"S\\u0131n\\u0131f E\\u011fitimi Fak\\u00fcltesi\",\"Okul \\u00d6ncesi E\\u011fitim, Psikolojik Dan\\u0131\\u015fmanl\\u0131k ve \\u0130\\u015fitme Engelliler Fak\\u00fcltesi\"]",
+            "uni_myo": "",
+            "uni_sehir": "BAKÜ-AZERBAYCAN"
+        },
+        
+        {
+            "uni_id": "188",
+            "uni_name": "AZERBAYCAN MİMARLIK VE İNŞAAT ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Mimarl\\u0131k Fak\\u00fcltesi\"]",
+            "uni_myo": "",
+            "uni_sehir": "BAKÜ - AZERBAYCAN"
+        },
+        
+        {
+            "uni_id": "189",
+            "uni_name": "AZERBAYCAN TIP ÜNİVERSİTESİ ",
+            "uni_fak": "[\"T\\u0131p Fak\\u00fcltesi (\\u00dccretli)\"]",
+            "uni_myo": "",
+            "uni_sehir": "BAKÜ-AZERBAYCAN"
+        },
+        
+        {
+            "uni_id": "190",
+            "uni_name": "BAKÜ DEVLET ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Filoloji Fak\\u00fcltesi\",\"Gazetecilik Fak\\u00fcltesi\",\"Sosyal Bilimler ve Psikoloji Fak\\u00fcltesi\",\"Tarih Fak\\u00fcltesi\",\"Uluslararas\\u0131 \\u0130li\\u015fkiler ve Ekonomi Fak\\u00fcltesi\"]",
+            "uni_myo": "",
+            "uni_sehir": "BAKÜ-AZERBAYCAN"
+        },
+        
+        {
+            "uni_id": "191",
+            "uni_name": "BAKÜ SLAVYAN ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Azerbaycan Filolojisi ve Gazetecilik Fak\\u00fcltesi\",\"Filoloji ve Yabanc\\u0131 Dil \\u00d6\\u011fretmenli\\u011fi Fak\\u00fcltesi\",\"Pedagoji Fak\\u00fcltesi\",\"Uluslararas\\u0131 \\u0130li\\u015fkiler ve B\\u00f6lge Bilim Fak\\u00fcltesi\"]",
+            "uni_myo": "",
+            "uni_sehir": "BAKÜ-AZERBAYCAN"
+        },
+        
+        {
+            "uni_id": "192",
+            "uni_name": "NAHCİVAN DEVLET ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Mimarl\\u0131k ve M\\u00fchendislik Fak\\u00fcltesi\",\"Uluslararas\\u0131 \\u0130li\\u015fkiler ve Yabanc\\u0131 Diller Fak\\u00fcltesi\"]",
+            "uni_myo": "",
+            "uni_sehir": "NAHCİVAN-AZERBAYCAN"
+        },
+        
+        {
+            "uni_id": "193",
+            "uni_name": "ODLAR YURDU ÜNİVERSİTESİ ",
+            "uni_fak": "[\"\\u0130\\u015fletme Ekonomi ve Uluslararas\\u0131 \\u0130li\\u015fkiler Fak\\u00fcltesi\"]",
+            "uni_myo": "",
+            "uni_sehir": "BAKÜ-AZERBAYCAN"
+        },
+        
+        {
+            "uni_id": "194",
+            "uni_name": "SUMGAYIT DEVLET ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Filoloji Fak\\u00fcltesi\"]",
+            "uni_myo": "",
+            "uni_sehir": "SUMGAYIT-AZERBAYCAN"
+        },
+        
+        {
+            "uni_id": "195",
+            "uni_name": "ULUSLARARASI SARAYBOSNA ÜNİVERSİTESİ ",
+            "uni_fak": "[\"E\\u011fitim Fak\\u00fcltesi\",\"Ekonomi ve Y\\u00f6netim Bilimleri Fak\\u00fcltesi\",\"M\\u00fchendislik ve Do\\u011fa Bilimleri Fak\\u00fcltesi\",\"Sanat ve Sosyal Bilimler Fak\\u00fcltesi\"]",
+            "uni_myo": "",
+            "uni_sehir": "SARAYBOSNA - BOSNA - HERSEK"
+        },
+        
+        {
+            "uni_id": "196",
+            "uni_name": "İVANE JAVAKHİSHVİLİ TİFLİS DEVLET ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Be\\u015feri Bilimler Fak\\u00fcltesi\",\"Ekonomi ve \\u0130\\u015fletme Fak\\u00fcltesi\",\"Sosyal ve Siyasi Bilimleri Fak\\u00fcltesi\"]",
+            "uni_myo": "",
+            "uni_sehir": "TİFLİS-GÜRCİSTAN"
+        },
+        
+        {
+            "uni_id": "197",
+            "uni_name": "ŞOTA RUSTAVELİ DEVLET ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Be\\u015feri Bilimler Fak\\u00fcltesi\"]",
+            "uni_myo": "",
+            "uni_sehir": "BATUM-GÜRCİSTAN"
+        },
+        
+        {
+            "uni_id": "198",
+            "uni_name": "ULUSLARARASI BALKAN ÜNİVERSİTESİ ",
+            "uni_fak": "[\"E\\u011fitim Fak\\u00fcltesi\",\"\\u0130ktisadi ve \\u0130dari Bilimler Fak\\u00fcltesi\",\"\\u0130leti\\u015fim Fak\\u00fcltesi\",\"\\u0130nsan ve Toplum Bilimleri Fak\\u00fcltesi\",\"M\\u00fchendislik Fak\\u00fcltesi\",\"Sanat ve Tasar\\u0131m Fak\\u00fcltesi\"]",
+            "uni_myo": "",
+            "uni_sehir": "ÜSKÜP-MAKEDONYA"
+        },
+        
+        {
+            "uni_id": "199",
+            "uni_name": "KOMRAT DEVLET ÜNİVERSİTESİ ",
+            "uni_fak": "[\"Milli K\\u00fclt\\u00fcr Fak\\u00fcltesi\"]",
+            "uni_myo": "",
+            "uni_sehir": "KOMRAT-MOLDOVA"
+        }
+    ]
+    
+}
+
