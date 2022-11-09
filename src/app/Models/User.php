@@ -53,6 +53,7 @@ class User extends Authenticatable
         return $this->createToken('jwt')->plainTextToken;
     }
     
+    
     public function getFullNameAttribute()
     {
         return trim($this->name) . ' ' . trim($this->surname);

@@ -13,7 +13,8 @@ class CityCountySeeder extends Seeder
     * @return void
     */
     public function run()
-    {
+    { 
+        
         $json =  file_get_contents(__DIR__."../../jsons/city_counties.json");
         $data = json_decode($json);
         foreach ($data->data as   $item) {

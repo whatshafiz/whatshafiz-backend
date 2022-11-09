@@ -7,13 +7,15 @@ use Illuminate\Database\Seeder;
 class DatabaseSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
+    * Seed the application's database.
+    *
+    * @return void
+    */
     public function run()
     {
         $this->call(RolesPermissionsSeeder::class);
         $this->call(RegulationSeeder::class);
+        $this->call(CityCountySeeder::class);
+        $this->call(UniversityListSeeder::class);
     }
 }
