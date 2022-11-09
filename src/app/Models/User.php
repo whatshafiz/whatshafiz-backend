@@ -14,7 +14,7 @@ class User extends Authenticatable
     use HasFactory;
     use Notifiable;
     use HasRoles;
-    
+
     /**
     * The attributes that are mass assignable.
     *
@@ -25,7 +25,7 @@ class User extends Authenticatable
         'phone_number',
         'password',
     ];
-    
+
     /**
     * The attributes that should be hidden for serialization.
     *
@@ -35,7 +35,7 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-    
+
     /**
     * The attributes that should be cast.
     *
@@ -44,7 +44,7 @@ class User extends Authenticatable
     protected $casts = [
         'phone_number_verified_at' => 'datetime',
     ];
-    
+
     /**
     * @return string
     */
@@ -52,11 +52,9 @@ class User extends Authenticatable
     {
         return $this->createToken('jwt')->plainTextToken;
     }
-    
-    
+
     public function getFullNameAttribute()
     {
         return trim($this->name) . ' ' . trim($this->surname);
     }
-    
 }
