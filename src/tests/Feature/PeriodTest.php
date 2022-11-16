@@ -128,10 +128,10 @@ class PeriodTest extends BaseFeatureTest
     /** @test */
     public function it_should_update_period_when_has_permission()
     {
-        $period = Period::factory()->create();
         $user = User::factory()->create();
         $user->givePermissionTo('periods.update');
         Period::query()->update(['can_be_applied' => false]);
+        $period = Period::factory()->create();
 
         $periodData = Period::factory()->raw();
 
