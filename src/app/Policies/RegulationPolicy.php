@@ -12,10 +12,10 @@ class RegulationPolicy
     /**
      * Determine whether the user can view any models.
      *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @param  User  $user
+     * @return bool
      */
-    public function list(User $user)
+    public function list(User $user): bool
     {
         return $user->hasPermissionTo('regulations.list');
     }
@@ -23,10 +23,10 @@ class RegulationPolicy
     /**
      * Determine whether the user can update the model.
      *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @param  User  $user
+     * @return bool
      */
-    public function update(User $user)
+    public function update(User $user): bool
     {
         return $user->hasPermissionTo('regulations.update');
     }
