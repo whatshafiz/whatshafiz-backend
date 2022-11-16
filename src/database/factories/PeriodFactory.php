@@ -18,7 +18,7 @@ class PeriodFactory extends Factory
     {
         return [
             'type' => $this->faker->randomElement(['hafizol', 'hafizkal']),
-            'name' => $this->faker->numerify('WhatsHafız-####'),
+            'name' => $this->faker->numerify('WhatsHafız-######'),
             'is_active' => $this->faker->boolean,
             'can_be_applied' => $this->faker->boolean,
             'can_be_applied_until' => $this->faker->optional()->datetime?->format('Y-m-d H:i:s'),
