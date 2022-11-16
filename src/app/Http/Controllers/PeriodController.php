@@ -90,9 +90,12 @@ class PeriodController extends Controller
                 'can_be_applied' => [
                     'required',
                     'boolean',
-                    function ($attribute, $can_be_applied, $fail) use ($request) {
+                    function ($attribute, $can_be_applied, $fail) use ($request, $period) {
                         if ($can_be_applied &&
-                            Period::where('can_be_applied', true)->where('type', $request->type)->exists()
+                            Period::where('can_be_applied', true)
+                                ->where('id', '!=', $period->id)
+                                ->where('type', $request->type)
+                                ->exists()
                         ) {
                             $fail('Mevcutta zaten başvuruya açık dönem bulunuyor.');
                         }
