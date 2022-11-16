@@ -13,10 +13,10 @@ class PeriodPolicy
     /**
      * Determine whether the user can view any models.
      *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @param  User  $user
+     * @return bool
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user): bool
     {
         return $user->hasPermissionTo('periods.list');
     }
@@ -24,10 +24,10 @@ class PeriodPolicy
     /**
      * Determine whether the user can view the model.
      *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @param  User  $user
+     * @return bool
      */
-    public function view(User $user)
+    public function view(User $user): bool
     {
         return $user->hasPermissionTo('periods.view');
     }
@@ -35,10 +35,10 @@ class PeriodPolicy
     /**
      * Determine whether the user can create models.
      *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @param  User  $user
+     * @return bool
      */
-    public function create(User $user)
+    public function create(User $user): bool
     {
         return $user->hasPermissionTo('periods.create');
     }
@@ -46,10 +46,10 @@ class PeriodPolicy
     /**
      * Determine whether the user can update the model.
      *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @param  User  $user
+     * @return bool
      */
-    public function update(User $user)
+    public function update(User $user): bool
     {
         return $user->hasPermissionTo('periods.update');
     }
@@ -57,10 +57,10 @@ class PeriodPolicy
     /**
      * Determine whether the user can delete the model.
      *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @param  User  $user
+     * @return bool
      */
-    public function delete(User $user)
+    public function delete(User $user): bool
     {
         return $user->hasPermissionTo('periods.delete');
     }
