@@ -150,7 +150,7 @@ class PeriodTest extends BaseFeatureTest
         $user = User::factory()->create();
         $user->givePermissionTo('periods.update');
 
-        $periodData = Period::factory()->raw(['can_be_applied' => true]);
+        $periodData = Period::factory()->raw(['can_be_applied' => true, 'type' => $period->type]);
 
         $response = $this->actingAs($user)->json('PUT', $this->uri . '/' . $period->id, $periodData);
 
