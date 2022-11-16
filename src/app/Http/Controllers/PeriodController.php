@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePeriodRequest;
-use App\Http\Requests\UpdatePeriodRequest;
 use App\Models\Period;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
