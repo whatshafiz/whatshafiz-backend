@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Regulation;
+namespace Tests\Feature;
 
 use App\Models\Regulation;
 use App\Models\User;
