@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\User;
+namespace Tests\Feature;
 
 use App\Models\User;
 use Symfony\Component\HttpFoundation\Response;
