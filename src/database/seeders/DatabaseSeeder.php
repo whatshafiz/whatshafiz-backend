@@ -15,6 +15,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RolesPermissionsSeeder::class);
         $this->call(RegulationSeeder::class);
+        $this->call(CountrySeeder::class);
+        $this->call(CitySeeder::class);
 
         if (!app()->isProduction()) {
             $this->call(PeriodSeeder::class);
