@@ -32,6 +32,7 @@ class CountryController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  Country  $country
      * @return JsonResponse
      */
     public function cities(Country $country): JsonResponse
@@ -52,6 +53,7 @@ class CountryController extends Controller
      * Display a listing of the resource.
      *
      * @param  Request  $request
+     * @param  Country  $country
      * @return JsonResponse
      */
     public function storeCity(Request $request, Country $country): JsonResponse

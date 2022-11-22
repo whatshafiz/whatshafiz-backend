@@ -79,9 +79,7 @@ class UniversityController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
-        $request->validate([
-            'name' => 'required|string|min:5|max:250|unique:universities',
-        ]);
+        $request->validate(['name' => 'required|string|min:5|max:250|unique:universities']);
 
         $university = University::create(['name' => $request->name]);
 
