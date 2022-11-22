@@ -7,7 +7,6 @@ use App\Models\UniversityDepartment;
 use App\Models\UniversityFaculty;
 use App\Models\User;
 use Illuminate\Support\Facades\Cache;
-use Symfony\Component\HttpFoundation\Response;
 use Tests\BaseFeatureTest;
 
 class UniversityTest extends BaseFeatureTest

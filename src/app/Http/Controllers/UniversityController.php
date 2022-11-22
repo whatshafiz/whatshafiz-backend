@@ -100,7 +100,7 @@ class UniversityController extends Controller
     public function storeFaculty(University $university, Request $request): JsonResponse
     {
         $request->validate([
-            'name' => 'required|string|min:5|max:250' . 
+            'name' => 'required|string|min:5|max:250' .
                 '|unique:university_faculties,name,NULL,NULL,university_id,' . $university->id,
         ]);
 
@@ -119,10 +119,10 @@ class UniversityController extends Controller
      * @param  Request  $request
      * @return JsonResponse
      */
-    public function storeDepartment(University $university, UniversityFaculty  $faculty, Request $request): JsonResponse
+    public function storeDepartment(University $university, UniversityFaculty $faculty, Request $request): JsonResponse
     {
         $request->validate([
-            'name' => 'required|string|min:5|max:250' . 
+            'name' => 'required|string|min:5|max:250' .
                 '|unique:university_departments,name,NULL,NULL,university_id,' . $university->id,
         ]);
 
