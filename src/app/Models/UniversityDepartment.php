@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Regulation extends BaseModel
+class UniversityDepartment extends BaseModel
 {
     use HasFactory;
 }

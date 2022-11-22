@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\City;
 use App\Models\Country;
+use App\Models\User;
 use Illuminate\Support\Facades\Cache;
 use Tests\BaseFeatureTest;
 
@@ -26,8 +27,10 @@ class CountryTest extends BaseFeatureTest
     {
         Cache::shouldReceive('has')->with('countries')->once()->andReturn(false);
         Cache::shouldReceive('get')->with('countries')->never();
+        Cache::shouldReceive('put')->once();
+        $user = User::factory()->create();
 
-        $response = $this->json('GET', $this->uri);
+        $response = $this->actingAs($user)->json('GET', $this->uri);
 
         $response->assertOk();
 
@@ -43,8 +46,9 @@ class CountryTest extends BaseFeatureTest
 
         Cache::shouldReceive('has')->with('countries')->once()->andReturn(true);
         Cache::shouldReceive('get')->with('countries')->once()->andReturn($dummyCountries);
+        $user = User::factory()->create();
 
-        $response = $this->json('GET', $this->uri);
+        $response = $this->actingAs($user)->json('GET', $this->uri);
 
         $response->assertOk();
 
@@ -61,8 +65,10 @@ class CountryTest extends BaseFeatureTest
         $cacheKey = 'countries:' . $country->id . ':cities';
         Cache::shouldReceive('has')->with($cacheKey)->once()->andReturn(false);
         Cache::shouldReceive('get')->with($cacheKey)->never();
+        Cache::shouldReceive('put')->once();
+        $user = User::factory()->create();
 
-        $response = $this->json('GET', $this->uri . '/' . $country->id . '/cities');
+        $response = $this->actingAs($user)->json('GET', $this->uri . '/' . $country->id . '/cities');
 
         $response->assertOk();
 
@@ -79,8 +85,9 @@ class CountryTest extends BaseFeatureTest
         $cacheKey = 'countries:' . $country->id . ':cities';
         Cache::shouldReceive('has')->with($cacheKey)->once()->andReturn(true);
         Cache::shouldReceive('get')->with($cacheKey)->once()->andReturn($cities);
+        $user = User::factory()->create();
 
-        $response = $this->json('GET', $this->uri . '/' . $country->id . '/cities');
+        $response = $this->actingAs($user)->json('GET', $this->uri . '/' . $country->id . '/cities');
 
         $response->assertOk();
 
@@ -96,8 +103,9 @@ class CountryTest extends BaseFeatureTest
         $cityData = City::factory()->raw(['country_id' => $country->id]);
         $cacheKey = 'countries:' . $country->id . ':cities';
         Cache::shouldReceive('forget')->with($cacheKey)->once();
+        $user = User::factory()->create();
 
-        $response = $this->json('POST', $this->uri . '/' . $country->id . '/cities', $cityData);
+        $response = $this->actingAs($user)->json('POST', $this->uri . '/' . $country->id . '/cities', $cityData);
 
         $response->assertCreated()
             ->assertJsonFragment($cityData);

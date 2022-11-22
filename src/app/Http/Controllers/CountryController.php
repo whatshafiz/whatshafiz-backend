@@ -17,7 +17,14 @@ class CountryController extends Controller
      */
     public function index(): JsonResponse
     {
-        $countries = Cache::has('countries') ? Cache::get('countries') : Country::get();
+        $cacheKey = 'countries';
+
+        if (Cache::has($cacheKey)) {
+            $countries = Cache::get($cacheKey);
+        } else {
+            $countries = Country::get();
+            Cache::put($cacheKey, $countries);
+        }
 
         return response()->json(compact('countries'));
     }
@@ -30,7 +37,13 @@ class CountryController extends Controller
     public function cities(Country $country): JsonResponse
     {
         $cacheKey = "countries:{$country->id}:cities";
-        $cities = Cache::has($cacheKey) ? Cache::get($cacheKey) : $country->cities()->get(['id', 'name']);
+
+        if (Cache::has($cacheKey)) {
+            $cities = Cache::get($cacheKey);
+        } else {
+            $cities = $country->cities()->get(['id', 'name']);
+            Cache::put($cacheKey, $cities);
+        }
 
         return response()->json(compact('cities'));
     }
@@ -41,7 +54,7 @@ class CountryController extends Controller
      * @param  Request  $request
      * @return JsonResponse
      */
-    public function createCity(Request $request, Country $country): JsonResponse
+    public function storeCity(Request $request, Country $country): JsonResponse
     {
         $request->validate([
             'name' => 'required|string|min:2|max:50|unique:cities,name,NULL,NULL,country_id,' . $country->id,

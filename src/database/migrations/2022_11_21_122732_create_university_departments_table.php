@@ -1,6 +1,7 @@
 <?php
 
-use App\Models\Country;
+use App\Models\University;
+use App\Models\UniversityFaculty;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,11 +15,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cities', function (Blueprint $table) {
+        Schema::create('university_departments', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Country::class)->constrained();
-            $table->string('name', 50);
+            $table->foreignIdFor(University::class)->constrained();
+            $table->foreignIdFor(UniversityFaculty::class)->constrained();
+            $table->string('name');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -29,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cities');
+        Schema::dropIfExists('university_departments');
     }
 };
