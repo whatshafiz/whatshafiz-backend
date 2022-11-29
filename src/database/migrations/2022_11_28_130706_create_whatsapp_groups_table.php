@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Period;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,13 +14,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('periods', function (Blueprint $table) {
+        Schema::create('whatsapp_groups', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(Period::class)->constrained();
             $table->enum('type', ['whatshafiz', 'whatsenglish', 'whatsarapp']);
             $table->string('name', 100);
-            $table->boolean('is_active')->default(false);
-            $table->boolean('can_be_applied')->default(false);
-            $table->datetime('can_be_applied_until')->nullable();
+            $table->boolean('is_active')->default(true);
+            $table->string('join_url')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('periods');
+        Schema::dropIfExists('whatsapp_groups');
     }
 };

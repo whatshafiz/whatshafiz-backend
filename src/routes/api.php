@@ -5,6 +5,7 @@ use App\Http\Controllers\PeriodController;
 use App\Http\Controllers\RegulationController;
 use App\Http\Controllers\UniversityController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WhatsappGroupController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('users/check', [UserController::class, 'check']);
@@ -34,4 +35,6 @@ Route::middleware('auth:sanctum')->group(function () {
         'universities/{university}/faculties/{faculty}/departments',
         [UniversityController::class, 'storeDepartment']
     );
+
+    Route::apiResource('whatsapp-groups', WhatsappGroupController::class);
 });

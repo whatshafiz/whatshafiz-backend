@@ -17,12 +17,12 @@ class RolesPermissionsSeeder extends Seeder
     public function run()
     {
         $permissions = [
-            'groups.*',
-            'groups.view',
-            'groups.list',
-            'groups.update',
-            'groups.create',
-            'groups.delete',
+            'whatsappGroups.*',
+            'whatsappGroups.view',
+            'whatsappGroups.list',
+            'whatsappGroups.update',
+            'whatsappGroups.create',
+            'whatsappGroups.delete',
 
             'users.*',
             'users.view',
@@ -76,21 +76,21 @@ class RolesPermissionsSeeder extends Seeder
         Role::create(['name' => 'Admin']);
         Role::create(['name' => 'Moderator'])
             ->givePermissionTo([
-                'groups.*',
+                'whatsappGroups.*',
                 'users.*',
                 'quiz.*',
                 'regulations.*',
             ]);
         Role::create(['name' => 'Denetmen'])
             ->givePermissionTo([
-                'groups.view',
-                'groups.list',
+                'whatsappGroups.view',
+                'whatsappGroups.list',
                 'users.view',
                 'users.update',
             ]);
         Role::create(['name' => 'Grup Başkanı'])
             ->givePermissionTo([
-                'groups.update',
+                'whatsappGroups.update',
                 'users.view',
                 'users.update',
             ]);

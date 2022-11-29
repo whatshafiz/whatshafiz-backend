@@ -18,10 +18,13 @@ class PeriodSeeder extends Seeder
     {
         Period::factory()->count(rand(1, 100))->create(['can_be_applied' => false]);
         Period::factory()
-            ->hafizol()
+            ->whatshafiz()
             ->create(['can_be_applied' => true, 'can_be_applied_until' => Carbon::now()->addMonths(rand(1, 3))]);
         Period::factory()
-            ->hafizkal()
+            ->whatsarapp()
+            ->create(['can_be_applied' => true, 'can_be_applied_until' => Carbon::now()->addMonths(rand(1, 3))]);
+        Period::factory()
+            ->whatsenglish()
             ->create(['can_be_applied' => true, 'can_be_applied_until' => Carbon::now()->addMonths(rand(1, 3))]);
     }
 }

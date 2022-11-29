@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
 
         if (!app()->isProduction()) {
             $this->call(PeriodSeeder::class);
+            $this->call(WhatsappGroupSeeder::class);
         }
     }
 }
