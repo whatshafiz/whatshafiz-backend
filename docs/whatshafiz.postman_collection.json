@@ -7,6 +7,199 @@
 	},
 	"item": [
 		{
+			"name": "Check/Login/Register",
+			"item": [
+				{
+					"name": "Check",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"phone_number\");",
+									"    pm.expect(pm.response.text()).to.include(\"is_registered\");",
+									"    pm.expect(pm.response.text()).to.include(\"is_banned\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "phone_number",
+									"value": "{{$randomPhoneNumber}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/users/check",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users",
+								"check"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"phone_number\");",
+									"    pm.expect(pm.response.text()).to.include(\"token\");",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"",
+									"    var jsonData = pm.response.json();",
+									"    pm.environment.set(\"JWT\", jsonData.token);",
+									"    pm.environment.set(\"PHONE_NUMBER\", jsonData.profile.phone_number);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "phone_number",
+									"value": "{{$randomPhoneNumber}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{PASSWORD}}",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "{{PASSWORD}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/register",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"phone_number\");",
+									"    pm.expect(pm.response.text()).to.include(\"token\");",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"",
+									"    var jsonData = pm.response.json();",
+									"    pm.environment.set(\"JWT\", jsonData.token);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "phone_number",
+									"value": "{{PHONE_NUMBER}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{PASSWORD}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/login",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Yönetmelikler",
 			"item": [
 				{
@@ -582,199 +775,6 @@
 			]
 		},
 		{
-			"name": "Check/Login/Register",
-			"item": [
-				{
-					"name": "Check",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Success\", function () {",
-									"    pm.response.to.have.status(200);",
-									"    pm.expect(pm.response.text()).to.include(\"phone_number\");",
-									"    pm.expect(pm.response.text()).to.include(\"is_registered\");",
-									"    pm.expect(pm.response.text()).to.include(\"is_banned\");",
-									"});",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "phone_number",
-									"value": "{{$randomPhoneNumber}}",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{URL}}/users/check",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"users",
-								"check"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Register",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Success\", function () {",
-									"    pm.response.to.have.status(200);",
-									"    pm.expect(pm.response.text()).to.include(\"phone_number\");",
-									"    pm.expect(pm.response.text()).to.include(\"token\");",
-									"    pm.expect(pm.response.text()).to.include(\"id\");",
-									"",
-									"    var jsonData = pm.response.json();",
-									"    pm.environment.set(\"JWT\", jsonData.token);",
-									"    pm.environment.set(\"PHONE_NUMBER\", jsonData.profile.phone_number);",
-									"});",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "phone_number",
-									"value": "{{$randomPhoneNumber}}",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "{{PASSWORD}}",
-									"type": "text"
-								},
-								{
-									"key": "password_confirmation",
-									"value": "{{PASSWORD}}",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{URL}}/register",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"register"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Login",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Success\", function () {",
-									"    pm.response.to.have.status(200);",
-									"    pm.expect(pm.response.text()).to.include(\"phone_number\");",
-									"    pm.expect(pm.response.text()).to.include(\"token\");",
-									"    pm.expect(pm.response.text()).to.include(\"id\");",
-									"",
-									"    var jsonData = pm.response.json();",
-									"    pm.environment.set(\"JWT\", jsonData.token);",
-									"});",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "phone_number",
-									"value": "{{PHONE_NUMBER}}",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "{{PASSWORD}}",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{URL}}/login",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"login"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "Ülke/Şehir",
 			"item": [
 				{
@@ -1273,6 +1273,536 @@
 							"path": [
 								"universities",
 								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Whatsapp Grupları/Üyeleri",
+			"item": [
+				{
+					"name": "GET",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"type\");",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"    pm.expect(pm.response.text()).to.include(\"period_id\");",
+									"    pm.expect(pm.response.text()).to.include(\"join_url\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/whatsapp-groups/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"whatsapp-groups",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LIST",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"type\");",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"    pm.expect(pm.response.text()).to.include(\"period_id\");",
+									"    pm.expect(pm.response.text()).to.include(\"join_url\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/whatsapp-groups",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"whatsapp-groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "period_id",
+									"value": "1",
+									"description": "required|integer|min:0|exists:periods,id",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "whatshafiz",
+									"description": "required|string|in:whatshafiz,whatsenglish,whatsarapp",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "WhatsHafız-2022-E-{{$randomInt}}",
+									"description": "required|string|max:100|unique:whatsapp_groups,name",
+									"type": "text"
+								},
+								{
+									"key": "is_active",
+									"value": "1",
+									"description": "required|boolean",
+									"type": "text"
+								},
+								{
+									"key": "join_url",
+									"value": "{{$randomUrl}}",
+									"description": "required|url",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/whatsapp-groups",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"whatsapp-groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "period_id",
+									"value": "1",
+									"description": "required|integer|min:0|exists:periods,id",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "whatshafiz",
+									"description": "required|string|in:whatshafiz,whatsenglish,whatsarapp",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "WhatsHafız-2022-E-{{$randomInt}}",
+									"description": "required|string|max:100|unique:whatsapp_groups,name",
+									"type": "text"
+								},
+								{
+									"key": "is_active",
+									"value": "1",
+									"description": "required|boolean",
+									"type": "text"
+								},
+								{
+									"key": "join_url",
+									"value": "{{$randomUrl}}",
+									"description": "required|url",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/whatsapp-groups/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"whatsapp-groups",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{URL}}/whatsapp-groups/3",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"whatsapp-groups",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE Üye",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "1",
+									"description": "required|integer|min:0|exists:users,id",
+									"type": "text"
+								},
+								{
+									"key": "role_type",
+									"value": "hafizol",
+									"description": "required|string|in:hafizol,hafizkal",
+									"type": "text"
+								},
+								{
+									"key": "is_moderator",
+									"value": "1",
+									"description": "required|boolean",
+									"type": "text"
+								},
+								{
+									"key": "moderation_started_at",
+									"value": "2022-12-21 12:00:00",
+									"description": "required_if:is_moderator,true|nullable|date_format:Y-m-d H:i:s",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/whatsapp-groups/1/users",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"whatsapp-groups",
+								"1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Üye",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "role_type",
+									"value": "hafizol",
+									"description": "required|string|in:hafizol,hafizkal",
+									"type": "text"
+								},
+								{
+									"key": "is_moderator",
+									"value": "1",
+									"description": "required|boolean",
+									"type": "text"
+								},
+								{
+									"key": "moderation_started_at",
+									"value": "2022-12-21 12:00:00",
+									"description": "required_if:is_moderator,true|nullable|date_format:Y-m-d H:i:s",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/whatsapp-groups/1/users/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"whatsapp-groups",
+								"1",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Üye",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{URL}}/whatsapp-groups/1/users/5",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"whatsapp-groups",
+								"1",
+								"users",
+								"5"
 							]
 						}
 					},

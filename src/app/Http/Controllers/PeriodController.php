@@ -34,7 +34,7 @@ class PeriodController extends Controller
         $validatedPeriodData = $this->validate(
             $request,
             [
-                'type' => 'required|string|in:hafizol,hafizkal',
+                'type' => 'required|string|in:whatshafiz,whatsenglish,whatsarapp',
                 'name' => 'required|string|min:3|max:100|unique:periods',
                 'is_active' => 'required|boolean',
                 'can_be_applied' => [
@@ -52,9 +52,7 @@ class PeriodController extends Controller
             ]
         );
 
-        Period::create($validatedPeriodData);
-
-        return response()->json([], Response::HTTP_CREATED);
+        return response()->json(Period::create($validatedPeriodData)->toArray(), Response::HTTP_CREATED);
     }
 
     /**
@@ -84,7 +82,7 @@ class PeriodController extends Controller
         $validatedPeriodData = $this->validate(
             $request,
             [
-                'type' => 'required|string|in:hafizol,hafizkal',
+                'type' => 'required|string|in:whatshafiz,whatsenglish,whatsarapp',
                 'name' => 'required|string|min:3|max:100|unique:periods',
                 'is_active' => 'required|boolean',
                 'can_be_applied' => [
