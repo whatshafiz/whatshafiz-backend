@@ -42,7 +42,10 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'phone_number_verified_at' => 'datetime',
+        'phone_number_verified_at' => 'datetime:d-m-Y H:i',
+        'created_at' => 'datetime:d-m-Y H:i',
+        'updated_at' => 'datetime:d-m-Y H:i',
+        'deleted_at' => 'datetime:d-m-Y H:i',
     ];
 
     /**

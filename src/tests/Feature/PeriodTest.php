@@ -93,7 +93,8 @@ class PeriodTest extends BaseFeatureTest
 
         $response = $this->actingAs($user)->json('POST', $this->uri, $periodData);
 
-        $response->assertCreated();
+        $response->assertCreated()
+            ->assertJsonFragment($periodData);
 
         $this->assertDatabaseHas('periods', $periodData);
     }

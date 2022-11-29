@@ -15,6 +15,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         'App\Models\Regulation' => 'App\Policies\RegulationPolicy',
         'App\Models\Period' => 'App\Policies\PeriodPolicy',
+        'App\Models\WhatsappGroup' => 'App\Policies\WhatsappGroupPolicy',
     ];
 
     /**

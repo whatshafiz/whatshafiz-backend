@@ -17,7 +17,7 @@ class PeriodFactory extends Factory
     public function definition()
     {
         return [
-            'type' => $this->faker->randomElement(['hafizol', 'hafizkal']),
+            'type' => $this->faker->randomElement(['whatshafiz', 'whatsenglish', 'whatsarapp']),
             'name' => $this->faker->numerify('WhatsHafız-######'),
             'is_active' => $this->faker->boolean,
             'can_be_applied' => $this->faker->boolean,
@@ -28,20 +28,30 @@ class PeriodFactory extends Factory
     /**
      * @return static
      */
-    public function hafizol()
+    public function whatshafiz()
     {
         return $this->state(fn (array $attributes) => [
-            'type' => 'hafizol',
+            'type' => 'whatshafiz',
         ]);
     }
 
     /**
      * @return static
      */
-    public function hafizkal()
+    public function whatsarapp()
     {
         return $this->state(fn (array $attributes) => [
-            'type' => 'hafizkal',
+            'type' => 'whatsarapp',
+        ]);
+    }
+
+    /**
+     * @return static
+     */
+    public function whatsenglish()
+    {
+        return $this->state(fn (array $attributes) => [
+            'type' => 'whatsenglish',
         ]);
     }
 }
