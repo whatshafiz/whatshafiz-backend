@@ -115,7 +115,8 @@ class WhatsappGroupController extends Controller
         $validatedWhatsappGroupUserData = $this->validate(
             $request,
             [
-                'user_id' => 'required|integer|min:0|exists:users,id',
+                'user_id' => 'required|integer|min:0|exists:users,id' .
+                    '|unique:whatsapp_group_users,user_id,NULL,NULL,whatsapp_group_id,' . $whatsappGroup->id,
                 'role_type' => 'required|string|in:hafizol,hafizkal',
                 'is_moderator' => 'required|boolean',
                 'moderation_started_at' => 'required_if:is_moderator,true|nullable|date_format:Y-m-d H:i:s',
