@@ -37,4 +37,13 @@ Route::middleware('auth:sanctum')->group(function () {
     );
 
     Route::apiResource('whatsapp-groups', WhatsappGroupController::class);
+    Route::post('whatsapp-groups/{whatsapp_group}/users', [WhatsappGroupController::class, 'createUser']);
+    Route::put(
+        'whatsapp-groups/{whatsapp_group}/users/{whatsapp_group_user}',
+        [WhatsappGroupController::class, 'updateUser']
+    );
+    Route::delete(
+        'whatsapp-groups/{whatsapp_group}/users/{whatsapp_group_user}',
+        [WhatsappGroupController::class, 'destroyUser']
+    );
 });

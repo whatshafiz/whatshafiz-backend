@@ -19,8 +19,8 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(WhatsappGroup::class)->constrained();
             $table->foreignIdFor(User::class, 'user_id')->constrained('users');
-            $table->datetime('joined_at');
-            $table->enum('role_type', ['hafizol', 'hafizkal']);
+            $table->datetime('joined_at')->useCurrent();
+            $table->enum('role_type', ['hafizol', 'hafizkal'])->nullable();
             $table->boolean('is_moderator')->default(false);
             $table->datetime('moderation_started_at')->nullable();
             $table->timestamps();
