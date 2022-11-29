@@ -192,7 +192,11 @@ class WhatsappGroupTest extends BaseFeatureTest
         $whatsappGroup = WhatsappGroup::factory()->create();
 
         $whatsappGroupUserData = WhatsappGroupUser::factory()
-            ->raw(['whatsapp_group_id' => $whatsappGroup->id, 'joined_at' => now()->format('Y-m-d H:i:s')]);
+            ->raw([
+                'user_id' => User::factory()->create()->id,
+                'whatsapp_group_id' => $whatsappGroup->id,
+                'joined_at' => now()->format('Y-m-d H:i:s'),
+            ]);
 
         $response = $this->actingAs($user)
             ->json('POST', $this->uri . '/' . $whatsappGroup->id . '/users', $whatsappGroupUserData);
@@ -205,7 +209,7 @@ class WhatsappGroupTest extends BaseFeatureTest
     }
 
     /** @test */
-    public function it_should_create_whatsapp_group_users_user_is_moderator_of_group()
+    public function it_should_create_whatsapp_group_users_when_user_is_moderator_of_group()
     {
         $user = User::factory()->create();
         $whatsappGroup = WhatsappGroup::factory()->create();
@@ -213,7 +217,11 @@ class WhatsappGroupTest extends BaseFeatureTest
             ->create(['user_id' => $user->id, 'whatsapp_group_id' => $whatsappGroup->id, 'is_moderator' => true]);
 
         $whatsappGroupUserData = WhatsappGroupUser::factory()
-            ->raw(['whatsapp_group_id' => $whatsappGroup->id, 'joined_at' => now()->format('Y-m-d H:i:s')]);
+            ->raw([
+                'user_id' => User::factory()->create()->id,
+                'whatsapp_group_id' => $whatsappGroup->id,
+                'joined_at' => now()->format('Y-m-d H:i:s'),
+            ]);
 
         $response = $this->actingAs($user)
             ->json('POST', $this->uri . '/' . $whatsappGroup->id . '/users', $whatsappGroupUserData);
