@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\WhatsappGroup;
 use App\Models\WhatsappGroupUser;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -123,6 +124,7 @@ class WhatsappGroupController extends Controller
             ]
         );
 
+        $validatedWhatsappGroupUserData['joined_at'] = Carbon::now();
         $whatsappGroupUser = $whatsappGroup->users()->create($validatedWhatsappGroupUserData);
 
         return response()->json($whatsappGroupUser->refresh()->load('user')->toArray(), Response::HTTP_CREATED);
