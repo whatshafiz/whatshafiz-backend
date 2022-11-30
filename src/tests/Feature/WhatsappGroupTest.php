@@ -185,7 +185,8 @@ class WhatsappGroupTest extends BaseFeatureTest
     /** @test */
     public function it_should_create_whatsapp_group_users_when_has_permission()
     {
-        Carbon::setTestNow('now');
+        $now = Carbon::now();
+        Carbon::setTestNow($now);
         $user = User::factory()->create();
         $user->givePermissionTo('whatsappGroups.update');
         $whatsappGroup = WhatsappGroup::factory()->create();
@@ -194,7 +195,7 @@ class WhatsappGroupTest extends BaseFeatureTest
             ->raw([
                 'user_id' => User::factory()->create()->id,
                 'whatsapp_group_id' => $whatsappGroup->id,
-                'joined_at' => now()->format('Y-m-d H:i:s'),
+                'joined_at' => $now->format('Y-m-d H:i:s'),
             ]);
 
         $response = $this->actingAs($user)
@@ -210,6 +211,8 @@ class WhatsappGroupTest extends BaseFeatureTest
     /** @test */
     public function it_should_create_whatsapp_group_users_when_user_is_moderator_of_group()
     {
+        $now = Carbon::now();
+        Carbon::setTestNow($now);
         $user = User::factory()->create();
         $whatsappGroup = WhatsappGroup::factory()->create();
         WhatsappGroupUser::factory()
@@ -219,7 +222,7 @@ class WhatsappGroupTest extends BaseFeatureTest
             ->raw([
                 'user_id' => User::factory()->create()->id,
                 'whatsapp_group_id' => $whatsappGroup->id,
-                'joined_at' => now()->format('Y-m-d H:i:s'),
+                'joined_at' => $now->format('Y-m-d H:i:s'),
             ]);
 
         $response = $this->actingAs($user)
@@ -235,7 +238,8 @@ class WhatsappGroupTest extends BaseFeatureTest
     /** @test */
     public function it_should_update_whatsapp_group_users_when_has_permission()
     {
-        Carbon::setTestNow('now');
+        $now = Carbon::now();
+        Carbon::setTestNow($now);
         $user = User::factory()->create();
         $user->givePermissionTo('whatsappGroups.update');
         $whatsappGroup = WhatsappGroup::factory()->create();
@@ -264,6 +268,8 @@ class WhatsappGroupTest extends BaseFeatureTest
     /** @test */
     public function it_should_update_whatsapp_group_users_when_user_is_moderator_of_group()
     {
+        $now = Carbon::now();
+        Carbon::setTestNow($now);
         $user = User::factory()->create();
         $whatsappGroup = WhatsappGroup::factory()->create();
         WhatsappGroupUser::factory()
