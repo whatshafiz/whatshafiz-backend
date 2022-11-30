@@ -7,7 +7,6 @@ use App\Models\WhatsappGroup;
 use App\Models\WhatsappGroupUser;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
-use Symfony\Component\HttpFoundation\Response;
 use Tests\BaseFeatureTest;
 
 class WhatsappGroupTest extends BaseFeatureTest
@@ -34,7 +33,7 @@ class WhatsappGroupTest extends BaseFeatureTest
 
         $response->assertForbidden();
 
-        $user->givePermissionTo('whatsappGroups.view'); 
+        $user->givePermissionTo('whatsappGroups.view');
 
         $response = $this->actingAs($user)->json('GET', $this->uri . '/' . $whatsappGroup->id);
 
