@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UniversitySeeder::class);
 
         if (!app()->isProduction()) {
-            $this->call(PeriodSeeder::class);
+            $this->call(CourseSeeder::class);
             $this->call(WhatsappGroupSeeder::class);
         }
     }

@@ -12,6 +12,44 @@ use Symfony\Component\HttpFoundation\Response;
 class UserController extends Controller
 {
     /**
+     * @return JsonResponse
+     */
+    public function profile(): JsonResponse
+    {
+        $user = Auth::user()->load(['country', 'city', 'university', 'universityFaculty', 'universityDepartment']);
+        $permissions = $user->permissions->pluck('name');
+        unset($user->permissions);
+
+        return response()->json(compact('user', 'permissions'));
+    }
+
+    /**
+     * @param  Request  $request
+     * @return JsonResponse
+     */
+    public function saveProfile(Request $request): JsonResponse
+    {
+        $validatedUserData = $this->validate(
+            $request,
+            [
+                'name' => 'required|string|max:50',
+                'surname' => 'required|string|max:50',
+                'email' => 'nullable|email|unique:users,email,' . Auth::id(),
+                'gender' => 'required|string|in:male,female',
+                'country_id' => 'nullable|integer|min:1|exists:countries,id',
+                'city_id' => 'nullable|integer|min:1|exists:cities,id',
+                'university_id' => 'nullable|integer|min:1|exists:universities,id',
+                'university_faculty_id' => 'nullable|integer|min:1|exists:university_faculties,id',
+                'university_department_id' => 'nullable|integer|min:1|exists:university_departments,id',
+            ]
+        );
+
+        Auth::user()->update($validatedUserData);
+
+        return $this->profile();
+    }
+
+    /**
      * @param  Request  $request
      * @return JsonResponse
      */

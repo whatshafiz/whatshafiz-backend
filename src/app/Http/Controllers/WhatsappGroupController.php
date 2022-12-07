@@ -12,8 +12,6 @@ use Symfony\Component\HttpFoundation\Response;
 class WhatsappGroupController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
      * @return JsonResponse
      */
     public function index(): JsonResponse
@@ -24,8 +22,6 @@ class WhatsappGroupController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
      * @param  Request  $request
      * @return JsonResponse
      */
@@ -36,7 +32,7 @@ class WhatsappGroupController extends Controller
         $validatedWhatsappGroupData = $this->validate(
             $request,
             [
-                'period_id' => 'required|integer|min:0|exists:periods,id',
+                'course_id' => 'required|integer|min:0|exists:courses,id',
                 'type' => 'required|string|in:whatshafiz,whatsenglish,whatsarapp',
                 'name' => 'required|string|max:100|unique:whatsapp_groups,name',
                 'is_active' => 'required|boolean',
@@ -48,8 +44,6 @@ class WhatsappGroupController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
      * @param  WhatsappGroup  $whatsappGroup
      * @return JsonResponse
      */
@@ -61,8 +55,6 @@ class WhatsappGroupController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
      * @param  Request  $request
      * @param  WhatsappGroup  $whatsappGroup
      * @return JsonResponse
@@ -74,7 +66,7 @@ class WhatsappGroupController extends Controller
         $validatedWhatsappGroupData = $this->validate(
             $request,
             [
-                'period_id' => 'required|integer|min:0|exists:periods,id',
+                'course_id' => 'required|integer|min:0|exists:courses,id',
                 'type' => 'required|string|in:whatshafiz,whatsenglish,whatsarapp',
                 'name' => 'required|string|max:100|unique:whatsapp_groups,name,' . $whatsappGroup->id,
                 'is_active' => 'required|boolean',
@@ -88,8 +80,6 @@ class WhatsappGroupController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
      * @param  WhatsappGroup  $whatsappGroup
      * @return JsonResponse
      */
@@ -103,8 +93,6 @@ class WhatsappGroupController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
      * @param  Request  $request
      * @param  WhatsappGroup  $whatsappGroup
      * @return JsonResponse
@@ -131,8 +119,6 @@ class WhatsappGroupController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
      * @param  Request  $request
      * @param  WhatsappGroup  $whatsappGroup
      * @param  WhatsappGroupUser  $whatsappGroupUser
@@ -160,8 +146,6 @@ class WhatsappGroupController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
      * @param  WhatsappGroup  $whatsappGroup
      * @param  WhatsappGroupUser  $whatsappGroupUser
      * @return JsonResponse

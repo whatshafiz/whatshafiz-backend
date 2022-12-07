@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\CountryController;
-use App\Http\Controllers\PeriodController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\RegulationController;
 use App\Http\Controllers\UniversityController;
 use App\Http\Controllers\UserController;
@@ -15,6 +15,9 @@ Route::post('login', [UserController::class, 'login'])->name('login');
 Route::get('regulations/{regulation:slug}', [RegulationController::class, 'show']);
 
 Route::middleware('auth:sanctum')->group(function () {
+    Route::get('profile', [UserController::class, 'profile'])->name('profile');
+    Route::put('profile', [UserController::class, 'saveProfile']);
+
     Route::get('regulations', [RegulationController::class, 'index']);
     Route::post('regulations/{regulation:slug}', [RegulationController::class, 'update']);
 
@@ -22,7 +25,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('countries/{country}/cities', [CountryController::class, 'cities']);
     Route::post('countries/{country}/cities', [CountryController::class, 'storeCity']);
 
-    Route::apiResource('periods', PeriodController::class);
+    Route::apiResource('courses', CourseController::class);
 
     Route::apiResource('universities', UniversityController::class);
     Route::get('universities/{university}/faculties', [UniversityController::class, 'faculties']);

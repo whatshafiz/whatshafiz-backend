@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Country extends BaseModel
 {
+    protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
     public $timestamps = false;
 
     /**

@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Period;
+use App\Models\Course;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,7 +18,7 @@ class WhatsappGroupFactory extends Factory
     public function definition()
     {
         return [
-            'period_id' => Period::inRandomOrder()->value('id') ?? Period::factory()->create()->id,
+            'course_id' => Course::inRandomOrder()->value('id') ?? Course::factory()->create()->id,
             'type' => $this->faker->randomElement(['whatshafiz', 'whatsenglish', 'whatsarapp']),
             'name' => $this->faker->numerify('WhatsGroup-##-##-##'),
             'is_active' => $this->faker->boolean,

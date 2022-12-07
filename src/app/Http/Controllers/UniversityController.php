@@ -12,8 +12,6 @@ use Illuminate\Support\Facades\Cache;
 class UniversityController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
      * @return JsonResponse
      */
     public function index(): JsonResponse
@@ -31,8 +29,6 @@ class UniversityController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
      * @param  University  $university
      * @return JsonResponse
      */
@@ -51,8 +47,6 @@ class UniversityController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
      * @param  University  $university
      * @param  UniversityFaculty  $faculty
      * @return JsonResponse
@@ -72,8 +66,6 @@ class UniversityController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
      * @param  Request  $request
      * @return JsonResponse
      */
@@ -89,8 +81,6 @@ class UniversityController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
      * @param  University  $university
      * @param  Request  $request
      * @return JsonResponse
@@ -110,8 +100,6 @@ class UniversityController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
      * @param  University  $university
      * @param  UniversityFaculty  $faculty
      * @param  Request  $request

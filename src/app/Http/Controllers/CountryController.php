@@ -11,8 +11,6 @@ use Symfony\Component\HttpFoundation\Response;
 class CountryController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
      * @return JsonResponse
      */
     public function index(): JsonResponse
@@ -30,8 +28,6 @@ class CountryController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
      * @param  Country  $country
      * @return JsonResponse
      */
@@ -50,8 +46,6 @@ class CountryController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
      * @param  Request  $request
      * @param  Country  $country
      * @return JsonResponse
