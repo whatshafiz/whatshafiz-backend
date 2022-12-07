@@ -10,8 +10,6 @@ use Symfony\Component\HttpFoundation\Response;
 class CourseController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
      * @return JsonResponse
      */
     public function index(): JsonResponse
@@ -22,8 +20,6 @@ class CourseController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
      * @param  Request  $request
      * @return JsonResponse
      */
@@ -56,8 +52,6 @@ class CourseController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
      * @param  Course  $course
      * @return JsonResponse
      */
@@ -69,8 +63,6 @@ class CourseController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
      * @param  Request  $request
      * @param  Course  $course
      * @return JsonResponse
@@ -109,8 +101,6 @@ class CourseController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
      * @param  Course  $course
      * @return JsonResponse
      */

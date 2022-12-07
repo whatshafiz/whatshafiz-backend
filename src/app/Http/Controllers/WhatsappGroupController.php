@@ -12,8 +12,6 @@ use Symfony\Component\HttpFoundation\Response;
 class WhatsappGroupController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
      * @return JsonResponse
      */
     public function index(): JsonResponse
@@ -24,8 +22,6 @@ class WhatsappGroupController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
      * @param  Request  $request
      * @return JsonResponse
      */
@@ -48,8 +44,6 @@ class WhatsappGroupController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
      * @param  WhatsappGroup  $whatsappGroup
      * @return JsonResponse
      */
@@ -61,8 +55,6 @@ class WhatsappGroupController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
      * @param  Request  $request
      * @param  WhatsappGroup  $whatsappGroup
      * @return JsonResponse
@@ -88,8 +80,6 @@ class WhatsappGroupController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
      * @param  WhatsappGroup  $whatsappGroup
      * @return JsonResponse
      */
@@ -103,8 +93,6 @@ class WhatsappGroupController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
      * @param  Request  $request
      * @param  WhatsappGroup  $whatsappGroup
      * @return JsonResponse
@@ -131,8 +119,6 @@ class WhatsappGroupController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
      * @param  Request  $request
      * @param  WhatsappGroup  $whatsappGroup
      * @param  WhatsappGroupUser  $whatsappGroupUser
@@ -160,8 +146,6 @@ class WhatsappGroupController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
      * @param  WhatsappGroup  $whatsappGroup
      * @param  WhatsappGroupUser  $whatsappGroupUser
      * @return JsonResponse

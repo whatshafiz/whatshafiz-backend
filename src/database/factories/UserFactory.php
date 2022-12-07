@@ -2,6 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\City;
+use App\Models\Country;
+use App\Models\University;
+use App\Models\UniversityDepartment;
+use App\Models\UniversityFaculty;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -18,11 +23,19 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => fake()->name(),
-            'phone_number' => fake()->unique()->e164PhoneNumber(),
+            'name' => $this->faker->firstname(),
+            'surname' => $this->faker->lastname(),
+            'email' => $this->faker->optional()->email(),
+            'phone_number' => $this->faker->unique()->e164PhoneNumber(),
             'phone_number_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
+            'gender' => $this->faker->optional()->randomElement(['male', 'female']),
+            'country_id' => $this->faker->boolean ? null : Country::inRandomOrder()->value('id'),
+            'city_id' => $this->faker->boolean ? null : City::inRandomOrder()->value('id'),
+            'university_id' => $this->faker->boolean ? null : University::inRandomOrder()->value('id'),
+            'university_faculty_id' => $this->faker->boolean ? null : UniversityFaculty::inRandomOrder()->value('id'),
+            'university_department_id' => $this->faker->boolean ? null : UniversityDepartment::inRandomOrder()->value('id'),
         ];
     }
 
