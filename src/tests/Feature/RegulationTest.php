@@ -47,6 +47,32 @@ class RegulationTest extends BaseFeatureTest
     }
 
     /** @test */
+    public function it_should_get_whatsenglish_regulations()
+    {
+        $response = $this->json('GET', $this->uri . '/whatsenglish');
+
+        $response->assertOk()
+            ->assertJsonFragment([
+                'name' => 'WhatsEnglish',
+                'slug' => 'whatsenglish',
+                'text' => Regulation::where('slug', 'whatsenglish')->value('text'),
+            ]);
+    }
+
+    /** @test */
+    public function it_should_get_whatsarapp_regulations()
+    {
+        $response = $this->json('GET', $this->uri . '/whatsarapp');
+
+        $response->assertOk()
+            ->assertJsonFragment([
+                'name' => 'WhatsArapp',
+                'slug' => 'whatsarapp',
+                'text' => Regulation::where('slug', 'whatsarapp')->value('text'),
+            ]);
+    }
+
+    /** @test */
     public function it_should_not_list_regulations_when_does_not_have_permission()
     {
         $user = User::factory()->create();
@@ -66,7 +92,9 @@ class RegulationTest extends BaseFeatureTest
 
         $response->assertOk()
             ->assertJsonFragment(['name' => 'HafızKal', 'slug' => 'hafizkal'])
-            ->assertJsonFragment(['name' => 'HafızOl', 'slug' => 'hafizol']);
+            ->assertJsonFragment(['name' => 'HafızOl', 'slug' => 'hafizol'])
+            ->assertJsonFragment(['name' => 'WhatsEnglish', 'slug' => 'whatsenglish'])
+            ->assertJsonFragment(['name' => 'WhatsArapp', 'slug' => 'whatsarapp']);
     }
 
     /** @test */
@@ -77,7 +105,7 @@ class RegulationTest extends BaseFeatureTest
         $response = $this->actingAs($user)
             ->json(
                 'POST',
-                $this->uri . '/' . ($this->faker->randomElement(['hafizol', 'hafizkal'])),
+                $this->uri . '/' . ($this->faker->randomElement(['hafizol', 'hafizkal', 'whatsenglish', 'whatsarapp'])),
                 ['text' => $this->faker->paragraph(2)]
             );
 
@@ -90,7 +118,7 @@ class RegulationTest extends BaseFeatureTest
         $user = User::factory()->create();
         $user->givePermissionTo('regulations.update');
 
-        $regulationSlug = $this->faker->randomElement(['hafizol', 'hafizkal']);
+        $regulationSlug = $this->faker->randomElement(['hafizol', 'hafizkal', 'whatsenglish', 'whatsarapp']);
         $newRegulationText = $this->faker->paragraph(rand(1, 5));
 
         $response = $this->actingAs($user)

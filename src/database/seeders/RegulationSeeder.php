@@ -39,8 +39,24 @@ class RegulationSeeder extends Seeder
                 4. İşleyiş
                 4.1 Verilen sayfa ezber tablosunda eşleşen öğrenciler o günün sayfalarını birbirlerine verirler. Her sayfa için 2 dakikadan daha fazla süre verilemez. Bir sayfayı ezber verme süresi 2 dakikayı aşarsa öğrenci küme düşer.",
         ];
+        $whatsenglish = [
+            'name' => 'WhatsEnglish',
+            'slug' => 'whatsenglish',
+            'text' => "1. WhatsEnglish'in Tanımı:
+                1a) WhatsEnglish, ücretsiz olarak Öğr. Gör. Dr. Muhammet Ali Can ve gönüllü ekibi tarafından Arapça ve Hafızlık gibi uzaktan eğitim sistemi ile verilen hizmetlerden bir başkasıdır.
+                1b) Toplam 2 kurdan oluşmaktadır. Her kur 25 haftalıktır. Türkiye Türkçesi dilbilgisi kurallarına uygun ve ingilizceyi hiç bilmeyenlere yönelik şekilde hazırlanan programda, İngilizce gramer konularının büyük çoğunluğu tamamlanmaktadır. Toplamda yaklaşık 1000 kelime ezberlenmektedir.",
+        ];
+        $whatsarapp = [
+            'name' => 'WhatsArapp',
+            'slug' => 'whatsarapp',
+            'text' => "1. WhatsArapp'ın Tanımı:
+                1a) WhatsArapp, ücretsiz olarak Öğr. Gör. Dr. Muhammet Ali Can ve gönüllü ekibi tarafından İngilizce ve Hafızlık gibi uzaktan eğitim sistemi ile verilen hizmetlerden bir başkasıdır.
+                1b) Toplam 4 kurdan oluşmaktadır. İlk iki kur okuma, konuşma, anlama ve cümle kurmaya yöneliktir Standart Fasih Arapça temelli olup, konuşma diline de yer verilmektedir. Üçüncü kurda Kuran-ı Kerim Arapçası işlenir. Dördüncü kur ise YDS’ye yöneliktir.",
+        ];
 
         Regulation::create($hafizol);
         Regulation::create($hafizkal);
+        Regulation::create($whatsenglish);
+        Regulation::create($whatsarapp);
     }
 }
