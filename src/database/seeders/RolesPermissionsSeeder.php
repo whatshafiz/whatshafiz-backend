@@ -52,12 +52,12 @@ class RolesPermissionsSeeder extends Seeder
             'regulations.create',
             'regulations.delete',
 
-            'periods.*',
-            'periods.view',
-            'periods.list',
-            'periods.update',
-            'periods.create',
-            'periods.delete',
+            'courses.*',
+            'courses.view',
+            'courses.list',
+            'courses.update',
+            'courses.create',
+            'courses.delete',
         ];
 
         foreach ($permissions as $permission) {

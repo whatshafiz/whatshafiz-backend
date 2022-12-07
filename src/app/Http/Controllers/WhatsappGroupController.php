@@ -36,7 +36,7 @@ class WhatsappGroupController extends Controller
         $validatedWhatsappGroupData = $this->validate(
             $request,
             [
-                'period_id' => 'required|integer|min:0|exists:periods,id',
+                'course_id' => 'required|integer|min:0|exists:courses,id',
                 'type' => 'required|string|in:whatshafiz,whatsenglish,whatsarapp',
                 'name' => 'required|string|max:100|unique:whatsapp_groups,name',
                 'is_active' => 'required|boolean',
@@ -74,7 +74,7 @@ class WhatsappGroupController extends Controller
         $validatedWhatsappGroupData = $this->validate(
             $request,
             [
-                'period_id' => 'required|integer|min:0|exists:periods,id',
+                'course_id' => 'required|integer|min:0|exists:courses,id',
                 'type' => 'required|string|in:whatshafiz,whatsenglish,whatsarapp',
                 'name' => 'required|string|max:100|unique:whatsapp_groups,name,' . $whatsappGroup->id,
                 'is_active' => 'required|boolean',

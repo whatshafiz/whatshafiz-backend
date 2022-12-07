@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\CountryController;
-use App\Http\Controllers\PeriodController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\RegulationController;
 use App\Http\Controllers\UniversityController;
 use App\Http\Controllers\UserController;
@@ -22,7 +22,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('countries/{country}/cities', [CountryController::class, 'cities']);
     Route::post('countries/{country}/cities', [CountryController::class, 'storeCity']);
 
-    Route::apiResource('periods', PeriodController::class);
+    Route::apiResource('courses', CourseController::class);
 
     Route::apiResource('universities', UniversityController::class);
     Route::get('universities/{university}/faculties', [UniversityController::class, 'faculties']);

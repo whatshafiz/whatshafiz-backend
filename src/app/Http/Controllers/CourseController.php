@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Period;
+use App\Models\Course;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class PeriodController extends Controller
+class CourseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,9 @@ class PeriodController extends Controller
      */
     public function index(): JsonResponse
     {
-        $this->authorize('viewAny', Period::class);
+        $this->authorize('viewAny', Course::class);
 
-        return response()->json(Period::latest()->get());
+        return response()->json(Course::latest()->get());
     }
 
     /**
@@ -29,20 +29,20 @@ class PeriodController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
-        $this->authorize('create', Period::class);
+        $this->authorize('create', Course::class);
 
-        $validatedPeriodData = $this->validate(
+        $validatedCourseData = $this->validate(
             $request,
             [
                 'type' => 'required|string|in:whatshafiz,whatsenglish,whatsarapp',
-                'name' => 'required|string|min:3|max:100|unique:periods',
+                'name' => 'required|string|min:3|max:100|unique:courses',
                 'is_active' => 'required|boolean',
                 'can_be_applied' => [
                     'required',
                     'boolean',
                     function ($attribute, $can_be_applied, $fail) use ($request) {
                         if ($can_be_applied &&
-                            Period::where('can_be_applied', true)->where('type', $request->type)->exists()
+                            Course::where('can_be_applied', true)->where('type', $request->type)->exists()
                         ) {
                             $fail('Mevcutta zaten başvuruya açık dönem bulunuyor.');
                         }
@@ -52,46 +52,46 @@ class PeriodController extends Controller
             ]
         );
 
-        return response()->json(Period::create($validatedPeriodData)->toArray(), Response::HTTP_CREATED);
+        return response()->json(Course::create($validatedCourseData)->toArray(), Response::HTTP_CREATED);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  Period  $period
+     * @param  Course  $course
      * @return JsonResponse
      */
-    public function show(Period $period): JsonResponse
+    public function show(Course $course): JsonResponse
     {
-        $this->authorize('view', Period::class);
+        $this->authorize('view', Course::class);
 
-        return response()->json($period->toArray());
+        return response()->json($course->toArray());
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  Request  $request
-     * @param  Period  $period
+     * @param  Course  $course
      * @return JsonResponse
      */
-    public function update(Request $request, Period $period): JsonResponse
+    public function update(Request $request, Course $course): JsonResponse
     {
-        $this->authorize('update', Period::class);
+        $this->authorize('update', Course::class);
 
-        $validatedPeriodData = $this->validate(
+        $validatedCourseData = $this->validate(
             $request,
             [
                 'type' => 'required|string|in:whatshafiz,whatsenglish,whatsarapp',
-                'name' => 'required|string|min:3|max:100|unique:periods',
+                'name' => 'required|string|min:3|max:100|unique:courses',
                 'is_active' => 'required|boolean',
                 'can_be_applied' => [
                     'required',
                     'boolean',
-                    function ($attribute, $can_be_applied, $fail) use ($request, $period) {
+                    function ($attribute, $can_be_applied, $fail) use ($request, $course) {
                         if ($can_be_applied &&
-                            Period::where('can_be_applied', true)
-                                ->where('id', '!=', $period->id)
+                            Course::where('can_be_applied', true)
+                                ->where('id', '!=', $course->id)
                                 ->where('type', $request->type)
                                 ->exists()
                         ) {
@@ -103,7 +103,7 @@ class PeriodController extends Controller
             ]
         );
 
-        $period->update($validatedPeriodData);
+        $course->update($validatedCourseData);
 
         return response()->json(null, Response::HTTP_NO_CONTENT);
     }
@@ -111,15 +111,15 @@ class PeriodController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Period  $period
+     * @param  Course  $course
      * @return JsonResponse
      */
-    public function destroy(Period $period): JsonResponse
+    public function destroy(Course $course): JsonResponse
     {
-        $this->authorize('delete', Period::class);
+        $this->authorize('delete', Course::class);
 
-        //TODO: Period için başvuru yapılmışsa, aktif dönem varsa vb. durumlarda silme işlemi kontrole bağlı olacak.
-        $period->delete();
+        //TODO: Course için başvuru yapılmışsa, aktif dönem varsa vb. durumlarda silme işlemi kontrole bağlı olacak.
+        $course->delete();
 
         return response()->json(null, Response::HTTP_NO_CONTENT);
     }

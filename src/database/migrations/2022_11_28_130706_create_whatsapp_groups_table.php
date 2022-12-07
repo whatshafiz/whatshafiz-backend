@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Period;
+use App\Models\Course;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,7 +16,7 @@ return new class extends Migration
     {
         Schema::create('whatsapp_groups', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Period::class)->constrained();
+            $table->foreignIdFor(Course::class)->constrained();
             $table->enum('type', ['whatshafiz', 'whatsenglish', 'whatsarapp']);
             $table->string('name', 100);
             $table->boolean('is_active')->default(true);
