@@ -10,8 +10,6 @@ use Symfony\Component\HttpFoundation\Response;
 class RegulationController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
      * @return JsonResponse
      */
     public function index(): JsonResponse
@@ -22,8 +20,6 @@ class RegulationController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
      * @param  Regulation  $regulation
      * @return JsonResponse
      */
@@ -33,8 +29,6 @@ class RegulationController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
      * @param  Request  $request
      * @param  Regulation  $regulation
      * @return JsonResponse

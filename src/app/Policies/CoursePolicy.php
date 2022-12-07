@@ -5,7 +5,7 @@ namespace App\Policies;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class PeriodPolicy
+class CoursePolicy
 {
     use HandlesAuthorization;
 
@@ -17,7 +17,7 @@ class PeriodPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->hasPermissionTo('periods.list');
+        return $user->hasPermissionTo('courses.list');
     }
 
     /**
@@ -28,7 +28,7 @@ class PeriodPolicy
      */
     public function view(User $user): bool
     {
-        return $user->hasPermissionTo('periods.view');
+        return $user->hasPermissionTo('courses.view');
     }
 
     /**
@@ -39,7 +39,7 @@ class PeriodPolicy
      */
     public function create(User $user): bool
     {
-        return $user->hasPermissionTo('periods.create');
+        return $user->hasPermissionTo('courses.create');
     }
 
     /**
@@ -50,7 +50,7 @@ class PeriodPolicy
      */
     public function update(User $user): bool
     {
-        return $user->hasPermissionTo('periods.update');
+        return $user->hasPermissionTo('courses.update');
     }
 
     /**
@@ -61,6 +61,6 @@ class PeriodPolicy
      */
     public function delete(User $user): bool
     {
-        return $user->hasPermissionTo('periods.delete');
+        return $user->hasPermissionTo('courses.delete');
     }
 }

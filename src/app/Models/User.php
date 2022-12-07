@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -20,11 +21,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'phone_number',
-        'password',
-    ];
+    protected $guarded = ['id'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -34,6 +31,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'created_at',
+        'updated_at',
+        'deleted_at',
     ];
 
     /**
@@ -54,5 +54,45 @@ class User extends Authenticatable
     public function newToken(): string
     {
         return $this->createToken('jwt')->plainTextToken;
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function city(): BelongsTo
+    {
+        return $this->belongsTo(City::class);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function country(): BelongsTo
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function University(): BelongsTo
+    {
+        return $this->belongsTo(University::class);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function UniversityFaculty(): BelongsTo
+    {
+        return $this->belongsTo(UniversityFaculty::class);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function UniversityDepartment(): BelongsTo
+    {
+        return $this->belongsTo(UniversityDepartment::class);
     }
 }
