@@ -3,8 +3,8 @@
 namespace Tests\Feature;
 
 use App\Models\User;
-use Illuminate\Support\Arr;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\BaseFeatureTest;
 
@@ -26,14 +26,17 @@ class ProfileTest extends BaseFeatureTest
     public function it_should_get_own_profile_details()
     {
         $registeredUser = User::factory()->create();
-        $permissions = Permission::inRandomOrder()->take(rand(1, 5))->pluck('name');
+        $permissions = Permission::inRandomOrder()->take(rand(1, 5))->get()->sortBy('name')->pluck('name');
+        $roles = Role::inRandomOrder()->take(rand(1, 5))->get()->sortBy('name')->pluck('name');
         $registeredUser->givePermissionTo($permissions);
+        $registeredUser->assignRole($roles);
 
         $response = $this->actingAs($registeredUser)->json('GET', $this->uri);
 
         $response->assertOk()
             ->assertJsonFragment(['user' => $registeredUser->toArray()])
-            ->assertJsonFragment(['permissions' => Arr::sort($permissions)]);
+            ->assertJsonFragment(['permissions' => $permissions])
+            ->assertJsonFragment(['roles' => $roles]);
     }
 
     /** @test */

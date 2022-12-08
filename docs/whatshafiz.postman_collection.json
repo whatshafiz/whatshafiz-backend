@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "9af10240-942d-40f3-ba8f-a1cf307b2a06",
+		"_postman_id": "4b538c90-1322-4922-aed8-e6d213b8ee3c",
 		"name": "whatshafiz",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "8269859"
@@ -192,6 +192,166 @@
 							],
 							"path": [
 								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Profil",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"phone_number\");",
+									"    pm.expect(pm.response.text()).to.include(\"token\");",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"",
+									"    var jsonData = pm.response.json();",
+									"    pm.environment.set(\"JWT\", jsonData.token);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{URL}}/profile",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Profil",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"    pm.expect(pm.response.text()).to.include(\"surname\");",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "{{$randomFirstName}}",
+									"type": "text"
+								},
+								{
+									"key": "surname",
+									"value": "{{$randomLastName}}",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "{{$randomEmail}}",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "male",
+									"type": "text"
+								},
+								{
+									"key": "country_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "city_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "university_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "university_faculty_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "university_department_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/profile",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"profile"
 							]
 						}
 					},
@@ -548,10 +708,10 @@
 			]
 		},
 		{
-			"name": "Eğitim Dönemleri",
+			"name": "Kurslar/Eğitim Dönemleri",
 			"item": [
 				{
-					"name": "GET",
+					"name": "GET Kurs",
 					"event": [
 						{
 							"listen": "test",
@@ -603,7 +763,7 @@
 					"response": []
 				},
 				{
-					"name": "LIST",
+					"name": "LIST Kurslar",
 					"event": [
 						{
 							"listen": "test",
@@ -654,7 +814,7 @@
 					"response": []
 				},
 				{
-					"name": "CREATE",
+					"name": "CREATE Kurs",
 					"event": [
 						{
 							"listen": "test",
@@ -693,7 +853,7 @@
 							"urlencoded": [
 								{
 									"key": "type",
-									"value": "hafizol",
+									"value": "whatshafiz",
 									"type": "text"
 								},
 								{
@@ -731,7 +891,7 @@
 					"response": []
 				},
 				{
-					"name": "UPDATE",
+					"name": "UPDATE Kurs",
 					"event": [
 						{
 							"listen": "test",
@@ -770,7 +930,7 @@
 							"urlencoded": [
 								{
 									"key": "type",
-									"value": "hafizol",
+									"value": "whatshafiz",
 									"type": "text"
 								},
 								{
@@ -780,12 +940,12 @@
 								},
 								{
 									"key": "is_active",
-									"value": "0",
+									"value": "1",
 									"type": "text"
 								},
 								{
 									"key": "can_be_applied",
-									"value": "0",
+									"value": "1",
 									"type": "text"
 								},
 								{
@@ -809,7 +969,7 @@
 					"response": []
 				},
 				{
-					"name": "DELETE",
+					"name": "DELETE Kurs",
 					"event": [
 						{
 							"listen": "test",
