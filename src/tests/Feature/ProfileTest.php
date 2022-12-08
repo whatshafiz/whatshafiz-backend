@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use App\Models\User;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
-use Symfony\Component\HttpFoundation\Response;
 use Tests\BaseFeatureTest;
 
 class ProfileTest extends BaseFeatureTest
