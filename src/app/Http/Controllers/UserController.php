@@ -17,10 +17,12 @@ class UserController extends Controller
     public function profile(): JsonResponse
     {
         $user = Auth::user()->load(['country', 'city', 'university', 'universityFaculty', 'universityDepartment']);
-        $permissions = $user->permissions->pluck('name');
+        $permissions = $user->permissions()->orderBy('name')->pluck('name');
+        $roles = $user->roles()->orderBy('name')->pluck('name');
         unset($user->permissions);
+        unset($user->roles);
 
-        return response()->json(compact('user', 'permissions'));
+        return response()->json(compact('user', 'permissions', 'roles'));
     }
 
     /**
