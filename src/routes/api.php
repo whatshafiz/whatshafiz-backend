@@ -15,8 +15,8 @@ Route::post('login', [UserController::class, 'login'])->name('login');
 Route::get('regulations/{regulation:slug}', [RegulationController::class, 'show']);
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('profile', [UserController::class, 'profile'])->name('profile');
     Route::put('profile', [UserController::class, 'saveProfile']);
+    Route::get('profile', [UserController::class, 'profile'])->name('profile');
 
     Route::get('regulations', [RegulationController::class, 'index']);
     Route::post('regulations/{regulation:slug}', [RegulationController::class, 'update']);
