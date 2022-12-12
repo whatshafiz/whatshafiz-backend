@@ -43,6 +43,17 @@ class UserController extends Controller
                 'university_id' => 'nullable|integer|min:1|exists:universities,id',
                 'university_faculty_id' => 'nullable|integer|min:1|exists:university_faculties,id',
                 'university_department_id' => 'nullable|integer|min:1|exists:university_departments,id',
+            ],
+            [
+                'name.required' => 'İsim alanı zorunludur.',
+                'name.string' => 'İsim alanı metinsel olmalıdır.',
+                'name.max' => 'İsim alanı en fazla 50 karakter olabilir.',
+                'surname.required' => 'Soyad alanı zorunludur.',
+                'surname.string' => 'Soyad alanı metinsel olmalıdır.',
+                'surname.max' => 'Soyad alanı en fazla 50 karakter olabilir.',
+                'email.email' => 'E-Posta adresi geçersiz.',
+                'email.unique' => 'E-Posta adresi önceden kayıt edilmiş.',
+                'gender.required' => 'Cinsiyet seçeneği boş olmamalıdır.'
             ]
         );
 
@@ -57,7 +68,11 @@ class UserController extends Controller
      */
     public function check(Request $request): JsonResponse
     {
-        $request->validate(['phone_number' => 'required|string|min:7|max:30']);
+        $request->validate(['phone_number' => 'required|string|min:7|max:30'],
+            [
+                'phone_number.required' => 'Telefon numarası boş olmamalıdır.'
+            ]);
+
 
         $user = User::where('phone_number', $request->phone_number)->first();
 
@@ -88,6 +103,13 @@ class UserController extends Controller
                 'unique:users,phone_number',
             ],
             'password' => 'required|string|min:5|confirmed',
+        ],[
+            'phone_number.required' => 'Telefon numarası boş olmamalıdır.',
+            'phone_number.unique' => 'Telefon numarası önceden kayıt edilmiş.',
+            'password.required' => 'Şifre boş olmamalıdır.',
+            'password.min' => 'Şifre en az 5 karakter olmalıdır.',
+            'password.confirmed' => 'Şifreler eşleşmiyor.',
+            'password.string' => 'Şifre metinsel olmalıdır.',
         ]);
 
         $user = User::create([
@@ -121,7 +143,14 @@ class UserController extends Controller
                 'exists:users,phone_number',
             ],
             'password' => 'required|string|min:5',
+        ],[
+            'phone_number.required' => 'Telefon numarası boş olmamalıdır.',
+            'phone_number.exists' => 'Telefon numarası kayıtlı değil.',
+            'password.required' => 'Şifre boş olmamalıdır.',
+            'password.min' => 'Şifre en az 5 karakter olmalıdır.',
+            'password.string' => 'Şifre metinsel olmalıdır.',
         ]);
+
 
 
         if (Auth::attempt($credentials)) {
