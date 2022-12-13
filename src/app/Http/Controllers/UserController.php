@@ -201,6 +201,8 @@ class UserController extends Controller
         }
 
         $user->phone_number_verified_at = Carbon::now();
+        $user->verification_code = null;
+        $user->verification_code_valid_until = null;
         $user->save();
 
         return response()->json(['message' => 'Telefon numaranız başarılı şekilde doğrulandı.']);
