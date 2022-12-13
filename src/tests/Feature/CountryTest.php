@@ -28,9 +28,8 @@ class CountryTest extends BaseFeatureTest
         Cache::shouldReceive('has')->with('countries')->once()->andReturn(false);
         Cache::shouldReceive('get')->with('countries')->never();
         Cache::shouldReceive('put')->once();
-        $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->json('GET', $this->uri);
+        $response = $this->json('GET', $this->uri);
 
         $response->assertOk();
 
@@ -46,9 +45,8 @@ class CountryTest extends BaseFeatureTest
 
         Cache::shouldReceive('has')->with('countries')->once()->andReturn(true);
         Cache::shouldReceive('get')->with('countries')->once()->andReturn($dummyCountries);
-        $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->json('GET', $this->uri);
+        $response = $this->json('GET', $this->uri);
 
         $response->assertOk();
 

@@ -3,7 +3,9 @@
 namespace Tests\Feature;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Queue;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\BaseFeatureTest;
 
@@ -71,7 +73,66 @@ class RegisterTest extends BaseFeatureTest
 
         $this->assertDatabaseHas(
             'users',
-            ['phone_number' => $newUserData['phone_number'], 'password' => $hashedPassword]
+            [
+                'phone_number' => $newUserData['phone_number'],
+                'password' => $hashedPassword,
+                'phone_number_verified_at' => null,
+            ]
         );
+    }
+
+    /** @test */
+    public function it_should_set_and_send_phone_number_verification_code()
+    {
+        $now = Carbon::now();
+        Carbon::setTestNow($now);
+        $user = User::factory()->create(['phone_number_verified_at' => null]);
+        Queue::shouldReceive('connection')->once()->with('messenger-sqs')->andReturnSelf();
+        Queue::shouldReceive('pushRaw')->once();
+
+        $response = $this->actingAs($user)
+            ->json('POST', $this->uri . '/verification-code/send');
+
+        $response->assertOk();
+
+        $this->assertNotNull($user->refresh()->verification_code);
+        $this->assertDatabaseHas(
+            'users',
+            ['id' => $user->id, 'verification_code_valid_until' => $now->addMinutes(3)->format('Y-m-d H:i:s')]
+        );
+    }
+
+    /** @test */
+    public function it_should_not_set_new_verification_code_when_user_has_already_verified_phone()
+    {
+        $user = User::factory()->create(['phone_number_verified_at' => now()]);
+        Queue::shouldReceive('connection')->never();
+        Queue::shouldReceive('pushRaw')->never();
+
+        $response = $this->actingAs($user)
+            ->json('POST', $this->uri . '/verification-code/send');
+
+        $response->assertStatus(Response::HTTP_BAD_REQUEST)
+            ->assertJsonFragment(['message' => 'Telefon No daha önce doğrulanmış']);
+    }
+
+    /** @test */
+    public function it_should_not_set_new_verification_code_when_the_code_is_valid()
+    {
+        $now = Carbon::now();
+        Carbon::setTestNow($now);
+        $user = User::factory()->create([
+            'phone_number_verified_at' => null,
+            'verification_code' => 111111,
+            'verification_code_valid_until' => $now->copy()->addMinute(),
+        ]);
+        Queue::shouldReceive('connection')->never();
+        Queue::shouldReceive('pushRaw')->never();
+
+        $response = $this->actingAs($user)
+            ->json('POST', $this->uri . '/verification-code/send');
+
+        $response->assertStatus(Response::HTTP_BAD_REQUEST)
+            ->assertJsonFragment(['message' => '3 dakika içinde bir kere kod isteyebilirsiniz.']);
     }
 }
