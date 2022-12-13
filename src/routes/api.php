@@ -3,6 +3,7 @@
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\RegulationController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UniversityController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WhatsappGroupController;
@@ -15,6 +16,8 @@ Route::post('login', [UserController::class, 'login'])->name('login');
 Route::get('regulations/{regulation:slug}', [RegulationController::class, 'show']);
 
 Route::middleware('auth:sanctum')->group(function () {
+    Route::get('settings', [SettingController::class, 'index']);
+
     Route::put('profile', [UserController::class, 'saveProfile']);
     Route::get('profile', [UserController::class, 'profile'])->name('profile');
 
