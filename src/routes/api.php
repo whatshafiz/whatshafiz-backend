@@ -9,6 +9,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\WhatsappGroupController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('countries', [CountryController::class, 'index']);
+
 Route::post('users/check', [UserController::class, 'check']);
 Route::post('register', [UserController::class, 'register'])->name('register');
 Route::post('login', [UserController::class, 'login'])->name('login');
@@ -18,13 +20,15 @@ Route::get('regulations/{regulation:slug}', [RegulationController::class, 'show'
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('settings', [SettingController::class, 'index']);
 
+    Route::post('register/verification-code/send', [UserController::class, 'sendVerificationCode']);
+    Route::post('register/verification-code/verify', [UserController::class, 'verifyVerificationCode']);
+
     Route::put('profile', [UserController::class, 'saveProfile']);
     Route::get('profile', [UserController::class, 'profile'])->name('profile');
 
     Route::get('regulations', [RegulationController::class, 'index']);
     Route::post('regulations/{regulation:slug}', [RegulationController::class, 'update']);
 
-    Route::get('countries', [CountryController::class, 'index']);
     Route::get('countries/{country}/cities', [CountryController::class, 'cities']);
     Route::post('countries/{country}/cities', [CountryController::class, 'storeCity']);
 

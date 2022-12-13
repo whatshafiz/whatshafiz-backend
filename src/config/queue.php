@@ -61,6 +61,17 @@ return [
             'after_commit' => false,
         ],
 
+        'messenger-sqs' => [
+            'driver' => 'sqs',
+            'key' => env('AWS_ACCESS_KEY_ID'),
+            'secret' => env('AWS_SECRET_ACCESS_KEY'),
+            'prefix' => env('MESSENGER_SQS_PREFIX', 'https://sqs.us-east-1.amazonaws.com/your-account-id'),
+            'queue' => env('MESSENGER_SQS_QUEUE', 'default'),
+            'suffix' => env('MESSENGER_SQS_SUFFIX'),
+            'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
+            'after_commit' => false,
+        ],
+
         'redis' => [
             'driver' => 'redis',
             'connection' => 'default',

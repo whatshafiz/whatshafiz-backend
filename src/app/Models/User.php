@@ -42,6 +42,7 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
+        'verification_code_valid_until' => 'datetime:d-m-Y H:i:s',
         'phone_number_verified_at' => 'datetime:d-m-Y H:i',
         'created_at' => 'datetime:d-m-Y H:i',
         'updated_at' => 'datetime:d-m-Y H:i',
