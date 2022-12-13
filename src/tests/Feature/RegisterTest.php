@@ -156,7 +156,12 @@ class RegisterTest extends BaseFeatureTest
 
         $this->assertDatabaseHas(
             'users',
-            ['id' => $user->id, 'phone_number_verified_at' => $now->format('Y-m-d H:i:s')]
+            [
+                'id' => $user->id,
+                'phone_number_verified_at' => $now->format('Y-m-d H:i:s'),
+                'verification_code' => null,
+                'verification_code_valid_until' => null,
+            ]
         );
     }
 
