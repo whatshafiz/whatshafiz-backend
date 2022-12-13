@@ -172,4 +172,37 @@ class UserController extends Controller
             'verification_code_valid_until' => $user->verification_code_valid_until->format('d-m-Y H:i:s'),
         ]);
     }
+
+    /**
+     * @param  Request  $request
+     * @return JsonResponse
+     */
+    public function verifyVerificationCode(Request $request): JsonResponse
+    {
+        $request->validate(['code' => 'required|integer|min:100000|max:999999']);
+        $user = Auth::user();
+
+        if (!is_null($user->phone_number_verified_at)) {
+            return response()->json(
+                ['message' => 'Telefon numaranız daha önceden doğrulanmış.'],
+                Response::HTTP_BAD_REQUEST
+            );
+        }
+
+        if (!$user->verification_code ||
+            !$user->verification_code_valid_until ||
+            Carbon::now()->greaterThan($user->verification_code_valid_until) ||
+            $request->code !== $user->verification_code
+        ) {
+            return response()->json(
+                ['message' => 'Doğrulama kodu geçerli değil, lütfen tekrar deneyin.'],
+                Response::HTTP_BAD_REQUEST
+            );
+        }
+
+        $user->phone_number_verified_at = Carbon::now();
+        $user->save();
+
+        return response()->json(['message' => 'Telefon numaranız başarılı şekilde doğrulandı.']);
+    }
 }

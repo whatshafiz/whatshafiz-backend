@@ -135,4 +135,95 @@ class RegisterTest extends BaseFeatureTest
         $response->assertStatus(Response::HTTP_BAD_REQUEST)
             ->assertJsonFragment(['message' => '3 dakika içinde bir kere kod isteyebilirsiniz.']);
     }
+
+    /** @test */
+    public function it_should_verify_phone_number_verification_code()
+    {
+        $now = Carbon::now();
+        Carbon::setTestNow($now);
+        $code = random_int(100000, 999999);
+        $user = User::factory()->create([
+            'phone_number_verified_at' => null,
+            'verification_code' => $code,
+            'verification_code_valid_until' => $now->copy()->addMinute(),
+        ]);
+
+        $response = $this->actingAs($user)
+            ->json('POST', $this->uri . '/verification-code/verify', ['code' => $code]);
+
+        $response->assertOk()
+            ->assertJsonFragment(['message' => 'Telefon numaranız başarılı şekilde doğrulandı.']);
+
+        $this->assertDatabaseHas(
+            'users',
+            ['id' => $user->id, 'phone_number_verified_at' => $now->format('Y-m-d H:i:s')]
+        );
+    }
+
+    /** @test */
+    public function it_should_not_verify_phone_number_verification_code_when_the_code_is_not_valid()
+    {
+        $now = Carbon::now();
+        Carbon::setTestNow($now);
+        $code = random_int(100000, 999999);
+        $user = User::factory()->create([
+            'phone_number_verified_at' => null,
+            'verification_code' => $code,
+            'verification_code_valid_until' => $now->copy()->subMinutes(5),
+        ]);
+
+        $response = $this->actingAs($user)
+            ->json('POST', $this->uri . '/verification-code/verify', ['code' => $code]);
+
+        $response->assertStatus(Response::HTTP_BAD_REQUEST)
+            ->assertJsonFragment(['message' => 'Doğrulama kodu geçerli değil, lütfen tekrar deneyin.']);
+
+        $this->assertDatabaseHas(
+            'users',
+            ['id' => $user->id, 'phone_number_verified_at' => null]
+        );
+    }
+
+    /** @test */
+    public function it_should_not_verify_phone_number_verification_code_when_the_code_is_not_correct()
+    {
+        $now = Carbon::now();
+        Carbon::setTestNow($now);
+        $code = 222222;
+        $user = User::factory()->create([
+            'phone_number_verified_at' => null,
+            'verification_code' => $code,
+            'verification_code_valid_until' => $now->copy()->addMinute(),
+        ]);
+
+        $response = $this->actingAs($user)
+            ->json('POST', $this->uri . '/verification-code/verify', ['code' => 111111]);
+
+        $response->assertStatus(Response::HTTP_BAD_REQUEST)
+            ->assertJsonFragment(['message' => 'Doğrulama kodu geçerli değil, lütfen tekrar deneyin.']);
+
+        $this->assertDatabaseHas(
+            'users',
+            ['id' => $user->id, 'phone_number_verified_at' => null]
+        );
+    }
+
+    /** @test */
+    public function it_should_not_verify_phone_number_verification_code_when_the_user_already_verified_phone_number_before()
+    {
+        $now = Carbon::now();
+        Carbon::setTestNow($now);
+        $code = random_int(100000, 999999);
+        $user = User::factory()->create([
+            'phone_number_verified_at' => now(),
+            'verification_code' => $code,
+            'verification_code_valid_until' => $now->copy()->addMinute(),
+        ]);
+
+        $response = $this->actingAs($user)
+            ->json('POST', $this->uri . '/verification-code/verify', ['code' => $code]);
+
+        $response->assertStatus(Response::HTTP_BAD_REQUEST)
+            ->assertJsonFragment(['message' => 'Telefon numaranız daha önceden doğrulanmış.']);
+    }
 }
