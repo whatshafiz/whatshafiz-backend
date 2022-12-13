@@ -356,6 +356,124 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "VERIFY Send Code",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"    pm.expect(pm.response.text()).to.include(\"surname\");",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{URL}}/register/verification-code/send",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"register",
+								"verification-code",
+								"send"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "VERIFY Check Code",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"    pm.expect(pm.response.text()).to.include(\"surname\");",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "code",
+									"value": "111111",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/register/verification-code/verify",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"register",
+								"verification-code",
+								"verify"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -2051,6 +2169,61 @@
 								"1",
 								"users",
 								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ayarlar",
+			"item": [
+				{
+					"name": "LIST Settings",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"    pm.expect(pm.response.text()).to.include(\"value\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/settings",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"settings"
 							]
 						}
 					},

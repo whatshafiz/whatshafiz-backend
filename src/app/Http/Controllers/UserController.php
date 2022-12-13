@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Queue;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
@@ -134,5 +136,75 @@ class UserController extends Controller
         }
 
         return response()->json(['message' => 'Telefon No veya Parola Hatalı'], Response::HTTP_BAD_REQUEST);
+    }
+
+    /**
+     * @return JsonResponse
+     */
+    public function sendVerificationCode(): JsonResponse
+    {
+        $user = Auth::user();
+        $verificaitonCodeValidDuration = 3;
+
+        if (!is_null($user->phone_number_verified_at)) {
+            return response()->json(['message' => 'Telefon No daha önce doğrulanmış'], Response::HTTP_BAD_REQUEST);
+        }
+
+        if ($user->verification_code_valid_until && Carbon::now()->lessThan($user->verification_code_valid_until)) {
+            return response()->json(
+                ['message' => $verificaitonCodeValidDuration . ' dakika içinde bir kere kod isteyebilirsiniz.'],
+                Response::HTTP_BAD_REQUEST
+            );
+        }
+
+        $user->verification_code = random_int(100000, 999999);
+        $user->verification_code_valid_until = Carbon::now()->addMinutes($verificaitonCodeValidDuration);
+        $user->save();
+
+        Queue::connection('messenger-sqs')
+            ->pushRaw(json_encode([
+                'phone' => $user->phone_number,
+                'text' => 'Whats eğitim modeli, kayıt için doğrulama kodunuz: ' . $user->verification_code,
+            ]));
+
+        return response()->json([
+            'message' => 'Doğrulama kodu whatsapp ile telefonunuza gönderildi.',
+            'verification_code_valid_until' => $user->verification_code_valid_until->format('d-m-Y H:i:s'),
+        ]);
+    }
+
+    /**
+     * @param  Request  $request
+     * @return JsonResponse
+     */
+    public function verifyVerificationCode(Request $request): JsonResponse
+    {
+        $request->validate(['code' => 'required|integer|min:100000|max:999999']);
+        $user = Auth::user();
+
+        if (!is_null($user->phone_number_verified_at)) {
+            return response()->json(
+                ['message' => 'Telefon numaranız daha önceden doğrulanmış.'],
+                Response::HTTP_BAD_REQUEST
+            );
+        }
+
+        if (!$user->verification_code ||
+            !$user->verification_code_valid_until ||
+            Carbon::now()->greaterThan($user->verification_code_valid_until) ||
+            $request->code !== $user->verification_code
+        ) {
+            return response()->json(
+                ['message' => 'Doğrulama kodu geçerli değil, lütfen tekrar deneyin.'],
+                Response::HTTP_BAD_REQUEST
+            );
+        }
+
+        $user->phone_number_verified_at = Carbon::now();
+        $user->verification_code = null;
+        $user->verification_code_valid_until = null;
+        $user->save();
+
+        return response()->json(['message' => 'Telefon numaranız başarılı şekilde doğrulandı.']);
     }
 }

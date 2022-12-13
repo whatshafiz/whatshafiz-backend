@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('surname')->nullable()->after('name');
             $table->string('email')->nullable()->after('surname');
             $table->enum('gender', ['male', 'female'])->nullable()->after('email');
+            $table->timestamp('verification_code_valid_until')->nullable()->after('phone_number_verified_at');
+            $table->string('verification_code')->nullable()->after('phone_number_verified_at');
             $table->foreignIdFor(UniversityDepartment::class)->nullable()->after('id')->constrained();
             $table->foreignIdFor(UniversityFaculty::class)->nullable()->after('id')->constrained();
             $table->foreignIdFor(University::class)->nullable()->after('id')->constrained();

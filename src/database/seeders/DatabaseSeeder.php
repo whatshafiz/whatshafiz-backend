@@ -18,8 +18,10 @@ class DatabaseSeeder extends Seeder
         $this->call(CountrySeeder::class);
         $this->call(CitySeeder::class);
         $this->call(UniversitySeeder::class);
+        $this->call(SettingSeeder::class);
 
         if (!app()->isProduction()) {
+            $this->call(UserSeeder::class);
             $this->call(CourseSeeder::class);
             $this->call(WhatsappGroupSeeder::class);
         }
