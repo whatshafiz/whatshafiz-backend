@@ -6,6 +6,10 @@ services:
     volumes:
       - "./php-fpm/public_html:/var/www/public_html"
     mem_limit: 6000m
+  messenger:
+    container_name: "whatshafiz_messenger"
+    image: "977624603912.dkr.ecr.eu-central-1.amazonaws.com/whatshafiz_php-fpm:latest"
+    mem_limit: 6000m
   nginx-proxy:
     image: "nginx:alpine"
     ports:
