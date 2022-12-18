@@ -247,6 +247,6 @@ class UserController extends Controller
             ]
         );
 
-        return response()->json(['message' => 'Kaydınız başaralı şekilde oluşturuldu.']);
+        return response()->json(['message' => 'Kaydınız başarılı şekilde oluşturuldu.']);
     }
 }
