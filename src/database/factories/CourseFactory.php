@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -52,6 +53,17 @@ class CourseFactory extends Factory
     {
         return $this->state(fn (array $attributes) => [
             'type' => 'whatsenglish',
+        ]);
+    }
+
+    /**
+     * @return static
+     */
+    public function available()
+    {
+        return $this->state(fn (array $attributes) => [
+            'can_be_applied' => true,
+            'can_be_applied_until' => Carbon::now()->addDays(rand(1, 100))->format('Y-m-d H:i:s'),
         ]);
     }
 }

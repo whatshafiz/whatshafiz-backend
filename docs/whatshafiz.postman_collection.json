@@ -301,46 +301,55 @@
 								{
 									"key": "name",
 									"value": "{{$randomFirstName}}",
+									"description": "required|string|max:50",
 									"type": "text"
 								},
 								{
 									"key": "surname",
 									"value": "{{$randomLastName}}",
+									"description": "required|string|max:50",
 									"type": "text"
 								},
 								{
 									"key": "email",
 									"value": "{{$randomEmail}}",
+									"description": "nullable|email|unique:users,email",
 									"type": "text"
 								},
 								{
 									"key": "gender",
 									"value": "male",
+									"description": "required|string|in:male,female",
 									"type": "text"
 								},
 								{
 									"key": "country_id",
 									"value": "1",
+									"description": "nullable|integer|min:1|exists:countries,id",
 									"type": "text"
 								},
 								{
 									"key": "city_id",
 									"value": "1",
+									"description": "nullable|integer|min:1|exists:cities,id",
 									"type": "text"
 								},
 								{
 									"key": "university_id",
 									"value": "1",
+									"description": "nullable|integer|min:1|exists:universities,id",
 									"type": "text"
 								},
 								{
 									"key": "university_faculty_id",
 									"value": "1",
+									"description": "nullable|integer|min:1|exists:university_faculties,id",
 									"type": "text"
 								},
 								{
 									"key": "university_department_id",
 									"value": "1",
+									"description": "nullable|integer|min:1|exists:university_departments,id",
 									"type": "text"
 								}
 							]
@@ -358,7 +367,7 @@
 					"response": []
 				},
 				{
-					"name": "VERIFY Send Code",
+					"name": "User Kurs Başvurusu",
 					"event": [
 						{
 							"listen": "test",
@@ -369,6 +378,72 @@
 									"    pm.expect(pm.response.text()).to.include(\"name\");",
 									"    pm.expect(pm.response.text()).to.include(\"surname\");",
 									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "type",
+									"value": "whatshafiz",
+									"description": "required|string|in:whatshafiz,whatsenglish,whatsarapp",
+									"type": "text"
+								},
+								{
+									"key": "is_teacher",
+									"value": "1",
+									"description": "required|boolean",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/profile/courses",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"profile",
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "VERIFY Send Code",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"message\");",
 									"});",
 									""
 								],
@@ -422,9 +497,7 @@
 								"exec": [
 									"pm.test(\"Success\", function () {",
 									"    pm.response.to.have.status(200);",
-									"    pm.expect(pm.response.text()).to.include(\"name\");",
-									"    pm.expect(pm.response.text()).to.include(\"surname\");",
-									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"message\");",
 									"});",
 									""
 								],
@@ -456,7 +529,8 @@
 							"urlencoded": [
 								{
 									"key": "code",
-									"value": "111111",
+									"value": "914580",
+									"description": "required|integer|min:100000|max:999999",
 									"type": "text"
 								}
 							]
@@ -747,6 +821,7 @@
 								{
 									"key": "text",
 									"value": "{{$randomLoremParagraphs}}",
+									"description": "required|string",
 									"type": "text"
 								}
 							]
@@ -806,6 +881,7 @@
 								{
 									"key": "text",
 									"value": "{{$randomLoremParagraphs}}",
+									"description": "required|string",
 									"type": "text"
 								}
 							]
@@ -932,6 +1008,53 @@
 					"response": []
 				},
 				{
+					"name": "LIST Başvurulabilir Kurslar",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"type\");",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"    pm.expect(pm.response.text()).to.include(\"can_be_applied\");",
+									"    pm.expect(pm.response.text()).to.include(\"can_be_applied_until\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/courses/available",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"courses",
+								"available"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "CREATE Kurs",
 					"event": [
 						{
@@ -972,26 +1095,31 @@
 								{
 									"key": "type",
 									"value": "whatshafiz",
+									"description": "required|string|in:whatshafiz,whatsenglish,whatsarapp",
 									"type": "text"
 								},
 								{
 									"key": "name",
 									"value": "{{$randomCompanyName}}",
+									"description": "required|string|min:3|max:100|unique:courses",
 									"type": "text"
 								},
 								{
 									"key": "is_active",
 									"value": "0",
+									"description": "required|boolean",
 									"type": "text"
 								},
 								{
 									"key": "can_be_applied",
 									"value": "0",
+									"description": "required|boolean",
 									"type": "text"
 								},
 								{
 									"key": "can_be_applied_until",
 									"value": "2022-12-30 12:20:21",
+									"description": "nullable|date_format:Y-m-d H:i:s",
 									"type": "text"
 								}
 							]
@@ -1049,26 +1177,31 @@
 								{
 									"key": "type",
 									"value": "whatshafiz",
+									"description": "required|string|in:whatshafiz,whatsenglish,whatsarapp",
 									"type": "text"
 								},
 								{
 									"key": "name",
 									"value": "{{$randomCompanyName}}",
+									"description": "required|string|min:3|max:100|unique:courses",
 									"type": "text"
 								},
 								{
 									"key": "is_active",
 									"value": "1",
+									"description": "required|boolean",
 									"type": "text"
 								},
 								{
 									"key": "can_be_applied",
 									"value": "1",
+									"description": "required|boolean",
 									"type": "text"
 								},
 								{
 									"key": "can_be_applied_until",
 									"value": "2022-12-30 12:20:21",
+									"description": "nullable|date_format:Y-m-d H:i:s",
 									"type": "text"
 								}
 							]
@@ -1174,11 +1307,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Authorization",
-								"value": "Bearer {{JWT}}",
 								"type": "text"
 							}
 						],
@@ -1289,6 +1417,7 @@
 								{
 									"key": "name",
 									"value": "{{$randomCity}}",
+									"description": "required|string|min:2|max:50|unique:cities,name",
 									"type": "text"
 								}
 							]
@@ -1508,6 +1637,7 @@
 								{
 									"key": "name",
 									"value": "{{$randomJobTitle}}",
+									"description": "required|string|min:5|max:250'|unique:university_departments,name",
 									"type": "text"
 								}
 							]
@@ -1568,6 +1698,7 @@
 								{
 									"key": "name",
 									"value": "{{$randomJobArea}}",
+									"description": "required|string|min:5|max:250|unique:university_faculties,name",
 									"type": "text"
 								}
 							]
@@ -1627,6 +1758,7 @@
 								{
 									"key": "name",
 									"value": "{{$randomCity}} Üniversitesi",
+									"description": "required|string|min:5|max:250|unique:universities",
 									"type": "text"
 								}
 							]
