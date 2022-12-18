@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\User;
+use App\Models\UserCourse;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -206,5 +208,45 @@ class UserController extends Controller
         $user->save();
 
         return response()->json(['message' => 'Telefon numaranız başarılı şekilde doğrulandı.']);
+    }
+
+    /**
+     * @param  Request  $request
+     * @return JsonResponse
+     */
+    public function saveCourse(Request $request): JsonResponse
+    {
+        $request->validate([
+            'type' => 'required|string|in:whatshafiz,whatsenglish,whatsarapp',
+            'is_teacher' => 'required|boolean',
+        ]);
+
+        $user = Auth::user();
+        $course = Course::where('type', $request->type)->available()->first();
+
+        if (!$course) {
+            return response()->json(
+                ['message' => "Şuan {$request->type} için başvuruya açık dönem bulunmuyor."],
+                Response::HTTP_BAD_REQUEST
+            );
+        }
+
+        if ($user->courses()->where('course_id', $course->id)->exists()) {
+            return response()->json(
+                ['message' => 'Daha önceden başvuru yapmışsınız.'],
+                Response::HTTP_BAD_REQUEST
+            );
+        }
+
+        $user->courses()->attach(
+            $course->id,
+            [
+                'type' => $course->type,
+                'is_teacher' => $request->is_teacher,
+                'applied_at' => Carbon::now(), 
+            ]
+        );
+
+        return response()->json(['message' => 'Kaydınız başaralı şekilde oluşturuldu.']);
     }
 }
