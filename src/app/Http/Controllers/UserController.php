@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\User;
-use App\Models\UserCourse;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -243,7 +242,7 @@ class UserController extends Controller
             [
                 'type' => $course->type,
                 'is_teacher' => $request->is_teacher,
-                'applied_at' => Carbon::now(), 
+                'applied_at' => Carbon::now(),
             ]
         );
 
