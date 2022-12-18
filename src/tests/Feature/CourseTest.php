@@ -72,6 +72,21 @@ class CourseTest extends BaseFeatureTest
     }
 
     /** @test */
+    public function it_should_get_available_courses_list()
+    {
+        Course::query()->update(['can_be_applied' => false]);
+        $availableCourses = Course::factory()->available()->count(2, 5)->create();
+
+        $response = $this->json('GET', $this->uri . '/available');
+
+        $response->assertOk();
+
+        foreach ($availableCourses as $availableCourse) {
+            $response->assertJsonFragment($availableCourse->only('id', 'type', 'name', 'can_be_applied_until'));
+        }
+    }
+
+    /** @test */
     public function it_should_not_create_course_when_does_not_have_permission()
     {
         $user = User::factory()->create();
