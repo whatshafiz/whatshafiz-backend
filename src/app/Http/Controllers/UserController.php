@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\PasswordReset;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
@@ -247,5 +248,73 @@ class UserController extends Controller
         );
 
         return response()->json(['message' => 'Kaydınız başarılı şekilde oluşturuldu.']);
+    }
+
+    /**
+     * @param  Request  $request
+     * @return JsonResponse
+     */
+    public function forgotPassword(Request $request): JsonResponse
+    {
+        $request->validate(['phone_number' => 'required|string|min:7|max:30|exists:users,phone_number']);
+
+        $user = User::where('phone_number', $request->phone_number)->first();
+
+        if ($user->passwordResetCode()->valid()->exists()) {
+            return response()->json(
+                ['message' => PasswordReset::TOKEN_LIFETIME_IN_MINUTE . ' dakika içinde bir kere kod isteyebilirsiniz'],
+                Response::HTTP_BAD_REQUEST
+            );
+        }
+
+        $passwordResetCode = random_int(100000, 999999);
+        $passwordResetCodeCreatedAt = Carbon::now();
+        PasswordReset::updateOrCreate(
+            [
+            'phone_number' => $user->phone_number],
+            ['token' => Hash::make($passwordResetCode), 'created_at' => $passwordResetCodeCreatedAt]
+        );
+
+        Queue::connection('messenger-sqs')
+            ->pushRaw(json_encode([
+                'phone' => $user->phone_number,
+                'text' => $passwordResetCode . ' doğrulama kodunu kullanarak parolanızı değiştirebilirsiniz.',
+            ]));
+
+        return response()->json([
+            'message' => 'Doğrulama kodu whatsapp ile telefonunuza gönderildi.',
+            'password_reset_code_valid_until' =>
+                $passwordResetCodeCreatedAt->addMinutes(PasswordReset::TOKEN_LIFETIME_IN_MINUTE)->format('d-m-Y H:i:s'),
+        ]);
+    }
+
+    /**
+     * @param  Request  $request
+     * @return JsonResponse
+     */
+    public function updatePassword(Request $request): JsonResponse
+    {
+        $request->validate([
+            'phone_number' => 'required|string|min:7|max:30|exists:users,phone_number',
+            'verification_code' => 'required|integer',
+            'password' => 'required|string|min:5|confirmed',
+        ]);
+
+        $user = User::where('phone_number', $request->phone_number)->first();
+        $passwordResetCode = $user->passwordResetCode()->valid()->first();
+
+        if (!$passwordResetCode || !Hash::check($request->verification_code, $passwordResetCode->token)) {
+            return response()->json(
+                ['message' => 'Kod hatalı veya süresi dolmuş, lütfen tekrar deneyin.'],
+                Response::HTTP_BAD_REQUEST
+            );
+        }
+
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return response()->json([
+            'message' => 'Parolanız başarılı bir şekilde değiştirildi.Yeni parolanızı kullanarak giriş yapabilirsiniz.',
+        ]);
     }
 }

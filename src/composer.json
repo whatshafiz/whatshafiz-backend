@@ -7,6 +7,7 @@
     "require": {
         "php": "^8.0.2",
         "aws/aws-sdk-php": "^3.240",
+        "doctrine/dbal": "^3.5",
         "friendsofphp/php-cs-fixer": "^3.12",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.19",
