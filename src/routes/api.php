@@ -14,6 +14,8 @@ Route::get('countries', [CountryController::class, 'index']);
 Route::post('users/check', [UserController::class, 'check']);
 Route::post('register', [UserController::class, 'register'])->name('register');
 Route::post('login', [UserController::class, 'login'])->name('login');
+Route::post('forgot-password', [UserController::class, 'forgotPassword']);
+Route::post('update-password', [UserController::class, 'updatePassword']);
 
 Route::get('regulations/{regulation:slug}', [RegulationController::class, 'show']);
 Route::get('courses/available', [CourseController::class, 'indexAvailableCourses']);

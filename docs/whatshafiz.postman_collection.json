@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "Check/Login/Register",
+			"name": "Check/Login/Register/ForgotPassword",
 			"item": [
 				{
 					"name": "Check",
@@ -544,6 +544,127 @@
 								"register",
 								"verification-code",
 								"verify"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "VERIFY ForgotPass Send Code",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"message\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "phone_number",
+									"value": "{{PHONE_NUMBER}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/forgot-password",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "VERIFY ForgotPass Update Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"message\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "phone_number",
+									"value": "{{PHONE_NUMBER}}",
+									"type": "text"
+								},
+								{
+									"key": "verification_code",
+									"value": "123456",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{PASSWORD}}",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "{{PASSWORD}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/update-password",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"update-password"
 							]
 						}
 					},
