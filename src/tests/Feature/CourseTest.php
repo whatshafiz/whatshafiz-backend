@@ -4,6 +4,8 @@ namespace Tests\Feature;
 
 use App\Models\Course;
 use App\Models\User;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\BaseFeatureTest;
 
@@ -68,6 +70,108 @@ class CourseTest extends BaseFeatureTest
 
         foreach ($courses as $course) {
             $response->assertJsonFragment($course->toArray());
+        }
+    }
+
+    /** @test */
+    public function it_should_get_courses_list_when_has_permission_by_filtering_type()
+    {
+        $allTypes = collect(['whatshafiz', 'whatsenglish', 'whatsarapp']);
+        $filterType = $allTypes->random();
+        $filteredCourses = Course::factory()->count(2, 5)->create(['type' => $filterType]);
+        $otherCourses = Course::factory()
+            ->count(2, 5)
+            ->create(['type' => $allTypes->filter(fn($type) => $type !== $filterType)->random()]);
+        $user = User::factory()->create();
+        $user->givePermissionTo('courses.list');
+
+        $response = $this->actingAs($user)->json('GET', $this->uri, ['type' => $filterType]);
+
+        $response->assertOk();
+
+        foreach ($filteredCourses as $filteredCourse) {
+            $response->assertJsonFragment($filteredCourse->toArray());
+        }
+
+        foreach ($otherCourses as $otherCourse) {
+            $response->assertJsonMissing($otherCourse->toArray(), true);
+        }
+    }
+
+    /** @test */
+    public function it_should_get_courses_list_when_has_permission_by_searching_name()
+    {
+        $searchKey = Str::random(rand(7, 15));
+
+        $filteredCourses = collect();
+        $filteredCourses->push(Course::factory()->create(['name' => $searchKey]));
+        $filteredCourses->push(Course::factory()->create(['name' => Str::random(rand(1, 5)) . $searchKey]));
+        $filteredCourses->push(Course::factory()->create(['name' => $searchKey . Str::random(rand(1, 5))]));
+        $filteredCourses->push(
+            Course::factory()->create(['name' => Str::random(rand(1, 5)) . $searchKey . Str::random(rand(1, 5))])
+        );
+        $otherCourses = Course::factory()->count(2, 5)->create();
+        $user = User::factory()->create();
+        $user->givePermissionTo('courses.list');
+
+        $response = $this->actingAs($user)->json('GET', $this->uri, ['name' => $searchKey]);
+
+        $response->assertOk();
+
+        foreach ($filteredCourses as $filteredCourse) {
+            $response->assertJsonFragment($filteredCourse->toArray());
+        }
+
+        foreach ($otherCourses as $otherCourse) {
+            $response->assertJsonMissing($otherCourse->toArray(), true);
+        }
+    }
+
+    /** @test */
+    public function it_should_get_courses_list_when_has_permission_by_filtering_activity_status()
+    {
+        $isActive = $this->faker->boolean;
+        $filteredCourses = Course::factory()->count(2, 5)->create(['is_active' => $isActive]);
+        $otherCourses = Course::factory()->count(2, 5)->create(['is_active' => !$isActive]);
+        $user = User::factory()->create();
+        $user->givePermissionTo('courses.list');
+
+        $response = $this->actingAs($user)->json('GET', $this->uri, ['is_active' => $isActive]);
+
+        $response->assertOk();
+
+        foreach ($filteredCourses as $filteredCourse) {
+            $response->assertJsonFragment($filteredCourse->toArray());
+        }
+
+        foreach ($otherCourses as $otherCourse) {
+            $response->assertJsonMissing($otherCourse->toArray(), true);
+        }
+    }
+
+    /** @test */
+    public function it_should_get_courses_list_when_has_permission_by_filtering_application_status()
+    {
+        $canBeApplied = $this->faker->boolean;
+        $filteredCourses = $canBeApplied ?
+            Course::factory()->count(2, 5)->available()->create() :
+            Course::factory()->count(2, 5)->unavailable()->create();
+        $otherCourses = $canBeApplied ?
+            Course::factory()->count(2, 5)->unavailable()->create() :
+            Course::factory()->count(2, 5)->available()->create();
+        $user = User::factory()->create();
+        $user->givePermissionTo('courses.list');
+
+        $response = $this->actingAs($user)->json('GET', $this->uri, ['can_be_applied' => $canBeApplied]);
+
+        $response->assertOk();
+
+        foreach ($filteredCourses as $filteredCourse) {
+            $response->assertJsonFragment($filteredCourse->toArray());
+        }
+
+        foreach ($otherCourses as $otherCourse) {
+            $response->assertJsonMissing($otherCourse->toArray(), true);
         }
     }
 
