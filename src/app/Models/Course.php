@@ -29,6 +29,15 @@ class Course extends BaseModel
     }
 
     /**
+     * @param  Builder  $query
+     * @return Builder
+     */
+    public function scopeActive(Builder $query): Builder
+    {
+        return $query->where('is_active', true);
+    }
+
+    /**
      * @return BelongsToMany
      */
     public function users(): BelongsToMany

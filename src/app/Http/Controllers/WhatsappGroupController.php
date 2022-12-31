@@ -18,7 +18,7 @@ class WhatsappGroupController extends Controller
     {
         $this->authorize('viewAny', WhatsappGroup::class);
 
-        return response()->json(WhatsappGroup::latest()->paginate()->toArray());
+        return response()->json(WhatsappGroup::latest()->with('course')->paginate()->toArray());
     }
 
     /**

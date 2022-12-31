@@ -82,7 +82,8 @@ class WhatsappGroupTest extends BaseFeatureTest
         $response->assertOk();
 
         foreach ($whatsappGroups as $whatsappGroup) {
-            $response->assertJsonFragment($whatsappGroup->toArray());
+            $response->assertJsonFragment($whatsappGroup->toArray())
+                ->assertJsonFragment($whatsappGroup->course->toArray());
         }
     }
 

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -17,6 +18,14 @@ class WhatsappGroup extends BaseModel
         'updated_at' => 'datetime:d-m-Y H:i',
         'deleted_at' => 'datetime:d-m-Y H:i',
     ];
+
+    /**
+     * @return BelongsTo
+     */
+    public function course(): BelongsTo
+    {
+        return $this->belongsTo(Course::class);
+    }
 
     /**
      * @return HasMany

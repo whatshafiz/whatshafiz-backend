@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Queue;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
@@ -238,6 +239,13 @@ class UserController extends Controller
             );
         }
 
+        if ($user->courses()->active()->where('courses.type', $course->type)->exists()) {
+            return response()->json(
+                ['message' => 'Daha önceden başvuru yapmışsınız.'],
+                Response::HTTP_BAD_REQUEST
+            );
+        }
+
         $user->courses()->attach(
             $course->id,
             [
@@ -246,6 +254,12 @@ class UserController extends Controller
                 'applied_at' => Carbon::now(),
             ]
         );
+
+        if ($course->type === 'whatshafiz') {
+            $user->assignRole($request->is_teacher ? 'HafızKal' : 'HafızOl');
+        } else {
+            $user->assignRole(Str::ucfirst($course->type));
+        }
 
         return response()->json(['message' => 'Kaydınız başarılı şekilde oluşturuldu.']);
     }
