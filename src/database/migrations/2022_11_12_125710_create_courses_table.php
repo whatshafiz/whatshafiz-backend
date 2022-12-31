@@ -20,6 +20,7 @@ return new class extends Migration
             $table->boolean('is_active')->default(false);
             $table->boolean('can_be_applied')->default(false);
             $table->datetime('can_be_applied_until')->nullable();
+            $table->datetime('start_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
