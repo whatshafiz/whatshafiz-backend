@@ -71,6 +71,8 @@ class RolesPermissionsSeeder extends Seeder
             'Grup Başkanı',
             'HafızOl',
             'HafızKal',
+            'Whatsarapp',
+            'Whatsenglish',
         ];
 
         Role::create(['name' => 'Admin']);
@@ -96,5 +98,7 @@ class RolesPermissionsSeeder extends Seeder
             ]);
         Role::create(['name' => 'HafızOl']);
         Role::create(['name' => 'HafızKal']);
+        Role::create(['name' => 'Whatsarapp']);
+        Role::create(['name' => 'Whatsenglish']);
     }
 }

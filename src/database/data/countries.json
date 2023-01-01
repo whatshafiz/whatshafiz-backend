@@ -6,22 +6,22 @@
    },
    {
       "iso":"AF",
-      "name":"Afghanistan",
+      "name":"Afganistan",
       "phone_code":"93"
    },
    {
       "iso":"AL",
-      "name":"Albania",
+      "name":"Arnavutluk",
       "phone_code":"355"
    },
    {
       "iso":"DZ",
-      "name":"Algeria",
+      "name":"Cezayir",
       "phone_code":"213"
    },
    {
       "iso":"AS",
-      "name":"American Samoa",
+      "name":"Amerikan Samoası",
       "phone_code":"1684"
    },
    {
@@ -41,22 +41,22 @@
    },
    {
       "iso":"AQ",
-      "name":"Antarctica",
+      "name":"Antarktika",
       "phone_code":"0"
    },
    {
       "iso":"AG",
-      "name":"Antigua And Barbuda",
+      "name":"Antigua ve Barbuda",
       "phone_code":"1268"
    },
    {
       "iso":"AR",
-      "name":"Argentina",
+      "name":"Arjantin",
       "phone_code":"54"
    },
    {
       "iso":"AM",
-      "name":"Armenia",
+      "name":"Ermenistan",
       "phone_code":"374"
    },
    {
@@ -66,32 +66,32 @@
    },
    {
       "iso":"AU",
-      "name":"Australia",
+      "name":"Avustralya",
       "phone_code":"61"
    },
    {
       "iso":"AT",
-      "name":"Austria",
+      "name":"Avusturya",
       "phone_code":"43"
    },
    {
       "iso":"AZ",
-      "name":"Azerbaijan",
+      "name":"Azerbaycan",
       "phone_code":"994"
    },
    {
       "iso":"BS",
-      "name":"Bahamas The",
+      "name":"Bahamalar",
       "phone_code":"1242"
    },
    {
       "iso":"BH",
-      "name":"Bahrain",
+      "name":"Bahreyn",
       "phone_code":"973"
    },
    {
       "iso":"BD",
-      "name":"Bangladesh",
+      "name":"Bangladeş",
       "phone_code":"880"
    },
    {
@@ -106,7 +106,7 @@
    },
    {
       "iso":"BE",
-      "name":"Belgium",
+      "name":"Belçika",
       "phone_code":"32"
    },
    {
@@ -126,37 +126,37 @@
    },
    {
       "iso":"BT",
-      "name":"Bhutan",
+      "name":"Butan",
       "phone_code":"975"
    },
    {
       "iso":"BO",
-      "name":"Bolivia",
+      "name":"Bolivya",
       "phone_code":"591"
    },
    {
       "iso":"BA",
-      "name":"Bosnia and Herzegovina",
+      "name":"Bosna Hersek",
       "phone_code":"387"
    },
    {
       "iso":"BW",
-      "name":"Botswana",
+      "name":"Botsvana",
       "phone_code":"267"
    },
    {
       "iso":"BV",
-      "name":"Bouvet Island",
+      "name":"Bouvet Adası",
       "phone_code":"0"
    },
    {
       "iso":"BR",
-      "name":"Brazil",
+      "name":"Brezilya",
       "phone_code":"55"
    },
    {
       "iso":"IO",
-      "name":"British Indian Ocean Territory",
+      "name":"Britanya Hint Okyanusu Bölgesi",
       "phone_code":"246"
    },
    {
@@ -166,7 +166,7 @@
    },
    {
       "iso":"BG",
-      "name":"Bulgaria",
+      "name":"Bulgaristan",
       "phone_code":"359"
    },
    {
@@ -181,147 +181,147 @@
    },
    {
       "iso":"KH",
-      "name":"Cambodia",
+      "name":"Kamboçya",
       "phone_code":"855"
    },
    {
       "iso":"CM",
-      "name":"Cameroon",
+      "name":"Kamerun",
       "phone_code":"237"
    },
    {
       "iso":"CA",
-      "name":"Canada",
+      "name":"Kanada",
       "phone_code":"1"
    },
    {
       "iso":"CV",
-      "name":"Cape Verde",
+      "name":"Yeşil Burun",
       "phone_code":"238"
    },
    {
       "iso":"KY",
-      "name":"Cayman Islands",
+      "name":"Cayman Adaları",
       "phone_code":"1345"
    },
    {
       "iso":"CF",
-      "name":"Central African Republic",
+      "name":"Orta Afrika Cumhuriyeti",
       "phone_code":"236"
    },
    {
       "iso":"TD",
-      "name":"Chad",
+      "name":"Çad",
       "phone_code":"235"
    },
    {
       "iso":"CL",
-      "name":"Chile",
+      "name":"Şili",
       "phone_code":"56"
    },
    {
       "iso":"CN",
-      "name":"China",
+      "name":"Çin",
       "phone_code":"86"
    },
    {
       "iso":"CX",
-      "name":"Christmas Island",
+      "name":"Noel Adası",
       "phone_code":"61"
    },
    {
       "iso":"CC",
-      "name":"Cocos (Keeling) Islands",
+      "name":"Cocos (Keeling) Adaları",
       "phone_code":"672"
    },
    {
       "iso":"CO",
-      "name":"Colombia",
+      "name":"Kolombiya",
       "phone_code":"57"
    },
    {
       "iso":"KM",
-      "name":"Comoros",
+      "name":"Komorlar",
       "phone_code":"269"
    },
    {
       "iso":"CG",
-      "name":"Republic Of The Congo",
+      "name":"Kongo Cumhuriyeti",
       "phone_code":"242"
    },
    {
       "iso":"CD",
-      "name":"Democratic Republic Of The Congo",
+      "name":"Kongo Demokratik Cumhuriyeti",
       "phone_code":"242"
    },
    {
       "iso":"CK",
-      "name":"Cook Islands",
+      "name":"Cook Adaları",
       "phone_code":"682"
    },
    {
       "iso":"CR",
-      "name":"Costa Rica",
+      "name":"Kosta Rika",
       "phone_code":"506"
    },
    {
       "iso":"CI",
-      "name":"Cote D\\'Ivoire (Ivory Coast)",
+      "name":"Fildişi Sahili (Fildişi Sahili)",
       "phone_code":"225"
    },
    {
       "iso":"HR",
-      "name":"Croatia (Hrvatska)",
+      "name":"Hırvatistan (Hrvatska)",
       "phone_code":"385"
    },
    {
       "iso":"CU",
-      "name":"Cuba",
+      "name":"Küba",
       "phone_code":"53"
    },
    {
       "iso":"CY",
-      "name":"Cyprus",
+      "name":"Kıbrıs",
       "phone_code":"357"
    },
    {
       "iso":"CZ",
-      "name":"Czech Republic",
+      "name":"Çek Cumhuriyeti",
       "phone_code":"420"
    },
    {
       "iso":"DK",
-      "name":"Denmark",
+      "name":"Danimarka",
       "phone_code":"45"
    },
    {
       "iso":"DJ",
-      "name":"Djibouti",
+      "name":"Cibuti",
       "phone_code":"253"
    },
    {
       "iso":"DM",
-      "name":"Dominica",
+      "name":"Dominika",
       "phone_code":"1767"
    },
    {
       "iso":"DO",
-      "name":"Dominican Republic",
+      "name":"Dominik Cumhuriyeti",
       "phone_code":"1809"
    },
    {
       "iso":"TP",
-      "name":"East Timor",
+      "name":"Doğu Timor",
       "phone_code":"670"
    },
    {
       "iso":"EC",
-      "name":"Ecuador",
+      "name":"Ekvador",
       "phone_code":"593"
    },
    {
       "iso":"EG",
-      "name":"Egypt",
+      "name":"Mısır",
       "phone_code":"20"
    },
    {
@@ -331,67 +331,67 @@
    },
    {
       "iso":"GQ",
-      "name":"Equatorial Guinea",
+      "name":"Ekvator Ginesi",
       "phone_code":"240"
    },
    {
       "iso":"ER",
-      "name":"Eritrea",
+      "name":"Eritre",
       "phone_code":"291"
    },
    {
       "iso":"EE",
-      "name":"Estonia",
+      "name":"Estonya",
       "phone_code":"372"
    },
    {
       "iso":"ET",
-      "name":"Ethiopia",
+      "name":"Etiyopya",
       "phone_code":"251"
    },
    {
       "iso":"XA",
-      "name":"External Territories of Australia",
+      "name":"Avustralya Dış Bölgeleri",
       "phone_code":"61"
    },
    {
       "iso":"FK",
-      "name":"Falkland Islands",
+      "name":"Falkland adaları",
       "phone_code":"500"
    },
    {
       "iso":"FO",
-      "name":"Faroe Islands",
+      "name":"Faroe Adaları",
       "phone_code":"298"
    },
    {
       "iso":"FJ",
-      "name":"Fiji Islands",
+      "name":"Fiji Adaları",
       "phone_code":"679"
    },
    {
       "iso":"FI",
-      "name":"Finland",
+      "name":"Finlandiya",
       "phone_code":"358"
    },
    {
       "iso":"FR",
-      "name":"France",
+      "name":"Fransa",
       "phone_code":"33"
    },
    {
       "iso":"GF",
-      "name":"French Guiana",
+      "name":"Fransız Guyanası",
       "phone_code":"594"
    },
    {
       "iso":"PF",
-      "name":"French Polynesia",
+      "name":"Fransız Polinezyası",
       "phone_code":"689"
    },
    {
       "iso":"TF",
-      "name":"French Southern Territories",
+      "name":"Fransız Güney Toprakları",
       "phone_code":"0"
    },
    {
@@ -401,37 +401,37 @@
    },
    {
       "iso":"GM",
-      "name":"Gambia The",
+      "name":"Gambiya",
       "phone_code":"220"
    },
    {
       "iso":"GE",
-      "name":"Georgia",
+      "name":"Gürcistan",
       "phone_code":"995"
    },
    {
       "iso":"DE",
-      "name":"Germany",
+      "name":"Almanya",
       "phone_code":"49"
    },
    {
       "iso":"GH",
-      "name":"Ghana",
+      "name":"Gana",
       "phone_code":"233"
    },
    {
       "iso":"GI",
-      "name":"Gibraltar",
+      "name":"Cebelitarık",
       "phone_code":"350"
    },
    {
       "iso":"GR",
-      "name":"Greece",
+      "name":"Yunanistan",
       "phone_code":"30"
    },
    {
       "iso":"GL",
-      "name":"Greenland",
+      "name":"Grönland",
       "phone_code":"299"
    },
    {
@@ -456,17 +456,17 @@
    },
    {
       "iso":"XU",
-      "name":"Guernsey and Alderney",
+      "name":"Guernsey ve Alderney",
       "phone_code":"44"
    },
    {
       "iso":"GN",
-      "name":"Guinea",
+      "name":"Gine",
       "phone_code":"224"
    },
    {
       "iso":"GW",
-      "name":"Guinea-Bissau",
+      "name":"Gine-Bissau",
       "phone_code":"245"
    },
    {
@@ -481,7 +481,7 @@
    },
    {
       "iso":"HM",
-      "name":"Heard and McDonald Islands",
+      "name":"Heard ve McDonald Adaları",
       "phone_code":"0"
    },
    {
@@ -491,62 +491,62 @@
    },
    {
       "iso":"HK",
-      "name":"Hong Kong S.A.R.",
+      "name":"Hong Kong ÖİB",
       "phone_code":"852"
    },
    {
       "iso":"HU",
-      "name":"Hungary",
+      "name":"Macaristan",
       "phone_code":"36"
    },
    {
       "iso":"IS",
-      "name":"Iceland",
+      "name":"İzlanda",
       "phone_code":"354"
    },
    {
       "iso":"IN",
-      "name":"India",
+      "name":"Hindistan",
       "phone_code":"91"
    },
    {
       "iso":"ID",
-      "name":"Indonesia",
+      "name":"Endonezya",
       "phone_code":"62"
    },
    {
       "iso":"IR",
-      "name":"Iran",
+      "name":"İran",
       "phone_code":"98"
    },
    {
       "iso":"IQ",
-      "name":"Iraq",
+      "name":"Irak",
       "phone_code":"964"
    },
    {
       "iso":"IE",
-      "name":"Ireland",
+      "name":"İrlanda",
       "phone_code":"353"
    },
    {
       "iso":"IL",
-      "name":"Israel",
+      "name":"İsrail",
       "phone_code":"972"
    },
    {
       "iso":"IT",
-      "name":"Italy",
+      "name":"İtalya",
       "phone_code":"39"
    },
    {
       "iso":"JM",
-      "name":"Jamaica",
+      "name":"Jamaika",
       "phone_code":"1876"
    },
    {
       "iso":"JP",
-      "name":"Japan",
+      "name":"Japonya",
       "phone_code":"81"
    },
    {
@@ -556,12 +556,12 @@
    },
    {
       "iso":"JO",
-      "name":"Jordan",
+      "name":"Ürdün",
       "phone_code":"962"
    },
    {
       "iso":"KZ",
-      "name":"Kazakhstan",
+      "name":"Kazakistan",
       "phone_code":"7"
    },
    {
@@ -576,22 +576,22 @@
    },
    {
       "iso":"KP",
-      "name":"Korea North",
+      "name":"Kore Kuzey",
       "phone_code":"850"
    },
    {
       "iso":"KR",
-      "name":"Korea South",
+      "name":"Güney Kore",
       "phone_code":"82"
    },
    {
       "iso":"KW",
-      "name":"Kuwait",
+      "name":"Kuveyt",
       "phone_code":"965"
    },
    {
       "iso":"KG",
-      "name":"Kyrgyzstan",
+      "name":"Kırgızistan",
       "phone_code":"996"
    },
    {
@@ -601,22 +601,22 @@
    },
    {
       "iso":"LV",
-      "name":"Latvia",
+      "name":"Letonya",
       "phone_code":"371"
    },
    {
       "iso":"LB",
-      "name":"Lebanon",
+      "name":"Lübnan",
       "phone_code":"961"
    },
    {
       "iso":"LS",
-      "name":"Lesotho",
+      "name":"Lesoto",
       "phone_code":"266"
    },
    {
       "iso":"LR",
-      "name":"Liberia",
+      "name":"Liberya",
       "phone_code":"231"
    },
    {
@@ -626,32 +626,32 @@
    },
    {
       "iso":"LI",
-      "name":"Liechtenstein",
+      "name":"Lihtenştayn",
       "phone_code":"423"
    },
    {
       "iso":"LT",
-      "name":"Lithuania",
+      "name":"Litvanya",
       "phone_code":"370"
    },
    {
       "iso":"LU",
-      "name":"Luxembourg",
+      "name":"Lüksemburg",
       "phone_code":"352"
    },
    {
       "iso":"MO",
-      "name":"Macau S.A.R.",
+      "name":"Makao S.A.R.",
       "phone_code":"853"
    },
    {
       "iso":"MK",
-      "name":"Macedonia",
+      "name":"Makedonya",
       "phone_code":"389"
    },
    {
       "iso":"MG",
-      "name":"Madagascar",
+      "name":"Madagaskar",
       "phone_code":"261"
    },
    {
@@ -661,12 +661,12 @@
    },
    {
       "iso":"MY",
-      "name":"Malaysia",
+      "name":"Malezya",
       "phone_code":"60"
    },
    {
       "iso":"MV",
-      "name":"Maldives",
+      "name":"Maldivler",
       "phone_code":"960"
    },
    {
@@ -681,22 +681,22 @@
    },
    {
       "iso":"XM",
-      "name":"Man (Isle of)",
+      "name":"Adam (Ada)",
       "phone_code":"44"
    },
    {
       "iso":"MH",
-      "name":"Marshall Islands",
+      "name":"Marşal Adaları",
       "phone_code":"692"
    },
    {
       "iso":"MQ",
-      "name":"Martinique",
+      "name":"Martinik",
       "phone_code":"596"
    },
    {
       "iso":"MR",
-      "name":"Mauritania",
+      "name":"Moritanya",
       "phone_code":"222"
    },
    {
@@ -706,17 +706,17 @@
    },
    {
       "iso":"YT",
-      "name":"Mayotte",
+      "name":"mayot",
       "phone_code":"269"
    },
    {
       "iso":"MX",
-      "name":"Mexico",
+      "name":"Meksika",
       "phone_code":"52"
    },
    {
       "iso":"FM",
-      "name":"Micronesia",
+      "name":"Mikronezya",
       "phone_code":"691"
    },
    {
@@ -726,12 +726,12 @@
    },
    {
       "iso":"MC",
-      "name":"Monaco",
+      "name":"Monako",
       "phone_code":"377"
    },
    {
       "iso":"MN",
-      "name":"Mongolia",
+      "name":"Moğolistan",
       "phone_code":"976"
    },
    {
@@ -741,12 +741,12 @@
    },
    {
       "iso":"MA",
-      "name":"Morocco",
+      "name":"Fas",
       "phone_code":"212"
    },
    {
       "iso":"MZ",
-      "name":"Mozambique",
+      "name":"Mozambik",
       "phone_code":"258"
    },
    {
@@ -756,7 +756,7 @@
    },
    {
       "iso":"NA",
-      "name":"Namibia",
+      "name":"Namibya",
       "phone_code":"264"
    },
    {
@@ -771,37 +771,37 @@
    },
    {
       "iso":"AN",
-      "name":"Netherlands Antilles",
+      "name":"Hollanda Antilleri",
       "phone_code":"599"
    },
    {
       "iso":"NL",
-      "name":"Netherlands The",
+      "name":"Hollanda",
       "phone_code":"31"
    },
    {
       "iso":"NC",
-      "name":"New Caledonia",
+      "name":"Yeni Kaledonya",
       "phone_code":"687"
    },
    {
       "iso":"NZ",
-      "name":"New Zealand",
+      "name":"Yeni Zelanda",
       "phone_code":"64"
    },
    {
       "iso":"NI",
-      "name":"Nicaragua",
+      "name":"Nikaragua",
       "phone_code":"505"
    },
    {
       "iso":"NE",
-      "name":"Niger",
+      "name":"Nijer",
       "phone_code":"227"
    },
    {
       "iso":"NG",
-      "name":"Nigeria",
+      "name":"Nijerya",
       "phone_code":"234"
    },
    {
@@ -811,22 +811,22 @@
    },
    {
       "iso":"NF",
-      "name":"Norfolk Island",
+      "name":"Norfolk Adası",
       "phone_code":"672"
    },
    {
       "iso":"MP",
-      "name":"Northern Mariana Islands",
+      "name":"Kuzey Mariana Adaları",
       "phone_code":"1670"
    },
    {
       "iso":"NO",
-      "name":"Norway",
+      "name":"Norveç",
       "phone_code":"47"
    },
    {
       "iso":"OM",
-      "name":"Oman",
+      "name":"Umman",
       "phone_code":"968"
    },
    {
@@ -836,12 +836,12 @@
    },
    {
       "iso":"PW",
-      "name":"Palau",
+      "name":"palau",
       "phone_code":"680"
    },
    {
       "iso":"PS",
-      "name":"Palestinian Territory Occupied",
+      "name":"Filistin Arazisi, İşgal altında",
       "phone_code":"970"
    },
    {
@@ -851,7 +851,7 @@
    },
    {
       "iso":"PG",
-      "name":"Papua new Guinea",
+      "name":"Papua Yeni Gine",
       "phone_code":"675"
    },
    {
@@ -866,77 +866,77 @@
    },
    {
       "iso":"PH",
-      "name":"Philippines",
+      "name":"Filipinler",
       "phone_code":"63"
    },
    {
       "iso":"PN",
-      "name":"Pitcairn Island",
+      "name":"Pitcairn Adası",
       "phone_code":"0"
    },
    {
       "iso":"PL",
-      "name":"Poland",
+      "name":"Polonya",
       "phone_code":"48"
    },
    {
       "iso":"PT",
-      "name":"Portugal",
+      "name":"Portekiz",
       "phone_code":"351"
    },
    {
       "iso":"PR",
-      "name":"Puerto Rico",
+      "name":"Porto Riko",
       "phone_code":"1787"
    },
    {
       "iso":"QA",
-      "name":"Qatar",
+      "name":"Katar",
       "phone_code":"974"
    },
    {
       "iso":"RE",
-      "name":"Reunion",
+      "name":"birleşme",
       "phone_code":"262"
    },
    {
       "iso":"RO",
-      "name":"Romania",
+      "name":"Romanya",
       "phone_code":"40"
    },
    {
       "iso":"RU",
-      "name":"Russia",
+      "name":"Rusya",
       "phone_code":"70"
    },
    {
       "iso":"RW",
-      "name":"Rwanda",
+      "name":"Ruanda",
       "phone_code":"250"
    },
    {
       "iso":"SH",
-      "name":"Saint Helena",
+      "name":"Aziz Helena",
       "phone_code":"290"
    },
    {
       "iso":"KN",
-      "name":"Saint Kitts And Nevis",
+      "name":"Saint Kitts ve Nevis",
       "phone_code":"1869"
    },
    {
       "iso":"LC",
-      "name":"Saint Lucia",
+      "name":"Aziz Lucia",
       "phone_code":"1758"
    },
    {
       "iso":"PM",
-      "name":"Saint Pierre and Miquelon",
+      "name":"Saint Pierre ve Miquelon",
       "phone_code":"508"
    },
    {
       "iso":"VC",
-      "name":"Saint Vincent And The Grenadines",
+      "name":"Saint Vincent ve Grenadinler",
       "phone_code":"1784"
    },
    {
@@ -951,12 +951,12 @@
    },
    {
       "iso":"ST",
-      "name":"Sao Tome and Principe",
+      "name":"Sao Tome ve Principe",
       "phone_code":"239"
    },
    {
       "iso":"SA",
-      "name":"Saudi Arabia",
+      "name":"Suudi Arabistan",
       "phone_code":"966"
    },
    {
@@ -966,12 +966,12 @@
    },
    {
       "iso":"RS",
-      "name":"Serbia",
+      "name":"Sırbistan",
       "phone_code":"381"
    },
    {
       "iso":"SC",
-      "name":"Seychelles",
+      "name":"Seyşeller",
       "phone_code":"248"
    },
    {
@@ -981,52 +981,52 @@
    },
    {
       "iso":"SG",
-      "name":"Singapore",
+      "name":"Singapur",
       "phone_code":"65"
    },
    {
       "iso":"SK",
-      "name":"Slovakia",
+      "name":"Slovakya",
       "phone_code":"421"
    },
    {
       "iso":"SI",
-      "name":"Slovenia",
+      "name":"Slovenya",
       "phone_code":"386"
    },
    {
       "iso":"XG",
-      "name":"Smaller Territories of the UK",
+      "name":"Birleşik Krallık'ın Küçük Bölgeleri",
       "phone_code":"44"
    },
    {
       "iso":"SB",
-      "name":"Solomon Islands",
+      "name":"Solomon Adaları",
       "phone_code":"677"
    },
    {
       "iso":"SO",
-      "name":"Somalia",
+      "name":"Somali",
       "phone_code":"252"
    },
    {
       "iso":"ZA",
-      "name":"South Africa",
+      "name":"Güney Afrika",
       "phone_code":"27"
    },
    {
       "iso":"GS",
-      "name":"South Georgia",
+      "name":"Güney Georgia",
       "phone_code":"0"
    },
    {
       "iso":"SS",
-      "name":"South Sudan",
+      "name":"Güney Sudan",
       "phone_code":"211"
    },
    {
       "iso":"ES",
-      "name":"Spain",
+      "name":"ispanya",
       "phone_code":"34"
    },
    {
@@ -1041,57 +1041,57 @@
    },
    {
       "iso":"SR",
-      "name":"Suriname",
+      "name":"Surinam",
       "phone_code":"597"
    },
    {
       "iso":"SJ",
-      "name":"Svalbard And Jan Mayen Islands",
+      "name":"Svalbard ve Jan Mayen Adaları",
       "phone_code":"47"
    },
    {
       "iso":"SZ",
-      "name":"Swaziland",
+      "name":"Svaziland",
       "phone_code":"268"
    },
    {
       "iso":"SE",
-      "name":"Sweden",
+      "name":"İsveç",
       "phone_code":"46"
    },
    {
       "iso":"CH",
-      "name":"Switzerland",
+      "name":"İsviçre",
       "phone_code":"41"
    },
    {
       "iso":"SY",
-      "name":"Syria",
+      "name":"Suriye",
       "phone_code":"963"
    },
    {
       "iso":"TW",
-      "name":"Taiwan",
+      "name":"Tayvan",
       "phone_code":"886"
    },
    {
       "iso":"TJ",
-      "name":"Tajikistan",
+      "name":"Tacikistan",
       "phone_code":"992"
    },
    {
       "iso":"TZ",
-      "name":"Tanzania",
+      "name":"Tanzanya",
       "phone_code":"255"
    },
    {
       "iso":"TH",
-      "name":"Thailand",
+      "name":"Tayland",
       "phone_code":"66"
    },
    {
       "iso":"TG",
-      "name":"Togo",
+      "name":"Gitmek",
       "phone_code":"228"
    },
    {
@@ -1106,22 +1106,22 @@
    },
    {
       "iso":"TT",
-      "name":"Trinidad And Tobago",
+      "name":"Trinidad ve Tobago",
       "phone_code":"1868"
    },
    {
       "iso":"TN",
-      "name":"Tunisia",
+      "name":"Tunus",
       "phone_code":"216"
    },
    {
       "iso":"TM",
-      "name":"Turkmenistan",
+      "name":"Türkmenistan",
       "phone_code":"7370"
    },
    {
       "iso":"TC",
-      "name":"Turks And Caicos Islands",
+      "name":"Turks ve Caicos Adaları",
       "phone_code":"1649"
    },
    {
@@ -1136,27 +1136,27 @@
    },
    {
       "iso":"UA",
-      "name":"Ukraine",
+      "name":"Ukrayna",
       "phone_code":"380"
    },
    {
       "iso":"AE",
-      "name":"United Arab Emirates",
+      "name":"Birleşik Arap Emirlikleri",
       "phone_code":"971"
    },
    {
       "iso":"GB",
-      "name":"United Kingdom",
+      "name":"Birleşik Krallık",
       "phone_code":"44"
    },
    {
       "iso":"US",
-      "name":"United States",
+      "name":"Amerika Birleşik Devletleri",
       "phone_code":"1"
    },
    {
       "iso":"UM",
-      "name":"United States Minor Outlying Islands",
+      "name":"Amerika Birleşik Devletleri Küçük Dış Adaları",
       "phone_code":"1"
    },
    {
@@ -1166,7 +1166,7 @@
    },
    {
       "iso":"UZ",
-      "name":"Uzbekistan",
+      "name":"Özbekistan",
       "phone_code":"998"
    },
    {
@@ -1176,7 +1176,7 @@
    },
    {
       "iso":"VA",
-      "name":"Vatican City State (Holy See)",
+      "name":"Vatikan Şehir Devleti (Vatikan)",
       "phone_code":"39"
    },
    {
@@ -1191,22 +1191,22 @@
    },
    {
       "iso":"VG",
-      "name":"Virgin Islands (British)",
+      "name":"Virgin Adaları (İngiliz)",
       "phone_code":"1284"
    },
    {
       "iso":"VI",
-      "name":"Virgin Islands (US)",
+      "name":"Virgin Adaları (ABD)",
       "phone_code":"1340"
    },
    {
       "iso":"WF",
-      "name":"Wallis And Futuna Islands",
+      "name":"Wallis ve Futuna Adaları",
       "phone_code":"681"
    },
    {
       "iso":"EH",
-      "name":"Western Sahara",
+      "name":"Batı Sahra",
       "phone_code":"212"
    },
    {
@@ -1216,17 +1216,17 @@
    },
    {
       "iso":"YU",
-      "name":"Yugoslavia",
+      "name":"Yugoslavya",
       "phone_code":"38"
    },
    {
       "iso":"ZM",
-      "name":"Zambia",
+      "name":"Zambiya",
       "phone_code":"260"
    },
    {
       "iso":"ZW",
-      "name":"Zimbabwe",
+      "name":"Zimbabve",
       "phone_code":"263"
    }
 ]

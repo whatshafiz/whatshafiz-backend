@@ -85,7 +85,7 @@ class ProfileTest extends BaseFeatureTest
     }
 
     /** @test */
-    public function it_should_not_save_user_course_application_when_user_already_applied_before()
+    public function it_should_not_save_user_course_application_when_user_already_applied_before_to_same_course()
     {
         $user = User::factory()->create();
         Course::query()->update(['can_be_applied' => false]);
@@ -94,6 +94,32 @@ class ProfileTest extends BaseFeatureTest
             'type' => $availableCourse->type,
             'user_id' => $user->id,
             'course_id' => $availableCourse->id
+        ]);
+
+        $response = $this->actingAs($user)
+            ->json(
+                'POST',
+                $this->uri . '/courses',
+                ['type' => $availableCourse->type, 'is_teacher' => $this->faker->boolean]
+            );
+
+        $response->assertStatus(Response::HTTP_BAD_REQUEST)
+            ->assertJsonFragment(['message' => 'Daha önceden başvuru yapmışsınız.']);
+    }
+
+    /** @test */
+    public function it_should_not_save_user_course_application_when_user_already_applied_before_to_same_type_course()
+    {
+        $user = User::factory()->create();
+        Course::query()->update(['can_be_applied' => false]);
+        $availableCourse = Course::factory()->available()->create();
+        $userExistingCourse = Course::factory()
+            ->available()
+            ->create(['type' => $availableCourse->type, 'is_active' => true]);
+        UserCourse::factory()->create([
+            'type' => $availableCourse->type,
+            'user_id' => $user->id,
+            'course_id' => $userExistingCourse->id
         ]);
 
         $response = $this->actingAs($user)
@@ -138,5 +164,13 @@ class ProfileTest extends BaseFeatureTest
                 'removed_at' => null,
             ]
         );
+
+        if ($availableCourse->type === 'whatshafiz') {
+            $userRole = $isTeacher ? 'HafızKal' : 'HafızOl';
+        } else {
+            $userRole = $availableCourse->type === 'whatsarapp' ? 'Whatsarapp' : 'Whatsenglish';
+        }
+
+        $this->assertTrue($user->hasRole($userRole));
     }
 }

@@ -12,13 +12,45 @@ use Symfony\Component\HttpFoundation\Response;
 class WhatsappGroupController extends Controller
 {
     /**
+     * @param  Request  $request
      * @return JsonResponse
      */
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
         $this->authorize('viewAny', WhatsappGroup::class);
 
-        return response()->json(WhatsappGroup::latest()->paginate()->toArray());
+        $requestData = $this->validate(
+            $request,
+            [
+                'course_id' => 'nullable|integer|min:0|exists:courses,id',
+                'type' => 'nullable|string|in:whatshafiz,whatsenglish,whatsarapp',
+                'name' => 'nullable|string|min:2|max:100',
+                'join_url' => 'nullable|string|min:2',
+                'is_active' => 'nullable|boolean',
+            ]
+        );
+
+        $whatsappGroups = WhatsappGroup::latest()
+            ->with('course')
+            ->when(isset($requestData['course_id']), function ($query) use ($requestData) {
+                return $query->where('course_id', $requestData['course_id']);
+            })
+            ->when(isset($requestData['type']), function ($query) use ($requestData) {
+                return $query->where('type', $requestData['type']);
+            })
+            ->when(isset($requestData['name']), function ($query) use ($requestData) {
+                return $query->where('name', 'LIKE', '%' . $requestData['name'] . '%');
+            })
+            ->when(isset($requestData['is_active']), function ($query) use ($requestData) {
+                return $query->where('is_active', $requestData['is_active']);
+            })
+            ->when(isset($requestData['join_url']), function ($query) use ($requestData) {
+                return $query->where('join_url', 'LIKE', '%' . $requestData['join_url'] . '%');
+            })
+            ->paginate()
+            ->toArray();
+
+        return response()->json(compact('whatsappGroups'));
     }
 
     /**
