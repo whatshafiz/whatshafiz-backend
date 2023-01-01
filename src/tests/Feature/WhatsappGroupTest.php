@@ -2,11 +2,13 @@
 
 namespace Tests\Feature;
 
+use App\Models\Course;
 use App\Models\User;
 use App\Models\WhatsappGroup;
 use App\Models\WhatsappGroupUser;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Tests\BaseFeatureTest;
 
 class WhatsappGroupTest extends BaseFeatureTest
@@ -82,7 +84,150 @@ class WhatsappGroupTest extends BaseFeatureTest
         $response->assertOk();
 
         foreach ($whatsappGroups as $whatsappGroup) {
-            $response->assertJsonFragment($whatsappGroup->toArray());
+            $response->assertJsonFragment($whatsappGroup->toArray())
+                ->assertJsonFragment($whatsappGroup->course->toArray());
+        }
+    }
+
+    /** @test */
+    public function it_should_get_whatsapp_groups_list_when_has_permission_by_filtering_course_id()
+    {
+        $otherWhatsappGroups = WhatsappGroup::factory()->count(2, 5)->create();
+        $filterCourse = Course::factory()->create();
+        $filteredWhatsappGroups = WhatsappGroup::factory()->count(2, 5)->create(['course_id' => $filterCourse->id]);
+        $user = User::factory()->create();
+        $user->givePermissionTo('whatsappGroups.list');
+
+        $response = $this->actingAs($user)->json('GET', $this->uri, ['course_id' => $filterCourse->id]);
+
+        $response->assertOk();
+
+        foreach ($filteredWhatsappGroups as $filteredWhatsappGroup) {
+            $response->assertJsonFragment($filteredWhatsappGroup->toArray())
+                ->assertJsonFragment($filteredWhatsappGroup->course->toArray());
+        }
+
+        foreach ($otherWhatsappGroups as $otherWhatsappGroup) {
+            $response->assertJsonMissing($otherWhatsappGroup->toArray(), true)
+                ->assertJsonMissing($otherWhatsappGroup->course->toArray(), true);
+        }
+    }
+
+    /** @test */
+    public function it_should_get_whatsapp_groups_list_when_has_permission_by_filtering_type()
+    {
+        $allTypes = collect(['whatshafiz', 'whatsenglish', 'whatsarapp']);
+        $filterType = $allTypes->random();
+        $filteredWhatsappGroups = WhatsappGroup::factory()->count(2, 5)->create(['type' => $filterType]);
+        $otherWhatsappGroups = WhatsappGroup::factory()
+            ->count(2, 5)
+            ->create(['type' => $allTypes->filter(fn ($type) => $type !== $filterType)->random()]);
+        $user = User::factory()->create();
+        $user->givePermissionTo('whatsappGroups.list');
+
+        $response = $this->actingAs($user)->json('GET', $this->uri, ['type' => $filterType]);
+
+        $response->assertOk();
+
+        foreach ($filteredWhatsappGroups as $filteredWhatsappGroup) {
+            $response->assertJsonFragment($filteredWhatsappGroup->toArray())
+                ->assertJsonFragment($filteredWhatsappGroup->course->toArray());
+        }
+
+        foreach ($otherWhatsappGroups as $otherWhatsappGroup) {
+            $response->assertJsonMissing($otherWhatsappGroup->toArray(), true);
+        }
+    }
+
+    /** @test */
+    public function it_should_get_whatsapp_groups_list_when_has_permission_by_searching_name()
+    {
+        $searchKey = Str::random(rand(7, 15));
+
+        $filteredWhatsappGroups = collect();
+        $filteredWhatsappGroups->push(WhatsappGroup::factory()->create(['name' => $searchKey]));
+        $filteredWhatsappGroups->push(
+            WhatsappGroup::factory()->create(['name' => Str::random(rand(1, 5)) . $searchKey])
+        );
+        $filteredWhatsappGroups->push(
+            WhatsappGroup::factory()->create(['name' => $searchKey . Str::random(rand(1, 5))])
+        );
+        $filteredWhatsappGroups->push(
+            WhatsappGroup::factory()->create(['name' => Str::random(rand(1, 5)) . $searchKey . Str::random(rand(1, 5))])
+        );
+        $otherWhatsappGroups = WhatsappGroup::factory()->count(2, 5)->create();
+        $user = User::factory()->create();
+        $user->givePermissionTo('whatsappGroups.list');
+
+        $response = $this->actingAs($user)->json('GET', $this->uri, ['name' => $searchKey]);
+
+        $response->assertOk();
+
+        foreach ($filteredWhatsappGroups as $filteredWhatsappGroup) {
+            $response->assertJsonFragment($filteredWhatsappGroup->toArray())
+                ->assertJsonFragment($filteredWhatsappGroup->course->toArray());
+        }
+
+        foreach ($otherWhatsappGroups as $otherWhatsappGroup) {
+            $response->assertJsonMissing($otherWhatsappGroup->toArray(), true);
+        }
+    }
+
+    /** @test */
+    public function it_should_get_whatsapp_groups_list_when_has_permission_by_filtering_activity_status()
+    {
+        $isActive = $this->faker->boolean;
+        $filteredWhatsappGroups = WhatsappGroup::factory()->count(2, 5)->create(['is_active' => $isActive]);
+        $otherWhatsappGroups = WhatsappGroup::factory()->count(2, 5)->create(['is_active' => !$isActive]);
+        $user = User::factory()->create();
+        $user->givePermissionTo('whatsappGroups.list');
+
+        $response = $this->actingAs($user)->json('GET', $this->uri, ['is_active' => $isActive]);
+
+        $response->assertOk();
+
+        foreach ($filteredWhatsappGroups as $filteredWhatsappGroup) {
+            $response->assertJsonFragment($filteredWhatsappGroup->toArray())
+                ->assertJsonFragment($filteredWhatsappGroup->course->toArray());
+        }
+
+        foreach ($otherWhatsappGroups as $otherWhatsappGroup) {
+            $response->assertJsonMissing($otherWhatsappGroup->toArray(), true);
+        }
+    }
+
+    /** @test */
+    public function it_should_get_whatsapp_groups_list_when_has_permission_by_searching_join_url()
+    {
+        $searchKey = Str::random(rand(7, 15));
+
+        $filteredWhatsappGroups = collect();
+        $filteredWhatsappGroups->push(WhatsappGroup::factory()->create(['join_url' => $searchKey]));
+        $filteredWhatsappGroups->push(
+            WhatsappGroup::factory()->create(['join_url' => Str::random(rand(1, 5)) . $searchKey])
+        );
+        $filteredWhatsappGroups->push(
+            WhatsappGroup::factory()->create(['join_url' => $searchKey . Str::random(rand(1, 5))])
+        );
+        $filteredWhatsappGroups->push(
+            WhatsappGroup::factory()
+                ->create(['join_url' => Str::random(rand(1, 5)) . $searchKey . Str::random(rand(1, 5))])
+        );
+        $otherWhatsappGroups = WhatsappGroup::factory()->count(2, 5)->create();
+        $user = User::factory()->create();
+        $user->givePermissionTo('whatsappGroups.list');
+
+        $response = $this->actingAs($user)->json('GET', $this->uri, ['join_url' => $searchKey]);
+
+        $response->assertOk();
+
+        foreach ($filteredWhatsappGroups as $filteredWhatsappGroup) {
+            $response->assertJsonFragment($filteredWhatsappGroup->toArray())
+                ->assertJsonFragment($filteredWhatsappGroup->course->toArray());
+        }
+
+        foreach ($otherWhatsappGroups as $otherWhatsappGroup) {
+            $response->assertJsonMissing($otherWhatsappGroup->toArray(), true);
         }
     }
 

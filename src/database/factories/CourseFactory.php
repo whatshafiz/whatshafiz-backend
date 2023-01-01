@@ -66,4 +66,19 @@ class CourseFactory extends Factory
             'can_be_applied_until' => Carbon::now()->addDays(rand(1, 100))->format('Y-m-d H:i:s'),
         ]);
     }
+
+    /**
+     * @return static
+     */
+    public function unavailable()
+    {
+        $byDate = $this->faker->boolean;
+
+        return $this->state(fn (array $attributes) => [
+            'can_be_applied' => !$byDate,
+            'can_be_applied_until' => $byDate ?
+                Carbon::now()->addDays(rand(1, 100))->format('Y-m-d H:i:s') :
+                Carbon::now()->subDays(rand(1, 100))->format('Y-m-d H:i:s'),
+        ]);
+    }
 }
