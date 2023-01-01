@@ -24,7 +24,7 @@ class Course extends BaseModel
      */
     public function scopeAvailable(Builder $query): Builder
     {
-        return $query->where(function($subquery) {
+        return $query->where(function ($subquery) {
             return $subquery->where('can_be_applied', true)
                 ->where('can_be_applied_until', '>=', Carbon::now());
         });
@@ -36,9 +36,9 @@ class Course extends BaseModel
      */
     public function scopeUnavailable(Builder $query): Builder
     {
-        return $query->where(function($subquery) {
+        return $query->where(function ($subquery) {
             return $subquery->where('can_be_applied', false)
-                ->orWhere(function($subquery) {
+                ->orWhere(function ($subquery) {
                     return $subquery->where('can_be_applied', true)
                         ->where('can_be_applied_until', '<', Carbon::now());
                 });

@@ -121,7 +121,7 @@ class WhatsappGroupTest extends BaseFeatureTest
         $filteredWhatsappGroups = WhatsappGroup::factory()->count(2, 5)->create(['type' => $filterType]);
         $otherWhatsappGroups = WhatsappGroup::factory()
             ->count(2, 5)
-            ->create(['type' => $allTypes->filter(fn($type) => $type !== $filterType)->random()]);
+            ->create(['type' => $allTypes->filter(fn ($type) => $type !== $filterType)->random()]);
         $user = User::factory()->create();
         $user->givePermissionTo('whatsappGroups.list');
 

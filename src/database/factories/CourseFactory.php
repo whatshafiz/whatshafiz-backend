@@ -67,7 +67,6 @@ class CourseFactory extends Factory
         ]);
     }
 
-
     /**
      * @return static
      */

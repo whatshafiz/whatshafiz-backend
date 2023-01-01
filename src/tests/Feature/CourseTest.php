@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Models\Course;
 use App\Models\User;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\BaseFeatureTest;
@@ -81,7 +80,7 @@ class CourseTest extends BaseFeatureTest
         $filteredCourses = Course::factory()->count(2, 5)->create(['type' => $filterType]);
         $otherCourses = Course::factory()
             ->count(2, 5)
-            ->create(['type' => $allTypes->filter(fn($type) => $type !== $filterType)->random()]);
+            ->create(['type' => $allTypes->filter(fn ($type) => $type !== $filterType)->random()]);
         $user = User::factory()->create();
         $user->givePermissionTo('courses.list');
 

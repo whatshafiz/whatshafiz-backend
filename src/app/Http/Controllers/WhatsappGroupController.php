@@ -32,19 +32,19 @@ class WhatsappGroupController extends Controller
 
         $whatsappGroups = WhatsappGroup::latest()
             ->with('course')
-            ->when(isset($requestData['course_id']), function($query) use ($requestData) {
+            ->when(isset($requestData['course_id']), function ($query) use ($requestData) {
                 return $query->where('course_id', $requestData['course_id']);
             })
-            ->when(isset($requestData['type']), function($query) use ($requestData) {
+            ->when(isset($requestData['type']), function ($query) use ($requestData) {
                 return $query->where('type', $requestData['type']);
             })
-            ->when(isset($requestData['name']), function($query) use ($requestData) {
+            ->when(isset($requestData['name']), function ($query) use ($requestData) {
                 return $query->where('name', 'LIKE', '%' . $requestData['name'] . '%');
             })
-            ->when(isset($requestData['is_active']), function($query) use ($requestData) {
+            ->when(isset($requestData['is_active']), function ($query) use ($requestData) {
                 return $query->where('is_active', $requestData['is_active']);
             })
-            ->when(isset($requestData['join_url']), function($query) use ($requestData) {
+            ->when(isset($requestData['join_url']), function ($query) use ($requestData) {
                 return $query->where('join_url', 'LIKE', '%' . $requestData['join_url'] . '%');
             })
             ->paginate()

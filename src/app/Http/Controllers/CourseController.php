@@ -28,16 +28,16 @@ class CourseController extends Controller
         );
 
         $courses = Course::latest()
-            ->when(isset($requestData['type']), function($query) use ($requestData) {
+            ->when(isset($requestData['type']), function ($query) use ($requestData) {
                 return $query->where('type', $requestData['type']);
             })
-            ->when(isset($requestData['name']), function($query) use ($requestData) {
+            ->when(isset($requestData['name']), function ($query) use ($requestData) {
                 return $query->where('name', 'LIKE', '%' . $requestData['name'] . '%');
             })
-            ->when(isset($requestData['is_active']), function($query) use ($requestData) {
+            ->when(isset($requestData['is_active']), function ($query) use ($requestData) {
                 return $query->where('is_active', $requestData['is_active']);
             })
-            ->when(isset($requestData['can_be_applied']), function($query) use ($requestData) {
+            ->when(isset($requestData['can_be_applied']), function ($query) use ($requestData) {
                 return $requestData['can_be_applied'] ? $query->available() : $query->unavailable();
             })
             ->get();
