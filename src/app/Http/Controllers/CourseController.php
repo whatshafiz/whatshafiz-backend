@@ -50,7 +50,7 @@ class CourseController extends Controller
      */
     public function indexAvailableCourses(): JsonResponse
     {
-        return response()->json(Course::available()->get(['id', 'type', 'name', 'can_be_applied_until']));
+        return response()->json(Course::available()->get(['id', 'type', 'name', 'can_be_applied_until', 'start_at']));
     }
 
     /**
@@ -79,6 +79,7 @@ class CourseController extends Controller
                     },
                 ],
                 'can_be_applied_until' => 'nullable|date_format:Y-m-d H:i:s',
+                'start_at' => 'nullable|date_format:Y-m-d H:i:s',
             ]
         );
 
@@ -126,6 +127,7 @@ class CourseController extends Controller
                     },
                 ],
                 'can_be_applied_until' => 'nullable|date_format:Y-m-d H:i:s',
+                'start_at' => 'nullable|date_format:Y-m-d H:i:s',
             ]
         );
 
