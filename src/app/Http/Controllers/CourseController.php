@@ -24,7 +24,7 @@ class CourseController extends Controller
      */
     public function indexAvailableCourses(): JsonResponse
     {
-        return response()->json(Course::available()->get(['id', 'type', 'name', 'can_be_applied_until','start_at']));
+        return response()->json(Course::available()->get(['id', 'type', 'name', 'can_be_applied_until', 'start_at']));
     }
 
     /**
