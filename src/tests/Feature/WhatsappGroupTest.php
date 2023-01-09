@@ -90,7 +90,7 @@ class WhatsappGroupTest extends BaseFeatureTest
     }
 
     /** @test */
-    public function it_should_get_whatsapp_groups_list_when_has_permission_by_filtering_course_id()
+    public function it_should_get_whatsapp_groups_list_when_has_permission_filtering_by_course_id()
     {
         $otherWhatsappGroups = WhatsappGroup::factory()->count(2, 5)->create();
         $filterCourse = Course::factory()->create();
@@ -114,7 +114,7 @@ class WhatsappGroupTest extends BaseFeatureTest
     }
 
     /** @test */
-    public function it_should_get_whatsapp_groups_list_when_has_permission_by_filtering_type()
+    public function it_should_get_whatsapp_groups_list_when_has_permission_filtering_by_type()
     {
         $allTypes = collect(['whatshafiz', 'whatsenglish', 'whatsarapp']);
         $filterType = $allTypes->random();
@@ -126,6 +126,32 @@ class WhatsappGroupTest extends BaseFeatureTest
         $user->givePermissionTo('whatsappGroups.list');
 
         $response = $this->actingAs($user)->json('GET', $this->uri, ['type' => $filterType]);
+
+        $response->assertOk();
+
+        foreach ($filteredWhatsappGroups as $filteredWhatsappGroup) {
+            $response->assertJsonFragment($filteredWhatsappGroup->toArray())
+                ->assertJsonFragment($filteredWhatsappGroup->course->toArray());
+        }
+
+        foreach ($otherWhatsappGroups as $otherWhatsappGroup) {
+            $response->assertJsonMissing($otherWhatsappGroup->toArray(), true);
+        }
+    }
+
+    /** @test */
+    public function it_should_get_whatsapp_groups_list_when_has_permission_filtering_by_gender()
+    {
+        $allTypes = collect(['male', 'female']);
+        $filterType = $allTypes->random();
+        $filteredWhatsappGroups = WhatsappGroup::factory()->count(2, 5)->create(['gender' => $filterType]);
+        $otherWhatsappGroups = WhatsappGroup::factory()
+            ->count(2, 5)
+            ->create(['gender' => $allTypes->filter(fn ($type) => $type !== $filterType)->random()]);
+        $user = User::factory()->create();
+        $user->givePermissionTo('whatsappGroups.list');
+
+        $response = $this->actingAs($user)->json('GET', $this->uri, ['gender' => $filterType]);
 
         $response->assertOk();
 
@@ -174,7 +200,7 @@ class WhatsappGroupTest extends BaseFeatureTest
     }
 
     /** @test */
-    public function it_should_get_whatsapp_groups_list_when_has_permission_by_filtering_activity_status()
+    public function it_should_get_whatsapp_groups_list_when_has_permission_filtering_by_activity_status()
     {
         $isActive = $this->faker->boolean;
         $filteredWhatsappGroups = WhatsappGroup::factory()->count(2, 5)->create(['is_active' => $isActive]);
