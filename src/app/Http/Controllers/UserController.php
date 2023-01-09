@@ -10,7 +10,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -164,11 +163,7 @@ class UserController extends Controller
         $user->verification_code_valid_until = Carbon::now()->addMinutes($verificaitonCodeValidDuration);
         $user->save();
 
-        Queue::connection('messenger-sqs')
-            ->pushRaw(json_encode([
-                'phone' => $user->phone_number,
-                'text' => 'Whats eğitim modeli, kayıt için doğrulama kodunuz: ' . $user->verification_code,
-            ]));
+        $user->sendMessage('Whats eğitim modeli, kayıt için doğrulama kodunuz: ' . $user->verification_code);
 
         return response()->json([
             'message' => 'Doğrulama kodu whatsapp ile telefonunuza gönderildi.',
@@ -257,11 +252,22 @@ class UserController extends Controller
 
         if ($course->type === 'whatshafiz') {
             $user->assignRole($request->is_teacher ? 'HafızKal' : 'HafızOl');
-        } else {
-            $user->assignRole(Str::ucfirst($course->type));
-        }
 
-        return response()->json(['message' => 'Kaydınız başarılı şekilde oluşturuldu.']);
+            return response()->json(['message' => 'Kaydınız başarılı şekilde oluşturuldu.']);
+        } 
+
+        $user->assignRole(Str::ucfirst($course->type));
+        $whatsappGroup = $course->whatsappGroups()->withCount('users')->orderBy('users_count')->first();
+
+        $user->sendMessage(
+            'Aşağıdaki linki kullanarak *' . $course->type . '* kursu için atandığınız whatsapp grubuna katılın. ↘️ '
+                . $whatsappGroup->join_url
+        );
+
+        return response()->json([
+            'message' => 'Kaydınız başarılı şekilde oluşturuldu. ' .
+                'Whatsapp grubuna katılmak için gerekli link size whatsapp üzerinden gönderilecek.',
+        ]);
     }
 
     /**
@@ -289,11 +295,7 @@ class UserController extends Controller
             ['token' => Hash::make($passwordResetCode), 'created_at' => $passwordResetCodeCreatedAt]
         );
 
-        Queue::connection('messenger-sqs')
-            ->pushRaw(json_encode([
-                'phone' => $user->phone_number,
-                'text' => $passwordResetCode . ' doğrulama kodunu kullanarak parolanızı değiştirebilirsiniz.',
-            ]));
+        $user->sendMessage($passwordResetCode . ' doğrulama kodunu kullanarak parolanızı değiştirebilirsiniz.');
 
         return response()->json([
             'message' => 'Doğrulama kodu whatsapp ile telefonunuza gönderildi.',

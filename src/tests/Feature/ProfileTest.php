@@ -5,7 +5,11 @@ namespace Tests\Feature;
 use App\Models\Course;
 use App\Models\User;
 use App\Models\UserCourse;
+use App\Models\WhatsappGroup;
+use App\Models\WhatsappGroupUser;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Queue;
+use Illuminate\Support\Str;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Symfony\Component\HttpFoundation\Response;
@@ -134,13 +138,13 @@ class ProfileTest extends BaseFeatureTest
     }
 
     /** @test */
-    public function it_should_save_user_course_application()
+    public function it_should_save_user_course_application_when_course_type_is_whatshafiz()
     {
         $now = Carbon::now();
         Carbon::setTestNow($now);
         $user = User::factory()->create();
         Course::query()->update(['can_be_applied' => false]);
-        $availableCourse = Course::factory()->available()->create();
+        $availableCourse = Course::factory()->available()->create(['type' => 'whatshafiz']);
         $isTeacher = $this->faker->boolean;
 
         $response = $this->actingAs($user)
@@ -164,13 +168,63 @@ class ProfileTest extends BaseFeatureTest
                 'removed_at' => null,
             ]
         );
+        $this->assertTrue($user->hasRole($isTeacher ? 'HafızKal' : 'HafızOl'));
+    }
 
-        if ($availableCourse->type === 'whatshafiz') {
-            $userRole = $isTeacher ? 'HafızKal' : 'HafızOl';
-        } else {
-            $userRole = $availableCourse->type === 'whatsarapp' ? 'Whatsarapp' : 'Whatsenglish';
-        }
+    /** @test */
+    public function it_should_save_user_course_application_and_send_whatsapp_group_join_url_via_whatsapp_when_course_type_is_whatsenglish_or_whatsarapp()
+    {
+        $now = Carbon::now();
+        Carbon::setTestNow($now);
+        $user = User::factory()->create();
+        Course::query()->update(['can_be_applied' => false]);
+        $availableCourse = Course::factory()
+            ->available()
+            ->create(['type' => $this->faker->randomElement(['whatsenglish', 'whatsarapp'])]);
+        $isTeacher = $this->faker->boolean;
+        WhatsappGroup::factory()
+            ->count(rand(1, 5))
+            ->create(['type' => $availableCourse->type, 'course_id' => $availableCourse->id])
+            ->each(function ($whatsappGroup) {
+                WhatsappGroupUser::factory()->count(3, 5)->create(['whatsapp_group_id' => $whatsappGroup->id]);
+            });
+        $whatsappGroupHasMinimumUser = WhatsappGroup::factory()
+            ->create(['type' => $availableCourse->type, 'course_id' => $availableCourse->id]);
+        WhatsappGroupUser::factory()->count(1, 2)->create(['whatsapp_group_id' => $whatsappGroupHasMinimumUser->id]);
+        Queue::shouldReceive('connection')->once()->with('messenger-sqs')->andReturnSelf();
+        Queue::shouldReceive('pushRaw')
+            ->once()
+            ->with(json_encode([
+                'phone' => $user->phone_number,
+                'text' => 'Aşağıdaki linki kullanarak *' . $availableCourse->type .
+                    '* kursu için atandığınız whatsapp grubuna katılın. ↘️ '
+                    . $whatsappGroupHasMinimumUser->join_url,
+            ]));
 
-        $this->assertTrue($user->hasRole($userRole));
+        $response = $this->actingAs($user)
+            ->json(
+                'POST',
+                $this->uri . '/courses',
+                ['type' => $availableCourse->type, 'is_teacher' => $isTeacher]
+            );
+
+        $response->assertOk()
+            ->assertJsonFragment([
+                'message' => 'Kaydınız başarılı şekilde oluşturuldu. ' .
+                    'Whatsapp grubuna katılmak için gerekli link size whatsapp üzerinden gönderilecek.'
+            ]);
+
+        $this->assertDatabaseHas(
+            'user_course',
+            [
+                'user_id' => $user->id,
+                'course_id' => $availableCourse->id,
+                'type' => $availableCourse->type,
+                'is_teacher' => $isTeacher,
+                'applied_at' => $now->format('Y-m-d H:i:s'),
+                'removed_at' => null,
+            ]
+        );
+        $this->assertTrue($user->hasRole(Str::ucfirst($availableCourse->type)));
     }
 }
