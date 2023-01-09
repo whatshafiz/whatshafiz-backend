@@ -2041,6 +2041,12 @@
 									"disabled": true
 								},
 								{
+									"key": "gender",
+									"value": "male",
+									"description": "nullable|string|in:male,female",
+									"disabled": true
+								},
+								{
 									"key": "name",
 									"value": "whats123",
 									"description": "nullable|string|min:2|max:100",
@@ -2111,6 +2117,12 @@
 									"key": "type",
 									"value": "whatshafiz",
 									"description": "required|string|in:whatshafiz,whatsenglish,whatsarapp",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "female",
+									"description": "nullable|string|in:male,female",
 									"type": "text"
 								},
 								{
@@ -2193,6 +2205,12 @@
 									"key": "type",
 									"value": "whatshafiz",
 									"description": "required|string|in:whatshafiz,whatsenglish,whatsarapp",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "male",
+									"description": "nullable|string|in:male,female",
 									"type": "text"
 								},
 								{
