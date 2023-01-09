@@ -254,7 +254,7 @@ class UserController extends Controller
             $user->assignRole($request->is_teacher ? 'HafızKal' : 'HafızOl');
 
             return response()->json(['message' => 'Kaydınız başarılı şekilde oluşturuldu.']);
-        } 
+        }
 
         $user->assignRole(Str::ucfirst($course->type));
         $whatsappGroup = $course->whatsappGroups()->withCount('users')->orderBy('users_count')->first();
