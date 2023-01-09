@@ -259,10 +259,12 @@ class UserController extends Controller
         $user->assignRole(Str::ucfirst($course->type));
         $whatsappGroup = $course->whatsappGroups()->withCount('users')->orderBy('users_count')->first();
 
-        $user->sendMessage(
-            'Aşağıdaki linki kullanarak *' . $course->type . '* kursu için atandığınız whatsapp grubuna katılın. ↘️ '
-                . $whatsappGroup->join_url
-        );
+        if ($whatsappGroup) {
+            $user->sendMessage(
+                'Aşağıdaki linki kullanarak *' . $course->type . '* kursu için atandığınız whatsapp grubuna katılın. ↘️ '
+                    . $whatsappGroup->join_url
+            );
+        }
 
         return response()->json([
             'message' => 'Kaydınız başarılı şekilde oluşturuldu. ' .
