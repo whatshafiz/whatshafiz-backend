@@ -24,6 +24,7 @@ class WhatsappGroupController extends Controller
             [
                 'course_id' => 'nullable|integer|min:0|exists:courses,id',
                 'type' => 'nullable|string|in:whatshafiz,whatsenglish,whatsarapp',
+                'gender' => 'nullable|string|in:male,female',
                 'name' => 'nullable|string|min:2|max:100',
                 'join_url' => 'nullable|string|min:2',
                 'is_active' => 'nullable|boolean',
@@ -37,6 +38,9 @@ class WhatsappGroupController extends Controller
             })
             ->when(isset($requestData['type']), function ($query) use ($requestData) {
                 return $query->where('type', $requestData['type']);
+            })
+            ->when(isset($requestData['gender']), function ($query) use ($requestData) {
+                return $query->where('gender', $requestData['gender']);
             })
             ->when(isset($requestData['name']), function ($query) use ($requestData) {
                 return $query->where('name', 'LIKE', '%' . $requestData['name'] . '%');
@@ -66,6 +70,7 @@ class WhatsappGroupController extends Controller
             [
                 'course_id' => 'required|integer|min:0|exists:courses,id',
                 'type' => 'required|string|in:whatshafiz,whatsenglish,whatsarapp',
+                'gender' => 'required|string|in:male,female',
                 'name' => 'required|string|max:100|unique:whatsapp_groups,name',
                 'is_active' => 'required|boolean',
                 'join_url' => 'required|url',
@@ -100,6 +105,7 @@ class WhatsappGroupController extends Controller
             [
                 'course_id' => 'required|integer|min:0|exists:courses,id',
                 'type' => 'required|string|in:whatshafiz,whatsenglish,whatsarapp',
+                'gender' => 'required|string|in:male,female',
                 'name' => 'required|string|max:100|unique:whatsapp_groups,name,' . $whatsappGroup->id,
                 'is_active' => 'required|boolean',
                 'join_url' => 'required|url',
