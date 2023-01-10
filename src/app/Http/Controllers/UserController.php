@@ -6,9 +6,11 @@ use App\Models\Course;
 use App\Models\PasswordReset;
 use App\Models\User;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
@@ -218,7 +220,7 @@ class UserController extends Controller
         ]);
 
         $user = Auth::user();
-        $course = Course::where('type', $request->type)->available()->first();
+        $course = Course::where('type', $request->type)->active()->available()->first();
 
         if (!$course) {
             return response()->json(
@@ -236,40 +238,65 @@ class UserController extends Controller
 
         if ($user->courses()->active()->where('courses.type', $course->type)->exists()) {
             return response()->json(
-                ['message' => 'Daha önceden başvuru yapmışsınız.'],
+                ['message' => 'Başvuru yaptığınız kurs tipinde zaten kaydınız var.'],
                 Response::HTTP_BAD_REQUEST
             );
         }
 
-        $user->courses()->attach(
-            $course->id,
-            [
-                'type' => $course->type,
-                'is_teacher' => $request->is_teacher,
-                'applied_at' => Carbon::now(),
-            ]
-        );
+        DB::beginTransaction();
 
-        if ($course->type === 'whatshafiz') {
-            $user->assignRole($request->is_teacher ? 'HafızKal' : 'HafızOl');
-
-            return response()->json(['message' => 'Kaydınız başarılı şekilde oluşturuldu.']);
-        }
-
-        $user->assignRole(Str::ucfirst($course->type));
-        $whatsappGroup = $course->whatsappGroups()->withCount('users')->orderBy('users_count')->first();
-
-        if ($whatsappGroup) {
-            $user->sendMessage(
-                'Aşağıdaki linki kullanarak *' . $course->type . '* kursu için atandığınız whatsapp grubuna katılın. ↘️ '
-                    . $whatsappGroup->join_url
+        try {
+            $user->courses()->attach(
+                $course->id,
+                [
+                    'type' => $course->type,
+                    'is_teacher' => $request->is_teacher,
+                    'applied_at' => Carbon::now(),
+                ]
             );
-        }
 
-        return response()->json([
-            'message' => 'Kaydınız başarılı şekilde oluşturuldu. ' .
-                'Whatsapp grubuna katılmak için gerekli link size whatsapp üzerinden gönderilecek.',
-        ]);
+            if ($course->type === 'whatshafiz') {
+                $user->assignRole($request->is_teacher ? 'HafızKal' : 'HafızOl');
+                DB::commit();
+
+                return response()->json(['message' => 'Kaydınız başarılı şekilde oluşturuldu.']);
+            }
+
+            $user->assignRole(Str::ucfirst($course->type));
+            $whatsappGroups = $course->whatsappGroups()
+                ->where('gender', $user->gender)
+                ->where('is_active', true)
+                ->withCount('users')
+                ->orderBy('users_count')
+                ->take(3)
+                ->get();
+
+            if ($whatsappGroups->count() > 0) {
+                $assignedWhatsappGroup = $whatsappGroups->random();
+                $assignedWhatsappGroup->users()
+                    ->create([
+                        'user_id' => $user->id,
+                        'joined_at' => Carbon::now(),
+                        'role_type' => null,
+                    ]);
+
+                $user->sendMessage(
+                    'Aşağıdaki linki kullanarak *' . $course->type .
+                        '* kursu için atandığınız whatsapp grubuna katılın. ↘️ ' . $assignedWhatsappGroup->join_url
+                );
+            }
+
+            DB::commit();
+
+            return response()->json([
+                'message' => 'Kaydınız başarılı şekilde oluşturuldu. ' .
+                    'Whatsapp grubuna katılmak için gerekli link size whatsapp üzerinden gönderilecek.',
+            ]);
+        } catch (Exception $exception) {
+            DB::rollback();
+
+            throw $exception;
+        }
     }
 
     /**
