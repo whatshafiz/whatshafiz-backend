@@ -12,13 +12,49 @@ use Symfony\Component\HttpFoundation\Response;
 class WhatsappGroupController extends Controller
 {
     /**
+     * @param  Request  $request
      * @return JsonResponse
      */
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
         $this->authorize('viewAny', WhatsappGroup::class);
 
-        return response()->json(WhatsappGroup::latest()->paginate()->toArray());
+        $requestData = $this->validate(
+            $request,
+            [
+                'course_id' => 'nullable|integer|min:0|exists:courses,id',
+                'type' => 'nullable|string|in:whatshafiz,whatsenglish,whatsarapp',
+                'gender' => 'nullable|string|in:male,female',
+                'name' => 'nullable|string|min:2|max:100',
+                'join_url' => 'nullable|string|min:2',
+                'is_active' => 'nullable|boolean',
+            ]
+        );
+
+        $whatsappGroups = WhatsappGroup::latest()
+            ->with('course')
+            ->when(isset($requestData['course_id']), function ($query) use ($requestData) {
+                return $query->where('course_id', $requestData['course_id']);
+            })
+            ->when(isset($requestData['type']), function ($query) use ($requestData) {
+                return $query->where('type', $requestData['type']);
+            })
+            ->when(isset($requestData['gender']), function ($query) use ($requestData) {
+                return $query->where('gender', $requestData['gender']);
+            })
+            ->when(isset($requestData['name']), function ($query) use ($requestData) {
+                return $query->where('name', 'LIKE', '%' . $requestData['name'] . '%');
+            })
+            ->when(isset($requestData['is_active']), function ($query) use ($requestData) {
+                return $query->where('is_active', $requestData['is_active']);
+            })
+            ->when(isset($requestData['join_url']), function ($query) use ($requestData) {
+                return $query->where('join_url', 'LIKE', '%' . $requestData['join_url'] . '%');
+            })
+            ->paginate()
+            ->toArray();
+
+        return response()->json(compact('whatsappGroups'));
     }
 
     /**
@@ -34,6 +70,7 @@ class WhatsappGroupController extends Controller
             [
                 'course_id' => 'required|integer|min:0|exists:courses,id',
                 'type' => 'required|string|in:whatshafiz,whatsenglish,whatsarapp',
+                'gender' => 'required|string|in:male,female',
                 'name' => 'required|string|max:100|unique:whatsapp_groups,name',
                 'is_active' => 'required|boolean',
                 'join_url' => 'required|url',
@@ -68,6 +105,7 @@ class WhatsappGroupController extends Controller
             [
                 'course_id' => 'required|integer|min:0|exists:courses,id',
                 'type' => 'required|string|in:whatshafiz,whatsenglish,whatsarapp',
+                'gender' => 'required|string|in:male,female',
                 'name' => 'required|string|max:100|unique:whatsapp_groups,name,' . $whatsappGroup->id,
                 'is_active' => 'required|boolean',
                 'join_url' => 'required|url',

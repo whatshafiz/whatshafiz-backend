@@ -23,6 +23,7 @@ class CourseFactory extends Factory
             'is_active' => $this->faker->boolean,
             'can_be_applied' => $this->faker->boolean,
             'can_be_applied_until' => $this->faker->optional()->datetime?->format('Y-m-d H:i:s'),
+            'start_at' => $this->faker->optional()->datetime?->format('Y-m-d H:i:s'),
         ];
     }
 
@@ -64,6 +65,21 @@ class CourseFactory extends Factory
         return $this->state(fn (array $attributes) => [
             'can_be_applied' => true,
             'can_be_applied_until' => Carbon::now()->addDays(rand(1, 100))->format('Y-m-d H:i:s'),
+        ]);
+    }
+
+    /**
+     * @return static
+     */
+    public function unavailable()
+    {
+        $byDate = $this->faker->boolean;
+
+        return $this->state(fn (array $attributes) => [
+            'can_be_applied' => !$byDate,
+            'can_be_applied_until' => $byDate ?
+                Carbon::now()->addDays(rand(1, 100))->format('Y-m-d H:i:s') :
+                Carbon::now()->subDays(rand(1, 100))->format('Y-m-d H:i:s'),
         ]);
     }
 }
