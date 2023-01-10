@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "4b538c90-1322-4922-aed8-e6d213b8ee3c",
+		"_postman_id": "7b10faff-4294-4741-9b61-8c9585ed4bb6",
 		"name": "whatshafiz",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "8269859"
+		"_exporter_id": "11200539"
 	},
 	"item": [
 		{
@@ -944,6 +944,12 @@
 									"value": "{{$randomLoremParagraphs}}",
 									"description": "required|string",
 									"type": "text"
+								},
+								{
+									"key": "summary",
+									"value": "{{$randomLoremParagraphs}}",
+									"description": "required|string",
+									"type": "text"
 								}
 							]
 						},
@@ -1001,6 +1007,12 @@
 							"formdata": [
 								{
 									"key": "text",
+									"value": "{{$randomLoremParagraphs}}",
+									"description": "required|string",
+									"type": "text"
+								},
+								{
+									"key": "summary",
 									"value": "{{$randomLoremParagraphs}}",
 									"description": "required|string",
 									"type": "text"
@@ -1123,32 +1135,6 @@
 							],
 							"path": [
 								"courses"
-							],
-							"query": [
-								{
-									"key": "type",
-									"value": "whatshafiz",
-									"description": "nullable|string|in:whatshafiz,whatsenglish,whatsarapp",
-									"disabled": true
-								},
-								{
-									"key": "name",
-									"value": "whats123",
-									"description": "nullable|string|min:3|max:100",
-									"disabled": true
-								},
-								{
-									"key": "is_active",
-									"value": "1",
-									"description": "nullable|boolean",
-									"disabled": true
-								},
-								{
-									"key": "can_be_applied",
-									"value": "1",
-									"description": "nullable|boolean",
-									"disabled": true
-								}
 							]
 						}
 					},
@@ -2038,44 +2024,6 @@
 							],
 							"path": [
 								"whatsapp-groups"
-							],
-							"query": [
-								{
-									"key": "course_id",
-									"value": "12",
-									"description": "nullable|integer|min:0|exists:courses,id",
-									"disabled": true
-								},
-								{
-									"key": "type",
-									"value": "whatshafiz",
-									"description": "nullable|string|in:whatshafiz,whatsenglish,whatsarapp",
-									"disabled": true
-								},
-								{
-									"key": "gender",
-									"value": "male",
-									"description": "nullable|string|in:male,female",
-									"disabled": true
-								},
-								{
-									"key": "name",
-									"value": "whats123",
-									"description": "nullable|string|min:2|max:100",
-									"disabled": true
-								},
-								{
-									"key": "is_active",
-									"value": "1",
-									"description": "nullable|boolean",
-									"disabled": true
-								},
-								{
-									"key": "join_url",
-									"value": "mekialmklmalmiela",
-									"description": "nullable|string|min:2",
-									"disabled": true
-								}
 							]
 						}
 					},
@@ -2129,12 +2077,6 @@
 									"key": "type",
 									"value": "whatshafiz",
 									"description": "required|string|in:whatshafiz,whatsenglish,whatsarapp",
-									"type": "text"
-								},
-								{
-									"key": "gender",
-									"value": "female",
-									"description": "nullable|string|in:male,female",
 									"type": "text"
 								},
 								{
@@ -2217,12 +2159,6 @@
 									"key": "type",
 									"value": "whatshafiz",
 									"description": "required|string|in:whatshafiz,whatsenglish,whatsarapp",
-									"type": "text"
-								},
-								{
-									"key": "gender",
-									"value": "male",
-									"description": "nullable|string|in:male,female",
 									"type": "text"
 								},
 								{
