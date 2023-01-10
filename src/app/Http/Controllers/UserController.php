@@ -238,7 +238,7 @@ class UserController extends Controller
 
         if ($user->courses()->active()->where('courses.type', $course->type)->exists()) {
             return response()->json(
-                ['message' => 'Daha önceden başvuru yapmışsınız.'],
+                ['message' => 'Başvuru yaptığınız kurs tipinde zaten kaydınız var.'],
                 Response::HTTP_BAD_REQUEST
             );
         }
