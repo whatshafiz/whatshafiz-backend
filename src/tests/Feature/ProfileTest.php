@@ -93,7 +93,7 @@ class ProfileTest extends BaseFeatureTest
     {
         $user = User::factory()->create();
         Course::query()->update(['can_be_applied' => false]);
-        $availableCourse = Course::factory()->available()->create();
+        $availableCourse = Course::factory()->available()->create(['is_active' => true]);
         UserCourse::factory()->create([
             'type' => $availableCourse->type,
             'user_id' => $user->id,
@@ -144,7 +144,7 @@ class ProfileTest extends BaseFeatureTest
         Carbon::setTestNow($now);
         $user = User::factory()->create();
         Course::query()->update(['can_be_applied' => false]);
-        $availableCourse = Course::factory()->available()->create(['type' => 'whatshafiz']);
+        $availableCourse = Course::factory()->available()->create(['type' => 'whatshafiz', 'is_active' => true]);
         $isTeacher = $this->faker->boolean;
 
         $response = $this->actingAs($user)
@@ -176,29 +176,38 @@ class ProfileTest extends BaseFeatureTest
     {
         $now = Carbon::now();
         Carbon::setTestNow($now);
-        $user = User::factory()->create();
+        $user = User::factory()->hasGender()->create();
         Course::query()->update(['can_be_applied' => false]);
         $availableCourse = Course::factory()
             ->available()
-            ->create(['type' => $this->faker->randomElement(['whatsenglish', 'whatsarapp'])]);
+            ->create(['type' => $this->faker->randomElement(['whatsenglish', 'whatsarapp']), 'is_active' => true]);
         $isTeacher = $this->faker->boolean;
         WhatsappGroup::factory()
             ->count(rand(1, 5))
-            ->create(['type' => $availableCourse->type, 'course_id' => $availableCourse->id])
+            ->create(['type' => $availableCourse->type, 'course_id' => $availableCourse->id, 'gender' => $user->gender])
             ->each(function ($whatsappGroup) {
                 WhatsappGroupUser::factory()->count(3, 5)->create(['whatsapp_group_id' => $whatsappGroup->id]);
             });
-        $whatsappGroupHasMinimumUser = WhatsappGroup::factory()
-            ->create(['type' => $availableCourse->type, 'course_id' => $availableCourse->id]);
-        WhatsappGroupUser::factory()->count(1, 2)->create(['whatsapp_group_id' => $whatsappGroupHasMinimumUser->id]);
+        $joinUrl = $this->faker->url;
+        $whatsappGroupsHasMinimumUser = WhatsappGroup::factory()
+            ->count(rand(3, 5))
+            ->create([
+                'type' => $availableCourse->type,
+                'course_id' => $availableCourse->id,
+                'gender' => $user->gender,
+                'join_url' => $joinUrl,
+                'is_active' => true,
+            ])
+            ->each(function ($whatsappGroup) {
+                WhatsappGroupUser::factory()->count(1, 2)->create(['whatsapp_group_id' => $whatsappGroup->id]);
+            });
         Queue::shouldReceive('connection')->once()->with('messenger-sqs')->andReturnSelf();
         Queue::shouldReceive('pushRaw')
             ->once()
             ->with(json_encode([
                 'phone' => $user->phone_number,
                 'text' => 'Aşağıdaki linki kullanarak *' . $availableCourse->type .
-                    '* kursu için atandığınız whatsapp grubuna katılın. ↘️ '
-                    . $whatsappGroupHasMinimumUser->join_url,
+                        '* kursu için atandığınız whatsapp grubuna katılın. ↘️ ' . $joinUrl
             ]));
 
         $response = $this->actingAs($user)
@@ -224,6 +233,20 @@ class ProfileTest extends BaseFeatureTest
                 'applied_at' => $now->format('Y-m-d H:i:s'),
                 'removed_at' => null,
             ]
+        );
+        $this->assertDatabaseHas(
+            'whatsapp_group_users',
+            [
+                'user_id' => $user->id,
+                'role_type' => null,
+                'joined_at' => $now->format('Y-m-d H:i:s'),
+            ]
+        );
+        $this->assertTrue(
+            WhatsappGroupUser::whereIn('whatsapp_group_id', $whatsappGroupsHasMinimumUser->pluck('id')->toArray())
+                ->where('user_id', $user->id)
+                ->where('role_type', null)
+                ->exists()
         );
         $this->assertTrue($user->hasRole(Str::ucfirst($availableCourse->type)));
     }
