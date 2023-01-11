@@ -43,9 +43,9 @@ class RegulationController extends Controller
             'summary'=> 'required|string'
             ]
         );
-       
 
-        if ($regulation->update(['text' => $request->text],['summary' => $request->summary])) {
+
+        if ($regulation->update(['text' => $request->text], ['summary' => $request->summary])) {
             return response()->json(['status' => 'success']);
         }
 
