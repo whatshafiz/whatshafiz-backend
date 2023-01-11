@@ -36,11 +36,16 @@ class RegulationController extends Controller
     public function update(Request $request, Regulation $regulation): JsonResponse
     {
         $this->authorize('update', Regulation::class);
+        $requestData = $this->validate(
+            $request,
+            [
+            'text' =>  'required|string',
+            'summary'=> 'required|string'
+            ]
+        );
+       
 
-        $request->validate(['text' => 'required|string']);
-        $request->validate(['summary' => 'required|string']);
-
-        if ($regulation->update(['text' => $request->text])) {
+        if ($regulation->update(['text' => $request->text],['summary' => $request->summary])) {
             return response()->json(['status' => 'success']);
         }
 
