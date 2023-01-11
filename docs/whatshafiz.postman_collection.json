@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "4b538c90-1322-4922-aed8-e6d213b8ee3c",
+		"_postman_id": "0e820166-0319-4b25-9fbb-bca8e9587b5a",
 		"name": "whatshafiz",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "8269859"
+		"_exporter_id": "11200539"
 	},
 	"item": [
 		{
@@ -944,6 +944,12 @@
 									"value": "{{$randomLoremParagraphs}}",
 									"description": "required|string",
 									"type": "text"
+								},
+								{
+									"key": "summary",
+									"value": "{{$randomLoremParagraphs}}",
+									"description": "required|string",
+									"type": "text"
 								}
 							]
 						},
@@ -1001,6 +1007,12 @@
 							"formdata": [
 								{
 									"key": "text",
+									"value": "{{$randomLoremParagraphs}}",
+									"description": "required|string",
+									"type": "text"
+								},
+								{
+									"key": "summary",
 									"value": "{{$randomLoremParagraphs}}",
 									"description": "required|string",
 									"type": "text"
@@ -1268,6 +1280,12 @@
 									"value": "2022-12-30 12:20:21",
 									"description": "nullable|date_format:Y-m-d H:i:s",
 									"type": "text"
+								},
+								{
+									"key": "start_at",
+									"value": "2022-12-30 12:20:21",
+									"description": "nullable|date_format:Y-m-d H:i:s",
+									"type": "text"
 								}
 							]
 						},
@@ -1347,6 +1365,12 @@
 								},
 								{
 									"key": "can_be_applied_until",
+									"value": "2022-12-30 12:20:21",
+									"description": "nullable|date_format:Y-m-d H:i:s",
+									"type": "text"
+								},
+								{
+									"key": "start_at",
 									"value": "2022-12-30 12:20:21",
 									"description": "nullable|date_format:Y-m-d H:i:s",
 									"type": "text"

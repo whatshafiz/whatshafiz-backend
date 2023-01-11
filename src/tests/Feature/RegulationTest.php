@@ -30,6 +30,7 @@ class RegulationTest extends BaseFeatureTest
                 'name' => 'HafızOl',
                 'slug' => 'hafizol',
                 'text' => Regulation::where('slug', 'hafizol')->value('text'),
+                'summary' => Regulation::where('slug', 'hafizol')->value('summary'),
             ]);
     }
 
@@ -43,6 +44,7 @@ class RegulationTest extends BaseFeatureTest
                 'name' => 'HafızKal',
                 'slug' => 'hafizkal',
                 'text' => Regulation::where('slug', 'hafizkal')->value('text'),
+                'summary' => Regulation::where('slug', 'hafizkal')->value('summary'),
             ]);
     }
 
@@ -56,6 +58,7 @@ class RegulationTest extends BaseFeatureTest
                 'name' => 'WhatsEnglish',
                 'slug' => 'whatsenglish',
                 'text' => Regulation::where('slug', 'whatsenglish')->value('text'),
+                'summary' => Regulation::where('slug', 'whatsenglish')->value('summary'),
             ]);
     }
 
@@ -69,6 +72,7 @@ class RegulationTest extends BaseFeatureTest
                 'name' => 'WhatsArapp',
                 'slug' => 'whatsarapp',
                 'text' => Regulation::where('slug', 'whatsarapp')->value('text'),
+                'summary' => Regulation::where('slug', 'whatsarapp')->value('summary'),
             ]);
     }
 
@@ -106,7 +110,7 @@ class RegulationTest extends BaseFeatureTest
             ->json(
                 'POST',
                 $this->uri . '/' . ($this->faker->randomElement(['hafizol', 'hafizkal', 'whatsenglish', 'whatsarapp'])),
-                ['text' => $this->faker->paragraph(2)]
+                ['text' => $this->faker->paragraph(2),'summary' => $this->faker->paragraph(2)]
             );
 
         $response->assertForbidden();
@@ -120,12 +124,13 @@ class RegulationTest extends BaseFeatureTest
 
         $regulationSlug = $this->faker->randomElement(['hafizol', 'hafizkal', 'whatsenglish', 'whatsarapp']);
         $newRegulationText = $this->faker->paragraph(rand(1, 5));
+        $newRegulationSummary = $this->faker->paragraph(rand(1, 5));
 
         $response = $this->actingAs($user)
             ->json(
                 'POST',
                 $this->uri . '/' . $regulationSlug,
-                ['text' => $newRegulationText]
+                ['text' => $newRegulationText,'summary' => $newRegulationSummary],
             );
 
         $response->assertOk();
