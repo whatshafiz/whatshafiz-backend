@@ -30,6 +30,7 @@ class RegulationTest extends BaseFeatureTest
                 'name' => 'HafızOl',
                 'slug' => 'hafizol',
                 'text' => Regulation::where('slug', 'hafizol')->value('text'),
+                'summary' => Regulation::where('slug', 'hafizol')->value('summary'),
             ]);
     }
 
