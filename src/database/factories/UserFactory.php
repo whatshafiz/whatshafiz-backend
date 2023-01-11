@@ -50,4 +50,16 @@ class UserFactory extends Factory
             'phone_number_verified_at' => null,
         ]);
     }
+
+    /**
+     * Indicate that the model's phone number should be unverified.
+     *
+     * @return static
+     */
+    public function hasGender()
+    {
+        return $this->state(fn (array $attributes) => [
+            'gender' => $this->faker->randomElement(['male', 'female']),
+        ]);
+    }
 }
