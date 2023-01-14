@@ -375,9 +375,7 @@
 								"exec": [
 									"pm.test(\"Success\", function () {",
 									"    pm.response.to.have.status(200);",
-									"    pm.expect(pm.response.text()).to.include(\"name\");",
-									"    pm.expect(pm.response.text()).to.include(\"surname\");",
-									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"message\");",
 									"});",
 									""
 								],
@@ -409,7 +407,7 @@
 							"urlencoded": [
 								{
 									"key": "type",
-									"value": "whatshafiz",
+									"value": "whatsenglish",
 									"description": "required|string|in:whatshafiz,whatsenglish,whatsarapp",
 									"type": "text"
 								},
@@ -772,7 +770,7 @@
 								"exec": [
 									"pm.test(\"Success\", function () {",
 									"    pm.response.to.have.status(200);",
-									"    pm.expect(pm.response.text()).to.include(\"hafizkal\");",
+									"    pm.expect(pm.response.text()).to.include(\"whatsenglish\");",
 									"});",
 									""
 								],
@@ -816,7 +814,7 @@
 								"exec": [
 									"pm.test(\"Success\", function () {",
 									"    pm.response.to.have.status(200);",
-									"    pm.expect(pm.response.text()).to.include(\"hafizkal\");",
+									"    pm.expect(pm.response.text()).to.include(\"whatsarapp\");",
 									"});",
 									""
 								],
@@ -940,6 +938,12 @@
 							"mode": "formdata",
 							"formdata": [
 								{
+									"key": "summary",
+									"value": "{{$randomLoremParagraphs}}",
+									"description": "nullable|string",
+									"type": "text"
+								},
+								{
 									"key": "text",
 									"value": "{{$randomLoremParagraphs}}",
 									"description": "required|string",
@@ -1004,6 +1008,12 @@
 									"value": "{{$randomLoremParagraphs}}",
 									"description": "required|string",
 									"type": "text"
+								},
+								{
+									"key": "summary",
+									"value": "{{$randomLoremParagraphs}}",
+									"description": "nullable|string",
+									"type": "text"
 								}
 							]
 						},
@@ -1015,6 +1025,138 @@
 							"path": [
 								"regulations",
 								"hafizkal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Whatsenglish",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"success\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "text",
+									"value": "{{$randomLoremParagraphs}}",
+									"description": "required|string",
+									"type": "text"
+								},
+								{
+									"key": "summary",
+									"value": "{{$randomLoremParagraphs}}",
+									"description": "nullable|string",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/regulations/whatsenglish",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"regulations",
+								"whatsenglish"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Whatsarapp",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"success\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "text",
+									"value": "{{$randomLoremParagraphs}}",
+									"description": "required|string",
+									"type": "text"
+								},
+								{
+									"key": "summary",
+									"value": "{{$randomLoremParagraphs}}",
+									"description": "nullable|string",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/regulations/whatsarapp",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"regulations",
+								"whatsarapp"
 							]
 						}
 					},
@@ -1038,6 +1180,7 @@
 									"    pm.expect(pm.response.text()).to.include(\"name\");",
 									"    pm.expect(pm.response.text()).to.include(\"can_be_applied\");",
 									"    pm.expect(pm.response.text()).to.include(\"can_be_applied_until\");",
+									"    pm.expect(pm.response.text()).to.include(\"start_at\");",
 									"});",
 									""
 								],
@@ -1090,6 +1233,7 @@
 									"    pm.expect(pm.response.text()).to.include(\"name\");",
 									"    pm.expect(pm.response.text()).to.include(\"can_be_applied\");",
 									"    pm.expect(pm.response.text()).to.include(\"can_be_applied_until\");",
+									"    pm.expect(pm.response.text()).to.include(\"start_at\");",
 									"});",
 									""
 								],
@@ -1268,6 +1412,12 @@
 									"value": "2022-12-30 12:20:21",
 									"description": "nullable|date_format:Y-m-d H:i:s",
 									"type": "text"
+								},
+								{
+									"key": "start_at",
+									"value": "2023-01-30 12:20:20",
+									"description": "nullable|date_format:Y-m-d H:i:s",
+									"type": "text"
 								}
 							]
 						},
@@ -1348,6 +1498,12 @@
 								{
 									"key": "can_be_applied_until",
 									"value": "2022-12-30 12:20:21",
+									"description": "nullable|date_format:Y-m-d H:i:s",
+									"type": "text"
+								},
+								{
+									"key": "start_at",
+									"value": "2023-03-10 12:20:21",
 									"description": "nullable|date_format:Y-m-d H:i:s",
 									"type": "text"
 								}

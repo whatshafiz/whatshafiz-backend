@@ -37,9 +37,15 @@ class RegulationController extends Controller
     {
         $this->authorize('update', Regulation::class);
 
-        $request->validate(['text' => 'required|string']);
+        $validatedData = $this->validate(
+            $request,
+            [
+                'summary' => 'nullable|string',
+                'text' => 'required|string',
+            ]
+        );
 
-        if ($regulation->update(['text' => $request->text])) {
+        if ($regulation->update($validatedData)) {
             return response()->json(['status' => 'success']);
         }
 
