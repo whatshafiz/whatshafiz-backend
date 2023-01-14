@@ -23,52 +23,64 @@ class RegulationTest extends BaseFeatureTest
     /** @test */
     public function it_should_get_hafizol_regulations()
     {
+        $hafizolRegulation = Regulation::where('slug', 'hafizol')->first();
+
         $response = $this->json('GET', $this->uri . '/hafizol');
 
         $response->assertOk()
             ->assertJsonFragment([
                 'name' => 'HafızOl',
                 'slug' => 'hafizol',
-                'text' => Regulation::where('slug', 'hafizol')->value('text'),
+                'summary' => $hafizolRegulation->summary,
+                'text' => $hafizolRegulation->text,
             ]);
     }
 
     /** @test */
     public function it_should_get_hafizkal_regulations()
     {
+        $hafizkalRegulation = Regulation::where('slug', 'hafizkal')->first();
+
         $response = $this->json('GET', $this->uri . '/hafizkal');
 
         $response->assertOk()
             ->assertJsonFragment([
                 'name' => 'HafızKal',
                 'slug' => 'hafizkal',
-                'text' => Regulation::where('slug', 'hafizkal')->value('text'),
+                'summary' => $hafizkalRegulation->summary,
+                'text' => $hafizkalRegulation->text,
             ]);
     }
 
     /** @test */
     public function it_should_get_whatsenglish_regulations()
     {
+        $whatsenglishRegulation = Regulation::where('slug', 'whatsenglish')->first();
+
         $response = $this->json('GET', $this->uri . '/whatsenglish');
 
         $response->assertOk()
             ->assertJsonFragment([
                 'name' => 'WhatsEnglish',
                 'slug' => 'whatsenglish',
-                'text' => Regulation::where('slug', 'whatsenglish')->value('text'),
+                'summary' => $whatsenglishRegulation->summary,
+                'text' => $whatsenglishRegulation->text,
             ]);
     }
 
     /** @test */
     public function it_should_get_whatsarapp_regulations()
     {
+        $whatsarappRegulation = Regulation::where('slug', 'whatsarapp')->first();
+
         $response = $this->json('GET', $this->uri . '/whatsarapp');
 
         $response->assertOk()
             ->assertJsonFragment([
                 'name' => 'WhatsArapp',
                 'slug' => 'whatsarapp',
-                'text' => Regulation::where('slug', 'whatsarapp')->value('text'),
+                'summary' => $whatsarappRegulation->summary,
+                'text' => $whatsarappRegulation->text,
             ]);
     }
 
@@ -106,7 +118,7 @@ class RegulationTest extends BaseFeatureTest
             ->json(
                 'POST',
                 $this->uri . '/' . ($this->faker->randomElement(['hafizol', 'hafizkal', 'whatsenglish', 'whatsarapp'])),
-                ['text' => $this->faker->paragraph(2)]
+                ['summary' => $this->faker->paragraph(2), 'text' => $this->faker->paragraph(2)]
             );
 
         $response->assertForbidden();
@@ -119,17 +131,21 @@ class RegulationTest extends BaseFeatureTest
         $user->givePermissionTo('regulations.update');
 
         $regulationSlug = $this->faker->randomElement(['hafizol', 'hafizkal', 'whatsenglish', 'whatsarapp']);
+        $newRegulationSummary = $this->faker->paragraph(rand(1, 5));
         $newRegulationText = $this->faker->paragraph(rand(1, 5));
 
         $response = $this->actingAs($user)
             ->json(
                 'POST',
                 $this->uri . '/' . $regulationSlug,
-                ['text' => $newRegulationText]
+                ['summary' => $newRegulationSummary, 'text' => $newRegulationText]
             );
 
         $response->assertOk();
 
-        $this->assertDatabaseHas('regulations', ['slug' => $regulationSlug, 'text' => $newRegulationText]);
+        $this->assertDatabaseHas(
+            'regulations',
+            ['slug' => $regulationSlug, 'summary' => $newRegulationSummary, 'text' => $newRegulationText]
+        );
     }
 }

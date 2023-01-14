@@ -17,6 +17,12 @@ class RegulationSeeder extends Seeder
         $hafizol = [
             'name' => 'HafızOl',
             'slug' => 'hafizol',
+            'summary' => "Bu program sıfırdan başlamaktadır. Daha önce hafızlık yapmış olanlar dilerlerse bu programa da katılabilirler.
+                'Hafız Ol' Programı 15 Eylül de 2022'de başlayacaktır. Whatsapp grubuna alınmadım diye mesaj atmayınız. Güncel durumu takip etmek için Instagram hesabımızda takipte kalınız.
+                Günlük 1 sayfa şeklinde ilerlenecektir.
+                Günlük yaklaşık 2-3 saatinizi ayırmanız gerekmektedir.
+                Toplam 24 ay sürecektir.
+                Kayıt Formu için butona tıklayınız.",
             'text' => "1. Whatshafız'ın Tanımı ve Amacı:
                 Ezberleme açısından daha sağlam ve daha az vakit alan yeni hafızlık sistemidir. Öğrencinin hafızlığı tamamlanmasının ardından ömrün sonuna kadar ezberini koruması amaçlanmaktadır.
                 2. Whatshafız'a Üyelik:
@@ -30,6 +36,13 @@ class RegulationSeeder extends Seeder
         $hafizkal = [
             'name' => 'HafızKal',
             'slug' => 'hafizkal',
+            'summary' => "Bu programa sadece daha önce hafızlığını tamamlamış olanlar (yarıda bırakmış olmaz) katılabilir.
+                Bu programın amacı, daha önce hafızlığını tamamlamış, ancak unutmaya başladığı için hafızlığını tekrar sağlama almaktır.
+                'Hafız Kal' Programı Eylül'de başlayacaktır.
+                Günlük yaklaşık 4 saatinizi ayırmanız gerekmektedir.
+                Toplam 8 ay sürecektir. 15 Eylül 2022'de başlanacaktır. WhatsApp grubuna alınmadım diye mesaj atmayınız. Güncel durumu takip etmek için İnstagram hesabımızda takipte kalınız.
+                Programa katılma şartı olarak, yeni hafızlığa başlayan (eski hafızları değil) iki öğrencinin ezberini dinlemektir (günlük 10 dakikadan fazla vakit almaz)
+                Kayıt Formu için butona tıklayınız.",
             'text' => "1. Whatshafız Hafızkal'ın Tanımı:
                 Ezberleme açısından daha sağlam ve daha az vakit alan yeni hafızlık sistemidir.
                 2. Hafızkal'a Üyelik:
@@ -42,6 +55,7 @@ class RegulationSeeder extends Seeder
         $whatsenglish = [
             'name' => 'WhatsEnglish',
             'slug' => 'whatsenglish',
+            'summary' => '',
             'text' => "1. WhatsEnglish'in Tanımı:
                 1a) WhatsEnglish, ücretsiz olarak Öğr. Gör. Dr. Muhammet Ali Can ve gönüllü ekibi tarafından Arapça ve Hafızlık gibi uzaktan eğitim sistemi ile verilen hizmetlerden bir başkasıdır.
                 1b) Toplam 2 kurdan oluşmaktadır. Her kur 25 haftalıktır. Türkiye Türkçesi dilbilgisi kurallarına uygun ve ingilizceyi hiç bilmeyenlere yönelik şekilde hazırlanan programda, İngilizce gramer konularının büyük çoğunluğu tamamlanmaktadır. Toplamda yaklaşık 1000 kelime ezberlenmektedir.",
@@ -49,6 +63,7 @@ class RegulationSeeder extends Seeder
         $whatsarapp = [
             'name' => 'WhatsArapp',
             'slug' => 'whatsarapp',
+            'summary' => '',
             'text' => "1. WhatsArapp'ın Tanımı:
                 1a) WhatsArapp, ücretsiz olarak Öğr. Gör. Dr. Muhammet Ali Can ve gönüllü ekibi tarafından İngilizce ve Hafızlık gibi uzaktan eğitim sistemi ile verilen hizmetlerden bir başkasıdır.
                 1b) Toplam 4 kurdan oluşmaktadır. İlk iki kur okuma, konuşma, anlama ve cümle kurmaya yöneliktir Standart Fasih Arapça temelli olup, konuşma diline de yer verilmektedir. Üçüncü kurda Kuran-ı Kerim Arapçası işlenir. Dördüncü kur ise YDS’ye yöneliktir.",
