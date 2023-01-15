@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\PasswordReset;
 use App\Models\User;
+use App\Models\UserCourse;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\JsonResponse;
@@ -298,6 +299,29 @@ class UserController extends Controller
             throw $exception;
         }
     }
+
+
+    /**
+     * @return JsonResponse
+    */
+    public function getUserCourses() : JsonResponse
+    {
+
+        $user = Auth::user();
+
+        // aktif kursları getir
+        $user_courses = UserCourse::where([['user_id', $user->id], ['removed_at', '!=', null]])->get();
+
+        // aktif kurs yoksa başlayacak olan kursları getir
+        if(count($user_courses) == 0){
+            $user_courses = Course::available()->get(['id', 'type', 'name', 'can_be_applied_until', 'start_at']);
+        }
+
+        return response()->json(compact('user_courses'));
+
+    }
+
+
 
     /**
      * @param  Request  $request

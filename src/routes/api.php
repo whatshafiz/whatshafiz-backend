@@ -20,6 +20,8 @@ Route::post('update-password', [UserController::class, 'updatePassword']);
 Route::get('regulations/{regulation:slug}', [RegulationController::class, 'show']);
 Route::get('courses/available', [CourseController::class, 'indexAvailableCourses']);
 
+Route::get('profile/courses', [UserController::class, 'getUserCourses']);
+
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('settings', [SettingController::class, 'index']);
 
@@ -29,6 +31,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('profile', [UserController::class, 'saveProfile']);
     Route::get('profile', [UserController::class, 'profile'])->name('profile');
     Route::post('profile/courses', [UserController::class, 'saveCourse']);
+
+
 
     Route::get('regulations', [RegulationController::class, 'index']);
     Route::post('regulations/{regulation:slug}', [RegulationController::class, 'update']);
