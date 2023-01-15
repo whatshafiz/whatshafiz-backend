@@ -250,4 +250,37 @@ class ProfileTest extends BaseFeatureTest
         );
         $this->assertTrue($user->hasRole(Str::ucfirst($availableCourse->type)));
     }
+
+    /** @test */
+    public function it_should_return_user_courses()
+    {
+        $user = User::factory()->create();
+
+        $availableCourse = Course::factory()->available()->create();
+
+        $userExistingCourse = Course::factory()
+            ->available()
+            ->create(['type' => $availableCourse->type, 'is_active' => true]);
+
+        UserCourse::factory()->create([
+            'type' => $availableCourse->type,
+            'user_id' => $user->id,
+            'course_id' => $userExistingCourse->id
+        ]);
+
+        $user_courses = $user->courses()->get();
+
+        if(!$user->courses()->exists()){
+            $user_courses = Course::available()->get();
+        }
+
+        $response = $this->actingAs($user)->json('GET', $this->uri . '/courses');
+
+        $response->assertOk();
+
+        foreach ($user_courses as $user_course) {
+            $response->assertJsonFragment($user_course->toArray());
+        }
+    }
+
 }
