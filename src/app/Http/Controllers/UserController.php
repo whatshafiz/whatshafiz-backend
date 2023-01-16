@@ -189,7 +189,8 @@ class UserController extends Controller
             );
         }
 
-        if (!$user->verification_code ||
+        if (
+            !$user->verification_code ||
             !$user->verification_code_valid_until ||
             Carbon::now()->greaterThan($user->verification_code_valid_until) ||
             $request->code !== $user->verification_code
@@ -300,6 +301,16 @@ class UserController extends Controller
     }
 
     /**
+     * @return JsonResponse
+     */
+    public function getUserCourses(): JsonResponse
+    {
+        $userCourses = Auth::user()->courses()->get();
+
+        return response()->json(compact('userCourses'));
+    }
+
+    /**
      * @param  Request  $request
      * @return JsonResponse
      */
@@ -320,7 +331,8 @@ class UserController extends Controller
         $passwordResetCodeCreatedAt = Carbon::now();
         PasswordReset::updateOrCreate(
             [
-            'phone_number' => $user->phone_number],
+                'phone_number' => $user->phone_number
+            ],
             ['token' => Hash::make($passwordResetCode), 'created_at' => $passwordResetCodeCreatedAt]
         );
 
@@ -329,7 +341,7 @@ class UserController extends Controller
         return response()->json([
             'message' => 'Doğrulama kodu whatsapp ile telefonunuza gönderildi.',
             'password_reset_code_valid_until' =>
-                $passwordResetCodeCreatedAt->addMinutes(PasswordReset::TOKEN_LIFETIME_IN_MINUTE)->format('d-m-Y H:i:s'),
+            $passwordResetCodeCreatedAt->addMinutes(PasswordReset::TOKEN_LIFETIME_IN_MINUTE)->format('d-m-Y H:i:s'),
         ]);
     }
 
