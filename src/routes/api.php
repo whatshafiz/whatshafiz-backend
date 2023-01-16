@@ -29,6 +29,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('profile', [UserController::class, 'saveProfile']);
     Route::get('profile', [UserController::class, 'profile'])->name('profile');
     Route::post('profile/courses', [UserController::class, 'saveCourse']);
+    Route::get('profile/courses', [UserController::class, 'getUserCourses']);
 
     Route::get('regulations', [RegulationController::class, 'index']);
     Route::post('regulations/{regulation:slug}', [RegulationController::class, 'update']);

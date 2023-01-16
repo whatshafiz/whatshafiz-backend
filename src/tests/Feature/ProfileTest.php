@@ -207,7 +207,7 @@ class ProfileTest extends BaseFeatureTest
             ->with(json_encode([
                 'phone' => $user->phone_number,
                 'text' => 'Aşağıdaki linki kullanarak *' . $availableCourse->type .
-                        '* kursu için atandığınız whatsapp grubuna katılın. ↘️ ' . $joinUrl
+                    '* kursu için atandığınız whatsapp grubuna katılın. ↘️ ' . $joinUrl
             ]));
 
         $response = $this->actingAs($user)
@@ -249,5 +249,23 @@ class ProfileTest extends BaseFeatureTest
                 ->exists()
         );
         $this->assertTrue($user->hasRole(Str::ucfirst($availableCourse->type)));
+    }
+
+    /** @test */
+    public function it_should_return_user_courses()
+    {
+        $user = User::factory()->create();
+
+        $userCourses = UserCourse::factory()
+            ->count(rand(1, 3))
+            ->create(['user_id' => $user->id]);
+
+        $response = $this->actingAs($user)->json('GET', $this->uri . '/courses');
+
+        $response->assertOk();
+
+        foreach ($userCourses as $userCourse) {
+            $response->assertJsonFragment($userCourse->course->toArray());
+        }
     }
 }
