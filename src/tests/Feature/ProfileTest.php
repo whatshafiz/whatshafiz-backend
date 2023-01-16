@@ -256,29 +256,15 @@ class ProfileTest extends BaseFeatureTest
     {
         $user = User::factory()->create();
 
-        $availableCourse = Course::factory()->available()->create();
-
-        $userExistingCourse = Course::factory()
-            ->available()
-            ->create(['type' => $availableCourse->type, 'is_active' => true]);
-
-        UserCourse::factory()->create([
-            'type' => $availableCourse->type,
+        $userCourses = UserCourse::factory()->count(rand(1, 3))->create([
             'user_id' => $user->id,
-            'course_id' => $userExistingCourse->id
         ]);
-
-        $user_courses = $user->courses()->get();
-
-        if(!$user->courses()->exists()){
-            $user_courses = Course::available()->get();
-        }
 
         $response = $this->actingAs($user)->json('GET', $this->uri . '/courses');
 
         $response->assertOk();
 
-        foreach ($user_courses as $user_course) {
+        foreach ($userCourses as $user_course) {
             $response->assertJsonFragment($user_course->toArray());
         }
     }

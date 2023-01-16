@@ -309,10 +309,6 @@ class UserController extends Controller
 
         $user_courses = $user->courses()->get();
 
-        if(!$user->courses()->exists()){
-            $user_courses = Course::available()->get(['id', 'type', 'name', 'can_be_applied_until', 'start_at']);
-        }
-
         return response()->json(compact('user_courses'));
     }
 
