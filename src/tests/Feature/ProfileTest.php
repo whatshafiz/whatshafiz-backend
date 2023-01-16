@@ -256,16 +256,16 @@ class ProfileTest extends BaseFeatureTest
     {
         $user = User::factory()->create();
 
-        $userCourses = UserCourse::factory()->count(rand(1, 3))->create([
-            'user_id' => $user->id,
-        ]);
+        $userCourses = UserCourse::factory()
+            ->count(rand(1, 3))
+            ->create([ 'user_id' => $user->id ]);
 
         $response = $this->actingAs($user)->json('GET', $this->uri . '/courses');
 
         $response->assertOk();
 
-        foreach ($userCourses as $user_course) {
-            $response->assertJsonFragment($user_course->toArray());
+        foreach ($userCourses as $userCourse) {
+            $response->assertJsonFragment($userCourse->toArray());
         }
     }
 
