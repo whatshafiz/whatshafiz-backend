@@ -207,7 +207,7 @@ class ProfileTest extends BaseFeatureTest
             ->with(json_encode([
                 'phone' => $user->phone_number,
                 'text' => 'Aşağıdaki linki kullanarak *' . $availableCourse->type .
-                        '* kursu için atandığınız whatsapp grubuna katılın. ↘️ ' . $joinUrl
+                    '* kursu için atandığınız whatsapp grubuna katılın. ↘️ ' . $joinUrl
             ]));
 
         $response = $this->actingAs($user)
@@ -256,17 +256,16 @@ class ProfileTest extends BaseFeatureTest
     {
         $user = User::factory()->create();
 
-        $userCourses = UserCourse::factory()
+        UserCourse::factory()
             ->count(rand(1, 3))
-            ->create([ 'user_id' => $user->id ]);
+            ->create(['user_id' => $user->id]);
 
         $response = $this->actingAs($user)->json('GET', $this->uri . '/courses');
 
         $response->assertOk();
 
-        foreach ($userCourses as $userCourse) {
+        foreach ($user->courses()->get() as $userCourse) {
             $response->assertJsonFragment($userCourse->toArray());
         }
     }
-
 }
