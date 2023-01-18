@@ -21,6 +21,8 @@ Route::get('regulations/{regulation:slug}', [RegulationController::class, 'show'
 Route::get('courses/available', [CourseController::class, 'indexAvailableCourses']);
 
 Route::middleware('auth:sanctum')->group(function () {
+    Route::get('users', [UserController::class, 'index']);
+
     Route::get('settings', [SettingController::class, 'index']);
 
     Route::post('register/verification-code/send', [UserController::class, 'sendVerificationCode']);
