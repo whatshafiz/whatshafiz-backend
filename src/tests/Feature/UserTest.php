@@ -62,4 +62,30 @@ class UserTest extends BaseFeatureTest
                 'is_banned' => true,
             ]);
     }
+
+    /** @test */
+    public function it_should_not_get_users_list_when_does_not_have_permission()
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->json('GET', $this->uri . '/list');
+
+        $response->assertForbidden();
+    }
+
+    /** @test */
+    public function it_should_get_users_list_when_has_permission()
+    {
+        $users = User::factory()->count(2, 5)->create();
+        $user = User::factory()->create();
+        $user->givePermissionTo('users.list');
+
+        $response = $this->actingAs($user)->json('GET', $this->uri . '/list');
+
+        $response->assertOk();
+
+        foreach ($users as $user) {
+            $response->assertJsonFragment($user->toArray());
+        }
+    }
 }

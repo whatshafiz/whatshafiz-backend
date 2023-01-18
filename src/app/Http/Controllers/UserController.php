@@ -311,6 +311,18 @@ class UserController extends Controller
     }
 
     /**
+     * @return JsonResponse
+     */
+    public function getUsersList(): JsonResponse
+    {
+        $this->authorize('list', User::class);
+
+        $usersList = User::latest()->get();
+
+        return response()->json(compact('usersList'));
+    }
+
+    /**
      * @param  Request  $request
      * @return JsonResponse
      */

@@ -20,6 +20,8 @@ Route::post('update-password', [UserController::class, 'updatePassword']);
 Route::get('regulations/{regulation:slug}', [RegulationController::class, 'show']);
 Route::get('courses/available', [CourseController::class, 'indexAvailableCourses']);
 
+Route::get('users/list', [UserController::class, 'getUsersList']);
+
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('settings', [SettingController::class, 'index']);
 
