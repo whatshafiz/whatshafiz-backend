@@ -15,7 +15,7 @@ class UserPolicy
      * @param  User  $user
      * @return bool
      */
-    public function list(User $user): bool
+    public function viewAny(User $user): bool
     {
         return $user->hasPermissionTo('users.list');
     }

@@ -20,6 +20,18 @@ class UserController extends Controller
     /**
      * @return JsonResponse
      */
+    public function index(): JsonResponse
+    {
+        $this->authorize('viewAny', User::class);
+
+        $list = User::latest()->paginate()->toArray();
+
+        return response()->json(compact('list'));
+    }
+
+    /**
+     * @return JsonResponse
+     */
     public function profile(): JsonResponse
     {
         $user = Auth::user()->load(['country', 'city', 'university', 'universityFaculty', 'universityDepartment']);
@@ -308,18 +320,6 @@ class UserController extends Controller
         $userCourses = Auth::user()->courses()->get();
 
         return response()->json(compact('userCourses'));
-    }
-
-    /**
-     * @return JsonResponse
-     */
-    public function getUsersList(): JsonResponse
-    {
-        $this->authorize('list', User::class);
-
-        $usersList = User::latest()->get();
-
-        return response()->json(compact('usersList'));
     }
 
     /**
