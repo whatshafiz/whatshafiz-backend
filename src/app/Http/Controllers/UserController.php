@@ -24,9 +24,9 @@ class UserController extends Controller
     {
         $this->authorize('viewAny', User::class);
 
-        $list = User::latest()->paginate()->toArray();
+        $users = User::latest()->paginate()->toArray();
 
-        return response()->json(compact('list'));
+        return response()->json(compact('users'));
     }
 
     /**
