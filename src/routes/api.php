@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\RegulationController;
@@ -63,4 +64,7 @@ Route::middleware('auth:sanctum')->group(function () {
         'whatsapp-groups/{whatsapp_group}/users/{whatsapp_group_user}',
         [WhatsappGroupController::class, 'destroyUser']
     );
+
+    Route::apiResource('complaints', ComplaintController::class);
+    Route::get('my-complaints', [ComplaintController::class, 'myComplaints']);
 });

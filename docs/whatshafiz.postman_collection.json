@@ -2835,6 +2835,411 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Şikayet Yönetimi",
+			"item": [
+				{
+					"name": "CREATE Şikayet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"complaint\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "subject",
+									"value": "Hata test",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Hata test",
+									"type": "text"
+								},
+								{
+									"key": "related_user_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/complaints",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"complaints"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Şikayet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "subject",
+									"value": "Hata test",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Hata test",
+									"type": "text"
+								},
+								{
+									"key": "related_user_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "is_fixed",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/complaints/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"complaints",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LIST Şikayetlerim",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"reviewed_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"is_fixed\");",
+									"    pm.expect(pm.response.text()).to.include(\"result\");",
+									"    pm.expect(pm.response.text()).to.include(\"subject\");",
+									"    pm.expect(pm.response.text()).to.include(\"description\");",
+									"    pm.expect(pm.response.text()).to.include(\"created_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"updated_at\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "subject",
+									"value": "Hata test",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Hata test",
+									"type": "text"
+								},
+								{
+									"key": "related_user_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/my-complaints/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"my-complaints",
+								""
+							],
+							"query": [
+								{
+									"key": "is_fixed",
+									"value": "0",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LIST Şikayetler",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"reviewed_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"is_fixed\");",
+									"    pm.expect(pm.response.text()).to.include(\"result\");",
+									"    pm.expect(pm.response.text()).to.include(\"subject\");",
+									"    pm.expect(pm.response.text()).to.include(\"description\");",
+									"    pm.expect(pm.response.text()).to.include(\"created_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"updated_at\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "subject",
+									"value": "Hata test",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Hata test",
+									"type": "text"
+								},
+								{
+									"key": "related_user_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/complaints?is_fixed=0",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"complaints"
+							],
+							"query": [
+								{
+									"key": "is_fixed",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Şikayet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"reviewed_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"is_fixed\");",
+									"    pm.expect(pm.response.text()).to.include(\"result\");",
+									"    pm.expect(pm.response.text()).to.include(\"subject\");",
+									"    pm.expect(pm.response.text()).to.include(\"description\");",
+									"    pm.expect(pm.response.text()).to.include(\"created_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"updated_at\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "subject",
+									"value": "Hata test",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Hata test",
+									"type": "text"
+								},
+								{
+									"key": "related_user_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/complaints/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"complaints",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "1|1EiAA9cCOluk5lvkv4xAw61tgLKOlHgqtS0pVVyv",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "http://127.0.0.1:8000/api/v1"
 		}
 	]
 }
