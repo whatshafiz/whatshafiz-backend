@@ -18,18 +18,15 @@ class ComplaintFactory extends Factory
      */
     public function definition()
     {
-        $created = User::factory()->create();
-        $related = User::factory()->create();
-
         return [
-            'created_by' => $created->id,
+            'created_by' => User::factory()->create()->id,
             'reviewed_by' => null,
             'reviewed_at' => null,
-            'is_fixed' => 0,
+            'is_fixed' => $this->faker->boolean,
             'result' => $this->faker->text(100),
             'subject' => $this->faker->text(100),
             'description' => $this->faker->text(100),
-            'related_user_id' => $related->id,
+            'related_user_id' => User::factory()->create()->id,
         ];
     }
 }

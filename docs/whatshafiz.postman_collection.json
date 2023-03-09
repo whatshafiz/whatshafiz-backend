@@ -668,7 +668,7 @@
 					},
 					"response": []
 				},
-        {
+				{
 					"name": "User Courses",
 					"event": [
 						{
@@ -2767,7 +2767,7 @@
 				}
 			]
 		},
-    {
+		{
 			"name": "Kullanıcılar",
 			"item": [
 				{
@@ -2993,9 +2993,6 @@
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [
@@ -3010,26 +3007,6 @@
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "subject",
-									"value": "Hata test",
-									"type": "text"
-								},
-								{
-									"key": "description",
-									"value": "Hata test",
-									"type": "text"
-								},
-								{
-									"key": "related_user_id",
-									"value": "1",
-									"type": "text"
-								}
-							]
-						},
 						"url": {
 							"raw": "{{URL}}/my-complaints/",
 							"host": [
@@ -3074,9 +3051,6 @@
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [
@@ -3091,26 +3065,6 @@
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "subject",
-									"value": "Hata test",
-									"type": "text"
-								},
-								{
-									"key": "description",
-									"value": "Hata test",
-									"type": "text"
-								},
-								{
-									"key": "related_user_id",
-									"value": "1",
-									"type": "text"
-								}
-							]
-						},
 						"url": {
 							"raw": "{{URL}}/complaints?is_fixed=0",
 							"host": [
@@ -3153,9 +3107,6 @@
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [
@@ -3170,26 +3121,6 @@
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "subject",
-									"value": "Hata test",
-									"type": "text"
-								},
-								{
-									"key": "description",
-									"value": "Hata test",
-									"type": "text"
-								},
-								{
-									"key": "related_user_id",
-									"value": "1",
-									"type": "text"
-								}
-							]
-						},
 						"url": {
 							"raw": "{{URL}}/complaints/1",
 							"host": [
@@ -3206,16 +3137,6 @@
 			]
 		}
 	],
-	"auth": {
-		"type": "bearer",
-		"bearer": [
-			{
-				"key": "token",
-				"value": "1|1EiAA9cCOluk5lvkv4xAw61tgLKOlHgqtS0pVVyv",
-				"type": "string"
-			}
-		]
-	},
 	"event": [
 		{
 			"listen": "prerequest",

@@ -62,9 +62,7 @@ class RolesPermissionsSeeder extends Seeder
             'complaints.*',
             'complaints.view',
             'complaints.list',
-            'complaints.update',
-            'complaints.create',
-            'complaints.delete'
+            'complaints.update'
         ];
 
         foreach ($permissions as $permission) {

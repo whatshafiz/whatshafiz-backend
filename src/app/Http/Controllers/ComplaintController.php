@@ -12,11 +12,12 @@ use Symfony\Component\HttpFoundation\Response;
 class ComplaintController extends Controller
 {
     /**
+     * @param Request $request
      * @return JsonResponse
      * @throws AuthorizationException
      * @throws ValidationException
      */
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
         $this->authorize('viewAny', Complaint::class);
 
@@ -60,7 +61,7 @@ class ComplaintController extends Controller
                 return $query->where('related_user_id', $requestData['related_user_id']);
             })
             ->latest()
-            ->get();
+            ->paginate();
 
         return response()->json(compact('complaints'));
     }
@@ -89,21 +90,19 @@ class ComplaintController extends Controller
         $requestData = $this->validate(
             $request,
             [
-                'created_by' => 'nullable|integer',
-                'reviewed_by' => 'nullable|integer',
-                'reviewed_at' => 'nullable|date',
                 'is_fixed' => 'nullable|boolean',
-                'result' => 'nullable|string',
                 'subject' => 'nullable|string',
-                'description' => 'nullable|string',
-                'related_user_id' => 'nullable|integer',
             ]
         );
 
         $complaints = Complaint::myComplaints()
             ->when(isset($requestData['is_fixed']), function ($query) use ($requestData) {
                 return $query->where('is_fixed', $requestData['is_fixed']);
-            })->latest()->get();
+            })
+            ->when(isset($requestData['subject']), function ($query) use ($requestData) {
+                return $query->where('subject', $requestData['subject']);
+            })
+            ->latest()->paginate();
 
         return response()->json(compact('complaints'));
     }
@@ -121,16 +120,12 @@ class ComplaintController extends Controller
             [
                 'subject' => 'required|string',
                 'description' => 'required|string',
-                'related_user_id' => 'nullable|integer',
+                'related_user_id' => 'nullable|integer|min:0|exists:users,id',
             ]
         );
 
-        $complaint = Complaint::create([
-            'subject' => $requestData['subject'],
-            'description' => $requestData['description'],
-            'related_user_id' => $requestData['related_user_id'] ?? null,
-            'created_by' => auth()->id()
-        ]);
+        $requestData['created_by'] = Auth::id();
+        $complaint = Complaint::create($requestData);
 
         return response()->json(compact('complaint'));
     }
@@ -151,7 +146,7 @@ class ComplaintController extends Controller
             [
                 'subject' => 'nullable|string',
                 'description' => 'nullable|string',
-                'related_user_id' => 'nullable|integer',
+                'related_user_id' => 'nullable|integer|min:0|exists:users,id',
                 'result' => 'nullable|string',
                 'is_fixed' => 'nullable|boolean'
             ]

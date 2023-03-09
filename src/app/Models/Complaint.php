@@ -2,47 +2,38 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Complaint extends Model
+class Complaint extends BaseModel
 {
     use HasFactory;
 
-    /**
-     * @var array
-     */
-    protected $fillable = [
-        'reviewed_by',
-        'reviewed_at',
-        'is_fixed',
-        'result',
-        'subject',
-        'description',
-        'related_user_id',
-        'created_by'
+    protected $casts = [
+        'is_fixed' => 'boolean',
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
-    public function createdUser()
+    public function createdUser(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
-    public function reviewedUser()
+    public function reviewedUser(): BelongsTo
     {
         return $this->belongsTo(User::class, 'reviewed_by');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
-    public function relatedUser()
+    public function relatedUser(): BelongsTo
     {
         return $this->belongsTo(User::class, 'related_user_id');
     }
@@ -55,17 +46,16 @@ class Complaint extends Model
     {
         $userId = $user ? $user->id : auth()->id();
 
-        return $this->created_by === $userId ||
-            $this->reviewed_by === $userId;
+        return $this->created_by === $userId;
     }
 
     /**
-     * @param $query
-     * @return mixed
+     * @param Builder $query
+     * @return void
      */
-    public function scopeMyComplaints($query)
+    public function scopeMyComplaints(Builder $query): void
     {
-        return $query->where('created_by', auth()->id())
+        $query->where('created_by', auth()->id())
             ->orWhere('reviewed_by', auth()->id());
     }
 }

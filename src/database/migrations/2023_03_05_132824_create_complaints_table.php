@@ -16,7 +16,6 @@ return new class extends Migration
     {
         Schema::create('complaints', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('reviewed_at')->nullable();
             $table->boolean('is_fixed')->default(false);
             $table->string('result')->nullable();
             $table->string('subject');
@@ -24,6 +23,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class, 'related_user_id')->nullable()->constrained('users');
             $table->foreignIdFor(User::class, 'created_by')->constrained('users');
             $table->foreignIdFor(User::class, 'reviewed_by')->nullable()->constrained('users');
+            $table->timestamp('reviewed_at')->nullable();
             $table->timestamps();
         });
     }
