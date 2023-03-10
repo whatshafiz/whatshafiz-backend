@@ -24,14 +24,14 @@ class ComplaintController extends Controller
         $requestData = $this->validate(
             $request,
             [
-                'created_by' => 'nullable|integer',
-                'reviewed_by' => 'nullable|integer',
-                'reviewed_at' => 'nullable|date',
+                'created_by' => 'nullable|integer|min:0|exists:users,id',
+                'reviewed_by' => 'nullable|integer|min:0|exists:users,id',
+                'reviewed_at' => 'nullable|date_format:Y-m-d H:i:s',
                 'is_fixed' => 'nullable|boolean',
-                'result' => 'nullable|string',
-                'subject' => 'nullable|string',
-                'description' => 'nullable|string',
-                'related_user_id' => 'nullable|integer',
+                'result' => 'nullable|string|max:255',
+                'subject' => 'nullable|string|max:255',
+                'description' => 'nullable|string|max:255',
+                'related_user_id' => 'nullable|integer|min:0|exists:users,id',
             ]
         );
 
@@ -91,7 +91,7 @@ class ComplaintController extends Controller
             $request,
             [
                 'is_fixed' => 'nullable|boolean',
-                'subject' => 'nullable|string',
+                'subject' => 'nullable|string|max:255',
             ]
         );
 
@@ -102,7 +102,8 @@ class ComplaintController extends Controller
             ->when(isset($requestData['subject']), function ($query) use ($requestData) {
                 return $query->where('subject', $requestData['subject']);
             })
-            ->latest()->paginate();
+            ->latest()
+            ->paginate();
 
         return response()->json(compact('complaints'));
     }
@@ -115,17 +116,17 @@ class ComplaintController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
-        $requestData = $this->validate(
+        $validatedComplaintData = $this->validate(
             $request,
             [
-                'subject' => 'required|string',
-                'description' => 'required|string',
+                'subject' => 'required|string|max:255',
+                'description' => 'required|string|max:255',
                 'related_user_id' => 'nullable|integer|min:0|exists:users,id',
             ]
         );
 
-        $requestData['created_by'] = Auth::id();
-        $complaint = Complaint::create($requestData);
+        $validatedComplaintData['created_by'] = Auth::id();
+        $complaint = Complaint::create($validatedComplaintData);
 
         return response()->json(compact('complaint'));
     }
@@ -141,23 +142,23 @@ class ComplaintController extends Controller
     {
         $this->authorize('update', [Complaint::class, $complaint]);
 
-        $requestData = $this->validate(
+        $validatedComplaintData = $this->validate(
             $request,
             [
-                'subject' => 'nullable|string',
-                'description' => 'nullable|string',
+                'subject' => 'nullable|string|max:255',
+                'description' => 'nullable|string|max:255',
                 'related_user_id' => 'nullable|integer|min:0|exists:users,id',
-                'result' => 'nullable|string',
+                'result' => 'nullable|string|max:255',
                 'is_fixed' => 'nullable|boolean'
             ]
         );
 
         if (auth()->id() !== $complaint->created_by) {
-            $requestData['reviewed_by'] = auth()->id();
-            $requestData['reviewed_at'] = now();
+            $validatedComplaintData['reviewed_by'] = auth()->id();
+            $validatedComplaintData['reviewed_at'] = now();
         }
 
-        if ($complaint->update($requestData)) {
+        if ($complaint->update($validatedComplaintData)) {
             return response()->json(null, Response::HTTP_NO_CONTENT);
         }
 

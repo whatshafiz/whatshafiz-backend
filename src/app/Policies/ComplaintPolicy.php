@@ -31,7 +31,7 @@ class ComplaintPolicy
     public function view(User $user, Complaint $complaint): bool
     {
         return $complaint->isRelatedToUser($user) ||
-            $user->hasPermissionTo('complaints.view');
+            $user->hasPermissionTo('complaints.list');
     }
 
     /**

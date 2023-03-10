@@ -56,11 +56,11 @@ class ComplaintTest extends BaseFeatureTest
     }
 
     /** @test */
-    public function it_should_get_complaints_when_has_permission()
+    public function it_should_get_complaints_when_has_permission_to_view_any()
     {
         $complaint = Complaint::factory()->create();
 
-        $user = User::factory()->create()->givePermissionTo('complaints.view');
+        $user = User::factory()->create()->givePermissionTo('complaints.list');
 
         $response = $this->actingAs($user)->json('GET', $this->uri . '/' . $complaint->id);
 
@@ -130,6 +130,6 @@ class ComplaintTest extends BaseFeatureTest
                 ['description' => 'new description',]
             );
 
-        $response->assertStatus(204);
+        $response->assertSuccessful();
     }
 }
