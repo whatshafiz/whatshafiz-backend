@@ -22,7 +22,7 @@ class UniversityDepartmentFactory extends Factory
         return [
             'university_id' => $faculty->university_id,
             'university_faculty_id' => $faculty->id,
-            'name' => $this->faker->jobTitle,
+            'name' => $this->faker->jobTitle . ' Bölümü',
         ];
     }
 }
