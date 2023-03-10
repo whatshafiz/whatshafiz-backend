@@ -28,9 +28,6 @@ class UserController extends Controller
     {
         $this->authorize('viewAny', User::class);
 
-        /**
-         * Filter by attributes and validate request
-         */
         $validatedUserData = $this->validate(
             $request,
             [
@@ -39,53 +36,51 @@ class UserController extends Controller
                 'surname' => 'nullable|string|max:50',
                 'email' => 'nullable|email',
                 'gender' => 'nullable|string|in:male,female',
-                'country_id' => 'nullable|integer|min:1',
-                'city_id' => 'nullable|integer|min:1',
-                'university_id' => 'nullable|integer|min:1',
-                'university_faculty_id' => 'nullable|integer|min:1',
-                'university_department_id' => 'nullable|integer|min:1',
+                'country_id' => 'nullable|integer|min:1|exists:countries,id',
+                'city_id' => 'nullable|integer|min:1|exists:cities,id',
+                'university_id' => 'nullable|integer|min:1|exists:universities,id',
+                'university_faculty_id' => 'nullable|integer|min:1|exists:university_faculties,id',
+                'university_department_id' => 'nullable|integer|min:1|exists:university_departments,id',
                 'is_banned' => 'nullable|boolean',
             ]
         );
 
-        /**
-         * filter by attributes
-         */
         $users = User::latest()
-            ->when($validatedUserData['full_name'] ?? null, function ($query, $fullName) {
-                return $query->where(DB::raw('CONCAT(name, " ", surname)'), 'like', "%{$fullName}%");
+            ->when(isset($validatedUserData['full_name']), function ($query) use ($validatedUserData) {
+                return $query->where(DB::raw('CONCAT(name, " ", surname)'), 'like', "%{$validatedUserData['full_name']}%");
             })
-            ->when($validatedUserData['name'] ?? null, function ($query, $name) {
-                return $query->where('name', 'like', "%{$name}%");
+            ->when(isset($validatedUserData['name']), function ($query) use ($validatedUserData) {
+                return $query->where('name', 'like', "%{$validatedUserData['name']}%");
             })
-            ->when($validatedUserData['surname'] ?? null, function ($query, $surname) {
-                return $query->where('surname', 'like', "%{$surname}%");
+            ->when(isset($validatedUserData['surname']), function ($query) use ($validatedUserData) {
+                return $query->where('surname', 'like', "%{$validatedUserData['surname']}%");
             })
-            ->when($validatedUserData['email'] ?? null, function ($query, $email) {
-                return $query->where('email', 'like', "%{$email}%");
+            ->when(isset($validatedUserData['email']), function ($query) use ($validatedUserData) {
+                return $query->where('email', 'like', "%{$validatedUserData['email']}%");
             })
-            ->when($validatedUserData['gender'] ?? null, function ($query, $gender) {
-                return $query->where('gender', 'eq', "$gender");
+            ->when(isset($validatedUserData['gender']), function ($query) use ($validatedUserData) {
+                return $query->where('gender', $validatedUserData['gender']);
             })
-            ->when($validatedUserData['country_id'] ?? null, function ($query, $countryId) {
-                return $query->where('country_id', 'eq', "$countryId");
+            ->when(isset($validatedUserData['country_id']), function ($query) use ($validatedUserData) {
+                return $query->where('country_id', $validatedUserData['country_id']);
             })
-            ->when($validatedUserData['city_id'] ?? null, function ($query, $cityId) {
-                return $query->where('city_id', 'eq', "$cityId");
+            ->when(isset($validatedUserData['city_id']), function ($query) use ($validatedUserData) {
+                return $query->where('city_id', $validatedUserData['city_id']);
             })
-            ->when($validatedUserData['university_id'] ?? null, function ($query, $universityId) {
-                return $query->where('university_id', 'eq', "$universityId");
+            ->when(isset($validatedUserData['university_id']), function ($query) use ($validatedUserData) {
+                return $query->where('university_id', $validatedUserData['university_id']);
             })
-            ->when($validatedUserData['university_faculty_id'] ?? null, function ($query, $universityFacultyId) {
-                return $query->where('university_faculty_id', 'eq', "$universityFacultyId");
+            ->when(isset($validatedUserData['university_faculty_id']), function ($query) use ($validatedUserData) {
+                return $query->where('university_faculty_id', $validatedUserData['university_faculty_id']);
             })
-            ->when($validatedUserData['university_department_id'] ?? null, function ($query, $universityDepartmentId) {
-                return $query->where('university_department_id', 'eq', "$universityDepartmentId");
+            ->when(isset($validatedUserData['university_department_id']), function ($query) use ($validatedUserData) {
+                return $query->where('university_department_id', $validatedUserData['university_department_id']);
             })
-            ->when($validatedUserData['is_banned'] ?? null, function ($query, $isBanned) {
-                return $query->where('is_banned', 'eq', "$isBanned");
+            ->when(isset($validatedUserData['is_banned']), function ($query) use ($validatedUserData) {
+                return $query->where('is_banned', $validatedUserData['is_banned']);
             })
-            ->paginate()->toArray();
+            ->paginate()
+            ->toArray();
 
         return response()->json(compact('users'));
     }
