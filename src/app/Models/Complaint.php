@@ -45,7 +45,7 @@ class Complaint extends BaseModel
      * @param User|null $user
      * @return bool
      */
-    public function isRelatedToUser(?User $user): bool
+    public function isOwnedByUser(?User $user): bool
     {
         $userId = $user ? $user->id : auth()->id();
 
@@ -58,7 +58,6 @@ class Complaint extends BaseModel
      */
     public function scopeMyComplaints(Builder $query): void
     {
-        $query->where('created_by', auth()->id())
-            ->orWhere('reviewed_by', auth()->id());
+        $query->where('created_by', auth()->id());
     }
 }

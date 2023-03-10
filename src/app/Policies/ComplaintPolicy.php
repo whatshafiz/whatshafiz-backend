@@ -30,7 +30,7 @@ class ComplaintPolicy
      */
     public function view(User $user, Complaint $complaint): bool
     {
-        return $complaint->isRelatedToUser($user) ||
+        return $complaint->isOwnedByUser($user) ||
             $user->hasPermissionTo('complaints.list');
     }
 
@@ -43,7 +43,7 @@ class ComplaintPolicy
      */
     public function update(User $user, Complaint $complaint): bool
     {
-        return $complaint->isRelatedToUser($user) ||
+        return $complaint->isOwnedByUser($user) ||
             $user->hasPermissionTo('complaints.update');
     }
 }

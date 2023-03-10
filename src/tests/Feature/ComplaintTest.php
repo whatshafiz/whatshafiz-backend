@@ -32,15 +32,18 @@ class ComplaintTest extends BaseFeatureTest
     }
 
     /** @test */
-    public function it_should_get_complaints_list_when_does_not_have_permission()
+    public function it_should_get_complaints_list_when_does_have_permission()
     {
         $compalints = Complaint::factory()->count(5)->create();
         $user = User::factory()->create();
-        $user->givePermissionTo('complaints.view');
+        $user->givePermissionTo('complaints.list');
 
         $response = $this->actingAs($user)->json('GET', $this->uri);
 
-        $response->assertForbidden();
+        $response->assertOk();
+        foreach ($compalints as $compalint) {
+            $response->assertJsonFragment($compalint->toArray());
+        }
     }
 
     /** @test */
