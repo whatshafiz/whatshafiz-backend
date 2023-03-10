@@ -23,7 +23,7 @@ class ComplaintTest extends BaseFeatureTest
     /** @test */
     public function it_should_not_get_complaints_list_when_does_not_have_permission()
     {
-        $compalints = Complaint::factory()->count(5)->create();
+        $complaints = Complaint::factory()->count(5)->create();
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)->json('GET', $this->uri);
@@ -34,7 +34,7 @@ class ComplaintTest extends BaseFeatureTest
     /** @test */
     public function it_should_get_complaints_list_when_does_have_permission()
     {
-        $compalints = Complaint::factory()->count(5)->create();
+        $complaints = Complaint::factory()->count(5)->create();
         $user = User::factory()->create();
         $user->givePermissionTo('complaints.list');
 
@@ -42,8 +42,8 @@ class ComplaintTest extends BaseFeatureTest
 
         $response->assertOk();
 
-        foreach ($compalints as $compalint) {
-            $response->assertJsonFragment($compalint->toArray());
+        foreach ($complaints as $complaint) {
+            $response->assertJsonFragment($complaint->toArray());
         }
     }
 
@@ -89,7 +89,7 @@ class ComplaintTest extends BaseFeatureTest
     }
 
     /** @test */
-    public function it_should_not_update_complain_when_does_not_have_permission()
+    public function it_should_not_update_complaint_when_does_not_have_permission()
     {
         $complaint = Complaint::factory()->create();
 
@@ -106,7 +106,7 @@ class ComplaintTest extends BaseFeatureTest
     }
 
     /** @test */
-    public function it_should_update_complain_when_has_permission()
+    public function it_should_update_complaint_when_has_permission()
     {
         $complaint = Complaint::factory()->create();
 
@@ -120,10 +120,12 @@ class ComplaintTest extends BaseFeatureTest
             );
 
         $response->assertSuccessful();
+
+        $this->assertDatabaseHas('complaints', ['id' => $complaint->id, 'description' => 'new description']);
     }
 
     /** @test */
-    public function it_should_update_complain_when_created_user_requested()
+    public function it_should_update_complaint_when_created_user_requested()
     {
         $complaint = Complaint::factory()->create();
 
@@ -135,5 +137,7 @@ class ComplaintTest extends BaseFeatureTest
             );
 
         $response->assertSuccessful();
+
+        $this->assertDatabaseHas('complaints', ['id' => $complaint->id, 'description' => 'new description']);
     }
 }

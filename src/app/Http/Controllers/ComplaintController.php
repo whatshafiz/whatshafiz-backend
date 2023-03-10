@@ -60,7 +60,7 @@ class ComplaintController extends Controller
             ->when(isset($requestData['related_user_id']), function ($query) use ($requestData) {
                 return $query->where('related_user_id', $requestData['related_user_id']);
             })
-            ->latest()
+            ->latest('id')
             ->paginate();
 
         return response()->json(compact('complaints'));
