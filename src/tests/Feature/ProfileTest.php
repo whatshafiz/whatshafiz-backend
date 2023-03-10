@@ -116,9 +116,9 @@ class ProfileTest extends BaseFeatureTest
     {
         $user = User::factory()->create();
         Course::query()->update(['can_be_applied' => false]);
-        $availableCourse = Course::factory()->available()->create();
+        $availableCourse = Course::factory()->available()->create(['is_active' => true]);
         $userExistingCourse = Course::factory()
-            ->available()
+            ->unavailable()
             ->create(['type' => $availableCourse->type, 'is_active' => true]);
         UserCourse::factory()->create([
             'type' => $availableCourse->type,
@@ -134,7 +134,7 @@ class ProfileTest extends BaseFeatureTest
             );
 
         $response->assertStatus(Response::HTTP_BAD_REQUEST)
-            ->assertJsonFragment(['message' => 'Daha önceden başvuru yapmışsınız.']);
+            ->assertJsonFragment(['message' => 'Başvuru yaptığınız kurs tipinde zaten kaydınız var.']);
     }
 
     /** @test */
