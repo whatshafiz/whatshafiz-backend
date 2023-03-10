@@ -2,6 +2,11 @@
 
 namespace Tests\Feature;
 
+use App\Models\City;
+use App\Models\Country;
+use App\Models\University;
+use App\Models\UniversityFaculty;
+use App\Models\UniversityDepartment;
 use App\Models\User;
 use Tests\BaseFeatureTest;
 
@@ -43,6 +48,51 @@ class UserTest extends BaseFeatureTest
         foreach ($users as $user) {
             $response->assertJsonFragment($user->toArray());
         }
+    }
+
+    /** @test */
+    public function it_should_test_get_users_list_when_has_permission_and_filters()
+    {
+        Country::factory()->count(10)->create();
+        City::factory()->count(10)->create();
+        University::factory()->count(10)->create();
+        UniversityFaculty::factory()->count(10)->create();
+        UniversityDepartment::factory()->count(10)->create();
+
+        $users = User::factory()->count(2, 5)->create(
+            [
+                'country_id' => Country::inRandomOrder()->first()->id,
+                'city_id' => City::inRandomOrder()->first()->id,
+                'university_id' => University::inRandomOrder()->first()->id,
+                'university_faculty_id' => UniversityFaculty::inRandomOrder()->first()->id,
+                'university_department_id' => UniversityDepartment::inRandomOrder()->first()->id,
+                'is_banned' => rand(0, 1),
+                'gender' => rand(0, 1) ? 'female' : 'male',
+                'email' => 'test@test.com'
+            ]
+        );
+        $user = User::factory()->create();
+        $user->givePermissionTo('users.list');
+        $firstUser = $users->first();
+
+        $response = $this->actingAs($user)->json('GET', $this->uri, [
+            'name' => $firstUser->name,
+            'surname' => $firstUser->surname,
+            'email' => $firstUser->email,
+            'gender' => $firstUser->gender,
+            'phone_number' => $firstUser->phone_number,
+            'country_id' => $firstUser->country_id,
+            'city_id' => $firstUser->city_id,
+            'university_id' => $firstUser->university_id,
+            'university_faculty_id' => $firstUser->university_faculty_id,
+            'university_department_id' => $firstUser->university_department_id,
+            'is_banned' => $firstUser->is_banned,
+        ]);
+
+        print_r($response->getContent());
+
+        $response->assertOk();
+        $response->assertJsonFragment($firstUser->toArray());
     }
 
     /** @test */

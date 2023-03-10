@@ -7,24 +7,85 @@ use App\Models\PasswordReset;
 use App\Models\User;
 use Carbon\Carbon;
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
     /**
+     * @param Request $request
      * @return JsonResponse
+     * @throws AuthorizationException|ValidationException
      */
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
         $this->authorize('viewAny', User::class);
 
-        $users = User::latest()->paginate()->toArray();
+        /**
+         * Filter by attributes and validate request
+         */
+        $validatedUserData = $this->validate(
+            $request,
+            [
+                'full_name' => 'nullable|string|max:150',
+                'name' => 'nullable|string|max:50',
+                'surname' => 'nullable|string|max:50',
+                'email' => 'nullable|email',
+                'gender' => 'nullable|string|in:male,female',
+                'country_id' => 'nullable|integer|min:1',
+                'city_id' => 'nullable|integer|min:1',
+                'university_id' => 'nullable|integer|min:1',
+                'university_faculty_id' => 'nullable|integer|min:1',
+                'university_department_id' => 'nullable|integer|min:1',
+                'is_banned' => 'nullable|boolean',
+            ]
+        );
+
+        /**
+         * filter by attributes
+         */
+        $users = User::latest()
+            ->when($validatedUserData['full_name'] ?? null, function ($query, $fullName) {
+                return $query->where(DB::raw('CONCAT(name, " ", surname)'), 'like', "%{$fullName}%");
+            })
+            ->when($validatedUserData['name'] ?? null, function ($query, $name) {
+                return $query->where('name', 'like', "%{$name}%");
+            })
+            ->when($validatedUserData['surname'] ?? null, function ($query, $surname) {
+                return $query->where('surname', 'like', "%{$surname}%");
+            })
+            ->when($validatedUserData['email'] ?? null, function ($query, $email) {
+                return $query->where('email', 'like', "%{$email}%");
+            })
+            ->when($validatedUserData['gender'] ?? null, function ($query, $gender) {
+                return $query->where('gender', 'eq', "$gender");
+            })
+            ->when($validatedUserData['country_id'] ?? null, function ($query, $countryId) {
+                return $query->where('country_id', 'eq', "$countryId");
+            })
+            ->when($validatedUserData['city_id'] ?? null, function ($query, $cityId) {
+                return $query->where('city_id', 'eq', "$cityId");
+            })
+            ->when($validatedUserData['university_id'] ?? null, function ($query, $universityId) {
+                return $query->where('university_id', 'eq', "$universityId");
+            })
+            ->when($validatedUserData['university_faculty_id'] ?? null, function ($query, $universityFacultyId) {
+                return $query->where('university_faculty_id', 'eq', "$universityFacultyId");
+            })
+            ->when($validatedUserData['university_department_id'] ?? null, function ($query, $universityDepartmentId) {
+                return $query->where('university_department_id', 'eq', "$universityDepartmentId");
+            })
+            ->when($validatedUserData['is_banned'] ?? null, function ($query, $isBanned) {
+                return $query->where('is_banned', 'eq', "$isBanned");
+            })
+            ->paginate()->toArray();
 
         return response()->json(compact('users'));
     }
@@ -44,8 +105,9 @@ class UserController extends Controller
     }
 
     /**
-     * @param  Request  $request
+     * @param Request $request
      * @return JsonResponse
+     * @throws ValidationException
      */
     public function saveProfile(Request $request): JsonResponse
     {

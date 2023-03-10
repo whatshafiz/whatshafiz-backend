@@ -37,6 +37,8 @@ class User extends Authenticatable
         'created_at',
         'updated_at',
         'deleted_at',
+        'verification_code',
+        'verification_code_valid_until',
     ];
 
     /**
@@ -51,6 +53,11 @@ class User extends Authenticatable
         'updated_at' => 'datetime:d-m-Y H:i',
         'deleted_at' => 'datetime:d-m-Y H:i',
     ];
+
+    /**
+     * @var string[]
+     */
+    protected $appends = ['country_name', 'city_name', 'university_name', 'university_faculty_name', 'university_department_name'];
 
     /**
      * @return string
@@ -123,5 +130,45 @@ class User extends Authenticatable
     public function passwordResetCode(): HasOne
     {
         return $this->hasOne(PasswordReset::class, 'phone_number', 'phone_number');
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getCountryNameAttribute(): ?string
+    {
+        return $this->country()->first()?->name;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getCityNameAttribute(): ?string
+    {
+        return $this->city()->first()?->name;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getUniversityNameAttribute(): ?string
+    {
+        return $this->university()->first()?->name;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getUniversityFacultyNameAttribute(): ?string
+    {
+        return $this->universityFaculty()->first()?->name;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getUniversityDepartmentNameAttribute(): ?string
+    {
+        return $this->universityDepartment()->first()?->name;
     }
 }
