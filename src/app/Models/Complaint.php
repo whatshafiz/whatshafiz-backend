@@ -14,7 +14,7 @@ class Complaint extends BaseModel
         'is_fixed' => 'boolean',
         'created_at' => 'datetime:d-m-Y H:i',
         'updated_at' => 'datetime:d-m-Y H:i',
-        'deleted_at' => 'datetime:d-m-Y H:i',
+        'reviewed_at' => 'datetime:d-m-Y H:i',
     ];
 
     /**
