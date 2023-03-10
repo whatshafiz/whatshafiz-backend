@@ -2,11 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Models\City;
-use App\Models\Country;
-use App\Models\University;
-use App\Models\UniversityFaculty;
-use App\Models\UniversityDepartment;
 use App\Models\User;
 use Tests\BaseFeatureTest;
 
@@ -81,8 +76,9 @@ class UserTest extends BaseFeatureTest
 
         $usersInQuery = User::where($serachQuery)->get();
         $response->assertOk();
+
         foreach ($usersInQuery as $userInQuery) {
-            $response->assertJsonMissing($userInQuery->toArray());
+            $response->assertJsonFragment($userInQuery->toArray());
         }
     }
 
