@@ -58,28 +58,32 @@ class UserTest extends BaseFeatureTest
 
         $users = User::factory()->count(2, 5)->create();
         $userForFilter = $users->random();
+        $serachQuery = [
+            'name' => $userForFilter->name,
+            'surname' => $userForFilter->surname,
+            'email' => $userForFilter->email,
+            'gender' => $userForFilter->gender,
+            'phone_number' => $userForFilter->phone_number,
+            'country_id' => $userForFilter->country_id,
+            'city_id' => $userForFilter->city_id,
+            'university_id' => $userForFilter->university_id,
+            'university_faculty_id' => $userForFilter->university_faculty_id,
+            'university_department_id' => $userForFilter->university_department_id,
+            'is_banned' => $userForFilter->is_banned,
+        ];
 
         $response = $this->actingAs($loginUser)
             ->json(
                 'GET',
                 $this->uri,
-                [
-                    'name' => $userForFilter->name,
-                    'surname' => $userForFilter->surname,
-                    'email' => $userForFilter->email,
-                    'gender' => $userForFilter->gender,
-                    'phone_number' => $userForFilter->phone_number,
-                    'country_id' => $userForFilter->country_id,
-                    'city_id' => $userForFilter->city_id,
-                    'university_id' => $userForFilter->university_id,
-                    'university_faculty_id' => $userForFilter->university_faculty_id,
-                    'university_department_id' => $userForFilter->university_department_id,
-                    'is_banned' => $userForFilter->is_banned,
-                ]
+                $serachQuery
             );
 
+        $usersInQuery = User::where($serachQuery)->get();
         $response->assertOk();
-        $response->assertJsonFragment($userForFilter->toArray());
+        foreach ($usersInQuery as $userInQuery) {
+            $response->assertJsonMissing($userInQuery->toArray());
+        }
     }
 
     /** @test */
