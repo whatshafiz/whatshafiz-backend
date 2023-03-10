@@ -41,6 +41,7 @@ class ComplaintTest extends BaseFeatureTest
         $response = $this->actingAs($user)->json('GET', $this->uri);
 
         $response->assertOk();
+
         foreach ($compalints as $compalint) {
             $response->assertJsonFragment($compalint->toArray());
         }
