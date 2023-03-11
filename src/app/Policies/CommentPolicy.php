@@ -30,8 +30,7 @@ class CommentPolicy
      */
     public function view(User $user, Comment $comment): bool
     {
-        return $comment->isOwnedByUser($user) ||
-            $user->hasPermissionTo('comments.view');
+        return $comment->isCommentedBy($user) || $user->hasPermissionTo('comments.list');
     }
 
     /**
@@ -54,7 +53,7 @@ class CommentPolicy
      */
     public function update(User $user, Comment $comment): bool
     {
-        return $comment->isOwnedByUser($user) ||
+        return (!$comment->is_approved && $comment->isCommentedBy($user)) ||
             $user->hasPermissionTo('comments.update');
     }
 
@@ -67,7 +66,6 @@ class CommentPolicy
      */
     public function delete(User $user, Comment $comment): bool
     {
-        return $comment->isOwnedByUser($user) ||
-            $user->hasPermissionTo('comments.delete');
+        return $comment->isCommentedBy($user) || $user->hasPermissionTo('comments.delete');
     }
 }

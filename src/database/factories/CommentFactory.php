@@ -20,11 +20,13 @@ class CommentFactory extends Factory
         $is_approved = $this->faker->boolean;
 
         return [
-            'name' => $this->faker->name,
+            'type' => $this->faker->randomElement(['whatshafiz', 'whatsenglish', 'whatsarapp']),
+            'title' => $this->faker->sentence,
             'comment' => $this->faker->text,
-            'user_id' => User::factory()->create()->id,
+            'commented_by_id' => User::factory()->create()->id,
             'is_approved' => $is_approved,
-            'approved_by' => $is_approved ? User::factory()->create()->id : null,
+            'approved_by_id' => $is_approved ? User::factory()->create()->id : null,
+            'approved_at' => $is_approved ? $this->faker->datetime->format('Y-m-d H:i:s') : null,
         ];
     }
 }

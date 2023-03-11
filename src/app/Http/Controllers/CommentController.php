@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use Carbon\Carbon;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -15,34 +16,39 @@ class CommentController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      * @throws AuthorizationException|ValidationException
      */
-    public function index(Request $request)
+    public function index(Request $request): JsonResponse
     {
         $this->authorize('viewAny', Comment::class);
 
-        $validatedRequest = $this->validate(
+        $filters = $this->validate(
             $request,
             [
-                'user_id' => 'nullable|integer|exists:users,id',
-                'approved_by' => 'nullable|integer|exists:users,id',
+                'type' => 'nullable|string|in:whatshafiz,whatsenglish,whatsarapp',
+                'commented_by_id' => 'nullable|integer|exists:users,id',
+                'approved_by_id' => 'nullable|integer|exists:users,id',
                 'is_approved' => 'nullable|boolean',
             ]
         );
 
-        $comments = Comment::latest('id')
-            ->when(isset($validatedRequest['user_id']), function ($query) use ($validatedRequest) {
-                return $query->where('user_id', $validatedRequest['user_id']);
+        $comments = Comment::with(['commentedBy', 'approvedBy'])
+            ->when(isset($filters['type']), function ($query) use ($filters) {
+                return $query->where('type', $filters['type']);
             })
-            ->when(isset($validatedRequest['approved_by']), function ($query) use ($validatedRequest) {
-                return $query->where('approved_by', $validatedRequest['approved_by']);
+            ->when(isset($filters['commented_by_id']), function ($query) use ($filters) {
+                return $query->where('commented_by_id', $filters['commented_by_id']);
             })
-            ->when(isset($validatedRequest['is_approved']), function ($query) use ($validatedRequest) {
-                return $query->where('is_approved', $validatedRequest['is_approved']);
+            ->when(isset($filters['approved_by_id']), function ($query) use ($filters) {
+                return $query->where('approved_by_id', $filters['approved_by_id']);
             })
+            ->when(isset($filters['is_approved']), function ($query) use ($filters) {
+                return $query->where('is_approved', $filters['is_approved']);
+            })
+            ->latest('id')
             ->paginate()
-            ->appends($validatedRequest);
+            ->appends($filters);
 
         return response()->json(compact('comments'));
     }
@@ -50,9 +56,9 @@ class CommentController extends Controller
     /**
      * @return JsonResponse
      */
-    public function myComments()
+    public function myComments(): JsonResponse
     {
-        $comments = Comment::where('user_id', Auth::id())->paginate();
+        $comments = Comment::where('commented_by_id', Auth::id())->paginate();
 
         return response()->json(compact('comments'));
     }
@@ -60,25 +66,26 @@ class CommentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @param  Request  $request
+     * @return JsonResponse
      * @throws AuthorizationException
      * @throws ValidationException
      */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
         $this->authorize('create', Comment::class);
 
-        $validatedRequest = $this->validate(
+        $validatedCommentData = $this->validate(
             $request,
             [
-                'name' => 'required|string|min:3|max:100',
+                'type' => 'required|string|in:whatshafiz,whatsenglish,whatsarapp',   
+                'title' => 'required|string|min:3|max:100',
                 'comment' => 'required|string|min:3|max:1000',
             ]
         );
 
-        $validatedRequest['user_id'] = Auth::id();
-        $comment = Comment::create($validatedRequest);
+        $validatedCommentData['commented_by_id'] = Auth::id();
+        $comment = Comment::create($validatedCommentData);
 
         return response()->json(compact('comment'));
     }
@@ -86,11 +93,11 @@ class CommentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\Comment $comment
-     * @return \Illuminate\Http\JsonResponse
+     * @param  Comment  $comment
+     * @return JsonResponse
      * @throws AuthorizationException
      */
-    public function show(Comment $comment)
+    public function show(Comment $comment): JsonResponse
     {
         $this->authorize('view', $comment);
 
@@ -100,31 +107,34 @@ class CommentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Request $request
-     * @param Comment $comment
+     * @param  Request  $request
+     * @param  Comment  $comment
      * @return JsonResponse
      * @throws AuthorizationException
      * @throws ValidationException
      */
-    public function update(Request $request, Comment $comment)
+    public function update(Request $request, Comment $comment): JsonResponse
     {
         $this->authorize('update', $comment);
 
         $validationRules = [
-            'name' => 'nullable|string|min:3|max:100',
-            'comment' => 'nullable|string|min:3|max:1000',
+            'type' => 'required|string|in:whatshafiz,whatsenglish,whatsarapp',
+            'title' => 'required|string|min:3|max:100',
+            'comment' => 'required|string|min:3|max:1000',
         ];
 
         if (Auth::user()->hasPermissionTo('comments.update')) {
             $validationRules['is_approved'] = 'nullable|boolean';
         }
 
-        $validatedResponse = $this->validate(
-            $request,
-            $validationRules
-        );
+        $validatedCommentData = $this->validate($request, $validationRules);
 
-        $comment->update($validatedResponse);
+        if (!$comment->is_approved && !empty($validatedCommentData['is_approved'])) {
+            $validatedCommentData['approved_by_id'] = Auth::id();
+            $validatedCommentData['approved_at'] = Carbon::now();
+        }
+
+        $comment->update($validatedCommentData);
 
         return response()->json(compact('comment'));
     }
@@ -132,11 +142,11 @@ class CommentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Comment $comment
-     * @return \Illuminate\Http\JsonResponse
+     * @param  Comment  $comment
+     * @return JsonResponse
      * @throws AuthorizationException
      */
-    public function destroy(Comment $comment)
+    public function destroy(Comment $comment): JsonResponse
     {
         $this->authorize('delete', $comment);
 

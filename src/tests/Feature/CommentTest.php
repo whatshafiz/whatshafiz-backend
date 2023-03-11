@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Comment;
 use App\Models\User;
+use Carbon\Carbon;
 use Tests\BaseFeatureTest;
 
 class CommentTest extends BaseFeatureTest
@@ -21,9 +22,8 @@ class CommentTest extends BaseFeatureTest
     }
 
     /** @test */
-    public function user_can_not_list_comments_when_user_have_not_permission()
+    public function user_can_not_list_comments_when_has_not_permission()
     {
-        $comments = Comment::factory()->count(5)->create();
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)->json('GET', $this->uri);
@@ -32,53 +32,49 @@ class CommentTest extends BaseFeatureTest
     }
 
     /** @test */
-    public function user_can_list_comments_when_user_have_permission()
+    public function user_can_list_comments_when_has_permission()
     {
-        $comments = Comment::factory()->count(5)->create();
         $user = User::factory()->create();
         $user->givePermissionTo('comments.list');
+
+        $comments = Comment::factory()->count(5)->create();
 
         $response = $this->actingAs($user)->json('GET', $this->uri);
 
         $response->assertOk();
 
         foreach ($comments as $comment) {
-            $response->assertJsonFragment($comment->toArray());
+            $response->assertJsonFragment($comment->load('commentedBy', 'approvedBy')->toArray());
         }
     }
 
     /** @test */
-    public function comment_filter_test()
+    public function user_can_filter_comments_while_listing_and_has_permission()
     {
-        $comments = Comment::factory()->count(5)->create();
         $user = User::factory()->create();
         $user->givePermissionTo('comments.list');
+
+        $comments = Comment::factory()->count(5)->create();
         $searchComment = $comments->random();
         $searchQuery = [
-            'name' => $searchComment->name,
+            'title' => $searchComment->title,
             'comment' => $searchComment->comment,
-            'user_id' => $searchComment->user_id,
+            'commented_by_id' => $searchComment->commented_by_id,
             'is_approved' => $searchComment->is_approved,
-            'approved_by' => $searchComment->approved_by,
+            'approved_by_id' => $searchComment->approved_by_id,
         ];
 
-        $response = $this->actingAs($user)
-            ->json(
-                'GET',
-                $this->uri,
-                $searchQuery
-            );
+        $response = $this->actingAs($user)->json('GET', $this->uri, $searchQuery);
 
         $response->assertOk();
-        $searchResultComments = $comments->where($searchQuery);
 
-        foreach ($searchResultComments as $comment) {
+        foreach (Comment::where($searchQuery)->get() as $comment) {
             $response->assertJsonFragment($comment->toArray());
         }
     }
 
     /** @test */
-    public function user_can_not_view_comment_when_user_have_not_permission()
+    public function user_can_not_view_comment_when_has_not_permission()
     {
         $comment = Comment::factory()->create();
 
@@ -90,138 +86,139 @@ class CommentTest extends BaseFeatureTest
     }
 
     /** @test */
-    public function user_can_view_comment_when_user_have_permission()
+    public function user_can_view_comment_when_user_has_permission()
     {
-        $comment = Comment::factory()->create();
         $user = User::factory()->create();
-        $user->givePermissionTo('comments.view');
+        $user->givePermissionTo('comments.list');
+
+        $comment = Comment::factory()->create();
 
         $response = $this->actingAs($user)->json('GET', $this->uri . '/' . $comment->id);
 
-        $response->assertOk();
-        $response->assertJsonFragment($comment->toArray());
+        $response->assertOk()
+            ->assertJsonFragment($comment->toArray());
     }
 
     /** @test */
-    public function user_can_view_comment_if_owner()
+    public function user_can_view_own_comment_even_does_not_have_permission()
     {
-        $comment = Comment::factory()->create();
         $user = User::factory()->create();
-        $comment->user_id = $user->id;
-        $comment->save();
+        $comment = Comment::factory()->create(['commented_by_id' => $user->id]);
 
         $response = $this->actingAs($user)->json('GET', $this->uri . '/' . $comment->id);
 
-        $response->assertOk();
-        $response->assertJsonFragment($comment->toArray());
+        $response->assertOk()
+            ->assertJsonFragment($comment->toArray());
     }
 
     /** @test */
-    public function user_can_edit_if_has_permission()
+    public function user_can_edit_comment_if_has_permission()
     {
-        $comment = Comment::factory()->create();
         $user = User::factory()->create();
         $user->givePermissionTo('comments.update');
 
-        $response = $this->actingAs($user)->json('PUT', $this->uri . '/' . $comment->id, [
-            'name' => 'New name',
-            'comment' => 'New comment',
-        ]);
+        $comment = Comment::factory()->create();
+        $newCommentData = Comment::factory()->make()->only('type', 'title', 'comment');
 
-        $response->assertOk();
-        $response->assertJsonFragment([
-            'name' => 'New name',
-            'comment' => 'New comment',
-        ]);
+        $response = $this->actingAs($user)->json('PUT', $this->uri . '/' . $comment->id, $newCommentData);
+
+        $response->assertOk()
+            ->assertJsonFragment($newCommentData);
+
+        $this->assertDatabaseHas('comments', array_merge(['id' => $comment->id], $newCommentData));
     }
 
     /** @test */
-    public function user_can_edit_if_user_is_owner()
+    public function user_can_edit_own_comment_even_does_not_have_permission()
     {
-        $comment = Comment::factory()->create();
-
-        $response = $this->actingAs($comment->user)->json('PUT', $this->uri . '/' . $comment->id, [
-            'name' => 'New name',
-            'comment' => 'New comment',
-        ]);
-
-        $response->assertOk();
-        $response->assertJsonFragment([
-            'name' => 'New name',
-            'comment' => 'New comment',
-        ]);
-    }
-
-    /** @test */
-    public function user_can_not_approve_if_user_has_not_permission()
-    {
-        $comment = Comment::factory()->create();
         $user = User::factory()->create();
-        $comment->user_id = $user->id;
-        $comment->save();
-        $newStatus = !$comment->is_approved;
 
-        $response = $this->actingAs($user)->json('PUT', $this->uri . '/' . $comment->id, [
-            'is_approved' => $newStatus,
-        ]);
+        $comment = Comment::factory()->create(['commented_by_id' => $user->id, 'is_approved' => false]);
+        $newCommentData = Comment::factory()->make()->only('type', 'title', 'comment');
 
-        $response->assertOk();
-        $response->assertJsonFragment([
-            'is_approved' => $comment->is_approved,
-        ]);
+        $response = $this->actingAs($user)->json('PUT', $this->uri . '/' . $comment->id, $newCommentData);
+
+        $response->assertOk()
+            ->assertJsonFragment($newCommentData);
+
+        $this->assertDatabaseHas('comments', array_merge(['id' => $comment->id], $newCommentData));
     }
 
     /** @test */
-    public function user_can_approve_if_user_has_permission()
+    public function user_can_not_approve_any_comment_if_user_has_not_permission()
     {
-        $comment = Comment::factory()->create();
+        $user = User::factory()->create();
+
+        $comment = Comment::factory()->create(['is_approved' => false]);
+
+        $response = $this->actingAs($user)->json('PUT', $this->uri . '/' . $comment->id, ['is_approved' => true]);
+
+        $response->assertForbidden();
+    }
+
+    /** @test */
+    public function user_can_approve_comment_if_user_has_permission()
+    {
+        $now = Carbon::now();
+        Carbon::setTestNow($now);
         $user = User::factory()->create();
         $user->givePermissionTo('comments.update');
-        $newStatus = !$comment->is_approved;
 
-        $response = $this->actingAs($user)->json('PUT', $this->uri . '/' . $comment->id, [
-            'is_approved' => $newStatus,
-        ]);
+        $comment = Comment::factory()->create(['is_approved' => false]);
+
+        $response = $this->actingAs($user)
+            ->json(
+                'PUT',
+                $this->uri . '/' . $comment->id,
+                array_merge($comment->only('type', 'title', 'comment'), ['is_approved' => true])
+            );
 
         $response->assertOk();
-        $response->assertJsonFragment([
-            'is_approved' => $newStatus,
-        ]);
+
+        $this->assertDatabaseHas(
+            'comments',
+            ['id' => $comment->id, 'is_approved' => true, 'approved_by_id' => $user->id, 'approved_at' => $now]
+        );
+    }
+
+    /** @test */
+    public function user_can_not_delete_comment_if_user_has_not_permission()
+    {
+        $user = User::factory()->create();
+
+        $comment = Comment::factory()->create();
+
+        $response = $this->actingAs($user)->json('DELETE', $this->uri . '/' . $comment->id);
+
+        $response->assertForbidden();
     }
 
     /** @test */
     public function user_can_delete_comment_if_has_permission()
     {
-        $comment = Comment::factory()->create();
         $user = User::factory()->create();
         $user->givePermissionTo('comments.delete');
 
-        $response = $this->actingAs($user)->json('DELETE', $this->uri . '/' . $comment->id);
-
-        $response->assertSuccessful();
-    }
-
-    /** @test */
-    public function user_can_not_delete_if_not_owner()
-    {
         $comment = Comment::factory()->create();
-        $user = User::factory()->create();
-
-        $response = $this->actingAs($user)->json('DELETE', $this->uri . '/' . $comment->id);
-
-        $response->assertForbidden();
-    }
-
-    /** @test */
-    public function owner_can_delete_comment()
-    {
-        $comment = Comment::factory()->create();
-        $user = User::factory()->create();
-        $comment->user_id = $user->id;
-        $comment->save();
 
         $response = $this->actingAs($user)->json('DELETE', $this->uri . '/' . $comment->id);
 
         $response->assertSuccessful();
+
+        $this->assertSoftDeleted('comments', ['id' => $comment->id]);
+    }
+
+
+    /** @test */
+    public function user_can_delete_own_comment_even_does_not_have_permission()
+    {
+        $user = User::factory()->create();
+        $comment = Comment::factory()->create(['commented_by_id' => $user->id]);
+
+        $response = $this->actingAs($user)->json('DELETE', $this->uri . '/' . $comment->id);
+
+        $response->assertSuccessful();
+
+        $this->assertSoftDeleted('comments', ['id' => $comment->id]);
     }
 }

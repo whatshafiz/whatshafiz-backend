@@ -16,13 +16,15 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->enum('type', ['whatshafiz', 'whatsenglish', 'whatsarapp']);
+            $table->string('title');
             $table->text('comment');
-            $table->foreignIdFor(User::class, 'user_id')->constrained('users');
+            $table->foreignIdFor(User::class, 'commented_by_id')->constrained('users');
             $table->boolean('is_approved')->default(false);
-            $table->foreignIdFor(User::class, 'approved_by')->nullable()->constrained('users');
+            $table->foreignIdFor(User::class, 'approved_by_id')->nullable()->constrained('users');
             $table->timestamp('approved_at')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -33,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comment');
+        Schema::dropIfExists('comments');
     }
 };

@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Comment extends BaseModel
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $casts = [
         'is_approved' => 'boolean',
@@ -19,7 +21,7 @@ class Comment extends BaseModel
     /**
      * @return BelongsTo
      */
-    public function user(): BelongsTo
+    public function commentedBy(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
@@ -29,15 +31,15 @@ class Comment extends BaseModel
      */
     public function approvedBy(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'approved_by');
+        return $this->belongsTo(User::class);
     }
 
     /**
      * @param User $user
      * @return bool
      */
-    public function isOwnedByUser(User $user): bool
+    public function isCommentedBy(User $user): bool
     {
-        return $this->user_id === $user->id;
+        return $this->commented_by_id === $user->id;
     }
 }
