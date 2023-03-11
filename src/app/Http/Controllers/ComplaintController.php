@@ -60,6 +60,7 @@ class ComplaintController extends Controller
             ->when(isset($filters['related_user_id']), function ($query) use ($filters) {
                 return $query->where('related_user_id', $filters['related_user_id']);
             })
+            ->latest()
             ->paginate()
             ->appends($filters)
             ->toArray();
