@@ -16,8 +16,10 @@ class CommentController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return JsonResponse
-     * @throws AuthorizationException|ValidationException
+     * @throws AuthorizationException
+     * @throws ValidationException
      */
     public function index(Request $request): JsonResponse
     {
