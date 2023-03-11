@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
 class UserController extends Controller
 {
     /**
-     * @param Request $request
+     * @param  Request  $request
      * @return JsonResponse
      * @throws AuthorizationException|ValidationException
      */
@@ -28,7 +28,7 @@ class UserController extends Controller
     {
         $this->authorize('viewAny', User::class);
 
-        $validatedUserData = $this->validate(
+        $filters = $this->validate(
             $request,
             [
                 'full_name' => 'nullable|string|max:150',
@@ -46,40 +46,41 @@ class UserController extends Controller
         );
 
         $users = User::latest()
-            ->when(isset($validatedUserData['full_name']), function ($query) use ($validatedUserData) {
-                return $query->where(DB::raw('CONCAT(name, " ", surname)'), 'like', "%{$validatedUserData['full_name']}%");
+            ->when(isset($filters['full_name']), function ($query) use ($filters) {
+                return $query->where(DB::raw('CONCAT(name, " ", surname)'), 'like', "%{$filters['full_name']}%");
             })
-            ->when(isset($validatedUserData['name']), function ($query) use ($validatedUserData) {
-                return $query->where('name', 'like', "%{$validatedUserData['name']}%");
+            ->when(isset($filters['name']), function ($query) use ($filters) {
+                return $query->where('name', 'like', "%{$filters['name']}%");
             })
-            ->when(isset($validatedUserData['surname']), function ($query) use ($validatedUserData) {
-                return $query->where('surname', 'like', "%{$validatedUserData['surname']}%");
+            ->when(isset($filters['surname']), function ($query) use ($filters) {
+                return $query->where('surname', 'like', "%{$filters['surname']}%");
             })
-            ->when(isset($validatedUserData['email']), function ($query) use ($validatedUserData) {
-                return $query->where('email', 'like', "%{$validatedUserData['email']}%");
+            ->when(isset($filters['email']), function ($query) use ($filters) {
+                return $query->where('email', 'like', "%{$filters['email']}%");
             })
-            ->when(isset($validatedUserData['gender']), function ($query) use ($validatedUserData) {
-                return $query->where('gender', $validatedUserData['gender']);
+            ->when(isset($filters['gender']), function ($query) use ($filters) {
+                return $query->where('gender', $filters['gender']);
             })
-            ->when(isset($validatedUserData['country_id']), function ($query) use ($validatedUserData) {
-                return $query->where('country_id', $validatedUserData['country_id']);
+            ->when(isset($filters['country_id']), function ($query) use ($filters) {
+                return $query->where('country_id', $filters['country_id']);
             })
-            ->when(isset($validatedUserData['city_id']), function ($query) use ($validatedUserData) {
-                return $query->where('city_id', $validatedUserData['city_id']);
+            ->when(isset($filters['city_id']), function ($query) use ($filters) {
+                return $query->where('city_id', $filters['city_id']);
             })
-            ->when(isset($validatedUserData['university_id']), function ($query) use ($validatedUserData) {
-                return $query->where('university_id', $validatedUserData['university_id']);
+            ->when(isset($filters['university_id']), function ($query) use ($filters) {
+                return $query->where('university_id', $filters['university_id']);
             })
-            ->when(isset($validatedUserData['university_faculty_id']), function ($query) use ($validatedUserData) {
-                return $query->where('university_faculty_id', $validatedUserData['university_faculty_id']);
+            ->when(isset($filters['university_faculty_id']), function ($query) use ($filters) {
+                return $query->where('university_faculty_id', $filters['university_faculty_id']);
             })
-            ->when(isset($validatedUserData['university_department_id']), function ($query) use ($validatedUserData) {
-                return $query->where('university_department_id', $validatedUserData['university_department_id']);
+            ->when(isset($filters['university_department_id']), function ($query) use ($filters) {
+                return $query->where('university_department_id', $filters['university_department_id']);
             })
-            ->when(isset($validatedUserData['is_banned']), function ($query) use ($validatedUserData) {
-                return $query->where('is_banned', $validatedUserData['is_banned']);
+            ->when(isset($filters['is_banned']), function ($query) use ($filters) {
+                return $query->where('is_banned', $filters['is_banned']);
             })
             ->paginate()
+            ->appends($filters)
             ->toArray();
 
         return response()->json(compact('users'));
@@ -100,7 +101,7 @@ class UserController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param  Request  $request
      * @return JsonResponse
      * @throws ValidationException
      */

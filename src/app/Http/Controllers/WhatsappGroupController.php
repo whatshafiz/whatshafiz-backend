@@ -19,7 +19,7 @@ class WhatsappGroupController extends Controller
     {
         $this->authorize('viewAny', WhatsappGroup::class);
 
-        $requestData = $this->validate(
+        $filters = $this->validate(
             $request,
             [
                 'course_id' => 'nullable|integer|min:0|exists:courses,id',
@@ -33,25 +33,26 @@ class WhatsappGroupController extends Controller
 
         $whatsappGroups = WhatsappGroup::latest()
             ->with('course')
-            ->when(isset($requestData['course_id']), function ($query) use ($requestData) {
-                return $query->where('course_id', $requestData['course_id']);
+            ->when(isset($filters['course_id']), function ($query) use ($filters) {
+                return $query->where('course_id', $filters['course_id']);
             })
-            ->when(isset($requestData['type']), function ($query) use ($requestData) {
-                return $query->where('type', $requestData['type']);
+            ->when(isset($filters['type']), function ($query) use ($filters) {
+                return $query->where('type', $filters['type']);
             })
-            ->when(isset($requestData['gender']), function ($query) use ($requestData) {
-                return $query->where('gender', $requestData['gender']);
+            ->when(isset($filters['gender']), function ($query) use ($filters) {
+                return $query->where('gender', $filters['gender']);
             })
-            ->when(isset($requestData['name']), function ($query) use ($requestData) {
-                return $query->where('name', 'LIKE', '%' . $requestData['name'] . '%');
+            ->when(isset($filters['name']), function ($query) use ($filters) {
+                return $query->where('name', 'LIKE', '%' . $filters['name'] . '%');
             })
-            ->when(isset($requestData['is_active']), function ($query) use ($requestData) {
-                return $query->where('is_active', $requestData['is_active']);
+            ->when(isset($filters['is_active']), function ($query) use ($filters) {
+                return $query->where('is_active', $filters['is_active']);
             })
-            ->when(isset($requestData['join_url']), function ($query) use ($requestData) {
-                return $query->where('join_url', 'LIKE', '%' . $requestData['join_url'] . '%');
+            ->when(isset($filters['join_url']), function ($query) use ($filters) {
+                return $query->where('join_url', 'LIKE', '%' . $filters['join_url'] . '%');
             })
             ->paginate()
+            ->appends($filters)
             ->toArray();
 
         return response()->json(compact('whatsappGroups'));

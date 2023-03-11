@@ -53,7 +53,7 @@ class UserTest extends BaseFeatureTest
 
         $users = User::factory()->count(2, 5)->create();
         $userForFilter = $users->random();
-        $serachQuery = [
+        $filters = [
             'name' => $userForFilter->name,
             'surname' => $userForFilter->surname,
             'email' => $userForFilter->email,
@@ -67,18 +67,12 @@ class UserTest extends BaseFeatureTest
             'is_banned' => $userForFilter->is_banned,
         ];
 
-        $response = $this->actingAs($loginUser)
-            ->json(
-                'GET',
-                $this->uri,
-                $serachQuery
-            );
+        $response = $this->actingAs($loginUser)->json('GET', $this->uri, $filters);
 
-        $usersInQuery = User::where($serachQuery)->get();
         $response->assertOk();
 
-        foreach ($usersInQuery as $userInQuery) {
-            $response->assertJsonFragment($userInQuery->toArray());
+        foreach (User::where($filters)->get() as $user) {
+            $response->assertJsonFragment($user->toArray());
         }
     }
 

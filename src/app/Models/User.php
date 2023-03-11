@@ -57,7 +57,13 @@ class User extends Authenticatable
     /**
      * @var string[]
      */
-    protected $appends = ['country_name', 'city_name', 'university_name', 'university_faculty_name', 'university_department_name'];
+    protected $appends = [
+        'country_name',
+        'city_name',
+        'university_name',
+        'university_faculty_name',
+        'university_department_name',
+    ];
 
     /**
      * @return string
