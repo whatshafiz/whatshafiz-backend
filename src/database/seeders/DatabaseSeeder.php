@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             $this->call(CourseSeeder::class);
             $this->call(WhatsappGroupSeeder::class);
             $this->call(ComplaintSeeder::class);
+            $this->call(CommentSeeder::class);
         }
     }
 }

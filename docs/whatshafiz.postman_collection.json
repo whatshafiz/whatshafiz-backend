@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "4b538c90-1322-4922-aed8-e6d213b8ee3c",
+		"_postman_id": "cfb61b86-7496-4e66-9eb9-5badf78f9f80",
 		"name": "whatshafiz",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "8269859"
@@ -2810,78 +2810,23 @@
 							}
 						],
 						"url": {
-							"raw": "{{URL}}/users",
+							"raw": "{{URL}}/users/list",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
-								"users"
+								"users",
+								"list"
 							],
 							"query": [
 								{
-									"key": "full_name",
-									"value": "Yiğit Bakırcıoğlu",
-									"description": "nullable|string|max:150",
+									"key": "Accept",
+									"value": "application/json",
 									"disabled": true
 								},
 								{
-									"key": "name",
-									"value": "Yiğit",
-									"description": "nullable|string|max:50",
-									"disabled": true
-								},
-								{
-									"key": "surname",
-									"value": "Bakırcıoğlu",
-									"description": "nullable|string|max:50",
-									"disabled": true
-								},
-								{
-									"key": "email",
-									"value": null,
-									"description": "nullable|email",
-									"disabled": true
-								},
-								{
-									"key": "gender",
-									"value": null,
-									"description": "nullable|string|in:male,female",
-									"disabled": true
-								},
-								{
-									"key": "country_id",
-									"value": null,
-									"description": "nullable|integer|min:1",
-									"disabled": true
-								},
-								{
-									"key": "city_id",
-									"value": null,
-									"description": "nullable|integer|min:1",
-									"disabled": true
-								},
-								{
-									"key": "university_id",
-									"value": null,
-									"description": "nullable|integer|min:1",
-									"disabled": true
-								},
-								{
-									"key": "university_faculty_id",
-									"value": null,
-									"description": "nullable|integer|min:1",
-									"disabled": true
-								},
-								{
-									"key": "university_department_id",
-									"value": null,
-									"description": "nullable|integer|min:1",
-									"disabled": true
-								},
-								{
-									"key": "is_banned",
-									"value": null,
-									"description": "nullable|boolean",
+									"key": "Content-Type",
+									"value": "application/json",
 									"disabled": true
 								}
 							]
@@ -3208,6 +3153,480 @@
 							],
 							"path": [
 								"complaints",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Yorum Yönetimi",
+			"item": [
+				{
+					"name": "NEW Yorum",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"title\");",
+									"    pm.expect(pm.response.text()).to.include(\"comment\");",
+									"    pm.expect(pm.response.text()).to.include(\"commented_by_id\");",
+									"    pm.expect(pm.response.text()).to.include(\"created_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"updated_at\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "type",
+									"value": "whatshafiz",
+									"description": "nullable|string|in:whatshafiz,whatsenglish,whatsarapp",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "çok memnunum",
+									"description": "nullable|string|min:3|max:100",
+									"type": "text"
+								},
+								{
+									"key": "comment",
+									"value": "Süper bir çalışma",
+									"description": "nullable|string|min:3|max:1000",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/comments",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Yorum",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"title\");",
+									"    pm.expect(pm.response.text()).to.include(\"comment\");",
+									"    pm.expect(pm.response.text()).to.include(\"commented_by_id\");",
+									"    pm.expect(pm.response.text()).to.include(\"created_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"updated_at\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "hala çok memnunum",
+									"description": "nullable|string|min:3|max:100",
+									"type": "text"
+								},
+								{
+									"key": "comment",
+									"value": "çok başarılı",
+									"description": "nullable|string|min:3|max:1000",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "whatshafiz",
+									"description": "nullable|string|in:whatshafiz,whatsenglish,whatsarapp",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/comments/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"comments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Yorum",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"title\");",
+									"    pm.expect(pm.response.text()).to.include(\"comment\");",
+									"    pm.expect(pm.response.text()).to.include(\"commented_by_id\");",
+									"    pm.expect(pm.response.text()).to.include(\"created_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"updated_at\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/comments/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"comments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Yorum",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/comments/3",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"comments",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LIST Yorumlarım",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"title\");",
+									"    pm.expect(pm.response.text()).to.include(\"comment\");",
+									"    pm.expect(pm.response.text()).to.include(\"commented_by_id\");",
+									"    pm.expect(pm.response.text()).to.include(\"created_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"updated_at\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/my-comments",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"my-comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LIST Yorumlar",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"title\");",
+									"    pm.expect(pm.response.text()).to.include(\"comment\");",
+									"    pm.expect(pm.response.text()).to.include(\"commented_by_id\");",
+									"    pm.expect(pm.response.text()).to.include(\"created_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"updated_at\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/comments?type=whatshafiz",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"comments"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "whatshafiz",
+									"description": "nullable|string|in:whatshafiz,whatsenglish,whatsarapp"
+								},
+								{
+									"key": "commented_by_id",
+									"value": "1",
+									"description": "nullable|integer|exists:users,id",
+									"disabled": true
+								},
+								{
+									"key": "approved_by_id",
+									"value": "1",
+									"description": "nullable|integer|exists:users,id",
+									"disabled": true
+								},
+								{
+									"key": "is_approved",
+									"value": "1",
+									"description": "nullable|boolean",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Yorum Status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"title\");",
+									"    pm.expect(pm.response.text()).to.include(\"comment\");",
+									"    pm.expect(pm.response.text()).to.include(\"commented_by_id\");",
+									"    pm.expect(pm.response.text()).to.include(\"created_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"updated_at\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "type",
+									"value": "whatshafiz",
+									"description": "nullable|string|in:whatshafiz,whatsenglish,whatsarapp",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Ali K",
+									"description": "nullable|string|min:3|max:100",
+									"type": "text"
+								},
+								{
+									"key": "comment",
+									"value": "Süper",
+									"description": "nullable|string|min:3|max:1000",
+									"type": "text"
+								},
+								{
+									"key": "is_approved",
+									"value": "1",
+									"description": "nullable|boolean",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/comments/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"comments",
 								"1"
 							]
 						}

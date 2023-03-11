@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CourseController;
@@ -67,4 +68,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::apiResource('complaints', ComplaintController::class);
     Route::get('my-complaints', [ComplaintController::class, 'myComplaints']);
+
+    Route::apiResource('comments', CommentController::class);
+    Route::get('my-comments', [CommentController::class, 'myComments']);
 });
