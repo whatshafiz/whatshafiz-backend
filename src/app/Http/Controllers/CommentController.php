@@ -78,7 +78,7 @@ class CommentController extends Controller
         $validatedCommentData = $this->validate(
             $request,
             [
-                'type' => 'required|string|in:whatshafiz,whatsenglish,whatsarapp',   
+                'type' => 'required|string|in:whatshafiz,whatsenglish,whatsarapp',
                 'title' => 'required|string|min:3|max:100',
                 'comment' => 'required|string|min:3|max:1000',
             ]

@@ -208,7 +208,6 @@ class CommentTest extends BaseFeatureTest
         $this->assertSoftDeleted('comments', ['id' => $comment->id]);
     }
 
-
     /** @test */
     public function user_can_delete_own_comment_even_does_not_have_permission()
     {
