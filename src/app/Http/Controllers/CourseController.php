@@ -17,7 +17,7 @@ class CourseController extends Controller
     {
         $this->authorize('viewAny', Course::class);
 
-        $requestData = $this->validate(
+        $filters = $this->validate(
             $request,
             [
                 'type' => 'nullable|string|in:whatshafiz,whatsenglish,whatsarapp',
@@ -28,19 +28,21 @@ class CourseController extends Controller
         );
 
         $courses = Course::latest()
-            ->when(isset($requestData['type']), function ($query) use ($requestData) {
-                return $query->where('type', $requestData['type']);
+            ->when(isset($filters['type']), function ($query) use ($filters) {
+                return $query->where('type', $filters['type']);
             })
-            ->when(isset($requestData['name']), function ($query) use ($requestData) {
-                return $query->where('name', 'LIKE', '%' . $requestData['name'] . '%');
+            ->when(isset($filters['name']), function ($query) use ($filters) {
+                return $query->where('name', 'LIKE', '%' . $filters['name'] . '%');
             })
-            ->when(isset($requestData['is_active']), function ($query) use ($requestData) {
-                return $query->where('is_active', $requestData['is_active']);
+            ->when(isset($filters['is_active']), function ($query) use ($filters) {
+                return $query->where('is_active', $filters['is_active']);
             })
-            ->when(isset($requestData['can_be_applied']), function ($query) use ($requestData) {
-                return $requestData['can_be_applied'] ? $query->available() : $query->unavailable();
+            ->when(isset($filters['can_be_applied']), function ($query) use ($filters) {
+                return $filters['can_be_applied'] ? $query->available() : $query->unavailable();
             })
-            ->get();
+            ->paginate()
+            ->appends($filters)
+            ->toArray();
 
         return response()->json(compact('courses'));
     }

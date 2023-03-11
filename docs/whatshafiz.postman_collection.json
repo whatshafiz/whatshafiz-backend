@@ -2810,23 +2810,78 @@
 							}
 						],
 						"url": {
-							"raw": "{{URL}}/users/list",
+							"raw": "{{URL}}/users",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
-								"users",
-								"list"
+								"users"
 							],
 							"query": [
 								{
-									"key": "Accept",
-									"value": "application/json",
+									"key": "full_name",
+									"value": "Yiğit Bakırcıoğlu",
+									"description": "nullable|string|max:150",
 									"disabled": true
 								},
 								{
-									"key": "Content-Type",
-									"value": "application/json",
+									"key": "name",
+									"value": "Yiğit",
+									"description": "nullable|string|max:50",
+									"disabled": true
+								},
+								{
+									"key": "surname",
+									"value": "Bakırcıoğlu",
+									"description": "nullable|string|max:50",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": null,
+									"description": "nullable|email",
+									"disabled": true
+								},
+								{
+									"key": "gender",
+									"value": null,
+									"description": "nullable|string|in:male,female",
+									"disabled": true
+								},
+								{
+									"key": "country_id",
+									"value": null,
+									"description": "nullable|integer|min:1",
+									"disabled": true
+								},
+								{
+									"key": "city_id",
+									"value": null,
+									"description": "nullable|integer|min:1",
+									"disabled": true
+								},
+								{
+									"key": "university_id",
+									"value": null,
+									"description": "nullable|integer|min:1",
+									"disabled": true
+								},
+								{
+									"key": "university_faculty_id",
+									"value": null,
+									"description": "nullable|integer|min:1",
+									"disabled": true
+								},
+								{
+									"key": "university_department_id",
+									"value": null,
+									"description": "nullable|integer|min:1",
+									"disabled": true
+								},
+								{
+									"key": "is_banned",
+									"value": null,
+									"description": "nullable|boolean",
 									"disabled": true
 								}
 							]

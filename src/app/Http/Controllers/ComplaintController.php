@@ -21,7 +21,7 @@ class ComplaintController extends Controller
     {
         $this->authorize('viewAny', Complaint::class);
 
-        $requestData = $this->validate(
+        $filters = $this->validate(
             $request,
             [
                 'created_by' => 'nullable|integer|min:0|exists:users,id',
@@ -36,32 +36,33 @@ class ComplaintController extends Controller
         );
 
         $complaints = Complaint::latest()
-            ->when(isset($requestData['created_by']), function ($query) use ($requestData) {
-                return $query->where('created_by', $requestData['created_by']);
+            ->when(isset($filters['created_by']), function ($query) use ($filters) {
+                return $query->where('created_by', $filters['created_by']);
             })
-            ->when(isset($requestData['reviewed_by']), function ($query) use ($requestData) {
-                return $query->where('reviewed_by', $requestData['reviewed_by']);
+            ->when(isset($filters['reviewed_by']), function ($query) use ($filters) {
+                return $query->where('reviewed_by', $filters['reviewed_by']);
             })
-            ->when(isset($requestData['reviewed_at']), function ($query) use ($requestData) {
-                return $query->where('reviewed_at', $requestData['reviewed_at']);
+            ->when(isset($filters['reviewed_at']), function ($query) use ($filters) {
+                return $query->where('reviewed_at', $filters['reviewed_at']);
             })
-            ->when(isset($requestData['is_fixed']), function ($query) use ($requestData) {
-                return $query->where('is_fixed', $requestData['is_fixed']);
+            ->when(isset($filters['is_fixed']), function ($query) use ($filters) {
+                return $query->where('is_fixed', $filters['is_fixed']);
             })
-            ->when(isset($requestData['result']), function ($query) use ($requestData) {
-                return $query->where('result', $requestData['result']);
+            ->when(isset($filters['result']), function ($query) use ($filters) {
+                return $query->where('result', $filters['result']);
             })
-            ->when(isset($requestData['subject']), function ($query) use ($requestData) {
-                return $query->where('subject', $requestData['subject']);
+            ->when(isset($filters['subject']), function ($query) use ($filters) {
+                return $query->where('subject', $filters['subject']);
             })
-            ->when(isset($requestData['description']), function ($query) use ($requestData) {
-                return $query->where('description', $requestData['description']);
+            ->when(isset($filters['description']), function ($query) use ($filters) {
+                return $query->where('description', $filters['description']);
             })
-            ->when(isset($requestData['related_user_id']), function ($query) use ($requestData) {
-                return $query->where('related_user_id', $requestData['related_user_id']);
+            ->when(isset($filters['related_user_id']), function ($query) use ($filters) {
+                return $query->where('related_user_id', $filters['related_user_id']);
             })
-            ->latest('id')
-            ->paginate();
+            ->paginate()
+            ->appends($filters)
+            ->toArray();
 
         return response()->json(compact('complaints'));
     }
