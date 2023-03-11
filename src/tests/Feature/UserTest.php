@@ -46,6 +46,37 @@ class UserTest extends BaseFeatureTest
     }
 
     /** @test */
+    public function it_should_test_get_users_list_when_has_permission_and_filters()
+    {
+        $loginUser = User::factory()->create();
+        $loginUser->givePermissionTo('users.list');
+
+        $users = User::factory()->count(2, 5)->create();
+        $userForFilter = $users->random();
+        $filters = [
+            'name' => $userForFilter->name,
+            'surname' => $userForFilter->surname,
+            'email' => $userForFilter->email,
+            'gender' => $userForFilter->gender,
+            'phone_number' => $userForFilter->phone_number,
+            'country_id' => $userForFilter->country_id,
+            'city_id' => $userForFilter->city_id,
+            'university_id' => $userForFilter->university_id,
+            'university_faculty_id' => $userForFilter->university_faculty_id,
+            'university_department_id' => $userForFilter->university_department_id,
+            'is_banned' => $userForFilter->is_banned,
+        ];
+
+        $response = $this->actingAs($loginUser)->json('GET', $this->uri, $filters);
+
+        $response->assertOk();
+
+        foreach (User::where($filters)->get() as $user) {
+            $response->assertJsonFragment($user->toArray());
+        }
+    }
+
+    /** @test */
     public function it_should_check_a_phone_number_registered_or_not()
     {
         $registeredUser = User::factory()->create();
