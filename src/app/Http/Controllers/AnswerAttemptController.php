@@ -82,11 +82,7 @@ class AnswerAttemptController extends Controller
             'answer' => 'nullable|string|max:255'
         ]);
 
-        if (Auth::user()->hasPermissionTo('answerattempts.update')) {
-            $data['is_correct'] = 'nullable|boolean';
-        } else {
-            $data['is_correct'] = $answerAttempt->question->correct_answer === $data['answer'];
-        }
+        $data['is_correct'] = $answerAttempt->question->correct_answer === $data['answer'];
 
         $answerAttempt->update($data);
 
