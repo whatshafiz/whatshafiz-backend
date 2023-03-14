@@ -11,6 +11,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Queue;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -176,5 +177,28 @@ class User extends Authenticatable
     public function getUniversityDepartmentNameAttribute(): ?string
     {
         return $this->universityDepartment()->first()?->name;
+    }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function quranQuestions(): BelongsToMany
+    {
+        return $this->hasManyThrough(
+            QuranQuestion::class,
+            AnswerAttempt::class,
+            'user_id',
+            'question_id',
+            'id',
+            'id'
+        );
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function answerAttempts(): HasMany
+    {
+        return $this->hasMany(AnswerAttempt::class);
     }
 }
