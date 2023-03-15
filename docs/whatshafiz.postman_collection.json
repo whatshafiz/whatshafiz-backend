@@ -3634,6 +3634,926 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Soru Yönetimi",
+			"item": [
+				{
+					"name": "NEW Soru",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"reviewed_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"is_fixed\");",
+									"    pm.expect(pm.response.text()).to.include(\"result\");",
+									"    pm.expect(pm.response.text()).to.include(\"subject\");",
+									"    pm.expect(pm.response.text()).to.include(\"description\");",
+									"    pm.expect(pm.response.text()).to.include(\"created_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"updated_at\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "page_number",
+									"value": "2",
+									"description": "required|integer|min:0",
+									"type": "text"
+								},
+								{
+									"key": "question",
+									"value": "Süper",
+									"description": "required|string|max:255",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Test",
+									"description": "nullable|string|max:255",
+									"type": "text"
+								},
+								{
+									"key": "option_1",
+									"value": "option_1",
+									"description": "required|string|max:255",
+									"type": "text"
+								},
+								{
+									"key": "option_2",
+									"value": "option_2",
+									"description": "required|string|max:255",
+									"type": "text"
+								},
+								{
+									"key": "option_3",
+									"value": "option_3",
+									"description": "required|string|max:255",
+									"type": "text"
+								},
+								{
+									"key": "option_4",
+									"value": "option_4",
+									"description": "required|string|max:255",
+									"type": "text"
+								},
+								{
+									"key": "option_5",
+									"value": "option_5",
+									"description": "required|string|max:255",
+									"type": "text"
+								},
+								{
+									"key": "correct_option",
+									"value": "correct_option",
+									"description": "required|integer|min:1|max:5",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/quran-questions",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"quran-questions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Soru",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"reviewed_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"is_fixed\");",
+									"    pm.expect(pm.response.text()).to.include(\"result\");",
+									"    pm.expect(pm.response.text()).to.include(\"subject\");",
+									"    pm.expect(pm.response.text()).to.include(\"description\");",
+									"    pm.expect(pm.response.text()).to.include(\"created_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"updated_at\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "page_number",
+									"value": "2",
+									"description": "required|integer|min:0",
+									"type": "text"
+								},
+								{
+									"key": "question",
+									"value": "Süper",
+									"description": "required|string|max:255",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Test",
+									"description": "nullable|string|max:255",
+									"type": "text"
+								},
+								{
+									"key": "option_1",
+									"value": "option_1",
+									"description": "required|string|max:255",
+									"type": "text"
+								},
+								{
+									"key": "option_2",
+									"value": "option_2",
+									"description": "required|string|max:255",
+									"type": "text"
+								},
+								{
+									"key": "option_3",
+									"value": "option_3",
+									"description": "required|string|max:255",
+									"type": "text"
+								},
+								{
+									"key": "option_4",
+									"value": "option_4",
+									"description": "required|string|max:255",
+									"type": "text"
+								},
+								{
+									"key": "option_5",
+									"value": "option_5",
+									"description": "required|string|max:255",
+									"type": "text"
+								},
+								{
+									"key": "correct_option",
+									"value": "correct_option",
+									"description": "required|integer|min:1|max:5",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/quran-questions",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"quran-questions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Soru",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"reviewed_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"is_fixed\");",
+									"    pm.expect(pm.response.text()).to.include(\"result\");",
+									"    pm.expect(pm.response.text()).to.include(\"subject\");",
+									"    pm.expect(pm.response.text()).to.include(\"description\");",
+									"    pm.expect(pm.response.text()).to.include(\"created_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"updated_at\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/quran-questions/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"quran-questions",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Soru",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"reviewed_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"is_fixed\");",
+									"    pm.expect(pm.response.text()).to.include(\"result\");",
+									"    pm.expect(pm.response.text()).to.include(\"subject\");",
+									"    pm.expect(pm.response.text()).to.include(\"description\");",
+									"    pm.expect(pm.response.text()).to.include(\"created_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"updated_at\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/quran-questions/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"quran-questions",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LIST Soru",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"reviewed_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"is_fixed\");",
+									"    pm.expect(pm.response.text()).to.include(\"result\");",
+									"    pm.expect(pm.response.text()).to.include(\"subject\");",
+									"    pm.expect(pm.response.text()).to.include(\"description\");",
+									"    pm.expect(pm.response.text()).to.include(\"created_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"updated_at\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{URL}}/quran-questions?page_number=1&question=test&name=test",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"quran-questions"
+							],
+							"query": [
+								{
+									"key": "page_number",
+									"value": "1",
+									"description": "nullable|integer|min:0"
+								},
+								{
+									"key": "question",
+									"value": "test",
+									"description": "nullable|string|max:255"
+								},
+								{
+									"key": "name",
+									"value": "test",
+									"description": "nullable|string|max:255"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ASSIGN Soru",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"reviewed_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"is_fixed\");",
+									"    pm.expect(pm.response.text()).to.include(\"result\");",
+									"    pm.expect(pm.response.text()).to.include(\"subject\");",
+									"    pm.expect(pm.response.text()).to.include(\"description\");",
+									"    pm.expect(pm.response.text()).to.include(\"created_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"updated_at\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "1",
+									"description": "required|integer|min:0",
+									"type": "text"
+								},
+								{
+									"key": "question_id",
+									"value": "1",
+									"description": "required|integer|min:0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/quran-questions-assign",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"quran-questions-assign"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cevap Yönetimi",
+			"item": [
+				{
+					"name": "UPDATE Cevap",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"reviewed_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"is_fixed\");",
+									"    pm.expect(pm.response.text()).to.include(\"result\");",
+									"    pm.expect(pm.response.text()).to.include(\"subject\");",
+									"    pm.expect(pm.response.text()).to.include(\"description\");",
+									"    pm.expect(pm.response.text()).to.include(\"created_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"updated_at\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "answer",
+									"value": "1",
+									"description": "required|integer|min:1|max:5",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/answer-attempts",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"answer-attempts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Cevap",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"reviewed_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"is_fixed\");",
+									"    pm.expect(pm.response.text()).to.include(\"result\");",
+									"    pm.expect(pm.response.text()).to.include(\"subject\");",
+									"    pm.expect(pm.response.text()).to.include(\"description\");",
+									"    pm.expect(pm.response.text()).to.include(\"created_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"updated_at\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/answer-attempts/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"answer-attempts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Cevap",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"reviewed_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"is_fixed\");",
+									"    pm.expect(pm.response.text()).to.include(\"result\");",
+									"    pm.expect(pm.response.text()).to.include(\"subject\");",
+									"    pm.expect(pm.response.text()).to.include(\"description\");",
+									"    pm.expect(pm.response.text()).to.include(\"created_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"updated_at\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/answer-attempts/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"answer-attempts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LIST Cevaplar",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"reviewed_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"is_fixed\");",
+									"    pm.expect(pm.response.text()).to.include(\"result\");",
+									"    pm.expect(pm.response.text()).to.include(\"subject\");",
+									"    pm.expect(pm.response.text()).to.include(\"description\");",
+									"    pm.expect(pm.response.text()).to.include(\"created_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"updated_at\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{URL}}/quran-questions?user_id=1&question_id=1&is_correct=1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"quran-questions"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "1",
+									"description": "nullable|integer|min:0|exists:users,id"
+								},
+								{
+									"key": "question_id",
+									"value": "1",
+									"description": "nullable|integer|min:0|exists:quran_questions,id"
+								},
+								{
+									"key": "is_correct",
+									"value": "1",
+									"description": "nullable|boolean"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USER Cevaplar",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"reviewed_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"is_fixed\");",
+									"    pm.expect(pm.response.text()).to.include(\"result\");",
+									"    pm.expect(pm.response.text()).to.include(\"subject\");",
+									"    pm.expect(pm.response.text()).to.include(\"description\");",
+									"    pm.expect(pm.response.text()).to.include(\"created_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"updated_at\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "1",
+									"description": "required|integer|min:0",
+									"type": "text"
+								},
+								{
+									"key": "question_id",
+									"value": "1",
+									"description": "required|integer|min:0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/answer-attempts-my?question_id=1&is_correct=1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"answer-attempts-my"
+							],
+							"query": [
+								{
+									"key": "question_id",
+									"value": "1",
+									"description": "nullable|integer|min:0|exists:quran_questions,id"
+								},
+								{
+									"key": "is_correct",
+									"value": "1",
+									"description": "nullable|boolean"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USER Aktif Soru",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"reviewed_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"is_fixed\");",
+									"    pm.expect(pm.response.text()).to.include(\"result\");",
+									"    pm.expect(pm.response.text()).to.include(\"subject\");",
+									"    pm.expect(pm.response.text()).to.include(\"description\");",
+									"    pm.expect(pm.response.text()).to.include(\"created_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"updated_at\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "1",
+									"description": "required|integer|min:0",
+									"type": "text"
+								},
+								{
+									"key": "question_id",
+									"value": "1",
+									"description": "required|integer|min:0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/answer-attempts-my-active",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"answer-attempts-my-active"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [
