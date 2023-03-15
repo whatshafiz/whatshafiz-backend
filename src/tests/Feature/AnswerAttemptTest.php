@@ -3,12 +3,8 @@
 namespace Tests\Feature;
 
 use App\Models\AnswerAttempt;
-use App\Models\QuranQuestion;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\BaseFeatureTest;
-use Tests\TestCase;
 use App\Models\User;
+use Tests\BaseFeatureTest;
 
 class AnswerAttemptTest extends BaseFeatureTest
 {

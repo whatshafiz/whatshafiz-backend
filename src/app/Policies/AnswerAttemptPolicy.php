@@ -34,7 +34,6 @@ class AnswerAttemptPolicy
             || $user->id === $answerAttempt->user_id;
     }
 
-
     /**
      * Determine whether the user can update the model.
      *

@@ -3,8 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\QuranQuestion;
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\AnswerAttempt>
@@ -20,6 +20,7 @@ class AnswerAttemptFactory extends Factory
     {
         $question = QuranQuestion::inRandomOrder()->first() ?? QuranQuestion::factory()->create();
         $answer = $this->faker->numberBetween(1, 5);
+
         return [
             'question_id' => $question->id,
             'user_id' => User::inRandomOrder()->value('id') ?? User::factory()->create()->id,

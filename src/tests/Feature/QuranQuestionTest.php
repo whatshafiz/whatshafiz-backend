@@ -2,13 +2,9 @@
 
 namespace Tests\Feature;
 
-use App\Models\Comment;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\BaseFeatureTest;
-use Tests\TestCase;
-use App\Models\User;
 use App\Models\QuranQuestion;
+use App\Models\User;
+use Tests\BaseFeatureTest;
 
 class QuranQuestionTest extends BaseFeatureTest
 {
@@ -246,5 +242,4 @@ class QuranQuestionTest extends BaseFeatureTest
 
         $this->assertDatabaseHas('answer_attempts', ['question_id' => $quranQuestion->id, 'user_id' => $assignedUser->id]);
     }
-
 }

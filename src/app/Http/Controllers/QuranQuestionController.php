@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AnswerAttempt;
 use App\Models\QuranQuestion;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
