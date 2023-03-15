@@ -122,7 +122,7 @@ class AnswerAttemptTest extends BaseFeatureTest
             'PUT',
             $this->uri . '/' . $answerAttempt->id,
             [
-                'answer' => $answerAttempt->question->correct_option + 1,
+                'answer' => ($answerAttempt->question->correct_option + 1) % 5,
             ]
         );
 
@@ -130,7 +130,7 @@ class AnswerAttemptTest extends BaseFeatureTest
 
         $this->assertDatabaseHas('answer_attempts', [
             'id' => $answerAttempt->id,
-            'answer' => $answerAttempt->question->correct_option + 1,
+            'answer' => ($answerAttempt->question->correct_option + 1) % 5,
             'is_correct' => false,
         ]);
     }
@@ -198,7 +198,6 @@ class AnswerAttemptTest extends BaseFeatureTest
 
         $answerAttempts = AnswerAttempt::factory()
             ->count(5)
-            ->sequence(fn ($sequence) => ['is_correct' => rand(0, 1)])
             ->create([
             'user_id' => $user->id,
         ]);
@@ -216,8 +215,10 @@ class AnswerAttemptTest extends BaseFeatureTest
 
         $response->assertOk();
 
-        foreach (AnswerAttempt::where($searchQuery)->get() as $answerAttempt) {
-            $response->assertJsonFragment($answerAttempt->toArray());
+        $searchQuery['user_id'] = $user->id;
+
+        foreach (AnswerAttempt::where($searchQuery)->get() as $searchAnswerAttempt) {
+            $response->assertJsonFragment($searchAnswerAttempt->toArray());
         }
     }
 
