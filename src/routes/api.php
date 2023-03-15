@@ -10,6 +10,7 @@ use App\Http\Controllers\UniversityController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WhatsappGroupController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ChatgptController;
 
 Route::get('countries', [CountryController::class, 'index']);
 
@@ -71,4 +72,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::apiResource('comments', CommentController::class);
     Route::get('my-comments', [CommentController::class, 'myComments']);
+
+    Route::apiResource('chatgpt', ChatgptController::class);
 });
