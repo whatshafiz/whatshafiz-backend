@@ -78,6 +78,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('quran-questions-assign', [QuranQuestionController::class, 'assign']);
 
     Route::apiResource('answer-attempts', AnswerAttemptController::class);
-    Route::get('my-answer-attempts', [AnswerAttemptController::class, 'myAnswerAttempts']);
-    Route::get('my-active-answer-attempts', [AnswerAttemptController::class, 'myActiveAnswerAttempt']);
+    Route::get('answer-attempts-my', [AnswerAttemptController::class, 'myAnswerAttempts']);
+    Route::get('answer-attempts-my-active', [AnswerAttemptController::class, 'myActiveAnswerAttempt']);
 });

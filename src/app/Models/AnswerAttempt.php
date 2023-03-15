@@ -11,6 +11,11 @@ class AnswerAttempt extends BaseModel
     use HasFactory;
 
     /**
+     * @var string
+     */
+    protected $table = 'answer_attempts';
+
+    /**
      * @var string[]
      */
     protected $with = ['user', 'question'];
@@ -18,7 +23,7 @@ class AnswerAttempt extends BaseModel
     /**
      * @return string[]
      */
-    protected $cast = [
+    protected $casts = [
         'is_correct' => 'boolean',
     ];
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AnswerAttempt;
+use App\Models\QuranQuestion;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -26,8 +27,8 @@ class AnswerAttemptController extends Controller
 
         $filters = $this->validate($request, [
             'user_id' => 'nullable|integer|min:0|exists:users,id',
-            'question_id' => 'nullable|integer|min:0|exists:quranquestions,id',
-            'answer' => 'nullable|string|max:255',
+            'question_id' => 'nullable|integer|min:0|exists:quran_questions,id',
+            'answer' => 'nullable|integer|min:0|max:5',
             'is_correct' => 'nullable|boolean',
         ]);
 
@@ -79,10 +80,12 @@ class AnswerAttemptController extends Controller
         $this->authorize('update', [AnswerAttempt::class, $answerAttempt]);
 
         $data = $this->validate($request, [
-            'answer' => 'nullable|string|max:255'
+            'answer' => 'integer|min:0|max:5',
         ]);
 
-        $data['is_correct'] = $answerAttempt->question->correct_answer === $data['answer'];
+        $question = QuranQuestion::find($answerAttempt->question_id);
+
+        $data['is_correct'] = $question->correct_option == $data['answer'] ? 1 : 0;
 
         $answerAttempt->update($data);
 
@@ -113,9 +116,21 @@ class AnswerAttemptController extends Controller
      */
     public function myAnswerAttempts(Request $request)
     {
-        $this->authorize('viewAny', AnswerAttempt::class);
+        $filters = $this->validate($request, [
+            'question_id' => 'nullable|integer|min:0|exists:quran_questions,id',
+            'is_correct' => 'nullable|boolean',
+        ]);
 
-        $attempts = Auth::user()->answerAttempts()->latest()->paginate()->toArray();
+        $attempts = Auth::user()->answerAttempts()
+            ->when(isset($filters['question_id']), function ($query) use ($filters) {
+                return $query->where('question_id', $filters['question_id']);
+            })
+            ->when(isset($filters['is_correct']), function ($query) use ($filters) {
+                return $query->where('is_correct', $filters['is_correct']);
+            })
+            ->latest()
+            ->paginate()
+            ->toArray();
 
         return response()->json(compact('attempts'));
     }

@@ -24,7 +24,7 @@ class QuranQuestionController extends Controller
     {
         $this->authorize('viewAny', QuranQuestion::class);
 
-        $filtesr = $this->validate($request, [
+        $filters = $this->validate($request, [
             'page_number' => 'nullable|integer|min:0',
             'question' => 'nullable|string|max:255',
             'name' => 'nullable|string|max:255',
@@ -73,7 +73,7 @@ class QuranQuestionController extends Controller
 
         $question = QuranQuestion::create($data);
 
-        return response()->json(compact('question'));
+        return response()->json(null, Response::HTTP_NO_CONTENT);
     }
 
     /**
@@ -93,25 +93,26 @@ class QuranQuestionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
+     * @param Request $request
      * @param QuranQuestion $quranQuestion
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      * @throws AuthorizationException
      * @throws ValidationException
      */
-    public function update(QuranQuestion $quranQuestion)
+    public function update(Request $request, QuranQuestion $quranQuestion)
     {
         $this->authorize('update', QuranQuestion::class);
 
         $data = $this->validate($request, [
-            'page_number' => 'required|integer|min:0',
-            'question' => 'required|string|max:255',
+            'page_number' => 'nullable|integer|min:0',
+            'question' => 'nullable|string|max:255',
             'name' => 'nullable|string|max:255',
-            'option_1' => 'required|string|max:255',
-            'option_2' => 'required|string|max:255',
-            'option_3' => 'required|string|max:255',
-            'option_4' => 'required|string|max:255',
-            'option_5' => 'required|string|max:255',
-            'correct_option' => 'required|integer|min:1|max:5',
+            'option_1' => 'nullable|string|max:255',
+            'option_2' => 'nullable|string|max:255',
+            'option_3' => 'nullable|string|max:255',
+            'option_4' => 'nullable|string|max:255',
+            'option_5' => 'nullable|string|max:255',
+            'correct_option' => 'nullable|integer|min:1|max:5',
         ]);
 
         $quranQuestion->update($data);
@@ -147,12 +148,12 @@ class QuranQuestionController extends Controller
 
         $data = $this->validate($request, [
             'user_id' => 'nullable|integer|min:0|exists:users,id',
-            'question_id' => 'nullable|integer|min:0|exists:quranquestions,id',
+            'question_id' => 'nullable|integer|min:0|exists:quran_questions,id',
         ]);
 
         $question = QuranQuestion::find($data['question_id']);
 
-        $question->users()->assign($data['user_id']);
+        $question->users()->attach($data['user_id']);
 
         return response()->json(compact('question'));
     }

@@ -69,7 +69,23 @@ class RolesPermissionsSeeder extends Seeder
             'comments.list',
             'comments.update',
             'comments.create',
-            'comments.delete'
+            'comments.delete',
+
+            'quranquestions.*',
+            'quranquestions.view',
+            'quranquestions.list',
+            'quranquestions.update',
+            'quranquestions.create',
+            'quranquestions.delete',
+            'quranquestions.assign',
+
+            'answerattempts.*',
+            'answerattempts.view',
+            'answerattempts.list',
+            'answerattempts.update',
+            'answerattempts.create',
+            'answerattempts.delete'
+
         ];
 
         foreach ($permissions as $permission) {

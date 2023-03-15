@@ -10,6 +10,11 @@ class QuranQuestion extends BaseModel
     use HasFactory;
 
     /**
+     * @var string
+     */
+    protected $table = 'quran_questions';
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function attempts()
