@@ -17,14 +17,13 @@ class QuranQuestionFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
-            'page_number' => $this->faker->randomNumber(),
-            'question' => $this->faker->text,
-            'option_1' => $this->faker->text,
-            'option_2' => $this->faker->text,
-            'option_3' => $this->faker->text,
-            'option_4' => $this->faker->text,
-            'option_5' => $this->faker->text,
+            'page_number' => $this->faker->numberBetween(1, 600),
+            'question' => $this->faker->sentences(rand(1, 11), true),
+            'option_1' => $this->faker->sentence,
+            'option_2' => $this->faker->sentence,
+            'option_3' => $this->faker->sentence,
+            'option_4' => $this->faker->sentence,
+            'option_5' => $this->faker->sentence,
             'correct_option' => $this->faker->numberBetween(1, 5)
         ];
     }

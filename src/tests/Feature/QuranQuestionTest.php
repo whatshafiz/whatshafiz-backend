@@ -31,40 +31,42 @@ class QuranQuestionTest extends BaseFeatureTest
     }
 
     /** @test */
-    public function it_should_get_quran_questions_list_when_does_have_permission()
+    public function it_should_get_quran_questions_list_when_has_permission()
     {
         $user = User::factory()->create();
         $user->givePermissionTo('quranQuestions.list');
+
+        $quranQuestions = QuranQuestion::factory()->count(rand(1, 10))->create();
 
         $response = $this->actingAs($user)->json('GET', $this->uri);
 
         $response->assertOk();
+
+        foreach ($quranQuestions as $quranQuestion) {
+            $response->assertJsonFragment($quranQuestion->toArray());
+        }
     }
 
     /** @test */
-    public function qura_questions_filters_should_work()
+    public function it_should_filter_quran_questions_while_listing()
     {
         $user = User::factory()->create();
         $user->givePermissionTo('quranQuestions.list');
 
-        $quranQuestion = QuranQuestion::factory()->count(5)->create();
+        $quranQuestion = QuranQuestion::factory()->count(5)->create()->random();
 
         $searchQuery = [
-            'page_number' => $quranQuestion->first()->page_number,
-            'question' => $quranQuestion->first()->question,
-            'option_1' => $quranQuestion->first()->option_1,
-            'option_2' => $quranQuestion->first()->option_2,
-            'option_3' => $quranQuestion->first()->option_3,
-            'option_4' => $quranQuestion->first()->option_4,
-            'option_5' => $quranQuestion->first()->option_5,
-            'correct_option' => $quranQuestion->first()->correct_option,
+            'page_number' => $quranQuestion->page_number,
+            'question' => $quranQuestion->question,
+            'option_1' => $quranQuestion->option_1,
+            'option_2' => $quranQuestion->option_2,
+            'option_3' => $quranQuestion->option_3,
+            'option_4' => $quranQuestion->option_4,
+            'option_5' => $quranQuestion->option_5,
+            'correct_option' => $quranQuestion->correct_option,
         ];
 
-        $response = $this->actingAs($user)->json(
-            'GET',
-            $this->uri,
-            $searchQuery
-        );
+        $response = $this->actingAs($user)->json('GET', $this->uri, $searchQuery);
 
         $response->assertOk();
 
@@ -78,168 +80,81 @@ class QuranQuestionTest extends BaseFeatureTest
     {
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->json(
-            'POST',
-            $this->uri,
-            [
-                'question' => 'test',
-                'option_1' => 'test',
-                'option_2' => 'test',
-                'option_3' => 'test',
-                'option_4' => 'test',
-                'option_5' => 'test',
-                'correct_option' => 1,
-            ]
-        );
+        $quranQuestionData = QuranQuestion::factory()->raw();
+
+        $response = $this->actingAs($user)->json('POST', $this->uri, $quranQuestionData);
 
         $response->assertForbidden();
     }
 
     /** @test */
-    public function it_should_create_quran_question_when_does_have_permission()
+    public function it_should_create_quran_question_when_has_permission()
     {
         $user = User::factory()->create();
         $user->givePermissionTo('quranQuestions.create');
 
-        $response = $this->actingAs($user)->json(
-            'POST',
-            $this->uri,
-            [
-                'page_number' => 1,
-                'question' => 'test',
-                'option_1' => 'test',
-                'option_2' => 'test',
-                'option_3' => 'test',
-                'option_4' => 'test',
-                'option_5' => 'test',
-                'correct_option' => 1,
-            ]
-        );
+        $quranQuestionData = QuranQuestion::factory()->raw();
+
+        $response = $this->actingAs($user)->json('POST', $this->uri, $quranQuestionData);
 
         $response->assertSuccessful();
 
-        $this->assertDatabaseHas('quran_questions', [
-            'page_number' => 1,
-            'question' => 'test',
-            'option_1' => 'test',
-            'option_2' => 'test',
-            'option_3' => 'test',
-            'option_4' => 'test',
-            'option_5' => 'test',
-            'correct_option' => 1,
-        ]);
+        $this->assertDatabaseHas('quran_questions', $quranQuestionData);
     }
 
     /** @test */
     public function it_should_not_update_quran_question_when_does_not_have_permission()
     {
-        $quranQuestion = QuranQuestion::factory()->create();
-
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->json(
-            'PUT',
-            $this->uri . '/' . $quranQuestion->id,
-            [
-                'question' => 'test'
-            ]
-        );
+        $quranQuestion = QuranQuestion::factory()->create();
+        $quranQuestionNewData = QuranQuestion::factory()->raw();
+
+        $response = $this->actingAs($user)->json('PUT', $this->uri . '/' . $quranQuestion->id, $quranQuestionNewData);
 
         $response->assertForbidden();
     }
 
     /** @test */
-    public function it_should_update_quran_question_when_does_have_permission()
+    public function it_should_update_quran_question_when_has_permission()
     {
-        $quranQuestion = QuranQuestion::factory()->create();
-
         $user = User::factory()->create();
         $user->givePermissionTo('quranQuestions.update');
 
-        $response = $this->actingAs($user)->json(
-            'PUT',
-            $this->uri . '/' . $quranQuestion->id,
-            [
-                'question' => 'test'
-            ]
-        );
+        $quranQuestion = QuranQuestion::factory()->create();
+        $quranQuestionNewData = QuranQuestion::factory()->raw();
+
+        $response = $this->actingAs($user)->json('PUT', $this->uri . '/' . $quranQuestion->id, $quranQuestionNewData);
 
         $response->assertOk();
 
-        $this->assertDatabaseHas('quran_questions', ['id' => $quranQuestion->id, 'question' => 'test']);
+        $this->assertDatabaseHas('quran_questions', array_merge(['id' => $quranQuestion->id], $quranQuestionNewData));
     }
 
     /** @test */
     public function it_should_not_delete_quran_question_when_does_not_have_permission()
     {
-        $quranQuestion = QuranQuestion::factory()->create();
-
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->json(
-            'DELETE',
-            $this->uri . '/' . $quranQuestion->id
-        );
+        $quranQuestion = QuranQuestion::factory()->create();
+
+        $response = $this->actingAs($user)->json('DELETE', $this->uri . '/' . $quranQuestion->id);
 
         $response->assertForbidden();
     }
 
     /** @test */
-    public function it_should_delete_quran_question_when_does_have_permission()
+    public function it_should_delete_quran_question_when_has_permission()
     {
-        $quranQuestion = QuranQuestion::factory()->create();
-
         $user = User::factory()->create();
         $user->givePermissionTo('quranQuestions.delete');
 
-        $response = $this->actingAs($user)->json(
-            'DELETE',
-            $this->uri . '/' . $quranQuestion->id
-        );
-
-        $response->assertSuccessful();
-    }
-
-    /** @test */
-    public function it_should_not_assign_quran_question_when_does_not_have_permission()
-    {
         $quranQuestion = QuranQuestion::factory()->create();
 
-        $user = User::factory()->create();
-        $assignedUser = User::factory()->create();
-
-        $response = $this->actingAs($user)->json(
-            'POST',
-            $this->uri . '-assign',
-            [
-                'user_id' => $assignedUser->id,
-                'question_id' => $quranQuestion->id
-            ]
-        );
-
-        $response->assertForbidden();
-    }
-
-    /** @test */
-    public function it_should_assign_quran_question_when_does_have_permission()
-    {
-        $quranQuestion = QuranQuestion::factory()->create();
-
-        $user = User::factory()->create();
-        $user->givePermissionTo('quranQuestions.assign');
-        $assignedUser = User::factory()->create();
-
-        $response = $this->actingAs($user)->json(
-            'POST',
-            $this->uri . '-assign',
-            [
-                'user_id' => $assignedUser->id,
-                'question_id' => $quranQuestion->id
-            ]
-        );
+        $response = $this->actingAs($user)->json('DELETE', $this->uri . '/' . $quranQuestion->id);
 
         $response->assertSuccessful();
 
-        $this->assertDatabaseHas('answer_attempts', ['question_id' => $quranQuestion->id, 'user_id' => $assignedUser->id]);
+        $this->assertSoftDeleted('quran_questions', ['id' => $quranQuestion->id]);
     }
 }

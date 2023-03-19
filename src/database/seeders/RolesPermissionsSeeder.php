@@ -77,7 +77,6 @@ class RolesPermissionsSeeder extends Seeder
             'quranQuestions.update',
             'quranQuestions.create',
             'quranQuestions.delete',
-            'quranQuestions.assign',
 
             'answerAttempts.*',
             'answerAttempts.view',
@@ -85,7 +84,6 @@ class RolesPermissionsSeeder extends Seeder
             'answerAttempts.update',
             'answerAttempts.create',
             'answerAttempts.delete'
-
         ];
 
         foreach ($permissions as $permission) {
