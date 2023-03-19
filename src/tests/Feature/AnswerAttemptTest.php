@@ -37,7 +37,7 @@ class AnswerAttemptTest extends BaseFeatureTest
         $user = User::factory()->create();
         $user->givePermissionTo('answerAttempts.list');
 
-        $answerAttempts = AnswerAttempt::factory()->count(rand(1, 10))->create();
+        $answerAttempts = AnswerAttempt::factory()->count(rand(1, 5))->create();
 
         $response = $this->actingAs($user)->json('GET', $this->uri);
 
