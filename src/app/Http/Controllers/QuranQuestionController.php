@@ -24,7 +24,7 @@ class QuranQuestionController extends Controller
         $this->authorize('viewAny', QuranQuestion::class);
 
         $filters = $this->validate($request, [
-            'page_number' => 'nullable|integer|min:0|max:600',
+            'page_number' => 'nullable|integer|min:1|max:600',
             'question' => 'nullable|string|max:3000',
         ]);
 
@@ -55,7 +55,7 @@ class QuranQuestionController extends Controller
         $this->authorize('create', QuranQuestion::class);
 
         $validatedQuranQuestionData = $this->validate($request, [
-            'page_number' => 'required|integer|min:0|max:600',
+            'page_number' => 'required|integer|min:1|max:600',
             'question' => 'required|string|max:3000',
             'option_1' => 'required|string|max:255',
             'option_2' => 'required|string|max:255',
@@ -65,9 +65,9 @@ class QuranQuestionController extends Controller
             'correct_option' => 'required|integer|min:1|max:5',
         ]);
 
-        QuranQuestion::create($validatedQuranQuestionData);
+        $quranQuestion = QuranQuestion::create($validatedQuranQuestionData);
 
-        return response()->json(null, Response::HTTP_CREATED);
+        return response()->json(compact('quranQuestion'), Response::HTTP_CREATED);
     }
 
     /**
@@ -98,7 +98,7 @@ class QuranQuestionController extends Controller
         $this->authorize('update', QuranQuestion::class);
 
         $validatedQuranQuestionData = $this->validate($request, [
-            'page_number' => 'required|integer|min:0|max:600',
+            'page_number' => 'required|integer|min:1|max:600',
             'question' => 'required|string|max:3000',
             'option_1' => 'required|string|max:255',
             'option_2' => 'required|string|max:255',

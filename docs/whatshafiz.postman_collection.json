@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "cfb61b86-7496-4e66-9eb9-5badf78f9f80",
+		"_postman_id": "131ee641-37eb-415d-9cff-c9582eee791d",
 		"name": "whatshafiz",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "8269859"
@@ -3646,15 +3646,15 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Success\", function () {",
-									"    pm.response.to.have.status(200);",
+									"    pm.response.to.have.status(201);",
 									"    pm.expect(pm.response.text()).to.include(\"id\");",
-									"    pm.expect(pm.response.text()).to.include(\"reviewed_at\");",
-									"    pm.expect(pm.response.text()).to.include(\"is_fixed\");",
-									"    pm.expect(pm.response.text()).to.include(\"result\");",
-									"    pm.expect(pm.response.text()).to.include(\"subject\");",
-									"    pm.expect(pm.response.text()).to.include(\"description\");",
-									"    pm.expect(pm.response.text()).to.include(\"created_at\");",
-									"    pm.expect(pm.response.text()).to.include(\"updated_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"page_number\");",
+									"    pm.expect(pm.response.text()).to.include(\"question\");",
+									"    pm.expect(pm.response.text()).to.include(\"option_1\");",
+									"    pm.expect(pm.response.text()).to.include(\"option_2\");",
+									"    pm.expect(pm.response.text()).to.include(\"option_3\");",
+									"    pm.expect(pm.response.text()).to.include(\"option_4\");",
+									"    pm.expect(pm.response.text()).to.include(\"correct_option\");",
 									"});",
 									""
 								],
@@ -3686,20 +3686,14 @@
 							"urlencoded": [
 								{
 									"key": "page_number",
-									"value": "2",
-									"description": "required|integer|min:0",
+									"value": "15",
+									"description": "required|integer|min:1|max:600",
 									"type": "text"
 								},
 								{
 									"key": "question",
-									"value": "Süper",
-									"description": "required|string|max:255",
-									"type": "text"
-								},
-								{
-									"key": "name",
-									"value": "Test",
-									"description": "nullable|string|max:255",
+									"value": "Hangisi 15. sayfada anlıtılmaktadır?",
+									"description": "required|string|max:3000",
 									"type": "text"
 								},
 								{
@@ -3734,7 +3728,7 @@
 								},
 								{
 									"key": "correct_option",
-									"value": "correct_option",
+									"value": "2",
 									"description": "required|integer|min:1|max:5",
 									"type": "text"
 								}
@@ -3762,13 +3756,13 @@
 									"pm.test(\"Success\", function () {",
 									"    pm.response.to.have.status(200);",
 									"    pm.expect(pm.response.text()).to.include(\"id\");",
-									"    pm.expect(pm.response.text()).to.include(\"reviewed_at\");",
-									"    pm.expect(pm.response.text()).to.include(\"is_fixed\");",
-									"    pm.expect(pm.response.text()).to.include(\"result\");",
-									"    pm.expect(pm.response.text()).to.include(\"subject\");",
-									"    pm.expect(pm.response.text()).to.include(\"description\");",
-									"    pm.expect(pm.response.text()).to.include(\"created_at\");",
-									"    pm.expect(pm.response.text()).to.include(\"updated_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"page_number\");",
+									"    pm.expect(pm.response.text()).to.include(\"question\");",
+									"    pm.expect(pm.response.text()).to.include(\"option_1\");",
+									"    pm.expect(pm.response.text()).to.include(\"option_2\");",
+									"    pm.expect(pm.response.text()).to.include(\"option_3\");",
+									"    pm.expect(pm.response.text()).to.include(\"option_4\");",
+									"    pm.expect(pm.response.text()).to.include(\"correct_option\");",
 									"});",
 									""
 								],
@@ -3800,26 +3794,20 @@
 							"urlencoded": [
 								{
 									"key": "page_number",
-									"value": "2",
-									"description": "required|integer|min:0",
+									"value": "15",
+									"description": "required|integer|min:1|max:600",
 									"type": "text"
 								},
 								{
 									"key": "question",
-									"value": "Süper",
-									"description": "required|string|max:255",
-									"type": "text"
-								},
-								{
-									"key": "name",
-									"value": "Test",
-									"description": "nullable|string|max:255",
+									"value": "Hangisi 15. sayfada anlıtılmaktadır?",
+									"description": "required|string|max:3000",
 									"type": "text"
 								},
 								{
 									"key": "option_1",
 									"value": "option_1",
-									"description": "required|string|max:255",
+									"description": "nullable|string|max:255",
 									"type": "text"
 								},
 								{
@@ -3848,19 +3836,20 @@
 								},
 								{
 									"key": "correct_option",
-									"value": "correct_option",
+									"value": "2",
 									"description": "required|integer|min:1|max:5",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "{{URL}}/quran-questions",
+							"raw": "{{URL}}/quran-questions/1",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
-								"quran-questions"
+								"quran-questions",
+								"1"
 							]
 						}
 					},
@@ -3876,13 +3865,13 @@
 									"pm.test(\"Success\", function () {",
 									"    pm.response.to.have.status(200);",
 									"    pm.expect(pm.response.text()).to.include(\"id\");",
-									"    pm.expect(pm.response.text()).to.include(\"reviewed_at\");",
-									"    pm.expect(pm.response.text()).to.include(\"is_fixed\");",
-									"    pm.expect(pm.response.text()).to.include(\"result\");",
-									"    pm.expect(pm.response.text()).to.include(\"subject\");",
-									"    pm.expect(pm.response.text()).to.include(\"description\");",
-									"    pm.expect(pm.response.text()).to.include(\"created_at\");",
-									"    pm.expect(pm.response.text()).to.include(\"updated_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"page_number\");",
+									"    pm.expect(pm.response.text()).to.include(\"question\");",
+									"    pm.expect(pm.response.text()).to.include(\"option_1\");",
+									"    pm.expect(pm.response.text()).to.include(\"option_2\");",
+									"    pm.expect(pm.response.text()).to.include(\"option_3\");",
+									"    pm.expect(pm.response.text()).to.include(\"option_4\");",
+									"    pm.expect(pm.response.text()).to.include(\"correct_option\");",
 									"});",
 									""
 								],
@@ -3930,15 +3919,7 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Success\", function () {",
-									"    pm.response.to.have.status(200);",
-									"    pm.expect(pm.response.text()).to.include(\"id\");",
-									"    pm.expect(pm.response.text()).to.include(\"reviewed_at\");",
-									"    pm.expect(pm.response.text()).to.include(\"is_fixed\");",
-									"    pm.expect(pm.response.text()).to.include(\"result\");",
-									"    pm.expect(pm.response.text()).to.include(\"subject\");",
-									"    pm.expect(pm.response.text()).to.include(\"description\");",
-									"    pm.expect(pm.response.text()).to.include(\"created_at\");",
-									"    pm.expect(pm.response.text()).to.include(\"updated_at\");",
+									"    pm.response.to.have.status(204);",
 									"});",
 									""
 								],
@@ -3988,13 +3969,13 @@
 									"pm.test(\"Success\", function () {",
 									"    pm.response.to.have.status(200);",
 									"    pm.expect(pm.response.text()).to.include(\"id\");",
-									"    pm.expect(pm.response.text()).to.include(\"reviewed_at\");",
-									"    pm.expect(pm.response.text()).to.include(\"is_fixed\");",
-									"    pm.expect(pm.response.text()).to.include(\"result\");",
-									"    pm.expect(pm.response.text()).to.include(\"subject\");",
-									"    pm.expect(pm.response.text()).to.include(\"description\");",
-									"    pm.expect(pm.response.text()).to.include(\"created_at\");",
-									"    pm.expect(pm.response.text()).to.include(\"updated_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"page_number\");",
+									"    pm.expect(pm.response.text()).to.include(\"question\");",
+									"    pm.expect(pm.response.text()).to.include(\"option_1\");",
+									"    pm.expect(pm.response.text()).to.include(\"option_2\");",
+									"    pm.expect(pm.response.text()).to.include(\"option_3\");",
+									"    pm.expect(pm.response.text()).to.include(\"option_4\");",
+									"    pm.expect(pm.response.text()).to.include(\"correct_option\");",
 									"});",
 									""
 								],
@@ -4029,7 +4010,7 @@
 							"urlencoded": []
 						},
 						"url": {
-							"raw": "{{URL}}/quran-questions?page_number=1&question=test&name=test",
+							"raw": "{{URL}}/quran-questions",
 							"host": [
 								"{{URL}}"
 							],
@@ -4039,91 +4020,16 @@
 							"query": [
 								{
 									"key": "page_number",
-									"value": "1",
-									"description": "nullable|integer|min:0"
+									"value": "15",
+									"description": "nullable|integer|min:1|max:600",
+									"disabled": true
 								},
 								{
 									"key": "question",
 									"value": "test",
-									"description": "nullable|string|max:255"
-								},
-								{
-									"key": "name",
-									"value": "test",
-									"description": "nullable|string|max:255"
+									"description": "nullable|string|max:3000",
+									"disabled": true
 								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "ASSIGN Soru",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Success\", function () {",
-									"    pm.response.to.have.status(200);",
-									"    pm.expect(pm.response.text()).to.include(\"id\");",
-									"    pm.expect(pm.response.text()).to.include(\"reviewed_at\");",
-									"    pm.expect(pm.response.text()).to.include(\"is_fixed\");",
-									"    pm.expect(pm.response.text()).to.include(\"result\");",
-									"    pm.expect(pm.response.text()).to.include(\"subject\");",
-									"    pm.expect(pm.response.text()).to.include(\"description\");",
-									"    pm.expect(pm.response.text()).to.include(\"created_at\");",
-									"    pm.expect(pm.response.text()).to.include(\"updated_at\");",
-									"});",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Authorization",
-								"value": "Bearer {{JWT}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "user_id",
-									"value": "1",
-									"description": "required|integer|min:0",
-									"type": "text"
-								},
-								{
-									"key": "question_id",
-									"value": "1",
-									"description": "required|integer|min:0",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{URL}}/quran-questions-assign",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"quran-questions-assign"
 							]
 						}
 					},
@@ -4135,7 +4041,7 @@
 			"name": "Cevap Yönetimi",
 			"item": [
 				{
-					"name": "UPDATE Cevap",
+					"name": "CREATE Cevap",
 					"event": [
 						{
 							"listen": "test",
@@ -4144,13 +4050,10 @@
 									"pm.test(\"Success\", function () {",
 									"    pm.response.to.have.status(200);",
 									"    pm.expect(pm.response.text()).to.include(\"id\");",
-									"    pm.expect(pm.response.text()).to.include(\"reviewed_at\");",
-									"    pm.expect(pm.response.text()).to.include(\"is_fixed\");",
-									"    pm.expect(pm.response.text()).to.include(\"result\");",
-									"    pm.expect(pm.response.text()).to.include(\"subject\");",
-									"    pm.expect(pm.response.text()).to.include(\"description\");",
-									"    pm.expect(pm.response.text()).to.include(\"created_at\");",
-									"    pm.expect(pm.response.text()).to.include(\"updated_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"quran_question_id\");",
+									"    pm.expect(pm.response.text()).to.include(\"selected_option_number\");",
+									"    pm.expect(pm.response.text()).to.include(\"user_id\");",
+									"    pm.expect(pm.response.text()).to.include(\"is_correct_option\");",
 									"});",
 									""
 								],
@@ -4181,8 +4084,14 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "answer",
-									"value": "1",
+									"key": "quran_question_id",
+									"value": "30",
+									"description": "required|integer|min:1|max:5",
+									"type": "text"
+								},
+								{
+									"key": "selected_option_number",
+									"value": "3",
 									"description": "required|integer|min:1|max:5",
 									"type": "text"
 								}
@@ -4210,13 +4119,10 @@
 									"pm.test(\"Success\", function () {",
 									"    pm.response.to.have.status(200);",
 									"    pm.expect(pm.response.text()).to.include(\"id\");",
-									"    pm.expect(pm.response.text()).to.include(\"reviewed_at\");",
-									"    pm.expect(pm.response.text()).to.include(\"is_fixed\");",
-									"    pm.expect(pm.response.text()).to.include(\"result\");",
-									"    pm.expect(pm.response.text()).to.include(\"subject\");",
-									"    pm.expect(pm.response.text()).to.include(\"description\");",
-									"    pm.expect(pm.response.text()).to.include(\"created_at\");",
-									"    pm.expect(pm.response.text()).to.include(\"updated_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"quran_question_id\");",
+									"    pm.expect(pm.response.text()).to.include(\"selected_option_number\");",
+									"    pm.expect(pm.response.text()).to.include(\"user_id\");",
+									"    pm.expect(pm.response.text()).to.include(\"is_correct_option\");",
 									"});",
 									""
 								],
@@ -4264,15 +4170,7 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Success\", function () {",
-									"    pm.response.to.have.status(200);",
-									"    pm.expect(pm.response.text()).to.include(\"id\");",
-									"    pm.expect(pm.response.text()).to.include(\"reviewed_at\");",
-									"    pm.expect(pm.response.text()).to.include(\"is_fixed\");",
-									"    pm.expect(pm.response.text()).to.include(\"result\");",
-									"    pm.expect(pm.response.text()).to.include(\"subject\");",
-									"    pm.expect(pm.response.text()).to.include(\"description\");",
-									"    pm.expect(pm.response.text()).to.include(\"created_at\");",
-									"    pm.expect(pm.response.text()).to.include(\"updated_at\");",
+									"    pm.response.to.have.status(204);",
 									"});",
 									""
 								],
@@ -4322,13 +4220,10 @@
 									"pm.test(\"Success\", function () {",
 									"    pm.response.to.have.status(200);",
 									"    pm.expect(pm.response.text()).to.include(\"id\");",
-									"    pm.expect(pm.response.text()).to.include(\"reviewed_at\");",
-									"    pm.expect(pm.response.text()).to.include(\"is_fixed\");",
-									"    pm.expect(pm.response.text()).to.include(\"result\");",
-									"    pm.expect(pm.response.text()).to.include(\"subject\");",
-									"    pm.expect(pm.response.text()).to.include(\"description\");",
-									"    pm.expect(pm.response.text()).to.include(\"created_at\");",
-									"    pm.expect(pm.response.text()).to.include(\"updated_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"quran_question_id\");",
+									"    pm.expect(pm.response.text()).to.include(\"selected_option_number\");",
+									"    pm.expect(pm.response.text()).to.include(\"user_id\");",
+									"    pm.expect(pm.response.text()).to.include(\"is_correct_option\");",
 									"});",
 									""
 								],
@@ -4363,28 +4258,37 @@
 							"urlencoded": []
 						},
 						"url": {
-							"raw": "{{URL}}/quran-questions?user_id=1&question_id=1&is_correct=1",
+							"raw": "{{URL}}/answer-attempts",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
-								"quran-questions"
+								"answer-attempts"
 							],
 							"query": [
 								{
 									"key": "user_id",
 									"value": "1",
-									"description": "nullable|integer|min:0|exists:users,id"
+									"description": "nullable|integer|min:0|exists:users,id",
+									"disabled": true
 								},
 								{
-									"key": "question_id",
-									"value": "1",
-									"description": "nullable|integer|min:0|exists:quran_questions,id"
+									"key": "quran_question_id",
+									"value": "2",
+									"description": "nullable|integer|min:0|exists:quran_questions,id",
+									"disabled": true
 								},
 								{
-									"key": "is_correct",
+									"key": "selected_option_number",
+									"value": "3",
+									"description": "nullable|integer|min:1|max:5",
+									"disabled": true
+								},
+								{
+									"key": "is_correct_option",
 									"value": "1",
-									"description": "nullable|boolean"
+									"description": "nullable|boolean",
+									"disabled": true
 								}
 							]
 						}
@@ -4392,7 +4296,7 @@
 					"response": []
 				},
 				{
-					"name": "USER Cevaplar",
+					"name": "USER MyCevaplar",
 					"event": [
 						{
 							"listen": "test",
@@ -4401,13 +4305,10 @@
 									"pm.test(\"Success\", function () {",
 									"    pm.response.to.have.status(200);",
 									"    pm.expect(pm.response.text()).to.include(\"id\");",
-									"    pm.expect(pm.response.text()).to.include(\"reviewed_at\");",
-									"    pm.expect(pm.response.text()).to.include(\"is_fixed\");",
-									"    pm.expect(pm.response.text()).to.include(\"result\");",
-									"    pm.expect(pm.response.text()).to.include(\"subject\");",
-									"    pm.expect(pm.response.text()).to.include(\"description\");",
-									"    pm.expect(pm.response.text()).to.include(\"created_at\");",
-									"    pm.expect(pm.response.text()).to.include(\"updated_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"quran_question_id\");",
+									"    pm.expect(pm.response.text()).to.include(\"selected_option_number\");",
+									"    pm.expect(pm.response.text()).to.include(\"user_id\");",
+									"    pm.expect(pm.response.text()).to.include(\"is_correct_option\");",
 									"});",
 									""
 								],
@@ -4441,113 +4342,35 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "user_id",
-									"value": "1",
-									"description": "required|integer|min:0",
-									"type": "text"
+									"key": "quran_question_id",
+									"value": "30",
+									"description": "nullable|integer|min:0|exists:quran_questions,id",
+									"type": "text",
+									"disabled": true
 								},
 								{
-									"key": "question_id",
+									"key": "selected_option_number",
+									"value": "3",
+									"description": "nullable|integer|min:1|max:5",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "is_correct_option",
 									"value": "1",
-									"description": "required|integer|min:0",
-									"type": "text"
+									"description": "nullable|boolean",
+									"type": "text",
+									"disabled": true
 								}
 							]
 						},
 						"url": {
-							"raw": "{{URL}}/answer-attempts-my?question_id=1&is_correct=1",
+							"raw": "{{URL}}/my-answer-attempts",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
-								"answer-attempts-my"
-							],
-							"query": [
-								{
-									"key": "question_id",
-									"value": "1",
-									"description": "nullable|integer|min:0|exists:quran_questions,id"
-								},
-								{
-									"key": "is_correct",
-									"value": "1",
-									"description": "nullable|boolean"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "USER Aktif Soru",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Success\", function () {",
-									"    pm.response.to.have.status(200);",
-									"    pm.expect(pm.response.text()).to.include(\"id\");",
-									"    pm.expect(pm.response.text()).to.include(\"reviewed_at\");",
-									"    pm.expect(pm.response.text()).to.include(\"is_fixed\");",
-									"    pm.expect(pm.response.text()).to.include(\"result\");",
-									"    pm.expect(pm.response.text()).to.include(\"subject\");",
-									"    pm.expect(pm.response.text()).to.include(\"description\");",
-									"    pm.expect(pm.response.text()).to.include(\"created_at\");",
-									"    pm.expect(pm.response.text()).to.include(\"updated_at\");",
-									"});",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Authorization",
-								"value": "Bearer {{JWT}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "user_id",
-									"value": "1",
-									"description": "required|integer|min:0",
-									"type": "text"
-								},
-								{
-									"key": "question_id",
-									"value": "1",
-									"description": "required|integer|min:0",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{URL}}/answer-attempts-my-active",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"answer-attempts-my-active"
+								"my-answer-attempts"
 							]
 						}
 					},
