@@ -32,7 +32,7 @@ class AnswerAttemptController extends Controller
             'is_correct_option' => 'nullable|boolean',
         ]);
 
-        $attempts = AnswerAttempt::latest()
+        $attempts = AnswerAttempt::latest('id')
             ->when(isset($filters['user_id']), function ($query) use ($filters) {
                 return $query->where('user_id', $filters['user_id']);
             })
