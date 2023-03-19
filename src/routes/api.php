@@ -4,7 +4,9 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RegulationController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UniversityController;
 use App\Http\Controllers\UserController;
@@ -71,4 +73,11 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::apiResource('comments', CommentController::class);
     Route::get('my-comments', [CommentController::class, 'myComments']);
+
+    Route::apiResource('permissions', PermissionController::class);
+
+    Route::apiResource('roles', RoleController::class);
+    Route::post('roles-permission/{role}', [RoleController::class, 'assignPermissions']);
+    Route::get('roles-user/{user}', [RoleController::class, 'viewUserRoles']);
+    Route::post('roles-user/{user}', [RoleController::class, 'updateUserRoles']);
 });

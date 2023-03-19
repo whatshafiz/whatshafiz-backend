@@ -37,6 +37,9 @@ class RolesPermissionsSeeder extends Seeder
             'roles.update',
             'roles.create',
             'roles.delete',
+            'roles.assign',
+            'roles.user-view',
+            'roles.user-update',
 
             'quiz.*',
             'quiz.view',
@@ -69,7 +72,14 @@ class RolesPermissionsSeeder extends Seeder
             'comments.list',
             'comments.update',
             'comments.create',
-            'comments.delete'
+            'comments.delete',
+
+            'permissions.*',
+            'permissions.view',
+            'permissions.list',
+            'permissions.update',
+            'permissions.create',
+            'permissions.delete',
         ];
 
         foreach ($permissions as $permission) {
