@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AnswerAttemptController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\QuranQuestionController;
 use App\Http\Controllers\RegulationController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UniversityController;
@@ -71,4 +73,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::apiResource('comments', CommentController::class);
     Route::get('my-comments', [CommentController::class, 'myComments']);
+
+    Route::apiResource('quran-questions', QuranQuestionController::class);
+    Route::post('quran-questions-assign', [QuranQuestionController::class, 'assign']);
+
+    Route::apiResource('answer-attempts', AnswerAttemptController::class);
+    Route::get('my-answer-attempts', [AnswerAttemptController::class, 'myAnswerAttempts']);
 });
