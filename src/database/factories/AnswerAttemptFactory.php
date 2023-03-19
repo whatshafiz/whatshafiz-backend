@@ -18,14 +18,14 @@ class AnswerAttemptFactory extends Factory
      */
     public function definition()
     {
-        $question = QuranQuestion::inRandomOrder()->first() ?? QuranQuestion::factory()->create();
-        $answer = $this->faker->numberBetween(1, 5);
+        $quranQuestion = QuranQuestion::inRandomOrder()->first() ?? QuranQuestion::factory()->create();
+        $selectedOptionNumber = $this->faker->numberBetween(1, 5);
 
         return [
-            'question_id' => $question->id,
             'user_id' => User::inRandomOrder()->value('id') ?? User::factory()->create()->id,
-            'answer' => $this->faker->numberBetween(1, 5),
-            'is_correct' => (boolean) $answer === $question->correct_option,
+            'quran_question_id' => $quranQuestion->id,
+            'selected_option_number' => $selectedOptionNumber,
+            'is_correct_option' => $selectedOptionNumber === $quranQuestion->correct_option,
         ];
     }
 }

@@ -16,34 +16,34 @@ class AnswerAttemptController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param Request $request
+     * @param  Request  $request
      * @return JsonResponse
      * @throws AuthorizationException
      * @throws ValidationException
      */
-    public function index(Request $request)
+    public function index(Request $request): JsonResponse
     {
-        $this->authorize('viewAny', AnswerAttempt::class);
+        $this->authorize('viewAny', [AnswerAttempt::class, $request]);
 
         $filters = $this->validate($request, [
             'user_id' => 'nullable|integer|min:0|exists:users,id',
-            'question_id' => 'nullable|integer|min:0|exists:quran_questions,id',
-            'answer' => 'nullable|integer|min:0|max:5',
-            'is_correct' => 'nullable|boolean',
+            'quran_question_id' => 'nullable|integer|min:0|exists:quran_questions,id',
+            'selected_option_number' => 'nullable|integer|min:1|max:5',
+            'is_correct_option' => 'nullable|boolean',
         ]);
 
         $attempts = AnswerAttempt::latest()
             ->when(isset($filters['user_id']), function ($query) use ($filters) {
                 return $query->where('user_id', $filters['user_id']);
             })
-            ->when(isset($filters['question_id']), function ($query) use ($filters) {
-                return $query->where('question_id', $filters['question_id']);
+            ->when(isset($filters['quran_question_id']), function ($query) use ($filters) {
+                return $query->where('quran_question_id', $filters['quran_question_id']);
             })
-            ->when(isset($filters['answer']), function ($query) use ($filters) {
-                return $query->where('answer', $filters['answer']);
+            ->when(isset($filters['selected_option_number']), function ($query) use ($filters) {
+                return $query->where('selected_option_number', $filters['selected_option_number']);
             })
-            ->when(isset($filters['is_correct']), function ($query) use ($filters) {
-                return $query->where('is_correct', $filters['is_correct']);
+            ->when(isset($filters['is_correct_option']), function ($query) use ($filters) {
+                return $query->where('is_correct_option', $filters['is_correct_option']);
             })
             ->paginate()
             ->appends($filters)
@@ -53,13 +53,24 @@ class AnswerAttemptController extends Controller
     }
 
     /**
+     * @param  Request  $request
+     * @return JsonResponse
+     * @throws AuthorizationException
+     * @throws ValidationException
+     */
+    public function myAnswerAttempts(Request $request): JsonResponse
+    {
+        return $this->index($request->merge(['user_id' => Auth::id()]));
+    }
+
+    /**
      * Display the specified resource.
      *
-     * @param \App\Models\AnswerAttempt $answerAttempt
+     * @param  AnswerAttempt  $answerAttempt
      * @return JsonResponse
      * @throws AuthorizationException
      */
-    public function show(AnswerAttempt $answerAttempt)
+    public function show(AnswerAttempt $answerAttempt): JsonResponse
     {
         $this->authorize('view', [AnswerAttempt::class, $answerAttempt]);
 
@@ -67,87 +78,18 @@ class AnswerAttemptController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param AnswerAttempt $answerAttempt
-     * @return JsonResponse
-     * @throws AuthorizationException
-     * @throws ValidationException
-     */
-    public function update(Request $request, AnswerAttempt $answerAttempt)
-    {
-        $this->authorize('update', [AnswerAttempt::class, $answerAttempt]);
-
-        $data = $this->validate($request, [
-            'answer' => 'integer|min:0|max:5',
-        ]);
-
-        $question = QuranQuestion::find($answerAttempt->question_id);
-
-        $data['is_correct'] = $question->correct_option == $data['answer'] ? 1 : 0;
-
-        $answerAttempt->update($data);
-
-        return response()->json(compact('answerAttempt'));
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
-     * @param AnswerAttempt $answerAttempt
+     * @param  AnswerAttempt  $answerAttempt
      * @return Response
      * @throws AuthorizationException
      */
-    public function destroy(AnswerAttempt $answerAttempt)
+    public function destroy(AnswerAttempt $answerAttempt): JsonResponse
     {
         $this->authorize('delete', AnswerAttempt::class);
 
         $answerAttempt->delete();
 
-        return response()->noContent();
-    }
-
-    /**
-     * @param Request $request
-     * @return JsonResponse
-     * @throws AuthorizationException
-     * @throws ValidationException
-     */
-    public function myAnswerAttempts(Request $request)
-    {
-        $filters = $this->validate($request, [
-            'question_id' => 'nullable|integer|min:0|exists:quran_questions,id',
-            'is_correct' => 'nullable|boolean',
-        ]);
-
-        $attempts = Auth::user()->answerAttempts()
-            ->when(isset($filters['question_id']), function ($query) use ($filters) {
-                return $query->where('question_id', $filters['question_id']);
-            })
-            ->when(isset($filters['is_correct']), function ($query) use ($filters) {
-                return $query->where('is_correct', $filters['is_correct']);
-            })
-            ->latest()
-            ->paginate()
-            ->toArray();
-
-        return response()->json(compact('attempts'));
-    }
-
-    /**
-     * @param Request $request
-     * @return JsonResponse
-     */
-    public function myActiveAnswerAttempt(Request $request)
-    {
-        $attempt = Auth::user()
-            ->answerAttempts()
-            ->whereNull('answer')
-            ->whereNull('is_correct')
-            ->latest()
-            ->first();
-
-        return response()->json(compact('attempt'));
+        return response()->json(null, Response::HTTP_NO_CONTENT);
     }
 }

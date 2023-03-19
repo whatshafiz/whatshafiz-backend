@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\AnswerAttempt;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Http\Request;
 
 class AnswerAttemptPolicy
 {
@@ -14,11 +15,12 @@ class AnswerAttemptPolicy
      * Determine whether the user can view any models.
      *
      * @param  User  $user
+     * @param  Request  $request
      * @return bool
      */
-    public function viewAny(User $user): bool
+    public function viewAny(User $user, Request $request): bool
     {
-        return $user->hasPermissionTo('answerAttempts.list');
+        return $user->hasPermissionTo('answerAttempts.list') || $user->id === $request->user_id;
     }
 
     /**
@@ -30,21 +32,7 @@ class AnswerAttemptPolicy
      */
     public function view(User $user, AnswerAttempt $answerAttempt): bool
     {
-        return $user->hasPermissionTo('answerAttempts.view')
-            || $user->id === $answerAttempt->user_id;
-    }
-
-    /**
-     * Determine whether the user can update the model.
-     *
-     * @param User $user
-     * @param AnswerAttempt $answerAttempt
-     * @return bool
-     */
-    public function update(User $user, AnswerAttempt $answerAttempt): bool
-    {
-        return $user->hasPermissionTo('answerAttempts.update') ||
-            $user->id === $answerAttempt->user_id;
+        return $user->hasPermissionTo('answerAttempts.view') || $user->id === $answerAttempt->user_id;
     }
 
     /**

@@ -15,6 +15,6 @@ class QuranQuestionSeeder extends Seeder
      */
     public function run()
     {
-        QuranQuestion::factory()->count(rand(1, 100))->create();
+        QuranQuestion::factory()->count(rand(1, 30))->create();
     }
 }

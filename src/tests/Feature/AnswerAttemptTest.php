@@ -18,6 +18,7 @@ class AnswerAttemptTest extends BaseFeatureTest
         parent::setUp();
 
         $this->uri = self::BASE_URI . '/answer-attempts';
+        $this->myUri = self::BASE_URI . '/my-answer-attempts';
     }
 
     /** @test */
@@ -31,36 +32,38 @@ class AnswerAttemptTest extends BaseFeatureTest
     }
 
     /** @test */
-    public function it_should_get_answer_attempts_list_when_does_have_permission()
+    public function it_should_get_answer_attempts_list_when_has_permission()
     {
         $user = User::factory()->create();
         $user->givePermissionTo('answerAttempts.list');
+
+        $answerAttempts = AnswerAttempt::factory()->count(rand(1, 10))->create();
 
         $response = $this->actingAs($user)->json('GET', $this->uri);
 
         $response->assertOk();
+
+        foreach ($answerAttempts as $answerAttempt) {
+            $response->assertJsonFragment($answerAttempt->toArray());
+        }
     }
 
     /** @test */
-    public function answer_attempts_filters_should_work()
+    public function it_should_filter_answer_attempts_list_when_has_permission()
     {
         $user = User::factory()->create();
         $user->givePermissionTo('answerAttempts.list');
 
-        $answerAttempt = AnswerAttempt::factory()->count(5)->create();
+        $answerAttempt = AnswerAttempt::factory()->count(5)->create()->random();
 
         $searchQuery = [
-            'user_id' => $answerAttempt->first()->user_id,
-            'question_id' => $answerAttempt->first()->question_id,
-            'answer' => $answerAttempt->first()->answer,
-            'is_correct' => $answerAttempt->first()->is_correct,
+            'user_id' => $answerAttempt->user_id,
+            'quran_question_id' => $answerAttempt->quran_question_id,
+            'selected_option_number' => $answerAttempt->selected_option_number,
+            'is_correct_option' => $answerAttempt->is_correct_option,
         ];
 
-        $response = $this->actingAs($user)->json(
-            'GET',
-            $this->uri,
-            $searchQuery
-        );
+        $response = $this->actingAs($user)->json('GET', $this->uri, $searchQuery);
 
         $response->assertOk();
 
@@ -70,82 +73,13 @@ class AnswerAttemptTest extends BaseFeatureTest
     }
 
     /** @test */
-    public function it_should_not_update_answer_attempt_when_does_not_have_permission()
-    {
-        $user = User::factory()->create();
-
-        $answerAttempt = AnswerAttempt::factory()->create();
-
-        $response = $this->actingAs($user)->json(
-            'PUT',
-            $this->uri . '/' . $answerAttempt->id,
-            $answerAttempt->toArray()
-        );
-
-        $response->assertForbidden();
-    }
-
-    /** @test */
-    public function it_should_update_answer_attempt_when_does_have_permission()
-    {
-        $user = User::factory()->create();
-        $user->givePermissionTo('answerAttempts.update');
-
-        $answerAttempt = AnswerAttempt::factory()->create();
-
-        $response = $this->actingAs($user)->json(
-            'PUT',
-            $this->uri . '/' . $answerAttempt->id,
-            [
-                'answer' => $answerAttempt->question->correct_option,
-            ]
-        );
-
-        $response->assertOk();
-
-        $this->assertDatabaseHas('answer_attempts', [
-            'id' => $answerAttempt->id,
-            'answer' => $answerAttempt->question->correct_option,
-            'is_correct' => true,
-        ]);
-    }
-
-    /** @test */
-    public function update_answer_with_wrong_option()
-    {
-        $user = User::factory()->create();
-        $user->givePermissionTo('answerAttempts.update');
-
-        $answerAttempt = AnswerAttempt::factory()->create();
-
-        $response = $this->actingAs($user)->json(
-            'PUT',
-            $this->uri . '/' . $answerAttempt->id,
-            [
-                'answer' => ($answerAttempt->question->correct_option + 1) % 5,
-            ]
-        );
-
-        $response->assertOk();
-
-        $this->assertDatabaseHas('answer_attempts', [
-            'id' => $answerAttempt->id,
-            'answer' => ($answerAttempt->question->correct_option + 1) % 5,
-            'is_correct' => false,
-        ]);
-    }
-
-    /** @test */
     public function it_should_not_delete_answer_attempt_when_does_not_have_permission()
     {
         $user = User::factory()->create();
 
         $answerAttempt = AnswerAttempt::factory()->create();
 
-        $response = $this->actingAs($user)->json(
-            'DELETE',
-            $this->uri . '/' . $answerAttempt->id
-        );
+        $response = $this->actingAs($user)->json('DELETE', $this->uri . '/' . $answerAttempt->id);
 
         $response->assertForbidden();
     }
@@ -158,31 +92,21 @@ class AnswerAttemptTest extends BaseFeatureTest
 
         $answerAttempt = AnswerAttempt::factory()->create();
 
-        $response = $this->actingAs($user)->json(
-            'DELETE',
-            $this->uri . '/' . $answerAttempt->id
-        );
+        $response = $this->actingAs($user)->json('DELETE', $this->uri . '/' . $answerAttempt->id);
 
         $response->assertSuccessful();
 
-        $this->assertDatabaseMissing('answer_attempts', [
-            'id' => $answerAttempt->id,
-        ]);
+        $this->assertSoftDeleted('answer_attempts', ['id' => $answerAttempt->id]);
     }
 
     /** @test */
-    public function it_should_return_users_answer_attempts()
+    public function it_should_return_users_answer_attempts_list()
     {
         $user = User::factory()->create();
 
-        $answerAttempts = AnswerAttempt::factory()->count(5)->create([
-            'user_id' => $user->id,
-        ]);
+        $answerAttempts = AnswerAttempt::factory()->count(rand(1, 7))->create(['user_id' => $user->id]);
 
-        $response = $this->actingAs($user)->json(
-            'GET',
-            $this->uri . '-my'
-        );
+        $response = $this->actingAs($user)->json('GET', $this->myUri);
 
         $response->assertOk();
 
@@ -196,22 +120,14 @@ class AnswerAttemptTest extends BaseFeatureTest
     {
         $user = User::factory()->create();
 
-        $answerAttempts = AnswerAttempt::factory()
-            ->count(5)
-            ->create([
-            'user_id' => $user->id,
-        ]);
+        $answerAttempt = AnswerAttempt::factory()->count(rand(1, 5))->create(['user_id' => $user->id])->random();
 
         $searchQuery = [
-            'question_id' => $answerAttempts->first()->question_id,
-            'is_correct' => $answerAttempts->first()->is_correct,
+            'quran_question_id' => $answerAttempt->quran_question_id,
+            'is_correct_option' => $answerAttempt->is_correct_option,
         ];
 
-        $response = $this->actingAs($user)->json(
-            'GET',
-            $this->uri . '-my',
-            $searchQuery
-        );
+        $response = $this->actingAs($user)->json('GET', $this->myUri, $searchQuery);
 
         $response->assertOk();
 
@@ -220,30 +136,5 @@ class AnswerAttemptTest extends BaseFeatureTest
         foreach (AnswerAttempt::where($searchQuery)->get() as $searchAnswerAttempt) {
             $response->assertJsonFragment($searchAnswerAttempt->toArray());
         }
-    }
-
-    /** @test */
-    public function it_should_return_user_active_answer_attempts()
-    {
-        $user = User::factory()->create();
-
-        $answerAttempts = AnswerAttempt::factory()->count(5)->create([
-            'user_id' => $user->id,
-            'is_correct' => 0,
-        ]);
-
-        $activeAnswerAttempt = AnswerAttempt::factory()->create([
-            'user_id' => $user->id,
-            'answer' => null,
-            'is_correct' => null,
-        ]);
-
-        $response = $this->actingAs($user)->json(
-            'GET',
-            $this->uri . '-my-active'
-        );
-
-        $response->assertOk();
-        $response->assertJsonFragment($activeAnswerAttempt->toArray());
     }
 }

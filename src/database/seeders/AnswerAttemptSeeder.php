@@ -15,6 +15,6 @@ class AnswerAttemptSeeder extends Seeder
      */
     public function run()
     {
-        AnswerAttempt::factory()->count(rand(1, 100))->create();
+        AnswerAttempt::factory()->count(rand(1, 30))->create();
     }
 }

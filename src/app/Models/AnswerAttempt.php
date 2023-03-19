@@ -4,26 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class AnswerAttempt extends BaseModel
 {
     use HasFactory;
+    use SoftDeletes;
 
-    /**
-     * @var string
-     */
-    protected $table = 'answer_attempts';
-
-    /**
-     * @var string[]
-     */
-    protected $with = ['user', 'question'];
-
-    /**
-     * @return string[]
-     */
     protected $casts = [
-        'is_correct' => 'boolean',
+        'is_correct_option' => 'boolean',
     ];
 
     /**
