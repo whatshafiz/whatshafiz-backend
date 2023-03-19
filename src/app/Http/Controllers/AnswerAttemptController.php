@@ -78,6 +78,31 @@ class AnswerAttemptController extends Controller
     }
 
     /**
+     * Update the specified resource in storage.
+     *
+     * @param Request $request
+     * @return JsonResponse
+     * @throws AuthorizationException
+     * @throws ValidationException
+     */
+    public function store(Request $request): JsonResponse
+    {
+        $answerAttempt = $this->validate($request, [
+            'quran_question_id' => 'required|integer|min:0|exists:quran_questions,id',
+            'selected_option_number' => 'required|integer|min:1|max:5',
+        ]);
+
+        $correctOption =  QuranQuestion::where('id', $answerAttempt['quran_question_id'])->value('correct_option');
+
+        $answerAttempt['user_id'] = Auth::id();
+        $answerAttempt['is_correct_option'] = $correctOption === $answerAttempt['selected_option_number'];
+
+        AnswerAttempt::create($answerAttempt);
+
+        return response()->json(compact('answerAttempt'));
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  AnswerAttempt  $answerAttempt

@@ -73,6 +73,23 @@ class AnswerAttemptTest extends BaseFeatureTest
     }
 
     /** @test */
+    public function it_should_store_answer_attempt()
+    {
+        $user = User::factory()->create();
+        $user->givePermissionTo('answerAttempts.create');
+
+        $answerAttemptData = AnswerAttempt::factory()->raw();
+
+        $response = $this->actingAs($user)->json('POST', $this->uri, $answerAttemptData);
+
+        $response->assertOk();
+
+        $answerAttemptData['user_id'] = $user->id;
+
+        $this->assertDatabaseHas('answer_attempts', $answerAttemptData);
+    }
+
+    /** @test */
     public function it_should_not_delete_answer_attempt_when_does_not_have_permission()
     {
         $user = User::factory()->create();
