@@ -18,7 +18,7 @@ class AnswerAttemptPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->hasPermissionTo('answerattempts.list');
+        return $user->hasPermissionTo('answerAttempts.list');
     }
 
     /**
@@ -30,7 +30,7 @@ class AnswerAttemptPolicy
      */
     public function view(User $user, AnswerAttempt $answerAttempt): bool
     {
-        return $user->hasPermissionTo('answerattempts.view')
+        return $user->hasPermissionTo('answerAttempts.view')
             || $user->id === $answerAttempt->user_id;
     }
 
@@ -43,7 +43,7 @@ class AnswerAttemptPolicy
      */
     public function update(User $user, AnswerAttempt $answerAttempt): bool
     {
-        return $user->hasPermissionTo('answerattempts.update') ||
+        return $user->hasPermissionTo('answerAttempts.update') ||
             $user->id === $answerAttempt->user_id;
     }
 
@@ -55,6 +55,6 @@ class AnswerAttemptPolicy
      */
     public function delete(User $user): bool
     {
-        return $user->hasPermissionTo('answerattempts.delete');
+        return $user->hasPermissionTo('answerAttempts.delete');
     }
 }

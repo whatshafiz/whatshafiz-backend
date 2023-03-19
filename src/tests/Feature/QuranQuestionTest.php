@@ -34,7 +34,7 @@ class QuranQuestionTest extends BaseFeatureTest
     public function it_should_get_quran_questions_list_when_does_have_permission()
     {
         $user = User::factory()->create();
-        $user->givePermissionTo('quranquestions.list');
+        $user->givePermissionTo('quranQuestions.list');
 
         $response = $this->actingAs($user)->json('GET', $this->uri);
 
@@ -45,7 +45,7 @@ class QuranQuestionTest extends BaseFeatureTest
     public function qura_questions_filters_should_work()
     {
         $user = User::factory()->create();
-        $user->givePermissionTo('quranquestions.list');
+        $user->givePermissionTo('quranQuestions.list');
 
         $quranQuestion = QuranQuestion::factory()->count(5)->create();
 
@@ -99,7 +99,7 @@ class QuranQuestionTest extends BaseFeatureTest
     public function it_should_create_quran_question_when_does_have_permission()
     {
         $user = User::factory()->create();
-        $user->givePermissionTo('quranquestions.create');
+        $user->givePermissionTo('quranQuestions.create');
 
         $response = $this->actingAs($user)->json(
             'POST',
@@ -154,7 +154,7 @@ class QuranQuestionTest extends BaseFeatureTest
         $quranQuestion = QuranQuestion::factory()->create();
 
         $user = User::factory()->create();
-        $user->givePermissionTo('quranquestions.update');
+        $user->givePermissionTo('quranQuestions.update');
 
         $response = $this->actingAs($user)->json(
             'PUT',
@@ -190,7 +190,7 @@ class QuranQuestionTest extends BaseFeatureTest
         $quranQuestion = QuranQuestion::factory()->create();
 
         $user = User::factory()->create();
-        $user->givePermissionTo('quranquestions.delete');
+        $user->givePermissionTo('quranQuestions.delete');
 
         $response = $this->actingAs($user)->json(
             'DELETE',
@@ -226,7 +226,7 @@ class QuranQuestionTest extends BaseFeatureTest
         $quranQuestion = QuranQuestion::factory()->create();
 
         $user = User::factory()->create();
-        $user->givePermissionTo('quranquestions.assign');
+        $user->givePermissionTo('quranQuestions.assign');
         $assignedUser = User::factory()->create();
 
         $response = $this->actingAs($user)->json(

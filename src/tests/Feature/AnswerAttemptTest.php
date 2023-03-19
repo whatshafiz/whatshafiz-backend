@@ -34,7 +34,7 @@ class AnswerAttemptTest extends BaseFeatureTest
     public function it_should_get_answer_attempts_list_when_does_have_permission()
     {
         $user = User::factory()->create();
-        $user->givePermissionTo('answerattempts.list');
+        $user->givePermissionTo('answerAttempts.list');
 
         $response = $this->actingAs($user)->json('GET', $this->uri);
 
@@ -45,7 +45,7 @@ class AnswerAttemptTest extends BaseFeatureTest
     public function answer_attempts_filters_should_work()
     {
         $user = User::factory()->create();
-        $user->givePermissionTo('answerattempts.list');
+        $user->givePermissionTo('answerAttempts.list');
 
         $answerAttempt = AnswerAttempt::factory()->count(5)->create();
 
@@ -89,7 +89,7 @@ class AnswerAttemptTest extends BaseFeatureTest
     public function it_should_update_answer_attempt_when_does_have_permission()
     {
         $user = User::factory()->create();
-        $user->givePermissionTo('answerattempts.update');
+        $user->givePermissionTo('answerAttempts.update');
 
         $answerAttempt = AnswerAttempt::factory()->create();
 
@@ -114,7 +114,7 @@ class AnswerAttemptTest extends BaseFeatureTest
     public function update_answer_with_wrong_option()
     {
         $user = User::factory()->create();
-        $user->givePermissionTo('answerattempts.update');
+        $user->givePermissionTo('answerAttempts.update');
 
         $answerAttempt = AnswerAttempt::factory()->create();
 
@@ -154,7 +154,7 @@ class AnswerAttemptTest extends BaseFeatureTest
     public function it_should_delete_answer_attempt_when_does_have_permission()
     {
         $user = User::factory()->create();
-        $user->givePermissionTo('answerattempts.delete');
+        $user->givePermissionTo('answerAttempts.delete');
 
         $answerAttempt = AnswerAttempt::factory()->create();
 

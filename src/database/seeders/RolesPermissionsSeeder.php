@@ -71,20 +71,20 @@ class RolesPermissionsSeeder extends Seeder
             'comments.create',
             'comments.delete',
 
-            'quranquestions.*',
-            'quranquestions.view',
-            'quranquestions.list',
-            'quranquestions.update',
-            'quranquestions.create',
-            'quranquestions.delete',
-            'quranquestions.assign',
+            'quranQuestions.*',
+            'quranQuestions.view',
+            'quranQuestions.list',
+            'quranQuestions.update',
+            'quranQuestions.create',
+            'quranQuestions.delete',
+            'quranQuestions.assign',
 
-            'answerattempts.*',
-            'answerattempts.view',
-            'answerattempts.list',
-            'answerattempts.update',
-            'answerattempts.create',
-            'answerattempts.delete'
+            'answerAttempts.*',
+            'answerAttempts.view',
+            'answerAttempts.list',
+            'answerAttempts.update',
+            'answerAttempts.create',
+            'answerAttempts.delete'
 
         ];
 

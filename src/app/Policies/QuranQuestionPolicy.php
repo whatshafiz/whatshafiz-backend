@@ -17,7 +17,7 @@ class QuranQuestionPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->hasPermissionTo('quranquestions.list');
+        return $user->hasPermissionTo('quranQuestions.list');
     }
 
     /**
@@ -28,7 +28,7 @@ class QuranQuestionPolicy
      */
     public function view(User $user): bool
     {
-        return $user->hasPermissionTo('quranquestions.view');
+        return $user->hasPermissionTo('quranQuestions.view');
     }
 
     /**
@@ -39,7 +39,7 @@ class QuranQuestionPolicy
      */
     public function create(User $user): bool
     {
-        return $user->hasPermissionTo('quranquestions.create');
+        return $user->hasPermissionTo('quranQuestions.create');
     }
 
     /**
@@ -50,7 +50,7 @@ class QuranQuestionPolicy
      */
     public function update(User $user): bool
     {
-        return $user->hasPermissionTo('quranquestions.update');
+        return $user->hasPermissionTo('quranQuestions.update');
     }
 
     /**
@@ -61,7 +61,7 @@ class QuranQuestionPolicy
      */
     public function assign(User $user): bool
     {
-        return $user->hasPermissionTo('quranquestions.assign');
+        return $user->hasPermissionTo('quranQuestions.assign');
     }
 
     /**
@@ -72,6 +72,6 @@ class QuranQuestionPolicy
      */
     public function delete(User $user): bool
     {
-        return $user->hasPermissionTo('quranquestions.delete');
+        return $user->hasPermissionTo('quranQuestions.delete');
     }
 }
