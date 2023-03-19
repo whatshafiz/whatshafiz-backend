@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
 use Spatie\Permission\Models\Permission;
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
 
 class PermissionController extends Controller
 {
@@ -33,12 +33,12 @@ class PermissionController extends Controller
         $permissions = Permission::when(isset($filters['name']), function ($query) use ($filters) {
             return $query->where('name', 'like', '%' . $filters['name'] . '%');
         })
-        ->when(isset($filters['guard_name']), function ($query) use ($filters) {
-            return $query->where('guard_name', $filters['guard_name']);
-        })
-        ->latest('id')
-        ->paginate()
-        ->appends($filters);
+            ->when(isset($filters['guard_name']), function ($query) use ($filters) {
+                return $query->where('guard_name', $filters['guard_name']);
+            })
+            ->latest('id')
+            ->paginate()
+            ->appends($filters);
 
         return response()->json(compact('permissions'));
     }

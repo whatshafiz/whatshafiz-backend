@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
 use Spatie\Permission\Models\Role;
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
-use App\Models\User;
 
 class RoleController extends Controller
 {

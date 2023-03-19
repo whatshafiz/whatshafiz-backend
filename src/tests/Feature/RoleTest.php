@@ -2,13 +2,10 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\BaseFeatureTest;
-use Tests\TestCase;
 use App\Models\User;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+use Tests\BaseFeatureTest;
 
 class RoleTest extends BaseFeatureTest
 {
@@ -226,7 +223,8 @@ class RoleTest extends BaseFeatureTest
         $users = User::inRandomOrder()->limit(5)->get()->pluck('id');
 
         $response = $this->actingAs($user)->json(
-            'POST', $this->uri . '-user/' . $otherUser->id,
+            'POST',
+            $this->uri . '-user/' . $otherUser->id,
             [
             'roles' => $roles,
             ]
