@@ -156,7 +156,7 @@ class RoleController extends Controller
     {
         $this->authorize('user-view', Role::class);
 
-        $roles = $user->roles()->paginate();
+        $roles = $user->roles()->with('permissions')->paginate();
 
         return response()->json(compact('roles'));
     }

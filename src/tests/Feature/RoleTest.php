@@ -220,7 +220,6 @@ class RoleTest extends BaseFeatureTest
         $otherUser = User::factory()->create();
 
         $roles = Role::inRandomOrder()->limit(5)->get()->pluck('id');
-        $users = User::inRandomOrder()->limit(5)->get()->pluck('id');
 
         $response = $this->actingAs($user)->json(
             'POST',
@@ -250,8 +249,6 @@ class RoleTest extends BaseFeatureTest
             'roles' => $roles
             ]
         );
-
-        print_r($response->getContent());
 
         $response->assertSuccessful();
     }

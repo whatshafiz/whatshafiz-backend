@@ -116,8 +116,6 @@ class PermissionTest extends BaseFeatureTest
 
         $response = $this->actingAs($user)->json('PUT', $this->uri . '/' . $permission->id, $updatedPermission);
 
-        print_r($response->getContent());
-
         $response->assertOk();
         $response->assertJsonFragment($updatedPermission);
     }
