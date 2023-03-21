@@ -66,17 +66,6 @@ class RolePolicy
     }
 
     /**
-     * Determine whether the user can restore the model.
-     *
-     * @param User $user
-     * @return bool
-     */
-    public function assign(User $user): bool
-    {
-        return $user->hasPermissionTo('roles.assign');
-    }
-
-    /**
      * Determine wheter the user can assign a role to a user.
      *
      * @param User $user
