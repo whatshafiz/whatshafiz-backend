@@ -37,7 +37,6 @@ class RolesPermissionsSeeder extends Seeder
             'roles.update',
             'roles.create',
             'roles.delete',
-            'roles.assign',
             'roles.user-view',
             'roles.user-update',
 

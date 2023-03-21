@@ -119,6 +119,12 @@ class RoleController extends Controller
     {
         $this->authorize('delete', $role);
 
+        $users = $role->users()->get();
+
+        if($users->count() > 0) {
+            return response()->json(['message' => 'Rol silinemez, çünkü atanmış kullanıcılar mevcut.'], Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
         $role->delete();
 
         return response()->json(null, Response::HTTP_NO_CONTENT);
@@ -132,7 +138,7 @@ class RoleController extends Controller
      */
     public function assignPermissions(Request $request, Role $role)
     {
-        $this->authorize('assign', $role);
+        $this->authorize('update', $role);
 
         $data = $this->validate(
             $request,

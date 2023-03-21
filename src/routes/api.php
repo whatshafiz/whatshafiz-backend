@@ -75,6 +75,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('my-comments', [CommentController::class, 'myComments']);
 
     Route::apiResource('permissions', PermissionController::class);
+    Route::get('my-permissions', [PermissionController::class, 'myPermissions']);
 
     Route::apiResource('roles', RoleController::class);
     Route::post('roles-permission/{role}', [RoleController::class, 'assignPermissions']);

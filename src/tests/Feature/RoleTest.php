@@ -54,15 +54,15 @@ class RoleTest extends BaseFeatureTest
         $user = User::factory()->create();
         $user->givePermissionTo('roles.list');
 
-        $searchRole = Role::inRandomOrder()->get()->first();
+        $searchRole = Role::inRandomOrder()->first();
         $searchQuery = [
             'name' => $searchRole->name,
         ];
 
         $response = $this->actingAs($user)->json('GET', $this->uri, $searchQuery);
 
-        $response->assertOk();
-        $response->assertJsonFragment($searchRole->toArray());
+        $response->assertOk()
+            ->assertJsonFragment($searchRole->toArray());
     }
 
     /** @test */
@@ -80,10 +80,10 @@ class RoleTest extends BaseFeatureTest
     }
 
     /** @test */
-    public function user_can_create_role_when_has_permission()
+    public function user_can_create_role_when_admin()
     {
         $user = User::factory()->create();
-        $user->givePermissionTo('roles.create');
+        $user->assignRole('Admin');
 
         $role = [
             'name' => 'new role',
@@ -92,8 +92,8 @@ class RoleTest extends BaseFeatureTest
 
         $response = $this->actingAs($user)->json('POST', $this->uri, $role);
 
-        $response->assertOk();
-        $response->assertJsonFragment($role);
+        $response->assertOk()
+            ->assertJsonFragment($role);
     }
 
     /** @test */
@@ -101,7 +101,7 @@ class RoleTest extends BaseFeatureTest
     {
         $user = User::factory()->create();
 
-        $role = Role::inRandomOrder()->get()->first();
+        $role = Role::inRandomOrder()->first();
 
         $response = $this->actingAs($user)->json('PUT', $this->uri . '/' . $role->id);
 
@@ -109,12 +109,12 @@ class RoleTest extends BaseFeatureTest
     }
 
     /** @test */
-    public function user_can_update_role_when_has_permission()
+    public function user_can_update_role_when_admin()
     {
         $user = User::factory()->create();
-        $user->givePermissionTo('roles.update');
+        $user->assignRole('Admin');
 
-        $role = Role::inRandomOrder()->get()->first();
+        $role = Role::inRandomOrder()->first();
 
         $newRole = [
             'name' => 'new role',
@@ -123,8 +123,8 @@ class RoleTest extends BaseFeatureTest
 
         $response = $this->actingAs($user)->json('PUT', $this->uri . '/' . $role->id, $newRole);
 
-        $response->assertOk();
-        $response->assertJsonFragment($newRole);
+        $response->assertOk()
+            ->assertJsonFragment($newRole);
     }
 
     /** @test */
@@ -132,7 +132,7 @@ class RoleTest extends BaseFeatureTest
     {
         $user = User::factory()->create();
 
-        $role = Role::inRandomOrder()->get()->first();
+        $role = Role::inRandomOrder()->first();
 
         $response = $this->actingAs($user)->json('DELETE', $this->uri . '/' . $role->id);
 
@@ -140,12 +140,12 @@ class RoleTest extends BaseFeatureTest
     }
 
     /** @test */
-    public function user_can_delete_role_when_has_permission()
+    public function user_can_delete_role_when_admin()
     {
         $user = User::factory()->create();
-        $user->givePermissionTo('roles.delete');
+        $user->assignRole('Admin');
 
-        $role = Role::inRandomOrder()->get()->first();
+        $role = Role::inRandomOrder()->first();
 
         $response = $this->actingAs($user)->json('DELETE', $this->uri . '/' . $role->id);
 
@@ -157,7 +157,7 @@ class RoleTest extends BaseFeatureTest
     {
         $user = User::factory()->create();
 
-        $role = Role::inRandomOrder()->get()->first();
+        $role = Role::inRandomOrder()->first();
 
         $response = $this->actingAs($user)->json('GET', $this->uri . '/' . $role->id);
 
@@ -170,12 +170,12 @@ class RoleTest extends BaseFeatureTest
         $user = User::factory()->create();
         $user->givePermissionTo('roles.view');
 
-        $role = Role::inRandomOrder()->get()->first();
+        $role = Role::inRandomOrder()->first();
 
         $response = $this->actingAs($user)->json('GET', $this->uri . '/' . $role->id);
 
-        $response->assertOk();
-        $response->assertJsonFragment($role->toArray());
+        $response->assertOk()
+            ->assertJsonFragment($role->toArray());
     }
 
     /** @test */
@@ -183,7 +183,7 @@ class RoleTest extends BaseFeatureTest
     {
         $user = User::factory()->create();
 
-        $role = Role::inRandomOrder()->get()->first();
+        $role = Role::inRandomOrder()->first();
         $permissions = Permission::inRandomOrder()->limit(5)->get()->pluck('id');
 
         $response = $this->actingAs($user)->json('POST', $this->uri . '-permission/' . $role->id, [
@@ -194,12 +194,12 @@ class RoleTest extends BaseFeatureTest
     }
 
     /** @test */
-    public function user_can_assign_permission_to_role_when_has_permission()
+    public function user_can_assign_permission_to_role_when_admin()
     {
         $user = User::factory()->create();
-        $user->givePermissionTo('roles.assign');
+        $user->assignRole('Admin');
 
-        $role = Role::inRandomOrder()->get()->first();
+        $role = Role::inRandomOrder()->first();
         $permissions = Permission::inRandomOrder()->limit(5)->get()->pluck('id');
 
         $response = $this->actingAs($user)->json(
@@ -271,12 +271,12 @@ class RoleTest extends BaseFeatureTest
         $user->givePermissionTo('roles.user-view');
 
         $otherUser = User::factory()->create();
-        $role = Role::inRandomOrder()->get()->first();
+        $role = Role::inRandomOrder()->first();
         $otherUser->assignRole($role);
 
         $response = $this->actingAs($user)->json('GET', $this->uri . '-user/' . $otherUser->id);
 
-        $response->assertOk();
-        $response->assertJsonFragment($role->toArray());
+        $response->assertOk()
+            ->assertJsonFragment($role->toArray());
     }
 }
