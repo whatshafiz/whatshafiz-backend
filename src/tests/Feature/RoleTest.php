@@ -84,16 +84,25 @@ class RoleTest extends BaseFeatureTest
     {
         $user = User::factory()->create();
         $user->assignRole('Admin');
+        $permissions = Permission::inRandomOrder()->limit(2)->get();
+        $permisssionIds = $permissions->pluck('id')->toArray();
 
         $role = [
             'name' => 'new role',
             'guard_name' => 'web',
+            'permissions' => $permisssionIds,
         ];
 
         $response = $this->actingAs($user)->json('POST', $this->uri, $role);
 
+        unset($role['permissions']);
+
         $response->assertOk()
             ->assertJsonFragment($role);
+
+        foreach ($permissions as $permission) {
+            $response->assertJsonFragment($permission->toArray());
+        }
     }
 
     /** @test */
@@ -113,18 +122,27 @@ class RoleTest extends BaseFeatureTest
     {
         $user = User::factory()->create();
         $user->assignRole('Admin');
+        $permissions = Permission::inRandomOrder()->limit(2)->get();
+        $permisssionIds = $permissions->pluck('id')->toArray();
 
         $role = Role::inRandomOrder()->first();
 
         $newRole = [
             'name' => 'new role',
             'guard_name' => 'web',
+            'permissions' => $permisssionIds,
             ];
 
         $response = $this->actingAs($user)->json('PUT', $this->uri . '/' . $role->id, $newRole);
 
+        unset($newRole['permissions']);
+
         $response->assertOk()
             ->assertJsonFragment($newRole);
+
+        foreach ($permissions as $permission) {
+            $response->assertJsonFragment($permission->toArray());
+        }
     }
 
     /** @test */
@@ -176,41 +194,6 @@ class RoleTest extends BaseFeatureTest
 
         $response->assertOk()
             ->assertJsonFragment($role->toArray());
-    }
-
-    /** @test */
-    public function user_can_not_assign_permission_to_role_when_has_not_permission()
-    {
-        $user = User::factory()->create();
-
-        $role = Role::inRandomOrder()->first();
-        $permissions = Permission::inRandomOrder()->limit(5)->get()->pluck('id');
-
-        $response = $this->actingAs($user)->json('POST', $this->uri . '-permission/' . $role->id, [
-            'permissions' => $permissions,
-        ]);
-
-        $response->assertForbidden();
-    }
-
-    /** @test */
-    public function user_can_assign_permission_to_role_when_admin()
-    {
-        $user = User::factory()->create();
-        $user->assignRole('Admin');
-
-        $role = Role::inRandomOrder()->first();
-        $permissions = Permission::inRandomOrder()->limit(5)->get()->pluck('id');
-
-        $response = $this->actingAs($user)->json(
-            'POST',
-            $this->uri . '-permission/' . $role->id,
-            [
-            'permissions' => $permissions
-            ]
-        );
-
-        $response->assertSuccessful();
     }
 
     /** @test */
@@ -278,5 +261,20 @@ class RoleTest extends BaseFeatureTest
 
         $response->assertOk()
             ->assertJsonFragment($role->toArray());
+    }
+
+    /** @test */
+    public function role_can_not_be_deleted_when_has_users()
+    {
+        $user = User::factory()->create();
+        $user->assignRole('Admin');
+
+        $role = Role::inRandomOrder()->first();
+        $user->assignRole($role);
+
+        $response = $this->actingAs($user)->json('DELETE', $this->uri . '/' . $role->id);
+
+        $response->assertUnprocessable()
+            ->assertJsonFragment(['message' => 'Rol silinemez, çünkü atanmış kullanıcılar mevcut.']);
     }
 }
