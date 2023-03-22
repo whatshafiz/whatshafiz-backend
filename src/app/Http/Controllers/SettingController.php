@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Setting;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Validation\ValidationException;
-use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class SettingController extends Controller
@@ -36,7 +36,7 @@ class SettingController extends Controller
      */
     public function update(Request $request): JsonResponse
     {
-        if(!Auth::user()->hasRole('Admin')) {
+        if (!Auth::user()->hasRole('Admin')) {
             return response()->json(['status' => 'failed'], Response::HTTP_FORBIDDEN);
         }
 
