@@ -66,4 +66,48 @@ class SettingTest extends BaseFeatureTest
             $response->assertJsonFragment($setting->only('id', 'name', 'value'));
         }
     }
+
+    /** @test */
+    public function it_should_update_settings_when_admin()
+    {
+        $settings = Setting::factory()->count(round(3, 5))->create();
+        $user = User::factory()->create();
+        $user->assignRole('Admin');
+
+        $response = $this->actingAs($user)->json('PUT', $this->uri, [
+            'settings' => $settings->map(function ($setting) {
+                return [
+                    'id' => $setting->id,
+                    'value' => $setting->value . 'updated',
+                ];
+            })->toArray(),
+        ]);
+
+        $response->assertSuccessful();
+
+        foreach ($settings as $setting) {
+            $this->assertDatabaseHas('settings', [
+                'id' => $setting->id,
+                'value' => $setting->value . 'updated',
+            ]);
+        }
+    }
+
+    /** @test */
+    public function it_should_not_update_settings_when_not_admin()
+    {
+        $settings = Setting::factory()->count(round(3, 5))->create();
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->json('PUT', $this->uri, [
+            'settings' => $settings->map(function ($setting) {
+                return [
+                    'id' => $setting->id,
+                    'value' => $setting->value . 'updated',
+                ];
+            })->toArray(),
+        ]);
+
+        $response->assertForbidden();
+    }
 }

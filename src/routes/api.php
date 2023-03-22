@@ -28,6 +28,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('users', [UserController::class, 'index']);
 
     Route::get('settings', [SettingController::class, 'index']);
+    Route::put('settings', [SettingController::class, 'update']);
 
     Route::post('register/verification-code/send', [UserController::class, 'sendVerificationCode']);
     Route::post('register/verification-code/verify', [UserController::class, 'verifyVerificationCode']);
