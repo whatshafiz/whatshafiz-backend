@@ -26,6 +26,7 @@ Route::get('courses/available', [CourseController::class, 'indexAvailableCourses
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('users', [UserController::class, 'index']);
+    Route::post('users-ban/{user}', [UserController::class, 'banUser']);
 
     Route::get('settings', [SettingController::class, 'index']);
 

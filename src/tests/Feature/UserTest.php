@@ -119,4 +119,44 @@ class UserTest extends BaseFeatureTest
                 'is_banned' => true,
             ]);
     }
+
+    /** @test */
+    public function it_should_ban_user_when_has_permission()
+    {
+        $user = User::factory()->create();
+        $user->givePermissionTo('users.delete');
+
+        $bannedUser = User::factory()->create();
+        $banStatus = rand(0, 1);
+
+        $response = $this->actingAs($user)->json(
+            'POST',
+            $this->uri . '-ban/' . $bannedUser->id ,
+            ['is_banned' => $banStatus]
+        );
+
+        $response->assertSuccessful();
+
+        $this->assertDatabaseHas('users', [
+            'id' => $bannedUser->id,
+            'is_banned' => $banStatus,
+        ]);
+    }
+
+    /** @test */
+    public function it_should_not_ban_user_when_does_not_have_permission()
+    {
+        $user = User::factory()->create();
+
+        $bannedUser = User::factory()->create();
+        $banStatus = rand(0, 1);
+
+        $response = $this->actingAs($user)->json(
+            'POST',
+            $this->uri . '-ban/' . $bannedUser->id ,
+            ['is_banned' => $banStatus]
+        );
+
+        $response->assertForbidden();
+    }
 }

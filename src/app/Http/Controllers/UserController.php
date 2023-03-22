@@ -444,4 +444,24 @@ class UserController extends Controller
             'message' => 'Parolanız başarılı bir şekilde değiştirildi.Yeni parolanızı kullanarak giriş yapabilirsiniz.',
         ]);
     }
+
+    /**
+     * @param Request $request
+     * @param User $user
+     * @return JsonResponse
+     * @throws AuthorizationException
+     */
+    public function banUser(Request $request, User $user): JsonResponse
+    {
+        $this->authorize('delete', $user);
+
+        $request->validate([
+            'is_banned' => 'required|boolean'
+        ]);
+
+        $user->is_banned = $request->is_banned;
+        $user->save();
+
+        return response()->json(null, Response::HTTP_NO_CONTENT);
+    }
 }
