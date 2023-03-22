@@ -131,7 +131,7 @@ class UserTest extends BaseFeatureTest
 
         $response = $this->actingAs($user)->json(
             'POST',
-            $this->uri . '-ban/' . $bannedUser->id ,
+            $this->uri . '-ban/' . $bannedUser->id,
             ['is_banned' => $banStatus]
         );
 
@@ -153,7 +153,7 @@ class UserTest extends BaseFeatureTest
 
         $response = $this->actingAs($user)->json(
             'POST',
-            $this->uri . '-ban/' . $bannedUser->id ,
+            $this->uri . '-ban/' . $bannedUser->id,
             ['is_banned' => $banStatus]
         );
 
