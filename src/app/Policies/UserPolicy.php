@@ -19,4 +19,15 @@ class UserPolicy
     {
         return $user->hasPermissionTo('users.list');
     }
+
+    /**
+     * Determine whether the user can delete the model.
+     *
+     * @param  User  $user
+     * @return bool
+     */
+    public function delete(User $user): bool
+    {
+        return $user->hasPermissionTo('users.delete');
+    }
 }
