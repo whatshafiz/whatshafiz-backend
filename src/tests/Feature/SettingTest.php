@@ -38,9 +38,9 @@ class SettingTest extends BaseFeatureTest
         Cache::shouldReceive('get')->with('settings')->never();
         Cache::shouldReceive('put')->once();
         $settings = Setting::factory()->count(round(3, 5))->create();
-        $user = User::factory()->create();
+        $loginUser = User::factory()->create();
 
-        $response = $this->actingAs($user)->json('GET', $this->uri);
+        $response = $this->actingAs($loginUser)->json('GET', $this->uri);
 
         $response->assertOk();
 
@@ -56,9 +56,9 @@ class SettingTest extends BaseFeatureTest
         Cache::shouldReceive('has')->with('settings')->once()->andReturn(true);
         Cache::shouldReceive('get')->with('settings')->once()->andReturn($settings);
         Cache::shouldReceive('put')->never();
-        $user = User::factory()->create();
+        $loginUser = User::factory()->create();
 
-        $response = $this->actingAs($user)->json('GET', $this->uri);
+        $response = $this->actingAs($loginUser)->json('GET', $this->uri);
 
         $response->assertOk();
 
@@ -68,46 +68,30 @@ class SettingTest extends BaseFeatureTest
     }
 
     /** @test */
-    public function it_should_update_settings_when_admin()
+    public function it_should_not_update_settings_when_logged_in_user_has_admin_role()
     {
-        $settings = Setting::factory()->count(round(3, 5))->create();
-        $user = User::factory()->create();
-        $user->assignRole('Admin');
+        $loginUser = User::factory()->create();
+        $setting = Setting::factory()->create();
 
-        $response = $this->actingAs($user)->json('PUT', $this->uri, [
-            'settings' => $settings->map(function ($setting) {
-                return [
-                    'id' => $setting->id,
-                    'value' => $setting->value . 'updated',
-                ];
-            })->toArray(),
-        ]);
+        $response = $this->actingAs($loginUser)
+            ->json('PUT', $this->uri . '/' . $setting->id, ['value' => $this->faker->word]);
 
-        $response->assertSuccessful();
-
-        foreach ($settings as $setting) {
-            $this->assertDatabaseHas('settings', [
-                'id' => $setting->id,
-                'value' => $setting->value . 'updated',
-            ]);
-        }
+        $response->assertForbidden();
     }
 
     /** @test */
-    public function it_should_not_update_settings_when_not_admin()
+    public function it_should_update_settings_when_logged_in_user_has_admin_role()
     {
-        $settings = Setting::factory()->count(round(3, 5))->create();
-        $user = User::factory()->create();
+        $loginUser = User::factory()->create();
+        $loginUser->assignRole('Admin');
+        $setting = Setting::factory()->create();
+        $newValue = $this->faker->word;
 
-        $response = $this->actingAs($user)->json('PUT', $this->uri, [
-            'settings' => $settings->map(function ($setting) {
-                return [
-                    'id' => $setting->id,
-                    'value' => $setting->value . 'updated',
-                ];
-            })->toArray(),
-        ]);
+        $response = $this->actingAs($loginUser)
+            ->json('PUT', $this->uri . '/' . $setting->id, ['value' => $newValue]);
 
-        $response->assertForbidden();
+        $response->assertSuccessful();
+
+        $this->assertDatabaseHas('settings', ['id' => $setting->id, 'value' => $newValue]);
     }
 }

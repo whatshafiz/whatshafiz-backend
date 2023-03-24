@@ -30,34 +30,20 @@ class SettingController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param  Request  $request
+     * @param  Setting  $setting
      * @return JsonResponse
      * @throws ValidationException
      */
-    public function update(Request $request): JsonResponse
+    public function update(Request $request, Setting $setting): JsonResponse
     {
         if (!Auth::user()->hasRole('Admin')) {
-            return response()->json(['status' => 'failed'], Response::HTTP_FORBIDDEN);
+            return response()->json([], Response::HTTP_FORBIDDEN);
         }
 
-        $cacheKey = 'settings';
-        Cache::forget($cacheKey);
+        $request->validate(['value' => 'required|string']);
 
-        $validatedData = $this->validate(
-            $request,
-            [
-                'settings' => 'required|array',
-                'settings.*.id' => 'required|integer',
-                'settings.*.value' => 'required|string',
-            ]
-        );
-
-        foreach ($validatedData['settings'] as $setting) {
-            Setting::where('id', $setting['id'])->update(['value' => $setting['value']]);
-        }
-
-        $settings = Setting::get(['id', 'name', 'value']);
-        Cache::put($cacheKey, $settings);
+        $setting->update(['value' => $request->value]);
 
         return response()->json(null, Response::HTTP_NO_CONTENT);
     }
