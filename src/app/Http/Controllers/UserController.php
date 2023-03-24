@@ -453,11 +453,9 @@ class UserController extends Controller
      */
     public function banUser(Request $request, User $user): JsonResponse
     {
-        $this->authorize('delete', $user);
+        $this->authorize('delete', User::class);
 
-        $request->validate([
-            'is_banned' => 'required|boolean'
-        ]);
+        $request->validate(['is_banned' => 'required|boolean']);
 
         $user->is_banned = $request->is_banned;
         $user->save();
