@@ -22,9 +22,9 @@ class UserTest extends BaseFeatureTest
     /** @test */
     public function it_should_not_get_users_list_when_does_not_have_permission()
     {
-        $user = User::factory()->create();
+        $loginUser = User::factory()->create();
 
-        $response = $this->actingAs($user)->json('GET', $this->uri);
+        $response = $this->actingAs($loginUser)->json('GET', $this->uri);
 
         $response->assertForbidden();
     }
@@ -33,10 +33,10 @@ class UserTest extends BaseFeatureTest
     public function it_should_get_users_list_when_has_permission()
     {
         $users = User::factory()->count(2, 5)->create();
-        $user = User::factory()->create();
-        $user->givePermissionTo('users.list');
+        $loginUser = User::factory()->create();
+        $loginUser->givePermissionTo('users.list');
 
-        $response = $this->actingAs($user)->json('GET', $this->uri);
+        $response = $this->actingAs($loginUser)->json('GET', $this->uri);
 
         $response->assertOk();
 
@@ -118,5 +118,50 @@ class UserTest extends BaseFeatureTest
                 'is_registered' => true,
                 'is_banned' => true,
             ]);
+    }
+
+    /** @test */
+    public function it_should_not_ban_any_user_when_does_not_have_permission()
+    {
+        $loginUser = User::factory()->create();
+
+        $registeredUser = User::factory()->create();
+        $newBanStatus = !$registeredUser->is_banned;
+
+        $response = $this->actingAs($loginUser)
+            ->json(
+                'POST',
+                $this->uri . '/' . $registeredUser->id . '/ban',
+                ['is_banned' => $newBanStatus]
+            );
+
+        $response->assertForbidden();
+    }
+
+    /** @test */
+    public function it_should_ban_user_when_has_permission()
+    {
+        $loginUser = User::factory()->create();
+        $loginUser->givePermissionTo('users.delete');
+
+        $registeredUser = User::factory()->create();
+        $newBanStatus = !$registeredUser->is_banned;
+
+        $response = $this->actingAs($loginUser)
+            ->json(
+                'POST',
+                $this->uri . '/' . $registeredUser->id . '/ban',
+                ['is_banned' => $newBanStatus]
+            );
+
+        $response->assertSuccessful();
+
+        $this->assertDatabaseHas(
+            'users',
+            [
+                'id' => $registeredUser->id,
+                'is_banned' => $newBanStatus,
+            ]
+        );
     }
 }
