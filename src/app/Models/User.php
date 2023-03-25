@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -176,5 +177,28 @@ class User extends Authenticatable
     public function getUniversityDepartmentNameAttribute(): ?string
     {
         return $this->universityDepartment()->first()?->name;
+    }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function quranQuestions(): BelongsToMany
+    {
+        return $this->hasManyThrough(
+            QuranQuestion::class,
+            AnswerAttempt::class,
+            'user_id',
+            'question_id',
+            'id',
+            'id'
+        );
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function answerAttempts(): HasMany
+    {
+        return $this->hasMany(AnswerAttempt::class);
     }
 }

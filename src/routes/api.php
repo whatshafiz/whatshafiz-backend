@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\AnswerAttemptController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\QuranQuestionController;
 use App\Http\Controllers\RegulationController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
@@ -26,8 +28,10 @@ Route::get('courses/available', [CourseController::class, 'indexAvailableCourses
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('users', [UserController::class, 'index']);
+    Route::post('users/{user}/ban', [UserController::class, 'banUser']);
 
     Route::get('settings', [SettingController::class, 'index']);
+    Route::put('settings/{setting}', [SettingController::class, 'update']);
 
     Route::post('register/verification-code/send', [UserController::class, 'sendVerificationCode']);
     Route::post('register/verification-code/verify', [UserController::class, 'verifyVerificationCode']);
@@ -73,6 +77,12 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::apiResource('comments', CommentController::class);
     Route::get('my-comments', [CommentController::class, 'myComments']);
+
+    Route::apiResource('quran-questions', QuranQuestionController::class);
+    Route::post('quran-questions-assign', [QuranQuestionController::class, 'assign']);
+
+    Route::apiResource('answer-attempts', AnswerAttemptController::class);
+    Route::get('my-answer-attempts', [AnswerAttemptController::class, 'myAnswerAttempts']);
 
     Route::apiResource('permissions', PermissionController::class);
     Route::get('my-permissions', [PermissionController::class, 'myPermissions']);
