@@ -127,7 +127,7 @@ class RoleController extends Controller
 
         $users = $role->users()->get();
 
-        if($users->count() > 0) {
+        if ($users->count() > 0) {
             return response()->json(
                 ['message' => 'Rol silinemez, çünkü atanmış kullanıcılar mevcut.'],
                 Response::HTTP_UNPROCESSABLE_ENTITY
