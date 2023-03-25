@@ -361,7 +361,8 @@ class UserController extends Controller
 
             return response()->json([
                 'message' => 'Kaydınız başarılı şekilde oluşturuldu. ' .
-                    'Whatsapp grubuna katılmak için gerekli link size whatsapp üzerinden gönderilecek.',
+                    'Whatsapp grubuna katılmak için gerekli link size whatsapp üzerinden gönderilecek. ' .
+                    'Lütfen gelen mesajı SPAM DEĞİL veya TAMAM olarak işaretleyin.',
             ]);
         } catch (Exception $exception) {
             DB::rollback();
