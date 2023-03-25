@@ -21,7 +21,7 @@ class PermissionTest extends BaseFeatureTest
     }
 
     /** @test */
-    public function user_can_not_list_permissions_when_has_not_permission()
+    public function user_can_not_list_permissions_when_has_not_admin_role()
     {
         $user = User::factory()->create();
 
@@ -31,10 +31,10 @@ class PermissionTest extends BaseFeatureTest
     }
 
     /** @test */
-    public function user_can_list_permissions_when_has_permission()
+    public function user_can_list_permissions_when_has_admin_role()
     {
         $user = User::factory()->create();
-        $user->givePermissionTo('permissions.list');
+        $user->assignRole('Admin');
 
         $response = $this->actingAs($user)->json('GET', $this->uri);
 

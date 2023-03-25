@@ -19,27 +19,9 @@ class RoleController extends Controller
      * @throws AuthorizationException
      * @throws ValidationException
      */
-    public function index(Request $request)
+    public function index()
     {
-        $this->authorize('viewAny', Role::class);
-
-        $filters = $this->validate(
-            $request,
-            [
-                'name' => 'nullable|string',
-                'guard_name' => 'nullable|string',
-            ]
-        );
-
-        $roles = Role::when(isset($filters['name']), function ($query) use ($filters) {
-            return $query->where('name', 'like', '%' . $filters['name'] . '%');
-        })
-            ->when(isset($filters['guard_name']), function ($query) use ($filters) {
-                return $query->where('guard_name', $filters['guard_name']);
-            })
-            ->latest('id')
-            ->paginate()
-            ->appends($filters);
+        $roles = Role::latest('id')->paginate();
 
         return response()->json(compact('roles'));
     }
@@ -53,19 +35,18 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize('create', Role::class);
-
-        $data = $this->validate(
+        $validatedRoleData = $this->validate(
             $request,
             [
-                'name' => 'required|string|unique:roles,guard_name',
-                'guard_name' => 'required|string',
-                'permissions' => 'required|array',
+                'name' => 'required|string|unique:roles,name',
+                'permissions' => 'nullable|array',
+                'permissions.*' => 'required|integer|min:1|exists:permissions,id',
             ]
         );
 
-        $role = Role::create($data);
-        $role->syncPermissions($data['permissions']);
+        $validatedRoleData['guard_name'] = 'web';
+        $role = Role::create($validatedRoleData);
+        $role->syncPermissions($validatedRoleData['permissions'] ?? []);
 
         return response()->json(compact('role'));
     }
@@ -79,8 +60,6 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        $this->authorize('view', $role);
-
         $role->load('permissions');
 
         return response()->json(compact('role'));
@@ -97,19 +76,16 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        $this->authorize('update', $role);
-
-        $data = $this->validate(
+        $validatedRoleData = $this->validate(
             $request,
             [
-                'name' => 'required|string|unique:roles,guard_name,' . $role->id,
-                'guard_name' => 'required|string',
+                'name' => 'required|string|unique:roles,name,' . $role->id,
                 'permissions' => 'required|array',
             ]
         );
 
-        $role->update($data);
-        $role->syncPermissions($data['permissions']);
+        $role->update($validatedRoleData);
+        $role->syncPermissions($validatedRoleData['permissions']);
 
         return response()->json(compact('role'));
     }
@@ -123,11 +99,7 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        $this->authorize('delete', $role);
-
-        $users = $role->users()->get();
-
-        if ($users->count() > 0) {
+        if ($role->users()->exists()) {
             return response()->json(
                 ['message' => 'Rol silinemez, çünkü atanmış kullanıcılar mevcut.'],
                 Response::HTTP_UNPROCESSABLE_ENTITY
@@ -135,44 +107,6 @@ class RoleController extends Controller
         }
 
         $role->delete();
-
-        return response()->json(null, Response::HTTP_NO_CONTENT);
-    }
-
-    /**
-     * @param Request $request
-     * @param User $user
-     * @return JsonResponse
-     * @throws AuthorizationException
-     */
-    public function viewUserRoles(Request $request, User $user)
-    {
-        $this->authorize('user-view', Role::class);
-
-        $roles = $user->roles()->with('permissions')->paginate();
-
-        return response()->json(compact('roles'));
-    }
-
-    /**
-     * @param Request $request
-     * @param User $user
-     * @return JsonResponse
-     * @throws AuthorizationException
-     * @throws ValidationException
-     */
-    public function updateUserRoles(Request $request, User $user)
-    {
-        $this->authorize('user-update', Role::class);
-
-        $data = $this->validate(
-            $request,
-            [
-                'roles' => 'required|array',
-            ]
-        );
-
-        $user->syncRoles($data['roles']);
 
         return response()->json(null, Response::HTTP_NO_CONTENT);
     }

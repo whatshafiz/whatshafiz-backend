@@ -83,10 +83,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::apiResource('answer-attempts', AnswerAttemptController::class);
     Route::get('my-answer-attempts', [AnswerAttemptController::class, 'myAnswerAttempts']);
+});
 
-    Route::apiResource('permissions', PermissionController::class);
+Route::middleware(['auth:sanctum', 'admin'])->group(function() {
+    Route::get('permissions', [PermissionController::class, 'index']);
 
     Route::apiResource('roles', RoleController::class);
-    Route::get('roles-user/{user}', [RoleController::class, 'viewUserRoles']);
-    Route::post('roles-user/{user}', [RoleController::class, 'updateUserRoles']);
 });
