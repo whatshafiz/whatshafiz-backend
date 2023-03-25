@@ -5,8 +5,10 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\QuranQuestionController;
 use App\Http\Controllers\RegulationController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UniversityController;
 use App\Http\Controllers\UserController;
@@ -81,4 +83,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::apiResource('answer-attempts', AnswerAttemptController::class);
     Route::get('my-answer-attempts', [AnswerAttemptController::class, 'myAnswerAttempts']);
+});
+
+Route::middleware(['auth:sanctum', 'admin'])->group(function () {
+    Route::get('permissions', [PermissionController::class, 'index']);
+
+    Route::apiResource('roles', RoleController::class);
 });
