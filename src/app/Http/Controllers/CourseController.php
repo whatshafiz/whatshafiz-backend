@@ -52,7 +52,9 @@ class CourseController extends Controller
      */
     public function indexAvailableCourses(): JsonResponse
     {
-        return response()->json(Course::available()->get(['id', 'type', 'name', 'can_be_applied_until', 'start_at']));
+        return response()->json(
+            Course::available()->get(['id', 'type', 'name', 'can_be_applied', 'can_be_applied_until', 'start_at'])
+        );
     }
 
     /**
@@ -80,8 +82,8 @@ class CourseController extends Controller
                         }
                     },
                 ],
-                'can_be_applied_until' => 'nullable|date_format:Y-m-d H:i:s',
-                'start_at' => 'nullable|date_format:Y-m-d H:i:s',
+                'can_be_applied_until' => 'nullable|date_format:d-m-Y H:i',
+                'start_at' => 'nullable|date_format:d-m-Y H:i',
             ]
         );
 
@@ -112,7 +114,7 @@ class CourseController extends Controller
             $request,
             [
                 'type' => 'required|string|in:whatshafiz,whatsenglish,whatsarapp',
-                'name' => 'required|string|min:3|max:100|unique:courses',
+                'name' => 'required|string|min:3|max:100|unique:courses,name,' . $course->id,
                 'is_active' => 'required|boolean',
                 'can_be_applied' => [
                     'required',
@@ -128,8 +130,8 @@ class CourseController extends Controller
                         }
                     },
                 ],
-                'can_be_applied_until' => 'nullable|date_format:Y-m-d H:i:s',
-                'start_at' => 'nullable|date_format:Y-m-d H:i:s',
+                'can_be_applied_until' => 'nullable|date_format:d-m-Y H:i',
+                'start_at' => 'nullable|date_format:d-m-Y H:i',
             ]
         );
 

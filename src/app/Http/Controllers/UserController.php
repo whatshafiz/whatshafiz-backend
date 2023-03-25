@@ -114,11 +114,11 @@ class UserController extends Controller
                 'surname' => 'required|string|max:50',
                 'email' => 'nullable|email|unique:users,email,' . Auth::id(),
                 'gender' => 'required|string|in:male,female',
-                'country_id' => 'nullable|integer|min:1|exists:countries,id',
-                'city_id' => 'nullable|integer|min:1|exists:cities,id',
-                'university_id' => 'nullable|integer|min:1|exists:universities,id',
-                'university_faculty_id' => 'nullable|integer|min:1|exists:university_faculties,id',
-                'university_department_id' => 'nullable|integer|min:1|exists:university_departments,id',
+                'country_id' => 'required|integer|min:1|exists:countries,id',
+                'city_id' => 'required|integer|min:1|exists:cities,id',
+                'university_id' => 'required|integer|min:1|exists:universities,id',
+                'university_faculty_id' => 'required|integer|min:1|exists:university_faculties,id',
+                'university_department_id' => 'required|integer|min:1|exists:university_departments,id',
             ]
         );
 

@@ -17,6 +17,11 @@ class Course extends BaseModel
     protected $casts = [
         'can_be_applied' => 'boolean',
         'is_active' => 'boolean',
+        'start_at' => 'datetime:d-m-Y H:i',
+        'can_be_applied_until' => 'datetime:d-m-Y H:i',
+        'created_at' => 'datetime:d-m-Y H:i',
+        'updated_at' => 'datetime:d-m-Y H:i',
+        'deleted_at' => 'datetime:d-m-Y H:i',
     ];
 
     /**

@@ -51,11 +51,8 @@ class ProfileTest extends BaseFeatureTest
     {
         $registeredUser = User::factory()->create();
         $newUserData = User::factory()
-            ->make([
-                'name' => $this->faker->firstname(),
-                'surname' => $this->faker->lastname(),
-                'gender' => $this->faker->randomElement(['male', 'female']),
-            ])
+            ->completed()
+            ->make()
             ->only([
                 'name',
                 'surname',
