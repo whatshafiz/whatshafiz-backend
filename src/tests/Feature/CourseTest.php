@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Course;
 use App\Models\User;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\BaseFeatureTest;
@@ -185,7 +186,12 @@ class CourseTest extends BaseFeatureTest
         $response->assertOk();
 
         foreach ($availableCourses as $availableCourse) {
-            $response->assertJsonFragment($availableCourse->only('id', 'type', 'name', 'can_be_applied_until'));
+            $response->assertJsonFragment(
+                Arr::only(
+                    $availableCourse->toArray(),
+                    ['id', 'type', 'name', 'can_be_applied', 'can_be_applied_until', 'start_at']
+                )
+            );
         }
     }
 

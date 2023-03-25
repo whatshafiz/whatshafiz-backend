@@ -44,6 +44,23 @@ class UserFactory extends Factory
      *
      * @return static
      */
+    public function completed()
+    {
+        return $this->state(fn (array $attributes) => [
+            'gender' => $this->faker->randomElement(['male', 'female']),
+            'country_id' => Country::inRandomOrder()->value('id'),
+            'city_id' => City::inRandomOrder()->value('id'),
+            'university_id' => University::inRandomOrder()->value('id'),
+            'university_faculty_id' => UniversityFaculty::inRandomOrder()->value('id'),
+            'university_department_id' => UniversityDepartment::inRandomOrder()->value('id'),
+        ]);
+    }
+
+    /**
+     * Indicate that the model's phone number should be unverified.
+     *
+     * @return static
+     */
     public function unverified()
     {
         return $this->state(fn (array $attributes) => [
