@@ -85,7 +85,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('my-answer-attempts', [AnswerAttemptController::class, 'myAnswerAttempts']);
 
     Route::apiResource('permissions', PermissionController::class);
-    Route::get('my-permissions', [PermissionController::class, 'myPermissions']);
 
     Route::apiResource('roles', RoleController::class);
     Route::get('roles-user/{user}', [RoleController::class, 'viewUserRoles']);
