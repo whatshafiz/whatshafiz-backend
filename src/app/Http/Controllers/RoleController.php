@@ -2,37 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
-use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
+     * @param  Request  $request
      * @return JsonResponse
-     * @throws AuthorizationException
-     * @throws ValidationException
      */
-    public function index()
+    public function index(Request $request): JsonResponse
     {
-        $roles = Role::latest('id')->paginate();
+        $roles = Role::where('name', '!=', 'Admin')
+            ->orderByTabulator($request)
+            ->paginate($request->size);
 
-        return response()->json(compact('roles'));
+        return response()->json($roles->toArray());
     }
 
     /**
      * Show the form for creating a new resource.
      *
+     * @param  Request  $request
      * @return JsonResponse
      * @throws AuthorizationException
      * @throws ValidationException
      */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
         $validatedRoleData = $this->validate(
             $request,
@@ -57,8 +59,15 @@ class RoleController extends Controller
      * @return JsonResponse
      * @throws AuthorizationException
      */
-    public function show(Role $role)
+    public function show(Role $role): JsonResponse
     {
+        if ($role->name === 'Admin') {
+            return response()->json(
+                ['message' => 'Admin bilgileri değiştirilemez!'],
+                Response::HTTP_UNPROCESSABLE_ENTITY
+            );
+        }
+
         $role->load('permissions');
 
         return response()->json(compact('role'));
@@ -73,13 +82,21 @@ class RoleController extends Controller
      * @throws AuthorizationException
      * @throws ValidationException
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request, Role $role): JsonResponse
     {
+        if ($role->name === 'Admin') {
+            return response()->json(
+                ['message' => 'Admin bilgileri değiştirilemez!'],
+                Response::HTTP_UNPROCESSABLE_ENTITY
+            );
+        }
+
         $validatedRoleData = $this->validate(
             $request,
             [
                 'name' => 'required|string|unique:roles,name,' . $role->id,
-                'permissions' => 'required|array',
+                'permissions' => 'nullable|array',
+                'permissions.*' => 'required|integer|min:1|exists:permissions,id',
             ]
         );
 
@@ -96,8 +113,15 @@ class RoleController extends Controller
      * @return JsonResponse
      * @throws AuthorizationException
      */
-    public function destroy(Role $role)
+    public function destroy(Role $role): JsonResponse
     {
+        if ($role->name === 'Admin') {
+            return response()->json(
+                ['message' => 'Admin silinemez!'],
+                Response::HTTP_UNPROCESSABLE_ENTITY
+            );
+        }
+
         if ($role->users()->exists()) {
             return response()->json(
                 ['message' => 'Rol silinemez, çünkü atanmış kullanıcılar mevcut.'],

@@ -92,8 +92,8 @@ class UserController extends Controller
     public function profile(): JsonResponse
     {
         $user = Auth::user()->load(['country', 'city', 'university', 'universityFaculty', 'universityDepartment']);
-        $permissions = $user->permissions()->orderBy('name')->pluck('name');
-        $roles = $user->roles()->orderBy('name')->pluck('name');
+        $permissions = $user->permissions()->orderBy('permissions.name')->pluck('permissions.name');
+        $roles = $user->roles()->orderBy('roles.name')->pluck('roles.name');
         unset($user->permissions);
         unset($user->roles);
 
