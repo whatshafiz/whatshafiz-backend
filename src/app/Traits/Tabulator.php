@@ -14,6 +14,6 @@ trait Tabulator
      */
     public function scopeOrderByTabulator(Builder $query, Request $request): Builder
     {
-        return $query->orderBy($request->sort[0]['field'] ?? 'id',  $request->sort[0]['dir'] ?? 'desc');
+        return $query->orderBy($request->sort[0]['field'] ?? 'id', $request->sort[0]['dir'] ?? 'desc');
     }
 }
