@@ -12,21 +12,33 @@ use Symfony\Component\HttpFoundation\Response;
 
 class SettingController extends Controller
 {
+    public $cacheKey = 'settings';
+
     /**
      * @return JsonResponse
      */
     public function index(): JsonResponse
     {
-        $cacheKey = 'settings';
-
-        if (Cache::has($cacheKey)) {
-            $settings = Cache::get($cacheKey);
+        if (Cache::has($this->cacheKey)) {
+            $settings = Cache::get($this->cacheKey);
         } else {
-            $settings = Setting::get(['id', 'name', 'value']);
-            Cache::put($cacheKey, $settings);
+            $settings = Setting::select(['id', 'name', 'value'])->paginate();
+            Cache::put($this->cacheKey, $settings);
         }
 
-        return response()->json(compact('settings'));
+        return response()->json($settings->toArray());
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param Setting $setting
+     * @return JsonResponse
+     * @throws AuthorizationException
+     */
+    public function show(Setting $setting): JsonResponse
+    {
+        return response()->json(compact('setting'));
     }
 
     /**
@@ -44,6 +56,8 @@ class SettingController extends Controller
         $request->validate(['value' => 'required|string']);
 
         $setting->update(['value' => $request->value]);
+
+        Cache::forget($this->cacheKey);
 
         return response()->json(null, Response::HTTP_NO_CONTENT);
     }

@@ -31,6 +31,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('users/{user}/ban', [UserController::class, 'banUser']);
 
     Route::get('settings', [SettingController::class, 'index']);
+    Route::get('settings/{setting}', [SettingController::class, 'show']);
     Route::put('settings/{setting}', [SettingController::class, 'update']);
 
     Route::post('register/verification-code/send', [UserController::class, 'sendVerificationCode']);
