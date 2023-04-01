@@ -19,7 +19,7 @@ class PermissionController extends Controller
     {
         $this->authorize('viewAny', Permission::class);
 
-        $permissions = Permission::latest('id')->paginate();
+        $permissions = Permission::orderBy('id')->get(['id', 'name']);
 
         return response()->json(compact('permissions'));
     }

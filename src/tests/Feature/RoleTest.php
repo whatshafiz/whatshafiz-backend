@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\Models\Role;
 use App\Models\User;
 use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 use Tests\BaseFeatureTest;
 
 class RoleTest extends BaseFeatureTest
@@ -37,7 +37,7 @@ class RoleTest extends BaseFeatureTest
         $loginUser = User::factory()->create();
         $loginUser->assignRole('Admin');
 
-        $roles = Role::latest('id');
+        $roles = Role::where('name', '!=', 'Admin')->latest('id');
 
         $response = $this->actingAs($loginUser)->json('GET', $this->uri);
 
@@ -66,7 +66,7 @@ class RoleTest extends BaseFeatureTest
         $loginUser = User::factory()->create();
         $loginUser->assignRole('Admin');
 
-        $role = Role::inRandomOrder()->first();
+        $role = Role::inRandomOrder()->where('name', '!=', 'Admin')->first();
 
         $response = $this->actingAs($loginUser)->json('GET', $this->uri . '/' . $role->id);
 
@@ -131,7 +131,7 @@ class RoleTest extends BaseFeatureTest
         $permissions = Permission::inRandomOrder()->limit(2)->get();
         $permisssionIds = $permissions->pluck('id')->toArray();
 
-        $role = Role::inRandomOrder()->first();
+        $role = Role::where('name', '!=', 'Admin')->inRandomOrder()->first();
 
         $newRoleData = [
             'name' => $this->faker->jobTitle . rand(100, 999),
@@ -186,6 +186,7 @@ class RoleTest extends BaseFeatureTest
         $loginUser->assignRole('Admin');
 
         $role = Role::inRandomOrder()->where('name', '!=', 'Admin')->first();
+        $role->users()->detach();
 
         $response = $this->actingAs($loginUser)->json('DELETE', $this->uri . '/' . $role->id);
 
