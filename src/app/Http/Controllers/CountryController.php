@@ -111,7 +111,6 @@ class CountryController extends Controller
         return response()->json(compact('city'));
     }
 
-
     /**
      * Update the specified resource in storage.
      *
