@@ -16,4 +16,12 @@ class Country extends BaseModel
     {
         return $this->hasMany(City::class);
     }
+
+    /**
+     * @return HasMany
+     */
+    public function users(): HasMany
+    {
+        return $this->hasMany(User::class);
+    }
 }
