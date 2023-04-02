@@ -22,11 +22,11 @@ class SettingController extends Controller
         if (Cache::has($this->cacheKey)) {
             $settings = Cache::get($this->cacheKey);
         } else {
-            $settings = Setting::select(['id', 'name', 'value'])->paginate();
+            $settings = Setting::select(['id', 'name', 'value'])->paginate()->toArray();
             Cache::put($this->cacheKey, $settings);
         }
 
-        return response()->json($settings->toArray());
+        return response()->json($settings);
     }
 
     /**

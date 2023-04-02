@@ -73,6 +73,20 @@ class RolesPermissionsSeeder extends Seeder
             'comments.create',
             'comments.delete',
 
+            'countries.*',
+            'countries.view',
+            'countries.list',
+            'countries.update',
+            'countries.create',
+            'countries.delete',
+
+            'universities.*',
+            'universities.view',
+            'universities.list',
+            'universities.update',
+            'universities.create',
+            'universities.delete',
+
             'permissions.*',
             'permissions.view',
             'permissions.list',
