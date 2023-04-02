@@ -39,6 +39,19 @@ class CountryTest extends BaseFeatureTest
     }
 
     /** @test */
+    public function it_should_get_country_details()
+    {
+        $user = User::factory()->create();
+
+        $country = Country::inRandomOrder()->first();
+
+        $response = $this->actingAs($user)->json('GET', $this->uri . '/' . $country->id);
+
+        $response->assertOk()
+            ->assertJsonFragment($country->toArray());
+    }
+
+    /** @test */
     public function it_should_get_country_list_from_cache_when_countries_data_cached_before()
     {
         $dummyCountries = Country::inRandomOrder()->take(rand(3, 5))->get();
@@ -109,5 +122,93 @@ class CountryTest extends BaseFeatureTest
             ->assertJsonFragment($cityData);
 
         $this->assertDatabaseHas('cities', $cityData);
+    }
+
+    /** @test */
+    public function it_should_not_update_country_details_when_does_not_have_permission()
+    {
+        $user = User::factory()->create();
+
+        $country = Country::where('name', '!=', 'Türkiye')->inRandomOrder()->first();
+        $newCountryData = [
+            'name' => $this->faker->words(5, true),
+            'iso' => $this->faker->lexify('iso-???'),
+            'phone_code' => $this->faker->numerify('+###'),
+        ];
+
+        $response = $this->actingAs($user)->json('PUT', $this->uri . '/' . $country->id, $newCountryData);
+
+        $response->assertForbidden();
+    }
+
+    /** @test */
+    public function it_should_update_country_details_when_has_permission()
+    {
+        $user = User::factory()->create();
+        $user->givePermissionTo('countries.update');
+
+        $country = Country::where('name', '!=', 'Türkiye')->inRandomOrder()->first();
+        $newCountryData = [
+            'name' => $this->faker->words(5, true),
+            'iso' => $this->faker->lexify('iso-???'),
+            'phone_code' => $this->faker->numerify('+###'),
+        ];
+
+        $response = $this->actingAs($user)->json('PUT', $this->uri . '/' . $country->id, $newCountryData);
+
+        $response->assertSuccessful();
+
+        $this->assertDatabaseHas('countries', array_merge(['id' => $country->id], $newCountryData));
+    }
+
+    /** @test */
+    public function it_should_not_delete_country_details_when_does_not_have_permission()
+    {
+        $user = User::factory()->create();
+
+        $country = Country::whereDoesntHave('cities')->inRandomOrder()->first();
+
+        $response = $this->actingAs($user)->json('DELETE', $this->uri . '/' . $country->id);
+
+        $response->assertForbidden();
+    }
+
+    /** @test */
+    public function it_should_not_delete_country_details_when_country_has_cities()
+    {
+        $user = User::factory()->create();
+        $user->givePermissionTo('countries.delete');
+
+        $country = Country::whereHas('cities')->inRandomOrder()->first();
+
+        $response = $this->actingAs($user)->json('DELETE', $this->uri . '/' . $country->id);
+
+        $response->assertUnprocessable();
+    }
+
+    /** @test */
+    public function it_should_not_delete_country_details_when_country_has_users()
+    {
+        $user = User::factory()->create();
+        $user->givePermissionTo('countries.delete');
+
+        $country = Country::whereHas('users')->inRandomOrder()->first();
+
+        $response = $this->actingAs($user)->json('DELETE', $this->uri . '/' . $country->id);
+
+        $response->assertUnprocessable();
+    }
+
+    /** @test */
+    public function it_should_delete_country_details_when_has_permission()
+    {
+        $user = User::factory()->create();
+        $user->givePermissionTo('countries.delete');
+
+        $country = Country::whereDoesntHave('cities')->whereDoesntHave('users')->inRandomOrder()->first();
+
+        $response = $this->actingAs($user)->json('DELETE', $this->uri . '/' . $country->id);
+
+        $response->assertSuccessful();
     }
 }

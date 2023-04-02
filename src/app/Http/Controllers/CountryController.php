@@ -28,6 +28,58 @@ class CountryController extends Controller
     }
 
     /**
+     * @param  Request  $request
+     * @return JsonResponse
+     */
+    public function indexPaginate(Request $request): JsonResponse
+    {
+        $countries = Country::withCount('cities', 'users')->orderByTabulator($request)->paginate($request->size);
+
+        return response()->json($countries->toArray());
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  Country  $country
+     * @return JsonResponse
+     * @throws AuthorizationException
+     */
+    public function show(Country $country): JsonResponse
+    {
+        $country->load('cities');
+
+        return response()->json(compact('country'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  Request  $request
+     * @param  Country  $country
+     * @return JsonResponse
+     * @throws AuthorizationException
+     * @throws ValidationException
+     */
+    public function update(Request $request, Country $country): JsonResponse
+    {
+        $this->authorize('update', Country::class);
+
+        $validatedCountryData = $this->validate(
+            $request,
+            [
+                'name' => 'required|string|unique:countries,name,' . $country->id,
+                'iso' => 'required|string|unique:countries,iso,' . $country->id,
+                'phone_code' => 'required|string|unique:countries,phone_code,' . $country->id,
+            ]
+        );
+
+        $country->update($validatedCountryData);
+
+        return response()->json(compact('country'));
+    }
+
+    /**
      * @param  Country  $country
      * @return JsonResponse
      */
@@ -61,5 +113,32 @@ class CountryController extends Controller
         Cache::forget("countries:{$country->id}:cities");
 
         return response()->json(compact('city'), Response::HTTP_CREATED);
+    }
+
+    /**
+     * @param  Country  $country
+     * @return JsonResponse
+     */
+    public function destroy(Country $country): JsonResponse
+    {
+        $this->authorize('delete', Country::class);
+
+        if ($country->cities()->exists()) {
+            return response()->json(
+                ['message' => 'Ülke silinemez, çünkü içinde şehirler mevcut.'],
+                Response::HTTP_UNPROCESSABLE_ENTITY
+            );
+        }
+
+        if ($country->users()->exists()) {
+            return response()->json(
+                ['message' => 'Ülke silinemez, çünkü bu ülkeyi seçmiş kullanıcılar mevcut.'],
+                Response::HTTP_UNPROCESSABLE_ENTITY
+            );
+        }
+
+        $country->delete();
+
+        return response()->json(null, Response::HTTP_NO_CONTENT);
     }
 }

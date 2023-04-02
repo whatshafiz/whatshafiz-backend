@@ -45,6 +45,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('regulations', [RegulationController::class, 'index']);
     Route::post('regulations/{regulation:slug}', [RegulationController::class, 'update']);
 
+    Route::get('countries/paginate', [CountryController::class, 'indexPaginate']);
+    Route::get('countries/{country}', [CountryController::class, 'show']);
+    Route::put('countries/{country}', [CountryController::class, 'update']);
+    Route::delete('countries/{country}', [CountryController::class, 'destroy']);
     Route::get('countries/{country}/cities', [CountryController::class, 'cities']);
     Route::post('countries/{country}/cities', [CountryController::class, 'storeCity']);
 

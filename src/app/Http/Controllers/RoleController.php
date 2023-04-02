@@ -55,7 +55,7 @@ class RoleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Role $role
+     * @param  Role  $role
      * @return JsonResponse
      * @throws AuthorizationException
      */
@@ -76,8 +76,8 @@ class RoleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param Role $role
+     * @param  Request  $request
+     * @param  Role  $role
      * @return JsonResponse
      * @throws AuthorizationException
      * @throws ValidationException
@@ -109,7 +109,7 @@ class RoleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Role $role
+     * @param  Role  $role
      * @return JsonResponse
      * @throws AuthorizationException
      */
