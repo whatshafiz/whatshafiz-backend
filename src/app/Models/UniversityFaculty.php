@@ -20,4 +20,12 @@ class UniversityFaculty extends BaseModel
     {
         return $this->hasMany(UniversityDepartment::class);
     }
+
+    /**
+     * @return HasMany
+     */
+    public function users(): HasMany
+    {
+        return $this->hasMany(User::class);
+    }
 }

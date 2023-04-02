@@ -86,7 +86,7 @@ class UniversityTest extends BaseFeatureTest
     /** @test */
     public function it_should_get_university_department_details()
     {
-        $department = University::inRandomOrder()->first();
+        $department = UniversityDepartment::inRandomOrder()->first();
 
         $user = User::factory()->create();
 
