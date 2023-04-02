@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use App\Models\Country;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -33,9 +34,24 @@ class CountryController extends Controller
      */
     public function indexPaginate(Request $request): JsonResponse
     {
+        $this->authorize('update', Country::class);
+
         $countries = Country::withCount('cities', 'users')->orderByTabulator($request)->paginate($request->size);
 
         return response()->json($countries->toArray());
+    }
+
+    /**
+     * @param  Request  $request
+     * @return JsonResponse
+     */
+    public function indexCitiesPaginate(Request $request): JsonResponse
+    {
+        $this->authorize('update', Country::class);
+
+        $cities = City::with('country')->withCount('users')->orderByTabulator($request)->paginate($request->size);
+
+        return response()->json($cities->toArray());
     }
 
     /**
@@ -51,6 +67,50 @@ class CountryController extends Controller
 
         return response()->json(compact('country'));
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  City  $city
+     * @return JsonResponse
+     * @throws AuthorizationException
+     */
+    public function showCity(City $city): JsonResponse
+    {
+        return response()->json(compact('city'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  Request  $request
+     * @param  City  $city
+     * @return JsonResponse
+     * @throws AuthorizationException
+     * @throws ValidationException
+     */
+    public function updateCity(Request $request, City $city): JsonResponse
+    {
+        $this->authorize('update', Country::class);
+
+        $validatedCityData = $this->validate(
+            $request,
+            [
+                'country_id' => 'required|integer|min:1|exists:countries,id',
+                'name' => "required|string|unique:cities,name,{$city->id},id,country_id,{$request->country_id}",
+            ]
+        );
+
+        if ($request->country_id !== $city->country_id) {
+            Cache::forget("countries:{$city->country_id}:cities");
+            Cache::forget("countries:{$request->country_id}:cities");
+        }
+
+        $city->update($validatedCityData);
+
+        return response()->json(compact('city'));
+    }
+
 
     /**
      * Update the specified resource in storage.
@@ -138,6 +198,27 @@ class CountryController extends Controller
         }
 
         $country->delete();
+
+        return response()->json(null, Response::HTTP_NO_CONTENT);
+    }
+
+    /**
+     * @param  City  $city
+     * @return JsonResponse
+     */
+    public function destroyCity(City $city): JsonResponse
+    {
+        $this->authorize('delete', Country::class);
+
+        if ($city->users()->exists()) {
+            return response()->json(
+                ['message' => 'Şehir silinemez, çünkü bu şehri seçmiş kullanıcılar mevcut.'],
+                Response::HTTP_UNPROCESSABLE_ENTITY
+            );
+        }
+
+        Cache::forget("countries:{$city->country_id}:cities");
+        $city->delete();
 
         return response()->json(null, Response::HTTP_NO_CONTENT);
     }
