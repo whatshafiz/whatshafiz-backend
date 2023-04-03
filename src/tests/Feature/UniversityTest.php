@@ -308,6 +308,19 @@ class UniversityTest extends BaseFeatureTest
     }
 
     /** @test */
+    public function it_should_not_delete_university_details_when_university_has_users()
+    {
+        $user = User::factory()->create();
+        $user->givePermissionTo('universities.delete');
+
+        $university = University::whereHas('users')->inRandomOrder()->first();
+
+        $response = $this->actingAs($user)->json('DELETE', $this->uri . '/' . $university->id);
+
+        $response->assertUnprocessable();
+    }
+
+    /** @test */
     public function it_should_delete_university_details_when_has_permission()
     {
         $user = User::factory()->create();
@@ -346,6 +359,19 @@ class UniversityTest extends BaseFeatureTest
     }
 
     /** @test */
+    public function it_should_not_delete_faculty_details_when_faculty_has_users()
+    {
+        $user = User::factory()->create();
+        $user->givePermissionTo('universities.delete');
+
+        $faculty = UniversityFaculty::whereHas('users')->inRandomOrder()->first();
+
+        $response = $this->actingAs($user)->json('DELETE', self::BASE_URI . '/faculties/' . $faculty->id);
+
+        $response->assertUnprocessable();
+    }
+
+    /** @test */
     public function it_should_delete_faculty_details_when_has_permission()
     {
         $user = User::factory()->create();
@@ -354,6 +380,45 @@ class UniversityTest extends BaseFeatureTest
         $faculty = UniversityFaculty::whereDoesntHave('departments')->inRandomOrder()->first();
 
         $response = $this->actingAs($user)->json('DELETE', self::BASE_URI . '/faculties/' . $faculty->id);
+
+        $response->assertSuccessful();
+    }
+
+
+    /** @test */
+    public function it_should_not_delete_department_details_when_does_not_have_permission()
+    {
+        $user = User::factory()->create();
+
+        $department = UniversityDepartment::whereDoesntHave('users')->inRandomOrder()->first();
+
+        $response = $this->actingAs($user)->json('DELETE', self::BASE_URI . '/departments/' . $department->id);
+
+        $response->assertForbidden();
+    }
+
+    /** @test */
+    public function it_should_not_delete_department_details_when_department_has_users()
+    {
+        $user = User::factory()->create();
+        $user->givePermissionTo('universities.delete');
+
+        $department = UniversityDepartment::whereHas('users')->inRandomOrder()->first();
+
+        $response = $this->actingAs($user)->json('DELETE', self::BASE_URI . '/departments/' . $department->id);
+
+        $response->assertUnprocessable();
+    }
+
+    /** @test */
+    public function it_should_delete_department_details_when_has_permission()
+    {
+        $user = User::factory()->create();
+        $user->givePermissionTo('universities.delete');
+
+        $department = UniversityDepartment::whereDoesntHave('users')->inRandomOrder()->first();
+
+        $response = $this->actingAs($user)->json('DELETE', self::BASE_URI . '/departments/' . $department->id);
 
         $response->assertSuccessful();
     }

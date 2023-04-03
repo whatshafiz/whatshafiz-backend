@@ -37,7 +37,7 @@ class UniversityController extends Controller
     {
         $this->authorize('update', University::class);
 
-        $universities = University::withCount('faculties', 'departments')
+        $universities = University::withCount('faculties', 'departments', 'users')
             ->orderByTabulator($request)
             ->paginate($request->size);
 
@@ -52,7 +52,8 @@ class UniversityController extends Controller
     {
         $this->authorize('update', University::class);
 
-        $faculties = UniversityFaculty::withCount('departments')
+        $faculties = UniversityFaculty::with('university')
+            ->withCount('departments', 'users')
             ->orderByTabulator($request)
             ->paginate($request->size);
 
@@ -67,7 +68,10 @@ class UniversityController extends Controller
     {
         $this->authorize('update', University::class);
 
-        $departments = UniversityDepartment::orderByTabulator($request)->paginate($request->size);
+        $departments = UniversityDepartment::with('university', 'faculty')
+            ->withCount('users')
+            ->orderByTabulator($request)
+            ->paginate($request->size);
 
         return response()->json($departments->toArray());
     }
@@ -146,13 +150,42 @@ class UniversityController extends Controller
             [
                 'university_id' => 'required|integer|min:1|exists:universities,id',
                 'name' => 'required|string|unique:university_faculties,name,' . $faculty->id .
-                    ',id,university_id,' . $faculty->university_id,
+                    ',id,university_id,' . $request->university_id,
             ]
         );
 
         $faculty->update($validatedFacultyData);
 
         return response()->json(compact('faculty'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  Request  $request
+     * @param  UniversityDepartment  $department
+     * @return JsonResponse
+     * @throws AuthorizationException
+     * @throws ValidationException
+     */
+    public function updateDepartment(Request $request, UniversityDepartment $department): JsonResponse
+    {
+        $this->authorize('update', University::class);
+
+        $validatedDepartmentData = $this->validate(
+            $request,
+            [
+                'university_id' => 'required|integer|min:1|exists:universities,id',
+                'university_faculty_id' => 'required|integer|min:1|exists:university_faculties,id',
+                'name' => 'required|string|unique:university_departments,name,' . $department->id .
+                    ',id,university_id,' . $request->university_id .
+                    ',university_faculty_id,' . $request->university_faculty_id,
+            ]
+        );
+
+        $department->update($validatedDepartmentData);
+
+        return response()->json(compact('department'));
     }
 
     /**
@@ -270,6 +303,7 @@ class UniversityController extends Controller
         }
 
         $university->delete();
+        Cache::forget("universities");
 
         return response()->json(null, Response::HTTP_NO_CONTENT);
     }
@@ -296,6 +330,7 @@ class UniversityController extends Controller
             );
         }
 
+        Cache::forget("universities:{$faculty->university_id}:faculties");
         $faculty->delete();
 
         return response()->json(null, Response::HTTP_NO_CONTENT);
@@ -316,6 +351,9 @@ class UniversityController extends Controller
             );
         }
 
+        Cache::forget(
+            "universities:{$department->university_id}:faculties:{$department->university_faculty_id}:departments"
+        );
         $department->delete();
 
         return response()->json(null, Response::HTTP_NO_CONTENT);
