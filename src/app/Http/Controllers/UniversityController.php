@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\University;
+use App\Models\UniversityDepartment;
 use App\Models\UniversityFaculty;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -26,6 +27,165 @@ class UniversityController extends Controller
         }
 
         return response()->json(compact('universities'));
+    }
+
+    /**
+     * @param  Request  $request
+     * @return JsonResponse
+     */
+    public function indexPaginate(Request $request): JsonResponse
+    {
+        $this->authorize('update', University::class);
+
+        $universities = University::withCount('faculties', 'departments', 'users')
+            ->orderByTabulator($request)
+            ->paginate($request->size);
+
+        return response()->json($universities->toArray());
+    }
+
+    /**
+     * @param  Request  $request
+     * @return JsonResponse
+     */
+    public function indexFacultiesPaginate(Request $request): JsonResponse
+    {
+        $this->authorize('update', University::class);
+
+        $faculties = UniversityFaculty::with('university')
+            ->withCount('departments', 'users')
+            ->orderByTabulator($request)
+            ->paginate($request->size);
+
+        return response()->json($faculties->toArray());
+    }
+
+    /**
+     * @param  Request  $request
+     * @return JsonResponse
+     */
+    public function indexDepartmentsPaginate(Request $request): JsonResponse
+    {
+        $this->authorize('update', University::class);
+
+        $departments = UniversityDepartment::with('university', 'faculty')
+            ->withCount('users')
+            ->orderByTabulator($request)
+            ->paginate($request->size);
+
+        return response()->json($departments->toArray());
+    }
+
+    /**
+     * @param  University  $university
+     * @return JsonResponse
+     */
+    public function show(University $university): JsonResponse
+    {
+        $university->load('faculties');
+
+        return response()->json($university->toArray());
+    }
+
+    /**
+     * @param  UniversityFaculty  $faculty
+     * @return JsonResponse
+     */
+    public function showFaculty(UniversityFaculty $faculty): JsonResponse
+    {
+        $faculty->load('departments');
+
+        return response()->json($faculty->toArray());
+    }
+
+    /**
+     * @param  UniversityDepartment  $department
+     * @return JsonResponse
+     */
+    public function showDepartment(UniversityDepartment $department): JsonResponse
+    {
+        return response()->json($department->toArray());
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  Request  $request
+     * @param  University  $university
+     * @return JsonResponse
+     * @throws AuthorizationException
+     * @throws ValidationException
+     */
+    public function update(Request $request, University $university): JsonResponse
+    {
+        $this->authorize('update', University::class);
+
+        $validatedUniversityData = $this->validate(
+            $request,
+            [
+                'name' => 'required|string|unique:universities,name,' . $university->id,
+            ]
+        );
+
+        $university->update($validatedUniversityData);
+
+        return response()->json(compact('university'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  Request  $request
+     * @param  UniversityFaculty  $faculty
+     * @return JsonResponse
+     * @throws AuthorizationException
+     * @throws ValidationException
+     */
+    public function updateFaculty(Request $request, UniversityFaculty $faculty): JsonResponse
+    {
+        $this->authorize('update', University::class);
+
+        $validatedFacultyData = $this->validate(
+            $request,
+            [
+                'university_id' => 'required|integer|min:1|exists:universities,id',
+                'name' => 'required|string|unique:university_faculties,name,' . $faculty->id .
+                    ',id,university_id,' . $request->university_id,
+            ]
+        );
+
+        $faculty->update($validatedFacultyData);
+
+        return response()->json(compact('faculty'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  Request  $request
+     * @param  UniversityDepartment  $department
+     * @return JsonResponse
+     * @throws AuthorizationException
+     * @throws ValidationException
+     */
+    public function updateDepartment(Request $request, UniversityDepartment $department): JsonResponse
+    {
+        $this->authorize('update', University::class);
+
+        $validatedDepartmentData = $this->validate(
+            $request,
+            [
+                'university_id' => 'required|integer|min:1|exists:universities,id',
+                'university_faculty_id' => 'required|integer|min:1|exists:university_faculties,id',
+                'name' => 'required|string|unique:university_departments,name,' . $department->id .
+                    ',id,university_id,' . $request->university_id .
+                    ',university_faculty_id,' . $request->university_faculty_id,
+            ]
+        );
+
+        $department->update($validatedDepartmentData);
+
+        return response()->json(compact('department'));
     }
 
     /**
@@ -118,5 +278,84 @@ class UniversityController extends Controller
         Cache::forget("universities:{$university->id}:faculties:{$faculty->id}:departments");
 
         return response()->json(compact('department'), Response::HTTP_CREATED);
+    }
+
+    /**
+     * @param  University  $university
+     * @return JsonResponse
+     */
+    public function destroy(University $university): JsonResponse
+    {
+        $this->authorize('delete', University::class);
+
+        if ($university->faculties()->exists()) {
+            return response()->json(
+                ['message' => 'Üniversite silinemez, çünkü içinde fakülteler mevcut.'],
+                Response::HTTP_UNPROCESSABLE_ENTITY
+            );
+        }
+
+        if ($university->users()->exists()) {
+            return response()->json(
+                ['message' => 'Üniversite silinemez, çünkü seçmiş olan kullanıcılar mevcut.'],
+                Response::HTTP_UNPROCESSABLE_ENTITY
+            );
+        }
+
+        $university->delete();
+        Cache::forget("universities");
+
+        return response()->json(null, Response::HTTP_NO_CONTENT);
+    }
+
+    /**
+     * @param  UniversityFaculty  $faculty
+     * @return JsonResponse
+     */
+    public function destroyFaculty(UniversityFaculty $faculty): JsonResponse
+    {
+        $this->authorize('delete', University::class);
+
+        if ($faculty->departments()->exists()) {
+            return response()->json(
+                ['message' => 'Fakülte silinemez, çünkü içinde bölümler mevcut.'],
+                Response::HTTP_UNPROCESSABLE_ENTITY
+            );
+        }
+
+        if ($faculty->users()->exists()) {
+            return response()->json(
+                ['message' => 'Fakülte silinemez, çünkü seçmiş olan kullanıcılar mevcut.'],
+                Response::HTTP_UNPROCESSABLE_ENTITY
+            );
+        }
+
+        Cache::forget("universities:{$faculty->university_id}:faculties");
+        $faculty->delete();
+
+        return response()->json(null, Response::HTTP_NO_CONTENT);
+    }
+
+    /**
+     * @param  UniversityDepartment  $department
+     * @return JsonResponse
+     */
+    public function destroyDepartment(UniversityDepartment $department): JsonResponse
+    {
+        $this->authorize('delete', University::class);
+
+        if ($department->users()->exists()) {
+            return response()->json(
+                ['message' => 'Bölüm silinemez, çünkü seçmiş olan kullanıcılar mevcut.'],
+                Response::HTTP_UNPROCESSABLE_ENTITY
+            );
+        }
+
+        Cache::forget(
+            "universities:{$department->university_id}:faculties:{$department->university_faculty_id}:departments"
+        );
+        $department->delete();
+
+        return response()->json(null, Response::HTTP_NO_CONTENT);
     }
 }

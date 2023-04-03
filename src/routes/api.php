@@ -58,7 +58,16 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::apiResource('courses', CourseController::class);
 
+    Route::get('universities/paginate', [UniversityController::class, 'indexPaginate']);
     Route::apiResource('universities', UniversityController::class);
+    Route::get('faculties/paginate', [UniversityController::class, 'indexFacultiesPaginate']);
+    Route::get('faculties/{faculty}', [UniversityController::class, 'showFaculty']);
+    Route::put('faculties/{faculty}', [UniversityController::class, 'updateFaculty']);
+    Route::delete('faculties/{faculty}', [UniversityController::class, 'destroyFaculty']);
+    Route::get('departments/paginate', [UniversityController::class, 'indexDepartmentsPaginate']);
+    Route::get('departments/{department}', [UniversityController::class, 'showDepartment']);
+    Route::put('departments/{department}', [UniversityController::class, 'updateDepartment']);
+    Route::delete('departments/{department}', [UniversityController::class, 'destroyDepartment']);
     Route::get('universities/{university}/faculties', [UniversityController::class, 'faculties']);
     Route::post('universities/{university}/faculties', [UniversityController::class, 'storeFaculty']);
     Route::get(
