@@ -19,6 +19,7 @@ class AuthServiceProvider extends ServiceProvider
         'App\Models\WhatsappGroup' => 'App\Policies\WhatsappGroupPolicy',
         'App\Models\Complaint' => 'App\Policies\ComplaintPolicy',
         'App\Models\Country' => 'App\Policies\CountryPolicy',
+        'App\Models\University' => 'App\Policies\UniversityPolicy',
     ];
 
     /**
