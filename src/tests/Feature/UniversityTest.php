@@ -384,7 +384,6 @@ class UniversityTest extends BaseFeatureTest
         $response->assertSuccessful();
     }
 
-
     /** @test */
     public function it_should_not_delete_department_details_when_does_not_have_permission()
     {
