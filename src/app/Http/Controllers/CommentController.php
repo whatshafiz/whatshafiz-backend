@@ -48,21 +48,24 @@ class CommentController extends Controller
             ->when(isset($filters['is_approved']), function ($query) use ($filters) {
                 return $query->where('is_approved', $filters['is_approved']);
             })
-            ->latest('id')
-            ->paginate()
+            ->orderByTabulator($request)
+            ->paginate($request->size)
             ->appends($filters);
 
-        return response()->json(compact('comments'));
+        return response()->json($comments->toArray());
     }
 
     /**
+     * @param Request $request
      * @return JsonResponse
      */
-    public function myComments(): JsonResponse
+    public function myComments(Request $request): JsonResponse
     {
-        $comments = Comment::where('commented_by_id', Auth::id())->paginate();
+        $comments = Comment::where('commented_by_id', Auth::id())
+            ->orderByTabulator($request)
+            ->paginate($request->size);
 
-        return response()->json(compact('comments'));
+        return response()->json($comments->toArray());
     }
 
     /**
