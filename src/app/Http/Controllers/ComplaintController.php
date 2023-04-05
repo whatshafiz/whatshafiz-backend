@@ -35,8 +35,7 @@ class ComplaintController extends Controller
             ]
         );
 
-        $complaints = Complaint::latest()
-            ->when(isset($filters['created_by']), function ($query) use ($filters) {
+        $complaints = Complaint::when(isset($filters['created_by']), function ($query) use ($filters) {
                 return $query->where('created_by', $filters['created_by']);
             })
             ->when(isset($filters['reviewed_by']), function ($query) use ($filters) {
@@ -60,11 +59,11 @@ class ComplaintController extends Controller
             ->when(isset($filters['related_user_id']), function ($query) use ($filters) {
                 return $query->where('related_user_id', $filters['related_user_id']);
             })
-            ->paginate()
-            ->appends($filters)
-            ->toArray();
+            ->orderByTabulator($request)
+            ->paginate($request->size)
+            ->appends($filters);
 
-        return response()->json(compact('complaints'));
+        return response()->json($complaints->toArray());
     }
 
     /**
@@ -103,10 +102,10 @@ class ComplaintController extends Controller
             ->when(isset($requestData['subject']), function ($query) use ($requestData) {
                 return $query->where('subject', $requestData['subject']);
             })
-            ->latest()
-            ->paginate();
+            ->orderByTabulator($request)
+            ->paginate($request->size);
 
-        return response()->json(compact('complaints'));
+        return response()->json($complaints->toArray());
     }
 
     /**
