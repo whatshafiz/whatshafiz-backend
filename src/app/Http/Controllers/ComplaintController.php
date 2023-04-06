@@ -36,8 +36,8 @@ class ComplaintController extends Controller
         );
 
         $complaints = Complaint::when(isset($filters['created_by']), function ($query) use ($filters) {
-                return $query->where('created_by', $filters['created_by']);
-            })
+            return $query->where('created_by', $filters['created_by']);
+        })
             ->when(isset($filters['reviewed_by']), function ($query) use ($filters) {
                 return $query->where('reviewed_by', $filters['reviewed_by']);
             })
