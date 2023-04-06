@@ -6,6 +6,7 @@ sudo docker exec `sudo docker ps |grep php-fpm|awk '{print $1}'` bash -c 'chmod 
 sudo docker exec `sudo docker ps |grep php-fpm|awk '{print $1}'` bash -c 'cp -R /var/www/public /var/www/public_html'
 sudo docker exec `sudo docker ps |grep php-fpm|awk '{print $1}'` php artisan clear-compiled
 sudo docker exec `sudo docker ps |grep php-fpm|awk '{print $1}'` php artisan storage:link
+sudo docker exec `sudo docker ps |grep php-fpm|awk '{print $1}'` php artisan cache:clear
 sudo docker exec `sudo docker ps |grep php-fpm|awk '{print $1}'` php artisan config:cache
 sudo docker exec `sudo docker ps |grep php-fpm|awk '{print $1}'` php artisan route:cache
 sudo docker exec `sudo docker ps |grep php-fpm|awk '{print $1}'` php artisan event:cache
