@@ -22,11 +22,22 @@ class SettingController extends Controller
         if (Cache::has($this->cacheKey)) {
             $settings = Cache::get($this->cacheKey);
         } else {
-            $settings = Setting::select(['id', 'name', 'value'])->paginate()->toArray();
+            $settings = Setting::get(['id', 'name', 'value']);
             Cache::put($this->cacheKey, $settings);
         }
 
-        return response()->json($settings);
+        return response()->json(compact('settings'));
+    }
+
+    /**
+     * @param  Request  $request
+     * @return JsonResponse
+     */
+    public function indexPaginate(Request $request): JsonResponse
+    {
+        $settings = Setting::select(['id', 'name', 'value'])->orderByTabulator($request)->paginate($request->size);
+
+        return response()->json($settings->toArray());
     }
 
     /**
