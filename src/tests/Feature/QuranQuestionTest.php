@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\QuranQuestion;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Tests\BaseFeatureTest;
 
 class QuranQuestionTest extends BaseFeatureTest
@@ -43,6 +44,7 @@ class QuranQuestionTest extends BaseFeatureTest
         $response->assertOk();
 
         foreach ($quranQuestions as $quranQuestion) {
+            $quranQuestion['question'] = Str::limit($quranQuestion['question'], 33);
             $response->assertJsonFragment($quranQuestion->toArray());
         }
     }
@@ -71,6 +73,7 @@ class QuranQuestionTest extends BaseFeatureTest
         $response->assertOk();
 
         foreach (QuranQuestion::where($searchQuery)->get() as $question) {
+            $question['question'] = Str::limit($question['question'], 33);
             $response->assertJsonFragment($question->toArray());
         }
     }

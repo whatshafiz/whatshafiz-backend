@@ -24,22 +24,22 @@ class QuranQuestionController extends Controller
         $this->authorize('viewAny', QuranQuestion::class);
 
         $filters = $this->validate($request, [
-            'page_number' => 'nullable|integer|min:1|max:600',
+            'page_number' => 'nullable|integer|min:1|max:610',
             'question' => 'nullable|string|max:3000',
         ]);
 
-        $questions = QuranQuestion::latest()
+        $questions = QuranQuestion::selectRaw('*, CONCAT(TRIM(SUBSTRING(question, 1, 33)), \'...\') as question')
             ->when(isset($filters['page_number']), function ($query) use ($filters) {
                 return $query->where('page_number', $filters['page_number']);
             })
             ->when(isset($filters['question']), function ($query) use ($filters) {
                 return $query->where('question', 'LIKE', '%' . $filters['question'] . '%');
             })
-            ->paginate()
-            ->appends($filters)
-            ->toArray();
+            ->orderByTabulator($request)
+            ->paginate($request->size)
+            ->appends($filters);
 
-        return response()->json(compact('questions'));
+        return response()->json($questions->toArray());
     }
 
     /**
@@ -55,7 +55,7 @@ class QuranQuestionController extends Controller
         $this->authorize('create', QuranQuestion::class);
 
         $validatedQuranQuestionData = $this->validate($request, [
-            'page_number' => 'required|integer|min:1|max:600',
+            'page_number' => 'required|integer|min:1|max:610',
             'question' => 'required|string|max:3000',
             'option_1' => 'required|string|max:255',
             'option_2' => 'required|string|max:255',
@@ -98,7 +98,7 @@ class QuranQuestionController extends Controller
         $this->authorize('update', QuranQuestion::class);
 
         $validatedQuranQuestionData = $this->validate($request, [
-            'page_number' => 'required|integer|min:1|max:600',
+            'page_number' => 'required|integer|min:1|max:610',
             'question' => 'required|string|max:3000',
             'option_1' => 'required|string|max:255',
             'option_2' => 'required|string|max:255',

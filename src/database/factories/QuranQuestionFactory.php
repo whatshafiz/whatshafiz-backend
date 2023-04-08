@@ -18,7 +18,7 @@ class QuranQuestionFactory extends Factory
     {
         return [
             'page_number' => $this->faker->numberBetween(1, 600),
-            'question' => $this->faker->sentences(rand(1, 11), true),
+            'question' => $this->faker->sentences(rand(3, 15), true),
             'option_1' => $this->faker->sentence,
             'option_2' => $this->faker->sentence,
             'option_3' => $this->faker->sentence,
