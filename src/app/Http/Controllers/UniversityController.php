@@ -8,6 +8,7 @@ use App\Models\UniversityFaculty;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 
 class UniversityController extends Controller
@@ -37,9 +38,16 @@ class UniversityController extends Controller
     {
         $this->authorize('update', University::class);
 
+        $searchKey = $this->getTabulatorSearchKey($request);
+
         $universities = University::withCount('faculties', 'departments', 'users')
+            ->when(!empty($searchKey), function ($query) use ($searchKey) {
+                return $query->where('id', $searchKey)
+                    ->orWhere('name', 'LIKE', '%' . $searchKey . '%');
+            })
             ->orderByTabulator($request)
-            ->paginate($request->size);
+            ->paginate($request->size)
+            ->appends($this->filters);
 
         return response()->json($universities->toArray());
     }
@@ -52,10 +60,17 @@ class UniversityController extends Controller
     {
         $this->authorize('update', University::class);
 
+        $searchKey = $this->getTabulatorSearchKey($request);
+
         $faculties = UniversityFaculty::with('university')
             ->withCount('departments', 'users')
+            ->when(!empty($searchKey), function ($query) use ($searchKey) {
+                return $query->where('id', $searchKey)
+                    ->orWhere('name', 'LIKE', '%' . $searchKey . '%');
+            })
             ->orderByTabulator($request)
-            ->paginate($request->size);
+            ->paginate($request->size)
+            ->appends($this->filters);
 
         return response()->json($faculties->toArray());
     }
@@ -68,10 +83,17 @@ class UniversityController extends Controller
     {
         $this->authorize('update', University::class);
 
+        $searchKey = $this->getTabulatorSearchKey($request);
+
         $departments = UniversityDepartment::with('university', 'faculty')
             ->withCount('users')
+            ->when(!empty($searchKey), function ($query) use ($searchKey) {
+                return $query->where('id', $searchKey)
+                    ->orWhere('name', 'LIKE', '%' . $searchKey . '%');
+            })
             ->orderByTabulator($request)
-            ->paginate($request->size);
+            ->paginate($request->size)
+            ->appends($this->filters);
 
         return response()->json($departments->toArray());
     }

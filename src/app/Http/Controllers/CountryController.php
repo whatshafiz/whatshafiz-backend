@@ -6,6 +6,7 @@ use App\Models\City;
 use App\Models\Country;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -36,7 +37,18 @@ class CountryController extends Controller
     {
         $this->authorize('update', Country::class);
 
-        $countries = Country::withCount('cities', 'users')->orderByTabulator($request)->paginate($request->size);
+        $searchKey = $this->getTabulatorSearchKey($request);
+
+        $countries = Country::withCount('cities', 'users')
+            ->when(!empty($searchKey), function ($query) use ($searchKey) {
+                return $query->where('id', $searchKey)
+                    ->orWhere('iso', $searchKey)
+                    ->orWhere('phone_code', $searchKey)
+                    ->orWhere('name', 'LIKE', '%' . $searchKey . '%');
+            })
+            ->orderByTabulator($request)
+            ->paginate($request->size)
+            ->appends($this->filters);
 
         return response()->json($countries->toArray());
     }
@@ -49,7 +61,17 @@ class CountryController extends Controller
     {
         $this->authorize('update', Country::class);
 
-        $cities = City::with('country')->withCount('users')->orderByTabulator($request)->paginate($request->size);
+        $searchKey = $this->getTabulatorSearchKey($request);
+
+        $cities = City::with('country')
+            ->withCount('users')
+            ->when(!empty($searchKey), function ($query) use ($searchKey) {
+                return $query->where('id', $searchKey)
+                    ->orWhere('name', 'LIKE', '%' . $searchKey . '%');
+            })
+            ->orderByTabulator($request)
+            ->paginate($request->size)
+            ->appends($this->filters);
 
         return response()->json($cities->toArray());
     }
