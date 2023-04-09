@@ -326,7 +326,7 @@ class UniversityTest extends BaseFeatureTest
         $user = User::factory()->create();
         $user->givePermissionTo('universities.delete');
 
-        $university = University::whereDoesntHave('faculties')->inRandomOrder()->first();
+        $university = University::whereDoesntHave('faculties')->whereDoesntHave('users')->inRandomOrder()->first();
 
         $response = $this->actingAs($user)->json('DELETE', $this->uri . '/' . $university->id);
 

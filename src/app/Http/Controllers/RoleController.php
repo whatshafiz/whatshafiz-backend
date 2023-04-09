@@ -19,9 +19,16 @@ class RoleController extends Controller
      */
     public function index(Request $request): JsonResponse
     {
+        $searchKey = $this->getTabulatorSearchKey($request);
+
         $roles = Role::where('name', '!=', 'Admin')
+            ->when(!empty($searchKey), function ($query) use ($searchKey) {
+                return $query->where('id', $searchKey)
+                    ->orWhere('name', 'LIKE', '%' . $searchKey . '%');
+            })
             ->orderByTabulator($request)
-            ->paginate($request->size);
+            ->paginate($request->size)
+            ->appends($this->filters);
 
         return response()->json($roles->toArray());
     }

@@ -23,21 +23,17 @@ class QuranQuestionController extends Controller
     {
         $this->authorize('viewAny', QuranQuestion::class);
 
-        $filters = $this->validate($request, [
-            'page_number' => 'nullable|integer|min:1|max:610',
-            'question' => 'nullable|string|max:3000',
-        ]);
+        $searchKey = $this->getTabulatorSearchKey($request);
 
         $questions = QuranQuestion::selectRaw('*, CONCAT(TRIM(SUBSTRING(question, 1, 33)), \'...\') as question')
-            ->when(isset($filters['page_number']), function ($query) use ($filters) {
-                return $query->where('page_number', $filters['page_number']);
-            })
-            ->when(isset($filters['question']), function ($query) use ($filters) {
-                return $query->where('question', 'LIKE', '%' . $filters['question'] . '%');
+            ->when(!empty($searchKey), function ($query) use ($searchKey) {
+                return $query->where('id', $searchKey)
+                    ->orWhere('page_number', $searchKey)
+                    ->orWhere('question', 'LIKE', '%' . $searchKey . '%');
             })
             ->orderByTabulator($request)
             ->paginate($request->size)
-            ->appends($filters);
+            ->appends($this->filters);
 
         return response()->json($questions->toArray());
     }

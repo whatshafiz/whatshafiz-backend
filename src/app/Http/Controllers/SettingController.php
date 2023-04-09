@@ -35,7 +35,17 @@ class SettingController extends Controller
      */
     public function indexPaginate(Request $request): JsonResponse
     {
-        $settings = Setting::select(['id', 'name', 'value'])->orderByTabulator($request)->paginate($request->size);
+        $searchKey = $this->getTabulatorSearchKey($request);
+
+        $settings = Setting::select(['id', 'name', 'value'])
+            ->when(!empty($searchKey), function ($query) use ($searchKey) {
+                return $query->where('id', $searchKey)
+                    ->orWhere('name', 'LIKE', '%' . $searchKey . '%')
+                    ->orWhere('value', 'LIKE', '%' . $searchKey . '%');
+            })
+            ->orderByTabulator($request)
+            ->paginate($request->size)
+            ->appends($this->filters);
 
         return response()->json($settings->toArray());
     }
