@@ -30,7 +30,11 @@ class WhatsappGroupController extends Controller
                     ->orWhere('type', $searchKey)
                     ->orWhere('gender', $searchKey)
                     ->orWhere('name', 'LIKE', '%' . $searchKey . '%')
-                    ->orWhere('join_url', 'LIKE', '%' . $searchKey . '%');
+                    ->orWhere('join_url', 'LIKE', '%' . $searchKey . '%')
+                    ->orWhereHas('course', function ($subQuery) use ($searchKey) {
+                        return $subQuery->where('id', $searchKey)
+                            ->orWhere('name', 'LIKE', '%' . $searchKey . '%');
+                    });
             })
             ->orderByTabulator($request)
             ->paginate($request->size)
