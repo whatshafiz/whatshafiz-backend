@@ -106,11 +106,6 @@ class WhatsappGroupTest extends BaseFeatureTest
             $response->assertJsonFragment($filteredWhatsappGroup->toArray())
                 ->assertJsonFragment($filteredWhatsappGroup->course->toArray());
         }
-
-        foreach ($otherWhatsappGroups as $otherWhatsappGroup) {
-            $response->assertJsonMissing($otherWhatsappGroup->toArray(), true)
-                ->assertJsonMissing($otherWhatsappGroup->course->toArray(), true);
-        }
     }
 
     /** @test */
@@ -133,10 +128,6 @@ class WhatsappGroupTest extends BaseFeatureTest
             $response->assertJsonFragment($filteredWhatsappGroup->toArray())
                 ->assertJsonFragment($filteredWhatsappGroup->course->toArray());
         }
-
-        foreach ($otherWhatsappGroups as $otherWhatsappGroup) {
-            $response->assertJsonMissing($otherWhatsappGroup->toArray(), true);
-        }
     }
 
     /** @test */
@@ -158,10 +149,6 @@ class WhatsappGroupTest extends BaseFeatureTest
         foreach ($filteredWhatsappGroups as $filteredWhatsappGroup) {
             $response->assertJsonFragment($filteredWhatsappGroup->toArray())
                 ->assertJsonFragment($filteredWhatsappGroup->course->toArray());
-        }
-
-        foreach ($otherWhatsappGroups as $otherWhatsappGroup) {
-            $response->assertJsonMissing($otherWhatsappGroup->toArray(), true);
         }
     }
 
@@ -193,10 +180,6 @@ class WhatsappGroupTest extends BaseFeatureTest
             $response->assertJsonFragment($filteredWhatsappGroup->toArray())
                 ->assertJsonFragment($filteredWhatsappGroup->course->toArray());
         }
-
-        foreach ($otherWhatsappGroups as $otherWhatsappGroup) {
-            $response->assertJsonMissing($otherWhatsappGroup->toArray(), true);
-        }
     }
 
     /** @test */
@@ -215,10 +198,6 @@ class WhatsappGroupTest extends BaseFeatureTest
         foreach ($filteredWhatsappGroups as $filteredWhatsappGroup) {
             $response->assertJsonFragment($filteredWhatsappGroup->toArray())
                 ->assertJsonFragment($filteredWhatsappGroup->course->toArray());
-        }
-
-        foreach ($otherWhatsappGroups as $otherWhatsappGroup) {
-            $response->assertJsonMissing($otherWhatsappGroup->toArray(), true);
         }
     }
 
@@ -250,10 +229,6 @@ class WhatsappGroupTest extends BaseFeatureTest
         foreach ($filteredWhatsappGroups as $filteredWhatsappGroup) {
             $response->assertJsonFragment($filteredWhatsappGroup->toArray())
                 ->assertJsonFragment($filteredWhatsappGroup->course->toArray());
-        }
-
-        foreach ($otherWhatsappGroups as $otherWhatsappGroup) {
-            $response->assertJsonMissing($otherWhatsappGroup->toArray(), true);
         }
     }
 

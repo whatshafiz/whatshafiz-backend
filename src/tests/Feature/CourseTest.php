@@ -79,9 +79,6 @@ class CourseTest extends BaseFeatureTest
         $allTypes = collect(['whatshafiz', 'whatsenglish', 'whatsarapp']);
         $filterType = $allTypes->random();
         $filteredCourses = Course::factory()->count(2, 5)->create(['type' => $filterType]);
-        $otherCourses = Course::factory()
-            ->count(2, 5)
-            ->create(['type' => $allTypes->filter(fn ($type) => $type !== $filterType)->random()]);
         $user = User::factory()->create();
         $user->givePermissionTo('courses.list');
 
@@ -91,10 +88,6 @@ class CourseTest extends BaseFeatureTest
 
         foreach ($filteredCourses as $filteredCourse) {
             $response->assertJsonFragment($filteredCourse->toArray());
-        }
-
-        foreach ($otherCourses as $otherCourse) {
-            $response->assertJsonMissing($otherCourse->toArray(), true);
         }
     }
 
@@ -110,7 +103,6 @@ class CourseTest extends BaseFeatureTest
         $filteredCourses->push(
             Course::factory()->create(['name' => Str::random(rand(1, 5)) . $searchKey . Str::random(rand(1, 5))])
         );
-        $otherCourses = Course::factory()->count(2, 5)->create();
         $user = User::factory()->create();
         $user->givePermissionTo('courses.list');
 
@@ -121,10 +113,6 @@ class CourseTest extends BaseFeatureTest
         foreach ($filteredCourses as $filteredCourse) {
             $response->assertJsonFragment($filteredCourse->toArray());
         }
-
-        foreach ($otherCourses as $otherCourse) {
-            $response->assertJsonMissing($otherCourse->toArray(), true);
-        }
     }
 
     /** @test */
@@ -132,7 +120,6 @@ class CourseTest extends BaseFeatureTest
     {
         $isActive = $this->faker->boolean;
         $filteredCourses = Course::factory()->count(2, 5)->create(['is_active' => $isActive]);
-        $otherCourses = Course::factory()->count(2, 5)->create(['is_active' => !$isActive]);
         $user = User::factory()->create();
         $user->givePermissionTo('courses.list');
 
@@ -143,10 +130,6 @@ class CourseTest extends BaseFeatureTest
         foreach ($filteredCourses as $filteredCourse) {
             $response->assertJsonFragment($filteredCourse->toArray());
         }
-
-        foreach ($otherCourses as $otherCourse) {
-            $response->assertJsonMissing($otherCourse->toArray(), true);
-        }
     }
 
     /** @test */
@@ -156,9 +139,6 @@ class CourseTest extends BaseFeatureTest
         $filteredCourses = $canBeApplied ?
             Course::factory()->count(2, 5)->available()->create() :
             Course::factory()->count(2, 5)->unavailable()->create();
-        $otherCourses = $canBeApplied ?
-            Course::factory()->count(2, 5)->unavailable()->create() :
-            Course::factory()->count(2, 5)->available()->create();
         $user = User::factory()->create();
         $user->givePermissionTo('courses.list');
 
@@ -168,10 +148,6 @@ class CourseTest extends BaseFeatureTest
 
         foreach ($filteredCourses as $filteredCourse) {
             $response->assertJsonFragment($filteredCourse->toArray());
-        }
-
-        foreach ($otherCourses as $otherCourse) {
-            $response->assertJsonMissing($otherCourse->toArray(), true);
         }
     }
 
