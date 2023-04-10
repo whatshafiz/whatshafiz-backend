@@ -57,6 +57,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('countries/{country}/cities', [CountryController::class, 'cities']);
     Route::post('countries/{country}/cities', [CountryController::class, 'storeCity']);
 
+    Route::get('courses/paginate', [CourseController::class, 'indexPaginate']);
     Route::apiResource('courses', CourseController::class);
 
     Route::get('universities/paginate', [UniversityController::class, 'indexPaginate']);

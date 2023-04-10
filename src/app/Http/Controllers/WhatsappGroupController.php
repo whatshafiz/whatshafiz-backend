@@ -74,7 +74,9 @@ class WhatsappGroupController extends Controller
     {
         $this->authorize('view', [WhatsappGroup::class, $whatsappGroup]);
 
-        return response()->json($whatsappGroup->load('users.user')->toArray());
+        $whatsappGroup = $whatsappGroup->load('users.user', 'course')->toArray();
+
+        return response()->json(compact('whatsappGroup'));
     }
 
     /**
@@ -100,7 +102,7 @@ class WhatsappGroupController extends Controller
 
         $whatsappGroup->update($validatedWhatsappGroupData);
 
-        return response()->json(null, Response::HTTP_NO_CONTENT);
+        return response()->json(compact('whatsappGroup'));
     }
 
     /**

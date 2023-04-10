@@ -10,10 +10,22 @@ use Symfony\Component\HttpFoundation\Response;
 class CourseController extends Controller
 {
     /**
+     * @return JsonResponse
+     */
+    public function index(): JsonResponse
+    {
+        $this->authorize('viewAny', Course::class);
+
+        $courses = Course::latest()->get();
+
+        return response()->json(compact('courses'));
+    }
+
+    /**
      * @param  Request  $request
      * @return JsonResponse
      */
-    public function index(Request $request): JsonResponse
+    public function indexPaginate(Request $request): JsonResponse
     {
         $this->authorize('viewAny', Course::class);
 
