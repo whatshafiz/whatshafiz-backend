@@ -33,10 +33,10 @@ class CourseController extends Controller
         $searchKey = $this->getTabulatorSearchKey($request);
 
         $courses = Course::when(!empty($searchKey), function ($query) use ($searchKey) {
-                return $query->where('id', $searchKey)
-                    ->orWhere('type', 'LIKE', '%' . $searchKey . '%')
-                    ->orWhere('name', 'LIKE', '%' . $searchKey . '%');
-            })
+            return $query->where('id', $searchKey)
+                ->orWhere('type', 'LIKE', '%' . $searchKey . '%')
+                ->orWhere('name', 'LIKE', '%' . $searchKey . '%');
+        })
             ->orderByTabulator($request)
             ->paginate($request->size)
             ->appends($this->filters);
