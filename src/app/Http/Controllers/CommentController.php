@@ -51,7 +51,7 @@ class CommentController extends Controller
                 return $query->where('is_approved', $filters['is_approved']);
             })
             ->when(!empty($searchKey), function ($query) use ($searchKey) {
-                return $query->where(function($subQuery) use ($searchKey)  {
+                return $query->where(function ($subQuery) use ($searchKey) {
                     return $subQuery->where('id', $searchKey)
                         ->orWhere('title', 'LIKE', '%' . $searchKey . '%')
                         ->orWhere('comment', 'LIKE', '%' . $searchKey . '%')

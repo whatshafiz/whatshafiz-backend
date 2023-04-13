@@ -48,7 +48,7 @@ class ComplaintController extends Controller
                 return $query->where('related_user_id', $filters['related_user_id']);
             })
             ->when(!empty($searchKey), function ($query) use ($searchKey) {
-                return $query->where(function($subQuery) use ($searchKey)  {
+                return $query->where(function ($subQuery) use ($searchKey) {
                     return $subQuery->where('id', $searchKey)
                         ->orWhere('result', 'LIKE', '%' . $searchKey . '%')
                         ->orWhere('subject', 'LIKE', '%' . $searchKey . '%')
