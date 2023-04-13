@@ -124,7 +124,8 @@ class RolesPermissionsSeeder extends Seeder
             'Whatsenglish',
         ];
 
-        Role::create(['name' => 'Admin']);
+        Role::create(['name' => 'Admin'])
+            ->givePermissionTo($permissions);
         Role::create(['name' => 'Moderator'])
             ->givePermissionTo([
                 'whatsappGroups.*',

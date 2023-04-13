@@ -48,10 +48,24 @@ class ComplaintController extends Controller
                 return $query->where('related_user_id', $filters['related_user_id']);
             })
             ->when(!empty($searchKey), function ($query) use ($searchKey) {
-                return $query->where('id', $searchKey)
-                    ->orWhere('result', 'LIKE', '%' . $searchKey . '%')
-                    ->orWhere('subject', 'LIKE', '%' . $searchKey . '%')
-                    ->orWhere('description', 'LIKE', '%' . $searchKey . '%');
+                return $query->where(function($subQuery) use ($searchKey)  {
+                    return $subQuery->where('id', $searchKey)
+                        ->orWhere('result', 'LIKE', '%' . $searchKey . '%')
+                        ->orWhere('subject', 'LIKE', '%' . $searchKey . '%')
+                        ->orWhere('description', 'LIKE', '%' . $searchKey . '%')
+                        ->orWhereHas('createdUser', function ($subQuery) use ($searchKey) {
+                            return $subQuery->where('name', 'LIKE', '%' . $searchKey . '%')
+                                ->orWhere('surname', 'LIKE', '%' . $searchKey . '%');
+                        })
+                        ->orWhereHas('reviewedUser', function ($subQuery) use ($searchKey) {
+                            return $subQuery->where('name', 'LIKE', '%' . $searchKey . '%')
+                                ->orWhere('surname', 'LIKE', '%' . $searchKey . '%');
+                        })
+                        ->orWhereHas('relatedUser', function ($subQuery) use ($searchKey) {
+                            return $subQuery->where('name', 'LIKE', '%' . $searchKey . '%')
+                                ->orWhere('surname', 'LIKE', '%' . $searchKey . '%');
+                        });
+                });
             })
             ->orderByTabulator($request)
             ->paginate($request->size)
