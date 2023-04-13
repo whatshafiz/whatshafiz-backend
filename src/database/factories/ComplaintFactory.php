@@ -18,15 +18,17 @@ class ComplaintFactory extends Factory
      */
     public function definition()
     {
+        $isReviewed = $this->faker->boolean;
+
         return [
             'created_by' => User::factory()->create()->id,
-            'reviewed_by' => null,
-            'reviewed_at' => null,
-            'is_fixed' => $this->faker->boolean,
+            'reviewed_by' => $isReviewed ? User::factory()->create()->id : null,
+            'reviewed_at' => $isReviewed ? $this->faker->datetime : null,
+            'is_resolved' => $this->faker->boolean,
             'result' => $this->faker->text(100),
             'subject' => $this->faker->text(100),
-            'description' => $this->faker->text(100),
-            'related_user_id' => User::factory()->create()->id,
+            'description' => $this->faker->text(255),
+            'related_user_id' => $this->faker->boolean ? User::factory()->create()->id : null,
         ];
     }
 }

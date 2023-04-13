@@ -16,10 +16,10 @@ return new class extends Migration
     {
         Schema::create('complaints', function (Blueprint $table) {
             $table->id();
-            $table->boolean('is_fixed')->default(false);
-            $table->string('result')->nullable();
+            $table->boolean('is_resolved')->default(false);
+            $table->text('result')->nullable();
             $table->string('subject');
-            $table->string('description');
+            $table->text('description');
             $table->foreignIdFor(User::class, 'related_user_id')->nullable()->constrained('users');
             $table->foreignIdFor(User::class, 'created_by')->constrained('users');
             $table->foreignIdFor(User::class, 'reviewed_by')->nullable()->constrained('users');

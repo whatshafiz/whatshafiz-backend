@@ -2960,7 +2960,7 @@
 									"type": "text"
 								},
 								{
-									"key": "is_fixed",
+									"key": "is_resolved",
 									"value": "1",
 									"type": "text"
 								}
@@ -2990,7 +2990,7 @@
 									"    pm.response.to.have.status(200);",
 									"    pm.expect(pm.response.text()).to.include(\"id\");",
 									"    pm.expect(pm.response.text()).to.include(\"reviewed_at\");",
-									"    pm.expect(pm.response.text()).to.include(\"is_fixed\");",
+									"    pm.expect(pm.response.text()).to.include(\"is_resolved\");",
 									"    pm.expect(pm.response.text()).to.include(\"result\");",
 									"    pm.expect(pm.response.text()).to.include(\"subject\");",
 									"    pm.expect(pm.response.text()).to.include(\"description\");",
@@ -3033,7 +3033,7 @@
 							],
 							"query": [
 								{
-									"key": "is_fixed",
+									"key": "is_resolved",
 									"value": "0",
 									"disabled": true
 								}
@@ -3053,7 +3053,7 @@
 									"    pm.response.to.have.status(200);",
 									"    pm.expect(pm.response.text()).to.include(\"id\");",
 									"    pm.expect(pm.response.text()).to.include(\"reviewed_at\");",
-									"    pm.expect(pm.response.text()).to.include(\"is_fixed\");",
+									"    pm.expect(pm.response.text()).to.include(\"is_resolved\");",
 									"    pm.expect(pm.response.text()).to.include(\"result\");",
 									"    pm.expect(pm.response.text()).to.include(\"subject\");",
 									"    pm.expect(pm.response.text()).to.include(\"description\");",
@@ -3086,7 +3086,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{URL}}/complaints?is_fixed=0",
+							"raw": "{{URL}}/complaints?is_resolved=0",
 							"host": [
 								"{{URL}}"
 							],
@@ -3095,7 +3095,7 @@
 							],
 							"query": [
 								{
-									"key": "is_fixed",
+									"key": "is_resolved",
 									"value": "0"
 								}
 							]
@@ -3114,7 +3114,7 @@
 									"    pm.response.to.have.status(200);",
 									"    pm.expect(pm.response.text()).to.include(\"id\");",
 									"    pm.expect(pm.response.text()).to.include(\"reviewed_at\");",
-									"    pm.expect(pm.response.text()).to.include(\"is_fixed\");",
+									"    pm.expect(pm.response.text()).to.include(\"is_resolved\");",
 									"    pm.expect(pm.response.text()).to.include(\"result\");",
 									"    pm.expect(pm.response.text()).to.include(\"subject\");",
 									"    pm.expect(pm.response.text()).to.include(\"description\");",

@@ -6,6 +6,7 @@ use App\Models\Complaint;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -24,44 +25,37 @@ class ComplaintController extends Controller
         $filters = $this->validate(
             $request,
             [
+                'is_resolved' => 'nullable|boolean',
                 'created_by' => 'nullable|integer|min:0|exists:users,id',
                 'reviewed_by' => 'nullable|integer|min:0|exists:users,id',
-                'reviewed_at' => 'nullable|date_format:Y-m-d H:i:s',
-                'is_fixed' => 'nullable|boolean',
-                'result' => 'nullable|string|max:255',
-                'subject' => 'nullable|string|max:255',
-                'description' => 'nullable|string|max:255',
                 'related_user_id' => 'nullable|integer|min:0|exists:users,id',
             ]
         );
 
-        $complaints = Complaint::when(isset($filters['created_by']), function ($query) use ($filters) {
-            return $query->where('created_by', $filters['created_by']);
-        })
+        $searchKey = $this->getTabulatorSearchKey($request);
+
+        $complaints = Complaint::with('createdUser', 'reviewedUser', 'relatedUser')
+            ->when(isset($filters['is_resolved']), function ($query) use ($filters) {
+                return $query->where('is_resolved', $filters['is_resolved']);
+            })
+            ->when(isset($filters['created_by']), function ($query) use ($filters) {
+                return $query->where('created_by', $filters['created_by']);
+            })
             ->when(isset($filters['reviewed_by']), function ($query) use ($filters) {
                 return $query->where('reviewed_by', $filters['reviewed_by']);
-            })
-            ->when(isset($filters['reviewed_at']), function ($query) use ($filters) {
-                return $query->where('reviewed_at', $filters['reviewed_at']);
-            })
-            ->when(isset($filters['is_fixed']), function ($query) use ($filters) {
-                return $query->where('is_fixed', $filters['is_fixed']);
-            })
-            ->when(isset($filters['result']), function ($query) use ($filters) {
-                return $query->where('result', $filters['result']);
-            })
-            ->when(isset($filters['subject']), function ($query) use ($filters) {
-                return $query->where('subject', $filters['subject']);
-            })
-            ->when(isset($filters['description']), function ($query) use ($filters) {
-                return $query->where('description', $filters['description']);
             })
             ->when(isset($filters['related_user_id']), function ($query) use ($filters) {
                 return $query->where('related_user_id', $filters['related_user_id']);
             })
+            ->when(!empty($searchKey), function ($query) use ($searchKey) {
+                return $query->where('id', $searchKey)
+                    ->orWhere('result', 'LIKE', '%' . $searchKey . '%')
+                    ->orWhere('subject', 'LIKE', '%' . $searchKey . '%')
+                    ->orWhere('description', 'LIKE', '%' . $searchKey . '%');
+            })
             ->orderByTabulator($request)
             ->paginate($request->size)
-            ->appends($filters);
+            ->appends(array_merge($this->filters, $filters));
 
         return response()->json($complaints->toArray());
     }
@@ -90,14 +84,14 @@ class ComplaintController extends Controller
         $requestData = $this->validate(
             $request,
             [
-                'is_fixed' => 'nullable|boolean',
+                'is_resolved' => 'nullable|boolean',
                 'subject' => 'nullable|string|max:255',
             ]
         );
 
         $complaints = Complaint::myComplaints()
-            ->when(isset($requestData['is_fixed']), function ($query) use ($requestData) {
-                return $query->where('is_fixed', $requestData['is_fixed']);
+            ->when(isset($requestData['is_resolved']), function ($query) use ($requestData) {
+                return $query->where('is_resolved', $requestData['is_resolved']);
             })
             ->when(isset($requestData['subject']), function ($query) use ($requestData) {
                 return $query->where('subject', $requestData['subject']);
@@ -149,12 +143,12 @@ class ComplaintController extends Controller
                 'description' => 'nullable|string|max:255',
                 'related_user_id' => 'nullable|integer|min:0|exists:users,id',
                 'result' => 'nullable|string|max:255',
-                'is_fixed' => 'nullable|boolean'
+                'is_resolved' => 'nullable|boolean'
             ]
         );
 
-        if (auth()->id() !== $complaint->created_by) {
-            $validatedComplaintData['reviewed_by'] = auth()->id();
+        if (Auth::id() !== $complaint->created_by) {
+            $validatedComplaintData['reviewed_by'] = Auth::id();
             $validatedComplaintData['reviewed_at'] = now();
         }
 
