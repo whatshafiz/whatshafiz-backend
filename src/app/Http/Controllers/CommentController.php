@@ -35,6 +35,8 @@ class CommentController extends Controller
             ]
         );
 
+        $searchKey = $this->getTabulatorSearchKey($request);
+
         $comments = Comment::with(['commentedBy', 'approvedBy'])
             ->when(isset($filters['type']), function ($query) use ($filters) {
                 return $query->where('type', $filters['type']);
@@ -48,9 +50,24 @@ class CommentController extends Controller
             ->when(isset($filters['is_approved']), function ($query) use ($filters) {
                 return $query->where('is_approved', $filters['is_approved']);
             })
+            ->when(!empty($searchKey), function ($query) use ($searchKey) {
+                return $query->where(function ($subQuery) use ($searchKey) {
+                    return $subQuery->where('id', $searchKey)
+                        ->orWhere('title', 'LIKE', '%' . $searchKey . '%')
+                        ->orWhere('comment', 'LIKE', '%' . $searchKey . '%')
+                        ->orWhereHas('commentedBy', function ($subQuery) use ($searchKey) {
+                            return $subQuery->where('name', 'LIKE', '%' . $searchKey . '%')
+                                ->orWhere('surname', 'LIKE', '%' . $searchKey . '%');
+                        })
+                        ->orWhereHas('approvedBy', function ($subQuery) use ($searchKey) {
+                            return $subQuery->where('name', 'LIKE', '%' . $searchKey . '%')
+                                ->orWhere('surname', 'LIKE', '%' . $searchKey . '%');
+                        });
+                });
+            })
             ->orderByTabulator($request)
             ->paginate($request->size)
-            ->appends($filters);
+            ->appends(array_merge($this->filters, $filters));
 
         return response()->json($comments->toArray());
     }
@@ -105,6 +122,8 @@ class CommentController extends Controller
     public function show(Comment $comment): JsonResponse
     {
         $this->authorize('view', $comment);
+
+        $comment->load('commentedBy', 'approvedBy');
 
         return response()->json(compact('comment'));
     }
