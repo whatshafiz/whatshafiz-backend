@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,34 +30,18 @@ class CourseController extends Controller
     {
         $this->authorize('viewAny', Course::class);
 
-        $filters = $this->validate(
-            $request,
-            [
-                'type' => 'nullable|string|in:whatshafiz,whatsenglish,whatsarapp',
-                'name' => 'nullable|string|min:3|max:100',
-                'is_active' => 'nullable|boolean',
-                'can_be_applied' => 'nullable|boolean',
-            ]
-        );
+        $searchKey = $this->getTabulatorSearchKey($request);
 
-        $courses = Course::latest()
-            ->when(isset($filters['type']), function ($query) use ($filters) {
-                return $query->where('type', $filters['type']);
-            })
-            ->when(isset($filters['name']), function ($query) use ($filters) {
-                return $query->where('name', 'LIKE', '%' . $filters['name'] . '%');
-            })
-            ->when(isset($filters['is_active']), function ($query) use ($filters) {
-                return $query->where('is_active', $filters['is_active']);
-            })
-            ->when(isset($filters['can_be_applied']), function ($query) use ($filters) {
-                return $filters['can_be_applied'] ? $query->available() : $query->unavailable();
-            })
-            ->paginate()
-            ->appends($filters)
-            ->toArray();
+        $courses = Course::when(!empty($searchKey), function ($query) use ($searchKey) {
+            return $query->where('id', $searchKey)
+                ->orWhere('type', 'LIKE', '%' . $searchKey . '%')
+                ->orWhere('name', 'LIKE', '%' . $searchKey . '%');
+        })
+            ->orderByTabulator($request)
+            ->paginate($request->size)
+            ->appends($this->filters);
 
-        return response()->json(compact('courses'));
+        return response()->json($courses->toArray());
     }
 
     /**
@@ -99,7 +84,18 @@ class CourseController extends Controller
             ]
         );
 
-        return response()->json(Course::create($validatedCourseData)->toArray(), Response::HTTP_CREATED);
+        if (isset($validatedCourseData['start_at'])) {
+            $validatedCourseData['start_at'] = Carbon::parse($validatedCourseData['start_at'])->format('Y-m-d H:i:s');
+        }
+
+        if (isset($validatedCourseData['can_be_applied_until'])) {
+            $validatedCourseData['can_be_applied_until'] = Carbon::parse($validatedCourseData['can_be_applied_until'])
+                ->format('Y-m-d H:i:s');
+        }
+
+        $course = Course::create($validatedCourseData);
+
+        return response()->json($course->toArray(), Response::HTTP_CREATED);
     }
 
     /**
@@ -110,7 +106,7 @@ class CourseController extends Controller
     {
         $this->authorize('view', Course::class);
 
-        return response()->json($course->toArray());
+        return response()->json(compact('course'));
     }
 
     /**
@@ -146,6 +142,15 @@ class CourseController extends Controller
                 'start_at' => 'nullable|date_format:d-m-Y H:i',
             ]
         );
+
+        if (isset($validatedCourseData['start_at'])) {
+            $validatedCourseData['start_at'] = Carbon::parse($validatedCourseData['start_at'])->format('Y-m-d H:i:s');
+        }
+
+        if (isset($validatedCourseData['can_be_applied_until'])) {
+            $validatedCourseData['can_be_applied_until'] = Carbon::parse($validatedCourseData['can_be_applied_until'])
+                ->format('Y-m-d H:i:s');
+        }
 
         $course->update($validatedCourseData);
 
