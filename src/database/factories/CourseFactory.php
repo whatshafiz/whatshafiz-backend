@@ -22,8 +22,8 @@ class CourseFactory extends Factory
             'name' => $this->faker->numerify('WhatsHafız-######'),
             'is_active' => $this->faker->boolean,
             'can_be_applied' => $this->faker->boolean,
-            'can_be_applied_until' => $this->faker->optional()->datetime,
-            'start_at' => $this->faker->optional()->datetime,
+            'can_be_applied_until' => null,
+            'start_at' => null,
         ];
     }
 
