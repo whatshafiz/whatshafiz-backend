@@ -57,6 +57,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('countries/{country}/cities', [CountryController::class, 'cities']);
     Route::post('countries/{country}/cities', [CountryController::class, 'storeCity']);
 
+    Route::get('my/courses', [CourseController::class, 'myCourses']);
     Route::get('courses/paginate', [CourseController::class, 'indexPaginate']);
     Route::apiResource('courses', CourseController::class);
 
@@ -81,6 +82,7 @@ Route::middleware('auth:sanctum')->group(function () {
         [UniversityController::class, 'storeDepartment']
     );
 
+    Route::get('my/whatsapp-groups', [WhatsappGroupController::class, 'myWhatsappGroups']);
     Route::apiResource('whatsapp-groups', WhatsappGroupController::class);
     Route::post('whatsapp-groups/{whatsapp_group}/users', [WhatsappGroupController::class, 'createUser']);
     Route::put(
@@ -93,10 +95,10 @@ Route::middleware('auth:sanctum')->group(function () {
     );
 
     Route::apiResource('complaints', ComplaintController::class);
-    Route::get('my-complaints', [ComplaintController::class, 'myComplaints']);
+    Route::get('my/complaints', [ComplaintController::class, 'myComplaints']);
 
     Route::apiResource('comments', CommentController::class);
-    Route::get('my-comments', [CommentController::class, 'myComments']);
+    Route::get('my/comments', [CommentController::class, 'myComments']);
 
     Route::apiResource('quran-questions', QuranQuestionController::class);
     Route::post('quran-questions-assign', [QuranQuestionController::class, 'assign']);

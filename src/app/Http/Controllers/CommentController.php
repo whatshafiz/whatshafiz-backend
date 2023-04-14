@@ -75,14 +75,13 @@ class CommentController extends Controller
     /**
      * @param Request $request
      * @return JsonResponse
+     * @throws ValidationException
      */
     public function myComments(Request $request): JsonResponse
     {
-        $comments = Comment::where('commented_by_id', Auth::id())
-            ->orderByTabulator($request)
-            ->paginate($request->size);
+        $request->merge(['commented_by_id' => Auth::id()]);
 
-        return response()->json($comments->toArray());
+        return $this->index($request);
     }
 
     /**

@@ -7,6 +7,7 @@ use App\Models\WhatsappGroupUser;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class WhatsappGroupController extends Controller
@@ -19,28 +20,48 @@ class WhatsappGroupController extends Controller
     {
         $this->authorize('viewAny', WhatsappGroup::class);
 
+        $filters = $this->validate($request, ['user_id' => 'nullable|integer|exists:users,id']);
         $searchKey = $this->getTabulatorSearchKey($request);
 
         $whatsappGroups = WhatsappGroup::latest()
             ->with('course')
             ->withCount('users')
+            ->when(isset($filters['user_id']), function ($query) use ($filters) {
+                return $query->whereHas('users', function ($subQuery) use ($filters) {
+                    return $subQuery->where('user_id', $filters['user_id']);
+                });
+            })
             ->when(!empty($searchKey), function ($query) use ($searchKey) {
-                return $query->where('id', $searchKey)
-                    ->orWhere('course_id', $searchKey)
-                    ->orWhere('type', $searchKey)
-                    ->orWhere('gender', $searchKey)
-                    ->orWhere('name', 'LIKE', '%' . $searchKey . '%')
-                    ->orWhere('join_url', 'LIKE', '%' . $searchKey . '%')
-                    ->orWhereHas('course', function ($subQuery) use ($searchKey) {
-                        return $subQuery->where('id', $searchKey)
-                            ->orWhere('name', 'LIKE', '%' . $searchKey . '%');
-                    });
+                return $query->where(function ($subQuery) use ($searchKey) {
+                    return $subQuery->where('id', $searchKey)
+                        ->orWhere('course_id', $searchKey)
+                        ->orWhere('type', $searchKey)
+                        ->orWhere('gender', $searchKey)
+                        ->orWhere('name', 'LIKE', '%' . $searchKey . '%')
+                        ->orWhere('join_url', 'LIKE', '%' . $searchKey . '%')
+                        ->orWhereHas('course', function ($subQuery) use ($searchKey) {
+                            return $subQuery->where('id', $searchKey)
+                                ->orWhere('name', 'LIKE', '%' . $searchKey . '%');
+                        });
+                });
             })
             ->orderByTabulator($request)
             ->paginate($request->size)
-            ->appends($this->filters);
+            ->appends(array_merge($this->filters, $filters));
 
         return response()->json($whatsappGroups->toArray());
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     * @throws ValidationException
+     */
+    public function myWhatsappGroups(Request $request): JsonResponse
+    {
+        $request->merge(['user_id' => Auth::id()]);
+
+        return $this->index($request);
     }
 
     /**
