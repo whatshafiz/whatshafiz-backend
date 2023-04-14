@@ -6,6 +6,7 @@ use App\Models\Course;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class CourseController extends Controller
@@ -30,18 +31,38 @@ class CourseController extends Controller
     {
         $this->authorize('viewAny', Course::class);
 
+        $filters = $this->validate($request, ['user_id' => 'nullable|integer|exists:users,id']);
         $searchKey = $this->getTabulatorSearchKey($request);
 
-        $courses = Course::when(!empty($searchKey), function ($query) use ($searchKey) {
-            return $query->where('id', $searchKey)
-                ->orWhere('type', 'LIKE', '%' . $searchKey . '%')
-                ->orWhere('name', 'LIKE', '%' . $searchKey . '%');
+        $courses = Course::when(isset($filters['user_id']), function ($query) use ($filters) {
+            return $query->whereHas('users', function ($subQuery) use ($filters) {
+                return $subQuery->where('users.id', $filters['user_id']);
+            });
         })
+            ->when(!empty($searchKey), function ($query) use ($searchKey) {
+                return $query->where(function ($subQuery) use ($searchKey) {
+                    return $subQuery->where('id', $searchKey)
+                        ->orWhere('type', 'LIKE', '%' . $searchKey . '%')
+                        ->orWhere('name', 'LIKE', '%' . $searchKey . '%');
+                });
+            })
             ->orderByTabulator($request)
             ->paginate($request->size)
-            ->appends($this->filters);
+            ->appends(array_merge($this->filters, $filters));
 
         return response()->json($courses->toArray());
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     * @throws ValidationException
+     */
+    public function myCourses(Request $request): JsonResponse
+    {
+        $request->merge(['user_id' => Auth::id()]);
+
+        return $this->indexPaginate($request);
     }
 
     /**

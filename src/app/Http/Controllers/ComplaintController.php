@@ -95,25 +95,9 @@ class ComplaintController extends Controller
      */
     public function myComplaints(Request $request): JsonResponse
     {
-        $requestData = $this->validate(
-            $request,
-            [
-                'is_resolved' => 'nullable|boolean',
-                'subject' => 'nullable|string|max:255',
-            ]
-        );
+        $request->merge(['created_by' => Auth::id()]);
 
-        $complaints = Complaint::myComplaints()
-            ->when(isset($requestData['is_resolved']), function ($query) use ($requestData) {
-                return $query->where('is_resolved', $requestData['is_resolved']);
-            })
-            ->when(isset($requestData['subject']), function ($query) use ($requestData) {
-                return $query->where('subject', $requestData['subject']);
-            })
-            ->orderByTabulator($request)
-            ->paginate($request->size);
-
-        return response()->json($complaints->toArray());
+        return $this->index($request);
     }
 
     /**
