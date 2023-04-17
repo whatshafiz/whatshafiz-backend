@@ -49,8 +49,8 @@ class UserController extends Controller
         $searchKey = $this->getTabulatorSearchKey($request);
 
         $users = User::when(isset($filters['gender']), function ($query) use ($filters) {
-                return $query->where('gender', $filters['gender']);
-            })
+            return $query->where('gender', $filters['gender']);
+        })
             ->when(isset($filters['country_id']), function ($query) use ($filters) {
                 return $query->where('country_id', $filters['country_id']);
             })
