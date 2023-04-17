@@ -35,10 +35,10 @@ class CourseController extends Controller
         $searchKey = $this->getTabulatorSearchKey($request);
 
         $courses = Course::when(isset($filters['user_id']), function ($query) use ($filters) {
-                return $query->whereHas('users', function ($subQuery) use ($filters) {
-                    return $subQuery->where('users.id', $filters['user_id']);
-                });
-            })
+            return $query->whereHas('users', function ($subQuery) use ($filters) {
+                return $subQuery->where('users.id', $filters['user_id']);
+            });
+        })
             ->when(!empty($searchKey), function ($query) use ($searchKey) {
                 return $query->where(function ($subQuery) use ($searchKey) {
                     return $subQuery->where('id', $searchKey)
