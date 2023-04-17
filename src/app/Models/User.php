@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Tabulator;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -19,6 +20,7 @@ class User extends Authenticatable
     use HasFactory;
     use Notifiable;
     use HasRoles;
+    use Tabulator;
 
     /**
      * The attributes that are mass assignable.
@@ -129,6 +131,14 @@ class User extends Authenticatable
     public function courses(): BelongsToMany
     {
         return $this->belongsToMany(Course::class, 'user_course');
+    }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function whatsappGroups(): BelongsToMany
+    {
+        return $this->belongsToMany(WhatsappGroup::class, 'whatsapp_group_users');
     }
 
     /**

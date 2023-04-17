@@ -28,7 +28,11 @@ Route::get('courses/available', [CourseController::class, 'indexAvailableCourses
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('users', [UserController::class, 'index']);
+    Route::get('users/{user}', [UserController::class, 'show']);
     Route::post('users/{user}/ban', [UserController::class, 'banUser']);
+    Route::delete('users/{user}/roles/{role}', [UserController::class, 'removeRole']);
+    Route::delete('users/{user}/courses/{course}', [UserController::class, 'removeCourse']);
+    Route::delete('users/{user}/whatsapp-groups/{whatsapp_group}', [UserController::class, 'removeWhatsappGroup']);
 
     Route::get('settings', [SettingController::class, 'index']);
     Route::get('settings/paginate', [SettingController::class, 'indexPaginate']);
