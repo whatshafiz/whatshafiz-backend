@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\PasswordReset;
+use App\Models\Role;
 use App\Models\User;
+use App\Models\WhatsappGroup;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -44,23 +46,11 @@ class UserController extends Controller
                 'is_banned' => 'nullable|boolean',
             ]
         );
+        $searchKey = $this->getTabulatorSearchKey($request);
 
-        $users = User::latest()
-            ->when(isset($filters['full_name']), function ($query) use ($filters) {
-                return $query->where(DB::raw('CONCAT(name, " ", surname)'), 'like', "%{$filters['full_name']}%");
-            })
-            ->when(isset($filters['name']), function ($query) use ($filters) {
-                return $query->where('name', 'like', "%{$filters['name']}%");
-            })
-            ->when(isset($filters['surname']), function ($query) use ($filters) {
-                return $query->where('surname', 'like', "%{$filters['surname']}%");
-            })
-            ->when(isset($filters['email']), function ($query) use ($filters) {
-                return $query->where('email', 'like', "%{$filters['email']}%");
-            })
-            ->when(isset($filters['gender']), function ($query) use ($filters) {
-                return $query->where('gender', $filters['gender']);
-            })
+        $users = User::when(isset($filters['gender']), function ($query) use ($filters) {
+            return $query->where('gender', $filters['gender']);
+        })
             ->when(isset($filters['country_id']), function ($query) use ($filters) {
                 return $query->where('country_id', $filters['country_id']);
             })
@@ -79,11 +69,45 @@ class UserController extends Controller
             ->when(isset($filters['is_banned']), function ($query) use ($filters) {
                 return $query->where('is_banned', $filters['is_banned']);
             })
-            ->paginate()
-            ->appends($filters)
+            ->when(!empty($searchKey), function ($query) use ($searchKey) {
+                return $query->where(function ($subQuery) use ($searchKey) {
+                    return $subQuery->where('id', $searchKey)
+                        ->orWhere(DB::raw('CONCAT(name, " ", surname)'), 'like', "%{$searchKey}%")
+                        ->orWhere('name', 'like', "%{$searchKey}%")
+                        ->orWhere('surname', 'like', "%{$searchKey}%")
+                        ->orWhere('phone_number', 'like', "%{$searchKey}%")
+                        ->orWhere('email', 'like', "%{$searchKey}%");
+                });
+            })
+            ->orderByTabulator($request)
+            ->paginate($request->size)
+            ->appends(array_merge($this->filters, $filters));
+
+        return response()->json($users->toArray());
+    }
+
+    /**
+     * @param  User  $user
+     * @return JsonResponse
+     */
+    public function show(User $user): JsonResponse
+    {
+        $this->authorize('view', [User::class, $user]);
+
+        $user->load([
+                'roles',
+                'permissions',
+                'whatsappGroups',
+                'courses',
+                'country',
+                'city',
+                'university',
+                'universityFaculty',
+                'universityDepartment',
+            ])
             ->toArray();
 
-        return response()->json(compact('users'));
+        return response()->json(compact('user'));
     }
 
     /**
@@ -460,6 +484,54 @@ class UserController extends Controller
 
         $user->is_banned = $request->is_banned;
         $user->save();
+
+        return response()->json(null, Response::HTTP_NO_CONTENT);
+    }
+
+    /**
+     * @param  Request  $request
+     * @param  User  $user
+     * @param  Role  $role
+     * @return JsonResponse
+     * @throws AuthorizationException
+     */
+    public function removeRole(Request $request, User $user, Role $role): JsonResponse
+    {
+        $this->authorize('update', User::class);
+
+        $user->roles()->detach($role);
+
+        return response()->json(null, Response::HTTP_NO_CONTENT);
+    }
+
+    /**
+     * @param  Request  $request
+     * @param  User  $user
+     * @param  Course  $course
+     * @return JsonResponse
+     * @throws AuthorizationException
+     */
+    public function removeCourse(Request $request, User $user, Course $course): JsonResponse
+    {
+        $this->authorize('update', User::class);
+
+        $user->courses()->detach($course);
+
+        return response()->json(null, Response::HTTP_NO_CONTENT);
+    }
+
+    /**
+     * @param  Request  $request
+     * @param  User  $user
+     * @param  WhatsappGroup  $whatsappGroup
+     * @return JsonResponse
+     * @throws AuthorizationException
+     */
+    public function removeWhatsappGroup(Request $request, User $user, WhatsappGroup $whatsappGroup): JsonResponse
+    {
+        $this->authorize('update', User::class);
+
+        $user->whatsappGroups()->detach($whatsappGroup);
 
         return response()->json(null, Response::HTTP_NO_CONTENT);
     }
