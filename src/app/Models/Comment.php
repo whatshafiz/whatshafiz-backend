@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -35,11 +36,20 @@ class Comment extends BaseModel
     }
 
     /**
-     * @param User $user
+     * @param  User  $user
      * @return bool
      */
     public function isCommentedBy(User $user): bool
     {
         return $this->commented_by_id === $user->id;
+    }
+
+    /**
+     * @param  User  $user
+     * @return Builder
+     */
+    public function scopeApproved(Builder $query): Builder
+    {
+        return $query->where('is_approved', true);
     }
 }

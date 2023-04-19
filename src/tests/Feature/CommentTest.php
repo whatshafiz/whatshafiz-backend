@@ -49,6 +49,22 @@ class CommentTest extends BaseFeatureTest
     }
 
     /** @test */
+    public function user_can_list_approved_comments_as_paginated()
+    {
+        $type = $this->faker->randomElement(['whatshafiz', 'whatsenglish', 'whatsarapp']);
+
+        $comments = Comment::factory()->approved()->count(5)->create(['type' => $type]);
+
+        $response = $this->json('GET', $this->uri . '/' . $type);
+
+        $response->assertOk();
+
+        foreach ($comments as $comment) {
+            $response->assertJsonFragment($comment->toArray());
+        }
+    }
+
+    /** @test */
     public function user_can_filter_comments_while_listing_and_has_permission()
     {
         $user = User::factory()->create();
