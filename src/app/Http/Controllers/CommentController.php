@@ -16,7 +16,7 @@ class CommentController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param Request $request
+     * @param  Request  $request
      * @return JsonResponse
      * @throws AuthorizationException
      * @throws ValidationException
@@ -73,7 +73,7 @@ class CommentController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param  Request  $request
      * @return JsonResponse
      * @throws ValidationException
      */
@@ -82,6 +82,16 @@ class CommentController extends Controller
         $request->merge(['commented_by_id' => Auth::id()]);
 
         return $this->index($request);
+    }
+
+    /**
+     * @param  string  $type
+     * @return JsonResponse
+     * @throws ValidationException
+     */
+    public function indexApprovedComments(string $type): JsonResponse
+    {
+        return response()->json(Comment::approved()->where('type', $type)->latest('id')->paginate()->toArray());
     }
 
     /**
