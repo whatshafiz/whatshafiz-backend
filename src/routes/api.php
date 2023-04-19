@@ -25,6 +25,8 @@ Route::post('update-password', [UserController::class, 'updatePassword']);
 
 Route::get('regulations/{regulation:slug}', [RegulationController::class, 'show']);
 Route::get('courses/available', [CourseController::class, 'indexAvailableCourses']);
+Route::get('comments/{type}', [CommentController::class, 'indexApprovedComments'])
+    ->whereIn('type', ['whatshafiz', 'whatsenglish', 'whatsarapp']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('users', [UserController::class, 'index']);
