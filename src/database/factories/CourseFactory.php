@@ -63,6 +63,7 @@ class CourseFactory extends Factory
     public function available()
     {
         return $this->state(fn (array $attributes) => [
+            'is_active' => true,
             'can_be_applied' => true,
             'can_be_applied_until' => Carbon::now()->addDays(rand(1, 100)),
         ]);
