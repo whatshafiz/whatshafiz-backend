@@ -384,9 +384,9 @@ class UserController extends Controller
             DB::commit();
 
             return response()->json([
-                'message' => 'Kaydınız başarılı şekilde oluşturuldu. ' .
-                    'Whatsapp grubuna katılmak için gerekli link size whatsapp üzerinden gönderilecek. ' .
-                    'Lütfen gelen mesajı SPAM DEĞİL veya TAMAM olarak işaretleyin.',
+                'message' => 'Kaydınız başarılı şekilde oluşturuldu. <br><br>' .
+                    'Whatsapp grubuna katılmak için gerekli link size whatsapp üzerinden gönderilecek. <br><br>' .
+                    'Lütfen gelen mesajı <strong>SPAM DEĞİL</strong> veya <strong>TAMAM</strong> olarak işaretleyin.',
             ]);
         } catch (Exception $exception) {
             DB::rollback();

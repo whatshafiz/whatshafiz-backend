@@ -31,7 +31,8 @@ class Course extends BaseModel
     public function scopeAvailable(Builder $query): Builder
     {
         return $query->where(function ($subquery) {
-            return $subquery->where('can_be_applied', true)
+            return $subquery->where('is_active', true)
+                ->where('can_be_applied', true)
                 ->where('can_be_applied_until', '>=', Carbon::now());
         });
     }
