@@ -22,6 +22,9 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $universityDepartment = $this->faker->boolean ? null : UniversityDepartment::inRandomOrder()->first();
+        $city = $this->faker->boolean ? null : City::inRandomOrder()->first();
+
         return [
             'name' => $this->faker->firstname(),
             'surname' => $this->faker->lastname(),
@@ -31,11 +34,11 @@ class UserFactory extends Factory
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
             'gender' => $this->faker->optional()->randomElement(['male', 'female']),
-            'country_id' => $this->faker->boolean ? null : Country::inRandomOrder()->value('id'),
-            'city_id' => $this->faker->boolean ? null : City::inRandomOrder()->value('id'),
-            'university_id' => $this->faker->boolean ? null : University::inRandomOrder()->value('id'),
-            'university_faculty_id' => $this->faker->boolean ? null : UniversityFaculty::inRandomOrder()->value('id'),
-            'university_department_id' => $this->faker->boolean ? null : UniversityDepartment::inRandomOrder()->value('id'),
+            'country_id' => $city ? $city->country_id : null,
+            'city_id' => $city ? $city->id : null,
+            'university_id' => $universityDepartment ? $universityDepartment->university_id : null,
+            'university_faculty_id' => $universityDepartment ? $universityDepartment->university_faculty_id : null,
+            'university_department_id' => $universityDepartment ? $universityDepartment->id : null,
         ];
     }
 
@@ -46,13 +49,16 @@ class UserFactory extends Factory
      */
     public function completed()
     {
+        $universityDepartment = UniversityDepartment::inRandomOrder()->first();
+        $city = City::inRandomOrder()->first();
+
         return $this->state(fn (array $attributes) => [
             'gender' => $this->faker->randomElement(['male', 'female']),
-            'country_id' => Country::inRandomOrder()->value('id'),
-            'city_id' => City::inRandomOrder()->value('id'),
-            'university_id' => University::inRandomOrder()->value('id'),
-            'university_faculty_id' => UniversityFaculty::inRandomOrder()->value('id'),
-            'university_department_id' => UniversityDepartment::inRandomOrder()->value('id'),
+            'country_id' => $city->country_id,
+            'city_id' => $city->id,
+            'university_id' => $universityDepartment->university_id,
+            'university_faculty_id' => $universityDepartment->university_faculty_id,
+            'university_department_id' => $universityDepartment->id,
         ]);
     }
 
