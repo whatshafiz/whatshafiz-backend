@@ -43,6 +43,8 @@ class UserController extends Controller
                 'university_id' => 'nullable|integer|min:1|exists:universities,id',
                 'university_faculty_id' => 'nullable|integer|min:1|exists:university_faculties,id',
                 'university_department_id' => 'nullable|integer|min:1|exists:university_departments,id',
+                'whatsapp_group_id' => 'nullable|integer|min:1|exists:whatsapp_groups,id',
+                'course_id' => 'nullable|integer|min:1|exists:courses,id',
                 'is_banned' => 'nullable|boolean',
             ]
         );
@@ -68,6 +70,16 @@ class UserController extends Controller
             })
             ->when(isset($filters['is_banned']), function ($query) use ($filters) {
                 return $query->where('is_banned', $filters['is_banned']);
+            })
+            ->when(isset($filters['whatsapp_group_id']), function ($query) use ($filters) {
+                return $query->whereHas('whatsappGroups', function ($subQuery) use ($filters) {
+                    return $subQuery->where('whatsapp_group_id', $filters['whatsapp_group_id']);
+                });
+            })
+            ->when(isset($filters['course_id']), function ($query) use ($filters) {
+                return $query->whereHas('courses', function ($subQuery) use ($filters) {
+                    return $subQuery->where('course_id', $filters['course_id']);
+                });
             })
             ->when(!empty($searchKey), function ($query) use ($searchKey) {
                 return $query->where(function ($subQuery) use ($searchKey) {
