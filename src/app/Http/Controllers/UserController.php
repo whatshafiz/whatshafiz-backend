@@ -503,6 +503,23 @@ class UserController extends Controller
     /**
      * @param  Request  $request
      * @param  User  $user
+     * @return JsonResponse
+     * @throws AuthorizationException
+     */
+    public function assignRole(Request $request, User $user): JsonResponse
+    {
+        $this->authorize('update', User::class);
+
+        $request->validate(['role_id' => 'required|integer|min:1|exists:roles,id']);
+
+        $user->roles()->attach($request->role_id);
+
+        return response()->json(null, Response::HTTP_CREATED);
+    }
+
+    /**
+     * @param  Request  $request
+     * @param  User  $user
      * @param  Role  $role
      * @return JsonResponse
      * @throws AuthorizationException
