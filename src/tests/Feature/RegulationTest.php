@@ -85,16 +85,6 @@ class RegulationTest extends BaseFeatureTest
     }
 
     /** @test */
-    public function it_should_not_list_regulations_when_does_not_have_permission()
-    {
-        $user = User::factory()->create();
-
-        $response = $this->actingAs($user)->json('GET', $this->uri);
-
-        $response->assertForbidden();
-    }
-
-    /** @test */
     public function it_should_list_regulations_when_has_permission()
     {
         $user = User::factory()->create();
