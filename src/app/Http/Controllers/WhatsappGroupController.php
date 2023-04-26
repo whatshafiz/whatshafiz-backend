@@ -18,7 +18,7 @@ class WhatsappGroupController extends Controller
      */
     public function index(Request $request): JsonResponse
     {
-        $this->authorize('viewAny', WhatsappGroup::class);
+        $this->authorize('viewAny', [WhatsappGroup::class, $request->user_id]);
 
         $filters = $this->validate($request, ['user_id' => 'nullable|integer|exists:users,id']);
         $searchKey = $this->getTabulatorSearchKey($request);

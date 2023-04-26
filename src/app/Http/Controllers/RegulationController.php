@@ -14,8 +14,6 @@ class RegulationController extends Controller
      */
     public function index(): JsonResponse
     {
-        $this->authorize('list', Regulation::class);
-
         return response()->json(Regulation::get());
     }
 

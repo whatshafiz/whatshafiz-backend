@@ -13,11 +13,12 @@ class CoursePolicy
      * Determine whether the user can view any models.
      *
      * @param  User  $user
+     * @param  null|int  $userId
      * @return bool
      */
-    public function viewAny(User $user): bool
+    public function viewAny(User $user, ?int $userId): bool
     {
-        return $user->hasPermissionTo('courses.list');
+        return $user->hasPermissionTo('courses.list') || $user->id === $userId;
     }
 
     /**
