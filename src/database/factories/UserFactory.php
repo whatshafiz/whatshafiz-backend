@@ -3,10 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\City;
-use App\Models\Country;
-use App\Models\University;
 use App\Models\UniversityDepartment;
-use App\Models\UniversityFaculty;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
