@@ -20,7 +20,7 @@ class ComplaintController extends Controller
      */
     public function index(Request $request): JsonResponse
     {
-        $this->authorize('viewAny', Complaint::class);
+        $this->authorize('viewAny', [Complaint::class, $request->created_by]);
 
         $filters = $this->validate(
             $request,

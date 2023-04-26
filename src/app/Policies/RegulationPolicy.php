@@ -10,17 +10,6 @@ class RegulationPolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view any models.
-     *
-     * @param  User  $user
-     * @return bool
-     */
-    public function list(User $user): bool
-    {
-        return $user->hasPermissionTo('regulations.list');
-    }
-
-    /**
      * Determine whether the user can update the model.
      *
      * @param  User  $user

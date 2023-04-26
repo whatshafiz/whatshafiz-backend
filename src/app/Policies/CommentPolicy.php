@@ -14,11 +14,12 @@ class CommentPolicy
      * Determine whether the user can view any models.
      *
      * @param  User  $user
+     * @param  null|int  $userId
      * @return bool
      */
-    public function viewAny(User $user): bool
+    public function viewAny(User $user, ?int $userId): bool
     {
-        return $user->hasPermissionTo('comments.list');
+        return $user->hasPermissionTo('comments.list') || $user->id === $userId;
     }
 
     /**
