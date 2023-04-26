@@ -16,7 +16,7 @@ class CoursePolicy
      * @param  null|int  $userId
      * @return bool
      */
-    public function viewAny(User $user, ?int $userId): bool
+    public function viewAny(User $user, ?int $userId = null): bool
     {
         return $user->hasPermissionTo('courses.list') || $user->id === $userId;
     }
