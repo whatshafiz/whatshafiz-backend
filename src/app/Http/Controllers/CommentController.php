@@ -23,7 +23,7 @@ class CommentController extends Controller
      */
     public function index(Request $request): JsonResponse
     {
-        $this->authorize('viewAny', Comment::class);
+        $this->authorize('viewAny', [Comment::class, $request->commented_by_id]);
 
         $filters = $this->validate(
             $request,

@@ -29,7 +29,7 @@ class CourseController extends Controller
      */
     public function indexPaginate(Request $request): JsonResponse
     {
-        $this->authorize('viewAny', Course::class);
+        $this->authorize('viewAny', [Course::class, $request->user_id]);
 
         $filters = $this->validate($request, ['user_id' => 'nullable|integer|exists:users,id']);
         $searchKey = $this->getTabulatorSearchKey($request);

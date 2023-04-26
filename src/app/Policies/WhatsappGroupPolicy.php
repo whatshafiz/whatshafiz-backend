@@ -14,11 +14,12 @@ class WhatsappGroupPolicy
      * Determine whether the user can view any models.
      *
      * @param  User  $user
+     * @param  null|int  $userId
      * @return bool
      */
-    public function viewAny(User $user): bool
+    public function viewAny(User $user, ?int $userId = null): bool
     {
-        return $user->hasPermissionTo('whatsappGroups.list');
+        return $user->hasPermissionTo('whatsappGroups.list') || $user->id === $userId;
     }
 
     /**
