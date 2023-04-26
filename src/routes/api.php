@@ -32,6 +32,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('users', [UserController::class, 'index']);
     Route::get('users/{user}', [UserController::class, 'show']);
     Route::post('users/{user}/ban', [UserController::class, 'banUser']);
+    Route::post('users/{user}/roles', [UserController::class, 'assignRole'])->middleware('admin');
     Route::delete('users/{user}/roles/{role}', [UserController::class, 'removeRole']);
     Route::delete('users/{user}/courses/{course}', [UserController::class, 'removeCourse']);
     Route::delete('users/{user}/whatsapp-groups/{whatsapp_group}', [UserController::class, 'removeWhatsappGroup']);
@@ -116,5 +117,6 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::middleware(['auth:sanctum', 'admin'])->group(function () {
     Route::get('permissions', [PermissionController::class, 'index']);
 
+    Route::get('roles/paginate', [RoleController::class, 'indexPaginate']);
     Route::apiResource('roles', RoleController::class);
 });
