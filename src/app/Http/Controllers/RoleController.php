@@ -17,7 +17,7 @@ class RoleController extends Controller
      * @param  Request  $request
      * @return JsonResponse
      */
-    public function index(Request $request): JsonResponse
+    public function indexPaginate(Request $request): JsonResponse
     {
         $searchKey = $this->getTabulatorSearchKey($request);
 
@@ -31,6 +31,18 @@ class RoleController extends Controller
             ->appends($this->filters);
 
         return response()->json($roles->toArray());
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return JsonResponse
+     */
+    public function index(): JsonResponse
+    {
+        $roles = Role::get();
+
+        return response()->json(compact('roles'));
     }
 
     /**
