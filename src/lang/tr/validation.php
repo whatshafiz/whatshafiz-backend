@@ -106,7 +106,7 @@ return [
     'prohibited_unless' => 'Değerler\'de :other olmadığı sürece :attribute alanını gönderemezsiniz.',
     'prohibits' => ':attribute alanı ile :other alanını birlikte gönderemezsiniz.',
     'regex' => ':attribute biçimi geçersiz.',
-    'required' => ':attribute alanı gereklidir.',
+    'required' => ':attribute zorunludur.',
     'required_array_keys' => ':attribute alanı, :değerler için girişler içermelidir.',
     'required_if' => ':attribute alanı, :other :value değerine sahip olduğunda zorunludur.',
     'required_unless' => ':attribute alanı, :other alanı :value değerlerinden birine sahip olmadığında zorunludur.',
@@ -167,8 +167,19 @@ return [
 
     'attributes' => [
         'email' => 'E-posta adresi',
+        'phone_number' => 'Telefon No',
         'password' => 'Parola',
         'name' => 'Ad',
+        'surname' => 'Soyad',
+        'gender' => 'Cinsiyet',
+        'country_id' => 'Ülke',
+        'city_id' => 'Şehir',
+        'university_id' => 'Üniversite',
+        'university_faculty_id' => 'Fakülte',
+        'university_department_id' => 'Üniversite Bölümü',
+        'verification_code' => 'Doğrulama Kodu',
+        'code' => 'Doğrulama Kodu',
+        'course_id' => 'Kurs',
     ],
 
 ];

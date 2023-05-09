@@ -32,7 +32,8 @@ class WhatsappGroupPolicy
     public function view(User $user, WhatsappGroup $whatsappGroup): bool
     {
         return $user->hasPermissionTo('whatsappGroups.list') ||
-            ($user->hasPermissionTo('whatsappGroups.view') && $whatsappGroup->hasUser($user->id));
+            $user->hasPermissionTo('whatsappGroups.view') ||
+            $whatsappGroup->hasUser($user->id);
     }
 
     /**

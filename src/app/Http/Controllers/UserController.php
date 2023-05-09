@@ -28,7 +28,7 @@ class UserController extends Controller
      */
     public function index(Request $request): JsonResponse
     {
-        $this->authorize('viewAny', User::class);
+        $this->authorize('viewAny', [User::class, $request]);
 
         $filters = $this->validate(
             $request,
@@ -155,7 +155,7 @@ class UserController extends Controller
                 'university_id' => 'required|integer|min:1|exists:universities,id',
                 'university_faculty_id' => 'required|integer|min:1|exists:university_faculties,id',
                 'university_department_id' => 'required|integer|min:1|exists:university_departments,id',
-            ]
+            ],
         );
 
         Auth::user()->update($validatedUserData);
