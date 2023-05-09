@@ -24,6 +24,7 @@ class UserTest extends BaseFeatureTest
     {
         $loginUser = User::factory()->create();
         $relatedUser = User::inRandomOrder()->first();
+        $loginUser->givePermissionTo('users.view');
 
         $response = $this->actingAs($loginUser)->json('GET', $this->uri . '/' . $relatedUser->id);
 

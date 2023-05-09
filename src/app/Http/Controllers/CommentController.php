@@ -154,7 +154,7 @@ class CommentController extends Controller
         $this->authorize('update', $comment);
 
         $validationRules = [
-            'type' => 'required|string|in:whatshafiz,whatsenglish,whatsarapp|unique:comments,type,NULL,NULL,deleted_at,NULL,commented_by_id,' . Auth::id(),
+            'type' => 'required|string|in:whatshafiz,whatsenglish,whatsarapp|unique:comments,type,' . $comment->id . ',id,deleted_at,NULL,commented_by_id,' . Auth::id(),
             'title' => 'required|string|min:3|max:100',
             'comment' => 'required|string|min:3|max:1000',
         ];
