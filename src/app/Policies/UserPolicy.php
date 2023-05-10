@@ -4,6 +4,8 @@ namespace App\Policies;
 
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class UserPolicy
 {
@@ -13,11 +15,29 @@ class UserPolicy
      * Determine whether the user can view any models.
      *
      * @param  User  $user
+     * @param  Request  $request
      * @return bool
      */
-    public function viewAny(User $user): bool
+    public function viewAny(User $user, Request $request): bool
     {
-        return $user->hasPermissionTo('users.list');
+        return $user->hasPermissionTo('users.list') ||
+            ($request->course_id && $user->courses()->where('courses.id', $request->course_id)->exists()) ||
+            ($request->whatsapp_group_id && $user->whatsappGroups()->where('whatsapp_groups.id', $request->whatsapp_group_id)->exists());
+    }
+
+    /**
+     * Determine whether the user can view any models.
+     *
+     * @param  User  $user
+     * @param  User  $relatedUser
+     * @return bool
+     */
+    public function view(User $user, User $relatedUser): bool
+    {
+        return $user->hasPermissionTo('users.list') ||
+            $user->hasPermissionTo('users.view') ||
+            Arr::has($user->courses()->with('users')->get()->pluck('users.*.id')->first(), $relatedUser->id) ||
+            Arr::has($user->whatsappGroups()->with('users')->get()->pluck('users.*.id')->first(), $relatedUser->id);
     }
 
     /**

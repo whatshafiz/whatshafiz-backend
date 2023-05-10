@@ -20,6 +20,18 @@ class UserTest extends BaseFeatureTest
     }
 
     /** @test */
+    public function it_should_get_user_details_when_has_permission()
+    {
+        $loginUser = User::factory()->create();
+        $relatedUser = User::inRandomOrder()->first();
+        $loginUser->givePermissionTo('users.view');
+
+        $response = $this->actingAs($loginUser)->json('GET', $this->uri . '/' . $relatedUser->id);
+
+        $response->assertOk();
+    }
+
+    /** @test */
     public function it_should_not_get_users_list_when_does_not_have_permission()
     {
         $loginUser = User::factory()->create();
