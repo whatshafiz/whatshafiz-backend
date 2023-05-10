@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Queue;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
@@ -82,7 +84,9 @@ class User extends Authenticatable
      */
     public function sendMessage(string $message): void
     {
-        Queue::connection('messenger-sqs')->pushRaw(json_encode(['phone' => $this->phone_number, 'text' => $message]));
+        $message = json_encode(['phone' => $this->phone_number, 'text' => $message]);
+
+        App::isLocal() ? Log::info($message) : Queue::connection('messenger-sqs')->pushRaw($message);
     }
 
     /**

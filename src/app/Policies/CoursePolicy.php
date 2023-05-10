@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Models\Course;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -25,11 +26,12 @@ class CoursePolicy
      * Determine whether the user can view the model.
      *
      * @param  User  $user
+     * @param  Course  $course
      * @return bool
      */
-    public function view(User $user): bool
+    public function view(User $user, Course $course): bool
     {
-        return $user->hasPermissionTo('courses.view');
+        return $user->hasPermissionTo('courses.view') || $course->hasUser($user->id);
     }
 
     /**

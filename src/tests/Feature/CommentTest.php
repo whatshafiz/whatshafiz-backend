@@ -150,7 +150,7 @@ class CommentTest extends BaseFeatureTest
         $user = User::factory()->create();
 
         $comment = Comment::factory()->create(['commented_by_id' => $user->id, 'is_approved' => false]);
-        $newCommentData = Comment::factory()->make()->only('type', 'title', 'comment');
+        $newCommentData = Comment::factory()->make(['type' => $comment->type])->only('type', 'title', 'comment');
 
         $response = $this->actingAs($user)->json('PUT', $this->uri . '/' . $comment->id, $newCommentData);
 

@@ -42,7 +42,7 @@ class CommentPolicy
      */
     public function create(User $user): bool
     {
-        return $user->hasPermissionTo('comments.create');
+        return true;
     }
 
     /**

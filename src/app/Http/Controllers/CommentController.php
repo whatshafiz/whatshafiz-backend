@@ -109,9 +109,12 @@ class CommentController extends Controller
         $validatedCommentData = $this->validate(
             $request,
             [
-                'type' => 'required|string|in:whatshafiz,whatsenglish,whatsarapp',
+                'type' => 'required|string|in:whatshafiz,whatsenglish,whatsarapp|unique:comments,type,NULL,NULL,deleted_at,NULL,commented_by_id,' . Auth::id(),
                 'title' => 'required|string|min:3|max:100',
                 'comment' => 'required|string|min:3|max:1000',
+            ],
+            [
+                'type.unique' => 'Aynı kurs türü için bir kere yorum yapabilirsiniz.',
             ]
         );
 
@@ -151,7 +154,7 @@ class CommentController extends Controller
         $this->authorize('update', $comment);
 
         $validationRules = [
-            'type' => 'required|string|in:whatshafiz,whatsenglish,whatsarapp',
+            'type' => 'required|string|in:whatshafiz,whatsenglish,whatsarapp|unique:comments,type,' . $comment->id . ',id,deleted_at,NULL,commented_by_id,' . Auth::id(),
             'title' => 'required|string|min:3|max:100',
             'comment' => 'required|string|min:3|max:1000',
         ];
@@ -160,7 +163,11 @@ class CommentController extends Controller
             $validationRules['is_approved'] = 'nullable|boolean';
         }
 
-        $validatedCommentData = $this->validate($request, $validationRules);
+        $validatedCommentData = $this->validate(
+            $request,
+            $validationRules,
+            ['type.unique' => 'Aynı kurs türü için bir kere yorum yapabilirsiniz.']
+        );
 
         if (!$comment->is_approved && !empty($validatedCommentData['is_approved'])) {
             $validatedCommentData['approved_by_id'] = Auth::id();

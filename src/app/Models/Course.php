@@ -76,4 +76,13 @@ class Course extends BaseModel
     {
         return $this->hasMany(WhatsappGroup::class);
     }
+
+    /**
+     * @param  int  $userId
+     * @return bool
+     */
+    public function hasUser(int $userId): bool
+    {
+        return $this->users()->where('user_id', $userId)->exists();
+    }
 }

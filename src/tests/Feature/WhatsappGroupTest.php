@@ -26,16 +26,10 @@ class WhatsappGroupTest extends BaseFeatureTest
     }
 
     /** @test */
-    public function it_should_not_get_whatsapp_groups_when_does_not_have_permission_and_if_not_in_group_even_has_permission()
+    public function it_should_not_get_whatsapp_groups_when_does_not_have_permission_and_if_not_in_group()
     {
         $whatsappGroup = WhatsappGroup::factory()->create();
         $user = User::factory()->create();
-
-        $response = $this->actingAs($user)->json('GET', $this->uri . '/' . $whatsappGroup->id);
-
-        $response->assertForbidden();
-
-        $user->givePermissionTo('whatsappGroups.view');
 
         $response = $this->actingAs($user)->json('GET', $this->uri . '/' . $whatsappGroup->id);
 

@@ -218,7 +218,10 @@ class ProfileTest extends BaseFeatureTest
             ->assertJsonFragment([
                 'message' => 'Kaydınız başarılı şekilde oluşturuldu. <br><br>' .
                     'Whatsapp grubuna katılmak için gerekli link size whatsapp üzerinden gönderilecek. <br><br>' .
-                    'Lütfen gelen mesajı <strong>SPAM DEĞİL</strong> veya <strong>TAMAM</strong> olarak işaretleyin.',
+                    'Lütfen gelen mesajı <strong>SPAM DEĞİL</strong> veya <strong>TAMAM</strong> olarak işaretleyin. <br><br>' .
+                    'Eğer gelen linke tıklayamıyorsanız mesaj gelen numarayı Kişilere Ekleyin <br>' .
+                    'veya aşağıdaki butonları kullanarak gruba katılın.',
+                'new_whatsapp_group_join_url' => $joinUrl,
             ]);
 
         $this->assertDatabaseHas(

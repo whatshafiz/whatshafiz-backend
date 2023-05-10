@@ -126,7 +126,7 @@ class CourseController extends Controller
      */
     public function show(Course $course): JsonResponse
     {
-        $this->authorize('view', Course::class);
+        $this->authorize('view', [Course::class, $course]);
 
         return response()->json(compact('course'));
     }
