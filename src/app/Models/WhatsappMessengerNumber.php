@@ -6,7 +6,6 @@ use App\Traits\S3Trait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 
 class WhatsappMessengerNumber extends BaseModel

@@ -2,13 +2,9 @@
 
 namespace Tests\Feature;
 
-use App\Models\Course;
 use App\Models\User;
 use App\Models\WhatsappMessengerNumber;
-use App\Models\WhatsappMessengerNumberUser;
 use Carbon\Carbon;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 use Tests\BaseFeatureTest;
 
 class WhatsappMessengerNumberTest extends BaseFeatureTest

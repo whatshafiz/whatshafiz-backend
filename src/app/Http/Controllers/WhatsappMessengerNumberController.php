@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\WhatsappMessengerNumber;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Support\Arr;
 
 class WhatsappMessengerNumberController extends Controller
 {
