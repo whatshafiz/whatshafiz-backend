@@ -39,8 +39,8 @@ class WhatsappMessengerNumberController extends Controller
                 ->update(['is_active' => false]);
         }
 
-        $numberData['qrcode_url'] = '/whatsmessenger/login_qrs/' . $numberData['instance_id'] . '.png';
-        $numberData['screenshots_path'] = '/whatsmessenger/screenshots/' . $numberData['instance_id'];
+        $numberData['qrcode_url'] = 'whatsmessenger/login_qrs/' . $numberData['instance_id'] . '.png';
+        $numberData['screenshots_path'] = 'whatsmessenger/screenshots/' . $numberData['instance_id'];
         $numberData['is_active'] = true;
 
         $whatsappMessengerNumber = WhatsappMessengerNumber::updateOrCreate(
