@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\S3Trait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,6 +13,7 @@ class WhatsappMessengerNumber extends BaseModel
 {
     use HasFactory;
     use SoftDeletes;
+    use S3Trait;
 
     protected $casts = [
         'is_active' => 'boolean',
@@ -35,10 +37,31 @@ class WhatsappMessengerNumber extends BaseModel
     }
 
     /**
+     * @return string
+     */
+    public function getQrcodeUrlAttribute(): string
+    {
+        return $this->generatePreSignedUrl($this->attributes['qrcode_url']);
+    }
+
+    /**
      * @return array
      */
     public function getScreenshotsAttribute(): array
     {
-        return Storage::allFiles('/whatsmessenger/screenshots/' . $this->instance_id);
+        $screenshots = Storage::allFiles('/whatsmessenger/screenshots/' . $this->instance_id);
+
+        if (empty($screenshots)) {
+            return [];
+        }
+
+        rsort($screenshots);
+        $screenshots = array_slice($screenshots, 0, 10);
+
+        foreach ($screenshots as $key => $screenshot) {
+            $screenshots[$key] = $this->generatePreSignedUrl($screenshot);
+        }
+
+        return $screenshots;
     }
 }
