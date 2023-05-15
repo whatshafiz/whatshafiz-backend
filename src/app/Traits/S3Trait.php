@@ -13,6 +13,10 @@ trait S3Trait
      */
     private function generatePreSignedUrl(string $path): string
     {
+        if (App::isLocal()) {
+            return $path;
+        }
+
         $client = Storage::disk('s3')->getClient();
         $expire = "+60 minutes";
         $command = $client->getCommand('GetObject', [
@@ -30,6 +34,10 @@ trait S3Trait
      */
     private function generateStorageUrl(string $path): string
     {
+        if (App::isLocal()) {
+            return $path;
+        }
+
         return Storage::disk('s3')->url($path);
     }
 }
