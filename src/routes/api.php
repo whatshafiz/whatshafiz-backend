@@ -13,6 +13,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UniversityController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WhatsappGroupController;
+use App\Http\Controllers\WhatsappMessengerNumberController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('countries', [CountryController::class, 'index']);
@@ -116,6 +117,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::middleware(['auth:sanctum', 'admin'])->group(function () {
     Route::get('permissions', [PermissionController::class, 'index']);
+
+    Route::get('whatsapp-messenger-numbers', [WhatsappMessengerNumberController::class, 'index']);
+    Route::post('whatsapp-messenger-numbers', [WhatsappMessengerNumberController::class, 'store']);
 
     Route::get('roles/paginate', [RoleController::class, 'indexPaginate']);
     Route::apiResource('roles', RoleController::class);
