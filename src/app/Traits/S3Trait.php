@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Storage;
 
 trait S3Trait
@@ -13,7 +14,7 @@ trait S3Trait
      */
     private function generatePreSignedUrl(string $path): string
     {
-        if (App::isLocal()) {
+        if (App::isLocal() || Config::get('filesystems.default') === 'local') {
             return $path;
         }
 
@@ -34,7 +35,7 @@ trait S3Trait
      */
     private function generateStorageUrl(string $path): string
     {
-        if (App::isLocal()) {
+        if (App::isLocal() || Config::get('filesystems.default') === 'local') {
             return $path;
         }
 
