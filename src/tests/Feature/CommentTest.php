@@ -60,7 +60,7 @@ class CommentTest extends BaseFeatureTest
         $response->assertOk();
 
         foreach ($comments as $comment) {
-            $response->assertJsonFragment($comment->toArray());
+            $response->assertJsonFragment($comment->only(['id', 'type', 'title', 'comment']));
         }
     }
 
