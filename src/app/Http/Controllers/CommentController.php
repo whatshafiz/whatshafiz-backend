@@ -9,6 +9,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
 class CommentController extends Controller
@@ -91,7 +92,22 @@ class CommentController extends Controller
      */
     public function indexApprovedComments(string $type): JsonResponse
     {
-        return response()->json(Comment::approved()->where('type', $type)->latest('id')->paginate()->toArray());
+        return response()->json(
+            Comment::approved()
+                ->where('type', $type)
+                ->latest('id')
+                ->join('users', 'users.id', '=', 'comments.commented_by_id')
+                ->select([
+                    'comments.id',
+                    'comments.type',
+                    'comments.title',
+                    'comments.comment',
+                    DB::raw('CONCAT(users.name, " ", users.surname) as commented_by'),
+                    'comments.created_at'
+                ])
+                ->paginate()
+                ->toArray()
+        );
     }
 
     /**
