@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Symfony\Component\HttpFoundation\Response;
 
 class CourseController extends Controller
@@ -71,9 +72,15 @@ class CourseController extends Controller
      */
     public function indexAvailableCourses(): JsonResponse
     {
-        return response()->json(
-            Course::available()->get(['id', 'type', 'name', 'can_be_applied', 'can_be_applied_until', 'start_at'])
-        );
+        if (Cache::has(Course::AVAILABLE_COURSES_CACHE_KEY)) {
+            $availableCourses = Cache::get(Course::AVAILABLE_COURSES_CACHE_KEY);
+        } else {
+            $availableCourses = Course::available()
+                ->get(['id', 'type', 'name', 'can_be_applied', 'can_be_applied_until', 'start_at']);
+            Cache::put(Course::AVAILABLE_COURSES_CACHE_KEY, $availableCourses);
+        }
+
+        return response()->json($availableCourses);
     }
 
     /**
@@ -101,8 +108,8 @@ class CourseController extends Controller
                         }
                     },
                 ],
-                'can_be_applied_until' => 'nullable|date_format:d-m-Y H:i',
-                'start_at' => 'nullable|date_format:d-m-Y H:i',
+                'can_be_applied_until' => 'nullable|date_format:Y-m-d\TH:i',
+                'start_at' => 'nullable|date_format:Y-m-d\TH:i',
             ]
         );
 
@@ -160,8 +167,8 @@ class CourseController extends Controller
                         }
                     },
                 ],
-                'can_be_applied_until' => 'nullable|date_format:d-m-Y H:i',
-                'start_at' => 'nullable|date_format:d-m-Y H:i',
+                'can_be_applied_until' => 'nullable|date_format:Y-m-d\TH:i',
+                'start_at' => 'nullable|date_format:Y-m-d\TH:i',
             ]
         );
 

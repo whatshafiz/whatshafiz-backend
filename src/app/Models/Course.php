@@ -8,11 +8,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Cache;
 
 class Course extends BaseModel
 {
     use HasFactory;
     use SoftDeletes;
+
+    const AVAILABLE_COURSES_CACHE_KEY = 'available-courses';
 
     protected $casts = [
         'can_be_applied' => 'boolean',
@@ -23,6 +26,18 @@ class Course extends BaseModel
         'updated_at' => 'datetime:d-m-Y H:i',
         'deleted_at' => 'datetime:d-m-Y H:i',
     ];
+
+    /**
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($model) {
+            Cache::forget(self::AVAILABLE_COURSES_CACHE_KEY);
+        });
+    }
 
     /**
      * @param  Builder  $query
