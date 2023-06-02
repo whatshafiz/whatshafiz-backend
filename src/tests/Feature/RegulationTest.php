@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Regulation;
 use App\Models\User;
+use Illuminate\Support\Facades\Cache;
 use Tests\BaseFeatureTest;
 
 class RegulationTest extends BaseFeatureTest
@@ -18,6 +19,45 @@ class RegulationTest extends BaseFeatureTest
         parent::setUp();
 
         $this->uri = self::BASE_URI . '/regulations';
+    }
+
+    /** @test */
+    public function it_should_get_hafizol_regulations_from_cache_when_cached_before()
+    {
+        $hafizolRegulation = Regulation::where('slug', 'hafizol')->first();
+
+        Cache::shouldReceive('has')->with(Regulation::BASE_CACHE_KEY . 'hafizol')->once()->andReturn(true);
+        Cache::shouldReceive('get')->with(Regulation::BASE_CACHE_KEY . 'hafizol')->once()->andReturn($hafizolRegulation);
+
+        $response = $this->json('GET', $this->uri . '/hafizol');
+
+        $response->assertOk()
+            ->assertJsonFragment([
+                'name' => 'HafızOl',
+                'slug' => 'hafizol',
+                'summary' => $hafizolRegulation->summary,
+                'text' => $hafizolRegulation->text,
+            ]);
+    }
+
+    /** @test */
+    public function it_should_get_hafizol_regulations_from_database_and_put_it_to_cache_when_did_not_cached_before()
+    {
+        $hafizolRegulation = Regulation::where('slug', 'hafizol')->first();
+
+        Cache::shouldReceive('has')->with(Regulation::BASE_CACHE_KEY . 'hafizol')->once()->andReturn(false);
+        Cache::shouldReceive('get')->with(Regulation::BASE_CACHE_KEY . 'hafizol')->never();
+        Cache::shouldReceive('put')->once();
+
+        $response = $this->json('GET', $this->uri . '/hafizol');
+
+        $response->assertOk()
+            ->assertJsonFragment([
+                'name' => 'HafızOl',
+                'slug' => 'hafizol',
+                'summary' => $hafizolRegulation->summary,
+                'text' => $hafizolRegulation->text,
+            ]);
     }
 
     /** @test */
