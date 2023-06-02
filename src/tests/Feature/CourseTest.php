@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\Course;
 use App\Models\User;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\BaseFeatureTest;
@@ -152,10 +153,37 @@ class CourseTest extends BaseFeatureTest
     }
 
     /** @test */
-    public function it_should_get_available_courses_list()
+    public function it_should_get_available_courses_list_from_cache_when_available_courses_cached_before()
     {
         Course::query()->update(['can_be_applied' => false]);
         $availableCourses = Course::factory()->available()->count(2, 5)->create();
+
+        Cache::shouldReceive('has')->with(Course::AVAILABLE_COURSES_CACHE_KEY)->once()->andReturn(true);
+        Cache::shouldReceive('get')->with(Course::AVAILABLE_COURSES_CACHE_KEY)->once()->andReturn($availableCourses);
+
+        $response = $this->json('GET', $this->uri . '/available');
+
+        $response->assertOk();
+
+        foreach ($availableCourses as $availableCourse) {
+            $response->assertJsonFragment(
+                Arr::only(
+                    $availableCourse->toArray(),
+                    ['id', 'type', 'name', 'can_be_applied', 'can_be_applied_until', 'start_at']
+                )
+            );
+        }
+    }
+
+    /** @test */
+    public function it_should_get_available_courses_list_from_database_and_put_it_to_cache_when_available_courses_did_not_cached_before()
+    {
+        Course::query()->update(['can_be_applied' => false]);
+        $availableCourses = Course::factory()->available()->count(2, 5)->create();
+
+        Cache::shouldReceive('has')->with(Course::AVAILABLE_COURSES_CACHE_KEY)->once()->andReturn(false);
+        Cache::shouldReceive('get')->with(Course::AVAILABLE_COURSES_CACHE_KEY)->never();
+        Cache::shouldReceive('put')->once();
 
         $response = $this->json('GET', $this->uri . '/available');
 
