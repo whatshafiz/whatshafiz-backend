@@ -101,8 +101,8 @@ class CourseController extends Controller
                         }
                     },
                 ],
-                'can_be_applied_until' => 'nullable|date_format:d-m-Y H:i',
-                'start_at' => 'nullable|date_format:d-m-Y H:i',
+                'can_be_applied_until' => 'nullable|date_format:Y-m-d\TH:i',
+                'start_at' => 'nullable|date_format:Y-m-d\TH:i',
             ]
         );
 
@@ -160,8 +160,8 @@ class CourseController extends Controller
                         }
                     },
                 ],
-                'can_be_applied_until' => 'nullable|date_format:d-m-Y H:i',
-                'start_at' => 'nullable|date_format:d-m-Y H:i',
+                'can_be_applied_until' => 'nullable|date_format:Y-m-d\TH:i',
+                'start_at' => 'nullable|date_format:Y-m-d\TH:i',
             ]
         );
 
