@@ -50,6 +50,36 @@ class SettingTest extends BaseFeatureTest
     }
 
     /** @test */
+    public function it_should_get_settings_list_when_has_permission_by_filtering_and_as_paginated()
+    {
+        $user = User::factory()->create();
+
+        $settings = Setting::factory()->count(5)->create();
+        $searchSetting = $settings->random();
+        $searchQuery = [
+            'filter' => [['value' => $searchSetting->name]],
+        ];
+
+        $response = $this->actingAs($user)->json('GET', $this->uri . '/paginate', $searchQuery);
+
+        $response->assertOk()
+            ->assertJsonFragment($searchSetting->only('id', 'name', 'value'));
+    }
+
+    /** @test */
+    public function it_should_get_setting_details()
+    {
+        $user = User::factory()->create();
+
+        $setting = Setting::factory()->create();
+
+        $response = $this->actingAs($user)->json('GET', $this->uri . '/' . $setting->id);
+
+        $response->assertOk()
+            ->assertJsonFragment($setting->only('id', 'name', 'value'));
+    }
+
+    /** @test */
     public function it_should_get_settings_list_when_logged_in_from_cache_when_settings_list_cached_before()
     {
         $settings = Setting::factory()->count(round(3, 5))->create();
