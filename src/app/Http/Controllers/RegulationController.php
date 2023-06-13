@@ -54,10 +54,8 @@ class RegulationController extends Controller
             ]
         );
 
-        if ($regulation->update($validatedData)) {
-            return response()->json(['status' => 'success']);
-        }
+        $regulation->update($validatedData);
 
-        return response()->json(['status' => 'failed'], Response::HTTP_BAD_REQUEST);
+        return response()->json(['status' => 'success']);
     }
 }

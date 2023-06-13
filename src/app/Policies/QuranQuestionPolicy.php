@@ -54,17 +54,6 @@ class QuranQuestionPolicy
     }
 
     /**
-     * Determine whether the user can assign the model.
-     *
-     * @param User $user
-     * @return bool
-     */
-    public function assign(User $user): bool
-    {
-        return $user->hasPermissionTo('quranQuestions.assign');
-    }
-
-    /**
      * Determine whether the user can delete the model.
      *
      * @param  User  $user
