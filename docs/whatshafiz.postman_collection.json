@@ -669,7 +669,7 @@
 					"response": []
 				},
 				{
-					"name": "User Courses",
+					"name": "Auth User Courses",
 					"event": [
 						{
 							"listen": "test",
@@ -1350,6 +1350,164 @@
 					"response": []
 				},
 				{
+					"name": "LIST Kurslarım",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"type\");",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"    pm.expect(pm.response.text()).to.include(\"can_be_applied\");",
+									"    pm.expect(pm.response.text()).to.include(\"can_be_applied_until\");",
+									"    pm.expect(pm.response.text()).to.include(\"start_at\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/my/courses",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"my",
+								"courses"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "whatshafiz",
+									"description": "nullable|string|in:whatshafiz,whatsenglish,whatsarapp",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "whats123",
+									"description": "nullable|string|min:3|max:100",
+									"disabled": true
+								},
+								{
+									"key": "is_active",
+									"value": "1",
+									"description": "nullable|boolean",
+									"disabled": true
+								},
+								{
+									"key": "can_be_applied",
+									"value": "1",
+									"description": "nullable|boolean",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LIST PAGINATED Kurslar",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"type\");",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"    pm.expect(pm.response.text()).to.include(\"can_be_applied\");",
+									"    pm.expect(pm.response.text()).to.include(\"can_be_applied_until\");",
+									"    pm.expect(pm.response.text()).to.include(\"start_at\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/courses/paginate",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"courses",
+								"paginate"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "whatshafiz",
+									"description": "nullable|string|in:whatshafiz,whatsenglish,whatsarapp",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "whats123",
+									"description": "nullable|string|min:3|max:100",
+									"disabled": true
+								},
+								{
+									"key": "is_active",
+									"value": "1",
+									"description": "nullable|boolean",
+									"disabled": true
+								},
+								{
+									"key": "can_be_applied",
+									"value": "1",
+									"description": "nullable|boolean",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "LIST Başvurulabilir Kurslar",
 					"event": [
 						{
@@ -1677,6 +1835,250 @@
 					"response": []
 				},
 				{
+					"name": "LIST PAGINATED Ülkeler",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"iso\");",
+									"    pm.expect(pm.response.text()).to.include(\"TR\");",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"    pm.expect(pm.response.text()).to.include(\"phone_code\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/countries/paginate",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"countries",
+								"paginate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Ülke",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"iso\");",
+									"    pm.expect(pm.response.text()).to.include(\"TR\");",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"    pm.expect(pm.response.text()).to.include(\"phone_code\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/countries/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"countries",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Ülke",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"iso\");",
+									"    pm.expect(pm.response.text()).to.include(\"TR\");",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"    pm.expect(pm.response.text()).to.include(\"phone_code\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Türkiye",
+									"type": "text"
+								},
+								{
+									"key": "iso",
+									"value": "TR",
+									"type": "text"
+								},
+								{
+									"key": "phone_code",
+									"value": "+90",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/countries/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"countries",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Ülke",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Türkiye",
+									"type": "text"
+								},
+								{
+									"key": "iso",
+									"value": "TR",
+									"type": "text"
+								},
+								{
+									"key": "phone_code",
+									"value": "+90",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/countries/99",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"countries",
+								"99"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "LIST Ülke Şehirleri",
 					"event": [
 						{
@@ -1789,6 +2191,128 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "UPDATE Şehir",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"    pm.expect(pm.response.text()).to.include(\"country_id\");",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "country_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "{{$randomCity}}",
+									"description": "required|string|min:2|max:50|unique:cities,name",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/cities/2",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"cities",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Şehir",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"    pm.expect(pm.response.text()).to.include(\"country_id\");",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{URL}}/cities/2",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"cities",
+								"2"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -1839,6 +2363,272 @@
 							],
 							"path": [
 								"universities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LIST PAGINATED Üniversiteler",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/universities/paginate",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"universities",
+								"paginate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Üniversite",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/universities/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"universities",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE Üniversite",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"    pm.response.to.have.status(201);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"name\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "{{$randomCity}} Üniversitesi",
+									"description": "required|string|min:5|max:250|unique:universities",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/universities/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"universities",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Üniversite",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "yeni bir üniversite adı",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/universities/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"universities",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Üniversite",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/universities/109",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"universities",
+								"109"
 							]
 						}
 					},
@@ -1896,6 +2686,279 @@
 					"response": []
 				},
 				{
+					"name": "LIST PAGINATED Fakülteler",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/faculties/paginate",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"faculties",
+								"paginate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Fakülte",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/faculties/2",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"faculties",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE Fakülte",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"    pm.response.to.have.status(201);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"name\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "{{$randomJobArea}}",
+									"description": "required|string|min:5|max:250|unique:university_faculties,name",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/universities/1/faculties/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"universities",
+								"1",
+								"faculties",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Fakülte",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "university_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Siyaset bilimleri facultesi",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/faculties/2",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"faculties",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Fakülte",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/faculties/5",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"faculties",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "LIST Fakülte Bölümleri",
 					"event": [
 						{
@@ -1943,6 +3006,106 @@
 								"faculties",
 								"12",
 								"departments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LIST PAGINATED Fakülte Bölümleri",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/departments/paginate",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"departments",
+								"paginate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Fakülte Bölümü",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/departments/2",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"departments",
+								"2"
 							]
 						}
 					},
@@ -2013,22 +3176,25 @@
 					"response": []
 				},
 				{
-					"name": "CREATE Fakülte",
+					"name": "UPDATE Fakülte Bölümü",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
-									"    pm.response.to.have.status(201);",
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
 									"    pm.expect(pm.response.text()).to.include(\"id\");",
-									"    pm.expect(pm.response.text()).to.include(\"name\");"
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"});",
+									""
 								],
 								"type": "text/javascript"
 							}
 						}
 					],
 					"request": {
-						"method": "POST",
+						"method": "PUT",
 						"header": [
 							{
 								"key": "Accept",
@@ -2050,45 +3216,53 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
+									"key": "university_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "university_faculty_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
 									"key": "name",
-									"value": "{{$randomJobArea}}",
-									"description": "required|string|min:5|max:250|unique:university_faculties,name",
+									"value": "Siyaset bilimi",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "{{URL}}/universities/1/faculties/",
+							"raw": "{{URL}}/departments/2",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
-								"universities",
-								"1",
-								"faculties",
-								""
+								"departments",
+								"2"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "CREATE Üniversite",
+					"name": "DELETE Fakülte Bölümü",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
-									"    pm.response.to.have.status(201);",
-									"    pm.expect(pm.response.text()).to.include(\"id\");",
-									"    pm.expect(pm.response.text()).to.include(\"name\");"
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									""
 								],
 								"type": "text/javascript"
 							}
 						}
 					],
 					"request": {
-						"method": "POST",
+						"method": "DELETE",
 						"header": [
 							{
 								"key": "Accept",
@@ -2106,25 +3280,14 @@
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "name",
-									"value": "{{$randomCity}} Üniversitesi",
-									"description": "required|string|min:5|max:250|unique:universities",
-									"type": "text"
-								}
-							]
-						},
 						"url": {
-							"raw": "{{URL}}/universities/",
+							"raw": "{{URL}}/departments/3",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
-								"universities",
-								""
+								"departments",
+								"3"
 							]
 						}
 					},
@@ -2232,6 +3395,96 @@
 								"{{URL}}"
 							],
 							"path": [
+								"whatsapp-groups"
+							],
+							"query": [
+								{
+									"key": "course_id",
+									"value": "12",
+									"description": "nullable|integer|min:0|exists:courses,id",
+									"disabled": true
+								},
+								{
+									"key": "type",
+									"value": "whatshafiz",
+									"description": "nullable|string|in:whatshafiz,whatsenglish,whatsarapp",
+									"disabled": true
+								},
+								{
+									"key": "gender",
+									"value": "male",
+									"description": "nullable|string|in:male,female",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "whats123",
+									"description": "nullable|string|min:2|max:100",
+									"disabled": true
+								},
+								{
+									"key": "is_active",
+									"value": "1",
+									"description": "nullable|boolean",
+									"disabled": true
+								},
+								{
+									"key": "join_url",
+									"value": "mekialmklmalmiela",
+									"description": "nullable|string|min:2",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LIST MY Whatsapp Gruplarım",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"type\");",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"    pm.expect(pm.response.text()).to.include(\"course_id\");",
+									"    pm.expect(pm.response.text()).to.include(\"join_url\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/my/whatsapp-groups",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"my",
 								"whatsapp-groups"
 							],
 							"query": [
@@ -2766,6 +4019,108 @@
 					"response": []
 				},
 				{
+					"name": "LIST PAGINATED Settings",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"    pm.expect(pm.response.text()).to.include(\"value\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/settings/paginate",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"settings",
+								"paginate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Setting",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"    pm.expect(pm.response.text()).to.include(\"value\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/settings/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"settings",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "UPDATE Settings",
 					"event": [
 						{
@@ -3140,12 +4495,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{URL}}/my-complaints/",
+							"raw": "{{URL}}/my/complaints/",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
-								"my-complaints",
+								"my",
+								"complaints",
 								""
 							],
 							"query": [
@@ -3578,12 +4934,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{URL}}/my-comments",
+							"raw": "{{URL}}/my/comments",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
-								"my-comments"
+								"my",
+								"comments"
 							]
 						}
 					},
@@ -3662,6 +5019,55 @@
 									"description": "nullable|boolean",
 									"disabled": true
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LIST Onaylı Yorumlar (Website)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"title\");",
+									"    pm.expect(pm.response.text()).to.include(\"comment\");",
+									"    pm.expect(pm.response.text()).to.include(\"commented_by_id\");",
+									"    pm.expect(pm.response.text()).to.include(\"created_at\");",
+									"    pm.expect(pm.response.text()).to.include(\"updated_at\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/comments/whatshafiz",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"comments",
+								"whatshafiz"
 							]
 						}
 					},
@@ -3753,10 +5159,10 @@
 			]
 		},
 		{
-			"name": "Soru Yönetimi",
+			"name": "Meal Soruları Yönetimi",
 			"item": [
 				{
-					"name": "NEW Soru",
+					"name": "NEW Meal Sorusu",
 					"event": [
 						{
 							"listen": "test",
@@ -3864,7 +5270,7 @@
 					"response": []
 				},
 				{
-					"name": "UPDATE Soru",
+					"name": "UPDATE Meal Sorusu",
 					"event": [
 						{
 							"listen": "test",
@@ -3973,7 +5379,7 @@
 					"response": []
 				},
 				{
-					"name": "GET Soru",
+					"name": "GET Meal Sorusu",
 					"event": [
 						{
 							"listen": "test",
@@ -4029,7 +5435,7 @@
 					"response": []
 				},
 				{
-					"name": "DELETE Soru",
+					"name": "DELETE Meal Sorusu",
 					"event": [
 						{
 							"listen": "test",
@@ -4077,7 +5483,7 @@
 					"response": []
 				},
 				{
-					"name": "LIST Soru",
+					"name": "LIST Meal Soruları",
 					"event": [
 						{
 							"listen": "test",
@@ -4155,7 +5561,7 @@
 			]
 		},
 		{
-			"name": "Cevap Yönetimi",
+			"name": "Meal Sorularının Cevapları Yönetimi",
 			"item": [
 				{
 					"name": "CREATE Cevap",
@@ -4482,12 +5888,13 @@
 							]
 						},
 						"url": {
-							"raw": "{{URL}}/my-answer-attempts",
+							"raw": "{{URL}}/my/answer-attempts",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
-								"my-answer-attempts"
+								"my",
+								"answer-attempts"
 							]
 						}
 					},
@@ -4498,6 +5905,173 @@
 		{
 			"name": "Rol/Yetki Yönetimi",
 			"item": [
+				{
+					"name": "LIST Roller",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"    pm.expect(pm.response.text()).to.include(\"guard_name\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{URL}}/roles",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LIST PAGINATED Roller",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"    pm.expect(pm.response.text()).to.include(\"guard_name\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{URL}}/roles/paginate",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"roles",
+								"paginate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Rol",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"    pm.expect(pm.response.text()).to.include(\"guard_name\");",
+									"    pm.expect(pm.response.text()).to.include(\"permissions\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/roles/2",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"roles",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
 				{
 					"name": "CREATE Rol",
 					"event": [
@@ -4635,58 +6209,6 @@
 					"response": []
 				},
 				{
-					"name": "GET Rol",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Success\", function () {",
-									"    pm.response.to.have.status(200);",
-									"    pm.expect(pm.response.text()).to.include(\"id\");",
-									"    pm.expect(pm.response.text()).to.include(\"name\");",
-									"    pm.expect(pm.response.text()).to.include(\"guard_name\");",
-									"    pm.expect(pm.response.text()).to.include(\"permissions\");",
-									"});",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Authorization",
-								"value": "Bearer {{JWT}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{URL}}/roles/2",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"roles",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "DELETE Rol",
 					"event": [
 						{
@@ -4729,63 +6251,6 @@
 							"path": [
 								"roles",
 								"17"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "LIST Roller",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Success\", function () {",
-									"    pm.response.to.have.status(200);",
-									"    pm.expect(pm.response.text()).to.include(\"id\");",
-									"    pm.expect(pm.response.text()).to.include(\"name\");",
-									"    pm.expect(pm.response.text()).to.include(\"guard_name\");",
-									"});",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Authorization",
-								"value": "Bearer {{JWT}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": []
-						},
-						"url": {
-							"raw": "{{URL}}/roles",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"roles"
 							]
 						}
 					},
@@ -4910,7 +6375,7 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Success\", function () {",
-									"    pm.response.to.have.status(204);",
+									"    pm.response.to.have.status(200);",
 									"});",
 									""
 								],
