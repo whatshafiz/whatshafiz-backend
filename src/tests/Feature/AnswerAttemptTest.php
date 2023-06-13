@@ -18,7 +18,7 @@ class AnswerAttemptTest extends BaseFeatureTest
         parent::setUp();
 
         $this->uri = self::BASE_URI . '/answer-attempts';
-        $this->myUri = self::BASE_URI . '/my-answer-attempts';
+        $this->myUri = self::BASE_URI . '/my/answer-attempts';
     }
 
     /** @test */
