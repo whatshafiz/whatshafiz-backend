@@ -149,6 +149,7 @@ class UniversityController extends Controller
         );
 
         $university->update($validatedUniversityData);
+        Cache::forget("universities");
 
         return response()->json(compact('university'));
     }
@@ -175,6 +176,8 @@ class UniversityController extends Controller
             ]
         );
 
+        Cache::forget("universities:{$faculty->university_id}:faculties");
+        Cache::forget("universities:{$request->university_id}:faculties");
         $faculty->update($validatedFacultyData);
 
         return response()->json(compact('faculty'));
@@ -204,6 +207,8 @@ class UniversityController extends Controller
             ]
         );
 
+        Cache::forget("universities:{$department->university_id}:faculties:{$department->university_faculty_id}:departments");
+        Cache::forget("universities:{$request->university_id}:faculties:{$request->university_faculty_id}:departments");
         $department->update($validatedDepartmentData);
 
         return response()->json(compact('department'));

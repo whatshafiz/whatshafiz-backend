@@ -51,13 +51,4 @@ class Complaint extends BaseModel
 
         return $this->created_by === $userId;
     }
-
-    /**
-     * @param Builder $query
-     * @return void
-     */
-    public function scopeMyComplaints(Builder $query): void
-    {
-        $query->where('created_by', auth()->id());
-    }
 }
