@@ -6,7 +6,6 @@ use App\Models\Regulation;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
-use Symfony\Component\HttpFoundation\Response;
 
 class RegulationController extends Controller
 {

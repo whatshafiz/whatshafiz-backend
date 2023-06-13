@@ -2,13 +2,11 @@
 
 namespace Tests\Feature;
 
-use App\Models\Course;
 use App\Models\User;
 use App\Models\WhatsappGroup;
 use App\Models\WhatsappGroupUser;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 use Tests\BaseFeatureTest;
 
 class WhatsappGroupTest extends BaseFeatureTest

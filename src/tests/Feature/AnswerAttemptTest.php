@@ -48,7 +48,6 @@ class AnswerAttemptTest extends BaseFeatureTest
         }
     }
 
-
     /** @test */
     public function it_should_not_get_answer_attempt_details_when_does_not_have_permission()
     {
