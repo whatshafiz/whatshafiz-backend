@@ -55,6 +55,7 @@ class RegulationController extends Controller
         );
 
         $regulation->update($validatedData);
+        Cache::forget(Regulation::BASE_CACHE_KEY . $regulation->slug);
 
         return response()->json(['status' => 'success']);
     }
