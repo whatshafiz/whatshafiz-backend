@@ -150,10 +150,8 @@ class ComplaintController extends Controller
             $validatedComplaintData['reviewed_at'] = now();
         }
 
-        if ($complaint->update($validatedComplaintData)) {
-            return response()->json(null, Response::HTTP_NO_CONTENT);
-        }
+        $complaint->update($validatedComplaintData);
 
-        return response()->json(['status' => 'failed'], Response::HTTP_BAD_REQUEST);
+        return response()->json(null, Response::HTTP_NO_CONTENT);
     }
 }
