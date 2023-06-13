@@ -87,6 +87,23 @@ class CountryTest extends BaseFeatureTest
     }
 
     /** @test */
+    public function it_should_paginate_country_list_by_filtering()
+    {
+        $user = User::factory()->create();
+        $user->givePermissionTo('countries.update');
+
+        $searchCountry = Country::inRandomOrder()->first();
+        $searchQuery = [
+            'filter' => [['value' => $searchCountry->name]],
+        ];
+
+        $response = $this->actingAs($user)->json('GET', $this->uri . '/paginate', $searchQuery);
+
+        $response->assertOk()
+            ->assertJsonFragment($searchCountry->toArray());
+    }
+
+    /** @test */
     public function it_should_paginate_city_list()
     {
         $user = User::factory()->create();
@@ -102,6 +119,23 @@ class CountryTest extends BaseFeatureTest
         foreach (City::take($perPage)->latest('id')->get() as $city) {
             $response->assertJsonFragment($city->toArray());
         }
+    }
+
+    /** @test */
+    public function it_should_paginate_city_list_by_filtering()
+    {
+        $user = User::factory()->create();
+        $user->givePermissionTo('countries.update');
+
+        $searchCity = City::inRandomOrder()->first();
+        $searchQuery = [
+            'filter' => [['value' => $searchCity->name]],
+        ];
+
+        $response = $this->actingAs($user)->json('GET', self::BASE_URI . '/cities/paginate', $searchQuery);
+
+        $response->assertOk()
+            ->assertJsonFragment($searchCity->toArray());
     }
 
     /** @test */
@@ -141,6 +175,18 @@ class CountryTest extends BaseFeatureTest
         foreach ($cities as $city) {
             $response->assertJsonFragment($city->only('id', 'name'));
         }
+    }
+
+    /** @test */
+    public function it_should_get_city_details()
+    {
+        $user = User::factory()->create();
+        $city = City::inRandomOrder()->first();
+
+        $response = $this->actingAs($user)->json('GET', self::BASE_URI . '/cities/' . $city->id);
+
+        $response->assertSuccessful()
+            ->assertJsonFragment($city->only('id', 'name'));
     }
 
     /** @test */
@@ -260,12 +306,10 @@ class CountryTest extends BaseFeatureTest
     /** @test */
     public function it_should_not_delete_country_details_when_country_has_users()
     {
-        $user = User::factory()->create();
+        $user = User::factory()->create(['country_id' => Country::inRandomOrder()->first()->id]);
         $user->givePermissionTo('countries.delete');
 
-        $country = Country::whereHas('users')->inRandomOrder()->first();
-
-        $response = $this->actingAs($user)->json('DELETE', $this->uri . '/' . $country->id);
+        $response = $this->actingAs($user)->json('DELETE', $this->uri . '/' . $user->country_id);
 
         $response->assertUnprocessable();
     }

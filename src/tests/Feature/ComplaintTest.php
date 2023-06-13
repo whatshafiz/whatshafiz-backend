@@ -59,7 +59,7 @@ class ComplaintTest extends BaseFeatureTest
             'is_resolved' => $searchComplaint->is_resolved,
             'created_by' => $searchComplaint->created_by,
             'reviewed_by' => $searchComplaint->reviewed_by ?? $user->id,
-            'related_user_id' => $searchComplaint->related_user_id,
+            'related_user_id' => $searchComplaint->related_user_id ?? $user->id,
             'filter' => [['value' => $searchComplaint->subject]],
         ];
 
