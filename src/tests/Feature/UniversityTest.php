@@ -414,7 +414,7 @@ class UniversityTest extends BaseFeatureTest
     {
         $user = User::factory()->create();
         $user->givePermissionTo('universities.delete');
-        $user->university_id = University::inRandomOrder()->first()->id;
+        $user->update(['university_id' => University::factory()->create()->id]);
 
         $response = $this->actingAs($user)->json('DELETE', $this->uri . '/' . $user->university_id);
 
@@ -464,7 +464,7 @@ class UniversityTest extends BaseFeatureTest
     {
         $user = User::factory()->create();
         $user->givePermissionTo('universities.delete');
-        $user->university_faculty_id = UniversityFaculty::inRandomOrder()->first()->id;
+        $user->update(['university_faculty_id' => UniversityFaculty::factory()->create()->id]);
 
         $response = $this->actingAs($user)
             ->json('DELETE', self::BASE_URI . '/faculties/' . $user->university_faculty_id);
