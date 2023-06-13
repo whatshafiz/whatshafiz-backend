@@ -49,6 +49,24 @@ class RoleTest extends BaseFeatureTest
     }
 
     /** @test */
+    public function user_can_list_roles_when_has_admin_role_as_paginated_by_filtering()
+    {
+        $loginUser = User::factory()->create();
+        $loginUser->assignRole('Admin');
+
+        $searchRole = Role::where('name', '!=', 'Admin')->inRandomOrder()->first();
+
+        $searchQuery = [
+            'filter' => [['value' => $searchRole->name]],
+        ];
+
+        $response = $this->actingAs($loginUser)->json('GET', $this->uri . '/paginate', $searchQuery);
+
+        $response->assertOk()
+            ->assertJsonFragment($searchRole->toArray());
+    }
+
+    /** @test */
     public function user_can_not_view_role_when_has_not_admin_role()
     {
         $loginUser = User::factory()->create();
@@ -58,6 +76,20 @@ class RoleTest extends BaseFeatureTest
         $response = $this->actingAs($loginUser)->json('GET', $this->uri . '/' . $role->id);
 
         $response->assertForbidden();
+    }
+
+    /** @test */
+    public function user_can_not_view_admin_role_even_has_admin_role()
+    {
+        $loginUser = User::factory()->create();
+        $loginUser->assignRole('Admin');
+
+        $adminRole = Role::where('name', 'Admin')->first();
+
+        $response = $this->actingAs($loginUser)->json('GET', $this->uri . '/' . $adminRole->id);
+
+        $response->assertUnprocessable()
+            ->assertJsonFragment(['message' => 'Admin bilgileri değiştirilemez!']);
     }
 
     /** @test */
@@ -124,6 +156,20 @@ class RoleTest extends BaseFeatureTest
     }
 
     /** @test */
+    public function user_can_not_update_admin_role_even_has_admin_role()
+    {
+        $loginUser = User::factory()->create();
+        $loginUser->assignRole('Admin');
+
+        $adminRole = Role::where('name', 'Admin')->first();
+
+        $response = $this->actingAs($loginUser)->json('PUT', $this->uri . '/' . $adminRole->id);
+
+        $response->assertUnprocessable()
+            ->assertJsonFragment(['message' => 'Admin bilgileri değiştirilemez!']);
+    }
+
+    /** @test */
     public function user_can_update_role_when_has_admin_role()
     {
         $loginUser = User::factory()->create();
@@ -162,6 +208,20 @@ class RoleTest extends BaseFeatureTest
         $response = $this->actingAs($loginUser)->json('DELETE', $this->uri . '/' . $role->id);
 
         $response->assertForbidden();
+    }
+
+    /** @test */
+    public function user_can_not_delete_admin_role_even_has_admin_role()
+    {
+        $loginUser = User::factory()->create();
+        $loginUser->assignRole('Admin');
+
+        $adminRole = Role::where('name', 'Admin')->first();
+
+        $response = $this->actingAs($loginUser)->json('DELETE', $this->uri . '/' . $adminRole->id);
+
+        $response->assertUnprocessable()
+            ->assertJsonFragment(['message' => 'Admin silinemez!']);
     }
 
     /** @test */

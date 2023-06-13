@@ -6,7 +6,6 @@ use App\Models\Regulation;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
-use Symfony\Component\HttpFoundation\Response;
 
 class RegulationController extends Controller
 {
@@ -54,10 +53,9 @@ class RegulationController extends Controller
             ]
         );
 
-        if ($regulation->update($validatedData)) {
-            return response()->json(['status' => 'success']);
-        }
+        $regulation->update($validatedData);
+        Cache::forget(Regulation::BASE_CACHE_KEY . $regulation->slug);
 
-        return response()->json(['status' => 'failed'], Response::HTTP_BAD_REQUEST);
+        return response()->json(['status' => 'success']);
     }
 }

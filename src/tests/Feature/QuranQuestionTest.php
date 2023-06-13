@@ -58,24 +58,46 @@ class QuranQuestionTest extends BaseFeatureTest
         $quranQuestion = QuranQuestion::factory()->count(5)->create()->random();
 
         $searchQuery = [
-            'page_number' => $quranQuestion->page_number,
-            'question' => $quranQuestion->question,
-            'option_1' => $quranQuestion->option_1,
-            'option_2' => $quranQuestion->option_2,
-            'option_3' => $quranQuestion->option_3,
-            'option_4' => $quranQuestion->option_4,
-            'option_5' => $quranQuestion->option_5,
-            'correct_option' => $quranQuestion->correct_option,
+            'filter' => [['value' => (string)$quranQuestion->page_number]],
         ];
 
         $response = $this->actingAs($user)->json('GET', $this->uri, $searchQuery);
 
         $response->assertOk();
 
+        $searchQuery['page_number'] = $searchQuery['filter'][0]['value'];
+        unset($searchQuery['filter']);
+
         foreach (QuranQuestion::where($searchQuery)->get() as $question) {
             $question['question'] = Str::limit($question['question'], 33);
             $response->assertJsonFragment($question->toArray());
         }
+    }
+
+    /** @test */
+    public function it_should_not_get_quran_question_details_when_has_permission()
+    {
+        $user = User::factory()->create();
+
+        $quranQuestion = QuranQuestion::factory()->create();
+
+        $response = $this->actingAs($user)->json('GET', $this->uri . '/' . $quranQuestion->id);
+
+        $response->assertForbidden();
+    }
+
+    /** @test */
+    public function it_should_get_quran_question_details_when_has_permission()
+    {
+        $user = User::factory()->create();
+        $user->givePermissionTo('quranQuestions.view');
+
+        $quranQuestion = QuranQuestion::factory()->create();
+
+        $response = $this->actingAs($user)->json('GET', $this->uri . '/' . $quranQuestion->id);
+
+        $response->assertOk()
+            ->assertJsonFragment($quranQuestion->toArray());
     }
 
     /** @test */

@@ -50,6 +50,7 @@ class UserFactory extends Factory
         $city = City::inRandomOrder()->first();
 
         return $this->state(fn (array $attributes) => [
+            'email' => $this->faker->email(),
             'gender' => $this->faker->randomElement(['male', 'female']),
             'country_id' => $city->country_id,
             'city_id' => $city->id,

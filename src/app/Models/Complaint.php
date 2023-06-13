@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -50,14 +49,5 @@ class Complaint extends BaseModel
         $userId = $user ? $user->id : auth()->id();
 
         return $this->created_by === $userId;
-    }
-
-    /**
-     * @param Builder $query
-     * @return void
-     */
-    public function scopeMyComplaints(Builder $query): void
-    {
-        $query->where('created_by', auth()->id());
     }
 }
