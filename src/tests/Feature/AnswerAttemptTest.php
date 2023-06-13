@@ -49,6 +49,32 @@ class AnswerAttemptTest extends BaseFeatureTest
     }
 
     /** @test */
+    public function it_should_not_get_answer_attempt_details_when_does_not_have_permission()
+    {
+        $user = User::factory()->create();
+
+        $answerAttempt = AnswerAttempt::factory()->create();
+
+        $response = $this->actingAs($user)->json('GET', $this->uri . '/' . $answerAttempt->id);
+
+        $response->assertForbidden();
+    }
+
+    /** @test */
+    public function it_should_get_answer_attempt_details_when_has_permission()
+    {
+        $user = User::factory()->create();
+        $user->givePermissionTo('answerAttempts.view');
+
+        $answerAttempt = AnswerAttempt::factory()->create();
+
+        $response = $this->actingAs($user)->json('GET', $this->uri . '/' . $answerAttempt->id);
+
+        $response->assertOk()
+            ->assertJsonFragment($answerAttempt->toArray());
+    }
+
+    /** @test */
     public function it_should_filter_answer_attempts_list_when_has_permission()
     {
         $user = User::factory()->create();

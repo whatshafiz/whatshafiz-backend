@@ -65,6 +65,22 @@ class CommentTest extends BaseFeatureTest
     }
 
     /** @test */
+    public function user_can_list_own_comments_as_paginated()
+    {
+        $user = User::factory()->create();
+
+        $comments = Comment::factory()->count(5)->create(['commented_by_id' => $user->id]);
+
+        $response = $this->actingAs($user)->json('GET', self::BASE_URI . '/my/comments');
+
+        $response->assertOk();
+
+        foreach ($comments as $comment) {
+            $response->assertJsonFragment($comment->only(['id', 'type', 'title', 'comment']));
+        }
+    }
+
+    /** @test */
     public function user_can_filter_comments_while_listing_and_has_permission()
     {
         $user = User::factory()->create();
@@ -73,20 +89,40 @@ class CommentTest extends BaseFeatureTest
         $comments = Comment::factory()->count(5)->create();
         $searchComment = $comments->random();
         $searchQuery = [
-            'title' => $searchComment->title,
-            'comment' => $searchComment->comment,
+            'type' => $searchComment->type,
             'commented_by_id' => $searchComment->commented_by_id,
+            'approved_by_id' => $searchComment->approved_by_id ?? $user->id,
             'is_approved' => $searchComment->is_approved,
-            'approved_by_id' => $searchComment->approved_by_id,
+            'filter' => [['value' => $searchComment->title]],
         ];
 
         $response = $this->actingAs($user)->json('GET', $this->uri, $searchQuery);
 
         $response->assertOk();
 
+        $searchQuery['title'] = $searchQuery['filter'][0]['value'];
+        unset($searchQuery['filter']);
+
         foreach (Comment::where($searchQuery)->get() as $comment) {
             $response->assertJsonFragment($comment->toArray());
         }
+    }
+
+    /** @test */
+    public function user_can_create_comment()
+    {
+        $commentData = Comment::factory()->make()->only('type', 'title', 'comment');
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->json('POST', $this->uri, $commentData);
+
+        $commentData['commented_by_id'] = $user->id;
+
+        $response->assertOk()
+            ->assertJsonFragment($commentData);
+
+        $this->assertDatabaseHas('comments', $commentData);
     }
 
     /** @test */

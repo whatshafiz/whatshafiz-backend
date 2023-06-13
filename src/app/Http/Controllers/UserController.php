@@ -48,6 +48,7 @@ class UserController extends Controller
                 'is_banned' => 'nullable|boolean',
             ]
         );
+
         $searchKey = $this->getTabulatorSearchKey($request);
 
         $users = User::when(isset($filters['gender']), function ($query) use ($filters) {

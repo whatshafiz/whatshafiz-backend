@@ -2,7 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\Models\UniversityDepartment;
 use App\Models\User;
+use App\Models\WhatsappGroup;
 use Tests\BaseFeatureTest;
 
 class UserTest extends BaseFeatureTest
@@ -63,8 +65,13 @@ class UserTest extends BaseFeatureTest
         $loginUser = User::factory()->create();
         $loginUser->givePermissionTo('users.list');
 
-        $users = User::factory()->count(2, 5)->create();
-        $userForFilter = $users->random();
+        $universityDepartment = UniversityDepartment::inRandomOrder()->first();
+        $userForFilter = User::factory()->completed()->create();
+        $whatsappGroup = WhatsappGroup::factory()->create();
+        $course = $whatsappGroup->course;
+        $userForFilter->whatsappGroups()->attach($whatsappGroup);
+        $userForFilter->courses()->attach($course);
+
         $filters = [
             'name' => $userForFilter->name,
             'surname' => $userForFilter->surname,
@@ -76,16 +83,16 @@ class UserTest extends BaseFeatureTest
             'university_id' => $userForFilter->university_id,
             'university_faculty_id' => $userForFilter->university_faculty_id,
             'university_department_id' => $userForFilter->university_department_id,
-            'is_banned' => $userForFilter->is_banned,
+            'is_banned' => $userForFilter->is_banned ?? false,
+            'whatsapp_group_id' => $whatsappGroup->id,
+            'course_id' => $course->id,
+            'filter' => [['value' => $userForFilter->email]],
         ];
 
         $response = $this->actingAs($loginUser)->json('GET', $this->uri, $filters);
 
-        $response->assertOk();
-
-        foreach (User::where($filters)->get() as $user) {
-            $response->assertJsonFragment($user->toArray());
-        }
+        $response->assertOk()
+            ->assertJsonFragment($userForFilter->toArray());
     }
 
     /** @test */

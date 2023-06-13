@@ -115,6 +115,23 @@ class UniversityTest extends BaseFeatureTest
     }
 
     /** @test */
+    public function it_should_paginate_university_list_by_filtering()
+    {
+        $user = User::factory()->create();
+        $user->givePermissionTo('universities.update');
+        $searchUniversity = University::inRandomOrder()->first();
+
+        $searchQuery = [
+            'filter' => [['value' => $searchUniversity->name]],
+        ];
+
+        $response = $this->actingAs($user)->json('GET', $this->uri . '/paginate', $searchQuery);
+
+        $response->assertOk()
+            ->assertJsonFragment($searchUniversity->toArray());
+    }
+
+    /** @test */
     public function it_should_paginate_faculty_list()
     {
         $user = User::factory()->create();
@@ -133,6 +150,23 @@ class UniversityTest extends BaseFeatureTest
     }
 
     /** @test */
+    public function it_should_paginate_faculty_list_by_filtering()
+    {
+        $user = User::factory()->create();
+        $user->givePermissionTo('universities.update');
+        $searchFaculty = UniversityFaculty::inRandomOrder()->first();
+
+        $searchQuery = [
+            'filter' => [['value' => (string)$searchFaculty->id]],
+        ];
+
+        $response = $this->actingAs($user)->json('GET', self::BASE_URI . '/faculties/paginate', $searchQuery);
+
+        $response->assertOk()
+            ->assertJsonFragment($searchFaculty->toArray());
+    }
+
+    /** @test */
     public function it_should_paginate_department_list()
     {
         $user = User::factory()->create();
@@ -148,6 +182,23 @@ class UniversityTest extends BaseFeatureTest
         foreach (UniversityDepartment::take($perPage)->latest('id')->get() as $city) {
             $response->assertJsonFragment($city->toArray());
         }
+    }
+
+    /** @test */
+    public function it_should_paginate_department_list_by_filtering()
+    {
+        $user = User::factory()->create();
+        $user->givePermissionTo('universities.update');
+        $searchDepartment = UniversityDepartment::inRandomOrder()->first();
+
+        $searchQuery = [
+            'filter' => [['value' => (string)$searchDepartment->id]],
+        ];
+
+        $response = $this->actingAs($user)->json('GET', self::BASE_URI . '/departments/paginate', $searchQuery);
+
+        $response->assertOk()
+            ->assertJsonFragment($searchDepartment->toArray());
     }
 
     /** @test */
@@ -242,6 +293,22 @@ class UniversityTest extends BaseFeatureTest
     }
 
     /** @test */
+    public function it_should_update_university_when_has_permission()
+    {
+        $user = User::factory()->create();
+        $user->givePermissionTo('universities.update');
+        $university = University::inRandomOrder()->first();
+        Cache::shouldReceive('forget')->with('universities')->once();
+        $newName = $this->faker->sentence;
+
+        $response = $this->actingAs($user)->json('PUT', $this->uri . '/' . $university->id, ['name' => $newName]);
+
+        $response->assertSuccessful();
+
+        $this->assertDatabaseHas('universities', ['id' => $university->id, 'name' => $newName]);
+    }
+
+    /** @test */
     public function it_should_create_university_faculty_when_has_permission()
     {
         $user = User::factory()->create();
@@ -255,6 +322,22 @@ class UniversityTest extends BaseFeatureTest
             ->assertJsonFragment($facultyData);
 
         $this->assertDatabaseHas('university_faculties', $facultyData);
+    }
+
+    /** @test */
+    public function it_should_update_university_faculty_when_has_permission()
+    {
+        $user = User::factory()->create();
+        $user->givePermissionTo('universities.update');
+        $faculty = UniversityFaculty::inRandomOrder()->first();
+        $facultyData = UniversityFaculty::factory()->make()->only('university_id', 'name');
+        Cache::shouldReceive('forget')->twice();
+
+        $response = $this->actingAs($user)->json('PUT', self::BASE_URI . '/faculties/' . $faculty->id, $facultyData);
+
+        $response->assertSuccessful();
+
+        $this->assertDatabaseHas('university_faculties', array_merge(['id' => $faculty->id], $facultyData));
     }
 
     /** @test */
@@ -280,6 +363,25 @@ class UniversityTest extends BaseFeatureTest
             ->assertJsonFragment($departmentData);
 
         $this->assertDatabaseHas('university_departments', $departmentData);
+    }
+
+    /** @test */
+    public function it_should_update_university_faculty_department_when_has_permission()
+    {
+        $user = User::factory()->create();
+        $user->givePermissionTo('universities.update');
+        $department = UniversityDepartment::inRandomOrder()->first();
+        $departmentData = UniversityDepartment::factory()
+            ->make()
+            ->only('university_id', 'university_faculty_id', 'name');
+        Cache::shouldReceive('forget')->twice();
+
+        $response = $this->actingAs($user)
+            ->json('PUT', self::BASE_URI . '/departments/' . $department->id, $departmentData);
+
+        $response->assertSuccessful();
+
+        $this->assertDatabaseHas('university_departments', array_merge(['id' => $department->id], $departmentData));
     }
 
     /** @test */
@@ -312,10 +414,9 @@ class UniversityTest extends BaseFeatureTest
     {
         $user = User::factory()->create();
         $user->givePermissionTo('universities.delete');
+        $user->update(['university_id' => University::factory()->create()->id]);
 
-        $university = University::whereHas('users')->inRandomOrder()->first();
-
-        $response = $this->actingAs($user)->json('DELETE', $this->uri . '/' . $university->id);
+        $response = $this->actingAs($user)->json('DELETE', $this->uri . '/' . $user->university_id);
 
         $response->assertUnprocessable();
     }
@@ -363,10 +464,10 @@ class UniversityTest extends BaseFeatureTest
     {
         $user = User::factory()->create();
         $user->givePermissionTo('universities.delete');
+        $user->update(['university_faculty_id' => UniversityFaculty::factory()->create()->id]);
 
-        $faculty = UniversityFaculty::whereHas('users')->inRandomOrder()->first();
-
-        $response = $this->actingAs($user)->json('DELETE', self::BASE_URI . '/faculties/' . $faculty->id);
+        $response = $this->actingAs($user)
+            ->json('DELETE', self::BASE_URI . '/faculties/' . $user->university_faculty_id);
 
         $response->assertUnprocessable();
     }
