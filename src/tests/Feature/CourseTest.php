@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Course;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
@@ -75,81 +76,39 @@ class CourseTest extends BaseFeatureTest
     }
 
     /** @test */
-    public function it_should_get_courses_list_when_has_permission_by_filtering_type()
+    public function it_should_get_own_courses_list_when_has_permission()
     {
-        $allTypes = collect(['whatshafiz', 'whatsenglish', 'whatsarapp']);
-        $filterType = $allTypes->random();
-        $filteredCourses = Course::factory()->count(2, 5)->create(['type' => $filterType]);
+        $courses = Course::factory()->count(2, 5)->create();
         $user = User::factory()->create();
-        $user->givePermissionTo('courses.list');
+        $user->courses()->attach($courses);
 
-        $response = $this->actingAs($user)->json('GET', $this->uri, ['type' => $filterType]);
+        $response = $this->actingAs($user)->json('GET', self::BASE_URI . '/my/courses');
 
         $response->assertOk();
 
-        foreach ($filteredCourses as $filteredCourse) {
-            $response->assertJsonFragment($filteredCourse->toArray());
+        foreach ($courses as $course) {
+            $response->assertJsonFragment($course->toArray());
         }
     }
 
     /** @test */
-    public function it_should_get_courses_list_when_has_permission_by_searching_name()
+    public function it_should_get_courses_list_when_has_permission_by_filtering_and_as_paginated()
     {
-        $searchKey = Str::random(rand(7, 15));
-
-        $filteredCourses = collect();
-        $filteredCourses->push(Course::factory()->create(['name' => $searchKey]));
-        $filteredCourses->push(Course::factory()->create(['name' => Str::random(rand(1, 5)) . $searchKey]));
-        $filteredCourses->push(Course::factory()->create(['name' => $searchKey . Str::random(rand(1, 5))]));
-        $filteredCourses->push(
-            Course::factory()->create(['name' => Str::random(rand(1, 5)) . $searchKey . Str::random(rand(1, 5))])
-        );
         $user = User::factory()->create();
         $user->givePermissionTo('courses.list');
 
-        $response = $this->actingAs($user)->json('GET', $this->uri, ['name' => $searchKey]);
+        $courses = Course::factory()->count(5)->create();
+        $searchCourse = $courses->random();
+        $user->courses()->attach($searchCourse);
+        $searchQuery = [
+            'user_id' => $user->id,
+            'filter' => [['value' => $searchCourse->name]],
+        ];
 
-        $response->assertOk();
+        $response = $this->actingAs($user)->json('GET', $this->uri . '/paginate', $searchQuery);
 
-        foreach ($filteredCourses as $filteredCourse) {
-            $response->assertJsonFragment($filteredCourse->toArray());
-        }
-    }
-
-    /** @test */
-    public function it_should_get_courses_list_when_has_permission_by_filtering_activity_status()
-    {
-        $isActive = $this->faker->boolean;
-        $filteredCourses = Course::factory()->count(2, 5)->create(['is_active' => $isActive]);
-        $user = User::factory()->create();
-        $user->givePermissionTo('courses.list');
-
-        $response = $this->actingAs($user)->json('GET', $this->uri, ['is_active' => $isActive]);
-
-        $response->assertOk();
-
-        foreach ($filteredCourses as $filteredCourse) {
-            $response->assertJsonFragment($filteredCourse->toArray());
-        }
-    }
-
-    /** @test */
-    public function it_should_get_courses_list_when_has_permission_by_filtering_application_status()
-    {
-        $canBeApplied = $this->faker->boolean;
-        $filteredCourses = $canBeApplied ?
-            Course::factory()->count(2, 5)->available()->create() :
-            Course::factory()->count(2, 5)->unavailable()->create();
-        $user = User::factory()->create();
-        $user->givePermissionTo('courses.list');
-
-        $response = $this->actingAs($user)->json('GET', $this->uri, ['can_be_applied' => $canBeApplied]);
-
-        $response->assertOk();
-
-        foreach ($filteredCourses as $filteredCourse) {
-            $response->assertJsonFragment($filteredCourse->toArray());
-        }
+        $response->assertOk()
+            ->assertJsonFragment($searchCourse->toArray());
     }
 
     /** @test */
@@ -217,12 +176,21 @@ class CourseTest extends BaseFeatureTest
         $user->givePermissionTo('courses.create');
         Course::query()->update(['can_be_applied' => false]);
 
-        $courseData = Course::factory()->raw();
+        $courseData = Course::factory()->raw([
+            'can_be_applied_until' =>  $this->faker->datetime->format('Y-m-d\TH:i'),
+            'start_at' =>  $this->faker->datetime->format('Y-m-d\TH:i'),
+        ]);
 
         $response = $this->actingAs($user)->json('POST', $this->uri, $courseData);
 
+        $courseData['can_be_applied_until'] = Carbon::parse($courseData['can_be_applied_until'])->format('d-m-Y H:i');
+        $courseData['start_at'] = Carbon::parse($courseData['start_at'])->format('d-m-Y H:i');
+
         $response->assertCreated()
             ->assertJsonFragment($courseData);
+
+        $courseData['can_be_applied_until'] = Carbon::parse($courseData['can_be_applied_until'])->format('Y-m-d H:i:s');
+        $courseData['start_at'] = Carbon::parse($courseData['start_at'])->format('Y-m-d H:i:s');
 
         $this->assertDatabaseHas('courses', $courseData);
     }
@@ -262,11 +230,17 @@ class CourseTest extends BaseFeatureTest
         Course::query()->update(['can_be_applied' => false]);
         $course = Course::factory()->create();
 
-        $courseData = Course::factory()->raw();
+        $courseData = Course::factory()->raw([
+            'can_be_applied_until' =>  $this->faker->datetime->format('Y-m-d\TH:i'),
+            'start_at' =>  $this->faker->datetime->format('Y-m-d\TH:i'),
+        ]);
 
         $response = $this->actingAs($user)->json('PUT', $this->uri . '/' . $course->id, $courseData);
 
         $response->assertSuccessful();
+
+        $courseData['can_be_applied_until'] = Carbon::parse($courseData['can_be_applied_until'])->format('Y-m-d H:i:s');
+        $courseData['start_at'] = Carbon::parse($courseData['start_at'])->format('Y-m-d H:i:s');
 
         $this->assertDatabaseHas('courses', array_merge(['id' => $course->id], $courseData));
     }
