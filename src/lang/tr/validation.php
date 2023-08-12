@@ -180,6 +180,7 @@ return [
         'verification_code' => 'Doğrulama Kodu',
         'code' => 'Doğrulama Kodu',
         'course_id' => 'Kurs',
+        'education_level' => 'Eğitim Seviyesi',
     ],
 
 ];
