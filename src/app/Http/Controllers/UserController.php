@@ -153,9 +153,10 @@ class UserController extends Controller
                 'gender' => 'required|string|in:male,female',
                 'country_id' => 'required|integer|min:1|exists:countries,id',
                 'city_id' => 'required|integer|min:1|exists:cities,id',
-                'university_id' => 'required|integer|min:1|exists:universities,id',
-                'university_faculty_id' => 'required|integer|min:1|exists:university_faculties,id',
-                'university_department_id' => 'required|integer|min:1|exists:university_departments,id',
+                'education_level' => 'required|string|min:1|max:100',
+                'university_id' => 'nullable|integer|min:1|exists:universities,id',
+                'university_faculty_id' => 'nullable|integer|min:1|exists:university_faculties,id',
+                'university_department_id' => 'nullable|integer|min:1|exists:university_departments,id',
             ],
         );
 
@@ -397,12 +398,12 @@ class UserController extends Controller
             DB::commit();
 
             return response()->json([
-                'message' => 'Kaydınız başarılı şekilde oluşturuldu. <br><br>' .
-                    'Whatsapp grubuna katılmak için gerekli link size whatsapp üzerinden gönderilecek. <br><br>' .
+                'message' => '<strong>Kaydınız başarılı şekilde oluşturuldu. </strong><br><br>' .
+                    'Lütfen aşağıdaki <strong>Gruba Katıl</strong> butonunu kullanarak whatsapp grubuna katılın. <br><br>' .
+                    'Bu buton ile katılım sağlayamazsanız, whatsapp grubuna katılmak için gerekli link size whatsapp üzerinden de gönderilecek. <br><br>' .
                     'Lütfen gelen mesajı <strong>SPAM DEĞİL</strong> veya <strong>TAMAM</strong> olarak işaretleyin. <br><br>' .
-                    'Eğer gelen linke tıklayamıyorsanız mesaj gelen numarayı Kişilere Ekleyin <br>' .
-                    'veya aşağıdaki butonları kullanarak gruba katılın.',
-                'new_whatsapp_group_join_url' => $assignedWhatsappGroup->join_url,
+                    '<i>Eğer gelen linke tıklayamıyorsanız mesaj gelen numarayı Kişilere Ekleyin</i> <br>',
+                'new_whatsapp_group_join_url' => ($assignedWhatsappGroup->join_url ?? null),
             ]);
         } catch (Exception $exception) {
             DB::rollback();
