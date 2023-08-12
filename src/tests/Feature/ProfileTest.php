@@ -60,6 +60,7 @@ class ProfileTest extends BaseFeatureTest
                 'gender',
                 'country_id',
                 'city_id',
+                'education_level',
                 'university_id',
                 'university_faculty_id',
                 'university_department_id',
@@ -216,11 +217,11 @@ class ProfileTest extends BaseFeatureTest
 
         $response->assertOk()
             ->assertJsonFragment([
-                'message' => 'Kaydınız başarılı şekilde oluşturuldu. <br><br>' .
-                    'Whatsapp grubuna katılmak için gerekli link size whatsapp üzerinden gönderilecek. <br><br>' .
+                'message' => '<strong>Kaydınız başarılı şekilde oluşturuldu. </strong><br><br>' .
+                    'Lütfen aşağıdaki <strong>Gruba Katıl</strong> butonunu kullanarak whatsapp grubuna katılın. <br><br>' .
+                    'Bu buton ile katılım sağlayamazsanız, whatsapp grubuna katılmak için gerekli link size whatsapp üzerinden de gönderilecek. <br><br>' .
                     'Lütfen gelen mesajı <strong>SPAM DEĞİL</strong> veya <strong>TAMAM</strong> olarak işaretleyin. <br><br>' .
-                    'Eğer gelen linke tıklayamıyorsanız mesaj gelen numarayı Kişilere Ekleyin <br>' .
-                    'veya aşağıdaki butonları kullanarak gruba katılın.',
+                    '<i>Eğer gelen linke tıklayamıyorsanız mesaj gelen numarayı Kişilere Ekleyin</i> <br>',
                 'new_whatsapp_group_join_url' => $joinUrl,
             ]);
 
