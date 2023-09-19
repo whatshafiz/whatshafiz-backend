@@ -34,6 +34,7 @@ class CourseFactory extends Factory
     {
         return $this->state(fn (array $attributes) => [
             'type' => 'whatshafiz',
+            'proficiency_exam_start_time' => Carbon::now()->addDays(rand(1, 14)),
         ]);
     }
 
@@ -65,7 +66,7 @@ class CourseFactory extends Factory
         return $this->state(fn (array $attributes) => [
             'is_active' => true,
             'can_be_applied' => true,
-            'can_be_applied_until' => Carbon::now()->addDays(rand(1, 100)),
+            'can_be_applied_until' => Carbon::now()->addDays(rand(15, 100)),
         ]);
     }
 
@@ -79,7 +80,7 @@ class CourseFactory extends Factory
         return $this->state(fn (array $attributes) => [
             'can_be_applied' => !$byDate,
             'can_be_applied_until' => $byDate ?
-                Carbon::now()->addDays(rand(1, 100)) :
+                Carbon::now()->addDays(rand(15, 100)) :
                 Carbon::now()->subDays(rand(1, 100)),
         ]);
     }

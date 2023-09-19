@@ -76,7 +76,15 @@ class CourseController extends Controller
             $availableCourses = Cache::get(Course::AVAILABLE_COURSES_CACHE_KEY);
         } else {
             $availableCourses = Course::available()
-                ->get(['id', 'type', 'name', 'can_be_applied', 'can_be_applied_until', 'start_at']);
+                ->get([
+                    'id',
+                    'type',
+                    'name',
+                    'start_at',
+                    'can_be_applied',
+                    'can_be_applied_until',
+                    'proficiency_exam_start_time',
+                ]);
             Cache::put(Course::AVAILABLE_COURSES_CACHE_KEY, $availableCourses);
         }
 
@@ -108,8 +116,9 @@ class CourseController extends Controller
                         }
                     },
                 ],
-                'can_be_applied_until' => 'nullable|date_format:Y-m-d\TH:i',
                 'start_at' => 'nullable|date_format:Y-m-d\TH:i',
+                'can_be_applied_until' => 'nullable|date_format:Y-m-d\TH:i',
+                'proficiency_exam_start_time' => 'nullable|date_format:Y-m-d\TH:i',
             ]
         );
 
@@ -119,6 +128,13 @@ class CourseController extends Controller
 
         if (isset($validatedCourseData['can_be_applied_until'])) {
             $validatedCourseData['can_be_applied_until'] = Carbon::parse($validatedCourseData['can_be_applied_until'])
+                ->format('Y-m-d H:i:s');
+        }
+
+        if (isset($validatedCourseData['proficiency_exam_start_time'])) {
+            $validatedCourseData['proficiency_exam_start_time'] = Carbon::parse(
+                    $validatedCourseData['proficiency_exam_start_time']
+                )
                 ->format('Y-m-d H:i:s');
         }
 
@@ -167,8 +183,9 @@ class CourseController extends Controller
                         }
                     },
                 ],
-                'can_be_applied_until' => 'nullable|date_format:Y-m-d\TH:i',
                 'start_at' => 'nullable|date_format:Y-m-d\TH:i',
+                'can_be_applied_until' => 'nullable|date_format:Y-m-d\TH:i',
+                'proficiency_exam_start_time' => 'nullable|date_format:Y-m-d\TH:i',
             ]
         );
 
@@ -178,6 +195,13 @@ class CourseController extends Controller
 
         if (isset($validatedCourseData['can_be_applied_until'])) {
             $validatedCourseData['can_be_applied_until'] = Carbon::parse($validatedCourseData['can_be_applied_until'])
+                ->format('Y-m-d H:i:s');
+        }
+
+        if (isset($validatedCourseData['proficiency_exam_start_time'])) {
+            $validatedCourseData['proficiency_exam_start_time'] = Carbon::parse(
+                    $validatedCourseData['proficiency_exam_start_time']
+                )
                 ->format('Y-m-d H:i:s');
         }
 

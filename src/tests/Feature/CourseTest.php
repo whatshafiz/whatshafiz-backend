@@ -176,20 +176,25 @@ class CourseTest extends BaseFeatureTest
         Course::query()->update(['can_be_applied' => false]);
 
         $courseData = Course::factory()->raw([
-            'can_be_applied_until' =>  $this->faker->datetime->format('Y-m-d\TH:i'),
             'start_at' =>  $this->faker->datetime->format('Y-m-d\TH:i'),
+            'can_be_applied_until' =>  $this->faker->datetime->format('Y-m-d\TH:i'),
+            'proficiency_exam_start_time' =>  $this->faker->datetime->format('Y-m-d\TH:i'),
         ]);
 
         $response = $this->actingAs($user)->json('POST', $this->uri, $courseData);
 
-        $courseData['can_be_applied_until'] = Carbon::parse($courseData['can_be_applied_until'])->format('d-m-Y H:i');
         $courseData['start_at'] = Carbon::parse($courseData['start_at'])->format('d-m-Y H:i');
+        $courseData['can_be_applied_until'] = Carbon::parse($courseData['can_be_applied_until'])->format('d-m-Y H:i');
+        $courseData['proficiency_exam_start_time'] = Carbon::parse($courseData['proficiency_exam_start_time'])
+            ->format('d-m-Y H:i');
 
         $response->assertCreated()
             ->assertJsonFragment($courseData);
 
-        $courseData['can_be_applied_until'] = Carbon::parse($courseData['can_be_applied_until'])->format('Y-m-d H:i:s');
         $courseData['start_at'] = Carbon::parse($courseData['start_at'])->format('Y-m-d H:i:s');
+        $courseData['can_be_applied_until'] = Carbon::parse($courseData['can_be_applied_until'])->format('Y-m-d H:i:s');
+        $courseData['proficiency_exam_start_time'] = Carbon::parse($courseData['proficiency_exam_start_time'])
+            ->format('Y-m-d H:i:s');
 
         $this->assertDatabaseHas('courses', $courseData);
     }
@@ -230,16 +235,19 @@ class CourseTest extends BaseFeatureTest
         $course = Course::factory()->create();
 
         $courseData = Course::factory()->raw([
-            'can_be_applied_until' =>  $this->faker->datetime->format('Y-m-d\TH:i'),
             'start_at' =>  $this->faker->datetime->format('Y-m-d\TH:i'),
+            'can_be_applied_until' =>  $this->faker->datetime->format('Y-m-d\TH:i'),
+            'proficiency_exam_start_time' =>  $this->faker->datetime->format('Y-m-d\TH:i'),
         ]);
 
         $response = $this->actingAs($user)->json('PUT', $this->uri . '/' . $course->id, $courseData);
 
         $response->assertSuccessful();
 
-        $courseData['can_be_applied_until'] = Carbon::parse($courseData['can_be_applied_until'])->format('Y-m-d H:i:s');
         $courseData['start_at'] = Carbon::parse($courseData['start_at'])->format('Y-m-d H:i:s');
+        $courseData['can_be_applied_until'] = Carbon::parse($courseData['can_be_applied_until'])->format('Y-m-d H:i:s');
+        $courseData['proficiency_exam_start_time'] = Carbon::parse($courseData['proficiency_exam_start_time'])
+            ->format('Y-m-d H:i:s');
 
         $this->assertDatabaseHas('courses', array_merge(['id' => $course->id], $courseData));
     }
