@@ -2,12 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\WhatsappGroup;
-use App\Models\WhatsappGroupUser;
+use App\Models\TeacherStudent;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class WhatsappGroupSeeder extends Seeder
+class TeacherStudentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,7 +15,6 @@ class WhatsappGroupSeeder extends Seeder
      */
     public function run()
     {
-        WhatsappGroup::factory()->count(rand(1, 100))->create();
-        WhatsappGroupUser::factory()->count(rand(100, 1000))->create();
+        TeacherStudent::factory()->count(rand(20, 100))->create();
     }
 }

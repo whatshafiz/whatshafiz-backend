@@ -22,8 +22,8 @@ class CourseFactory extends Factory
             'name' => $this->faker->numerify('WhatsHafız-######'),
             'is_active' => $this->faker->boolean,
             'can_be_applied' => $this->faker->boolean,
-            'can_be_applied_until' => null,
-            'start_at' => null,
+            'can_be_applied_until' => Carbon::now()->addDays(rand(1, 14)),
+            'start_at' => Carbon::now()->addDays(rand(1, 14)),
         ];
     }
 

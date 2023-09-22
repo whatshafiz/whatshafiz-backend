@@ -20,7 +20,13 @@ class WhatsappGroupController extends Controller
     {
         $this->authorize('viewAny', [WhatsappGroup::class, $request->user_id]);
 
-        $filters = $this->validate($request, ['user_id' => 'nullable|integer|exists:users,id']);
+        $filters = $this->validate(
+            $request,
+            [
+                'user_id' => 'nullable|integer|exists:users,id',
+                'course_id' => 'nullable|integer|min:1|exists:courses,id',
+            ]
+        );
         $searchKey = $this->getTabulatorSearchKey($request);
 
         $whatsappGroups = WhatsappGroup::with('course')
@@ -28,6 +34,11 @@ class WhatsappGroupController extends Controller
             ->when(isset($filters['user_id']), function ($query) use ($filters) {
                 return $query->whereHas('users', function ($subQuery) use ($filters) {
                     return $subQuery->where('user_id', $filters['user_id']);
+                });
+            })
+            ->when(isset($filters['course_id']), function ($query) use ($filters) {
+                return $query->whereHas('course', function ($subQuery) use ($filters) {
+                    return $subQuery->where('course_id', $filters['course_id']);
                 });
             })
             ->when(!empty($searchKey), function ($query) use ($searchKey) {
