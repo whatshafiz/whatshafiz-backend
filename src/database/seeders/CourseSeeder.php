@@ -21,6 +21,6 @@ class CourseSeeder extends Seeder
         Course::factory()->whatshafiz()->available()->create();
         Course::factory()->whatsarapp()->available()->create();
         Course::factory()->whatsenglish()->available()->create();
-        UserCourse::factory()->count(rand(35, 350))->create();
+        UserCourse::factory()->count(rand(35, 150))->create();
     }
 }

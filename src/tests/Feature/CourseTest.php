@@ -3,7 +3,10 @@
 namespace Tests\Feature;
 
 use App\Models\Course;
+use App\Models\TeacherStudent;
 use App\Models\User;
+use App\Models\UserCourse;
+use App\Models\WhatsappGroup;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
@@ -42,10 +45,64 @@ class CourseTest extends BaseFeatureTest
         $user = User::factory()->create();
         $user->givePermissionTo('courses.view');
 
+        $whatsappGroupCount = rand(1, 3);
+        WhatsappGroup::factory()->count($whatsappGroupCount)->create(['course_id' => $course->id]);
+        $usersCount = rand(11, 23);
+        $courseUsers = [];
+        User::factory()
+            ->count($usersCount)
+            ->create()
+            ->each(function ($user) use ($course, &$courseUsers) {
+                $courseUsers[] = UserCourse::factory()
+                    ->create(['course_id' => $course->id, 'user_id' => $user->id])
+                    ->toArray();
+            });
+
+        $courseUsers = collect($courseUsers);
+        $hafizkalUsersCount = $courseUsers->where('is_teacher', true)->count();
+        $hafizolUsersCount = $courseUsers->where('is_teacher', false)->count();
+
+        $matchedHafizkalUsersIds = $courseUsers->shuffle()
+            ->where('is_teacher', true)
+            ->take(rand(2, $hafizkalUsersCount))
+            ->pluck('user_id');
+        $matchedHafizolUsersIds = $courseUsers->shuffle()
+            ->where('is_teacher', false)
+            ->take(rand(count($matchedHafizkalUsersIds), $hafizkalUsersCount))
+            ->pluck('user_id');
+        $matchedHafizkalUsersCount = count($matchedHafizkalUsersIds);
+        $matchedHafizolUsersCount = count($matchedHafizolUsersIds);
+        $matchedUsersCount = $matchedHafizkalUsersCount + $matchedHafizolUsersCount;
+
+        foreach ($matchedHafizkalUsersIds as $matchedHafizkalUserId) {
+            foreach ($matchedHafizolUsersIds as $matchedHafizolUserId) {
+                TeacherStudent::factory()
+                    ->create([
+                        'course_id' => $course->id,
+                        'teacher_id' => $matchedHafizkalUserId,
+                        'student_id' => $matchedHafizolUserId,
+                    ]);
+            }
+        }
+
         $response = $this->actingAs($user)->json('GET', $this->uri . '/' . $course->id);
 
         $response->assertOk()
-            ->assertJsonFragment($course->toArray());
+            ->assertJsonFragment(
+                array_merge(
+                    $course->toArray(),
+                    [
+                        'total_users_count' => $usersCount,
+                        'whatsapp_groups_count' => $whatsappGroupCount,
+                        'hafizkal_users_count' => $hafizkalUsersCount,
+                        'hafizol_users_count' => $hafizolUsersCount,
+                        'matched_hafizkal_users_count' => $matchedHafizkalUsersCount,
+                        'matched_hafizol_users_count' => $matchedHafizolUsersCount,
+                        'matched_users_count' => $matchedUsersCount,
+                        'unmatched_users_count' => $usersCount - $matchedUsersCount,
+                    ]
+                )
+            );
     }
 
     /** @test */

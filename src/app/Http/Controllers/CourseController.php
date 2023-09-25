@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\TeacherStudent;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -150,6 +151,21 @@ class CourseController extends Controller
     public function show(Course $course): JsonResponse
     {
         $this->authorize('view', [Course::class, $course]);
+
+        $course->total_users_count = $course->users()->count();
+        $course->whatsapp_groups_count = $course->whatsappGroups()->count();;
+        $course->hafizkal_users_count = $course->users()->where('is_teacher', true)->count();
+        $course->hafizol_users_count = $course->users()->where('is_teacher', false)->count();
+        $course->matched_hafizkal_users_count = TeacherStudent::where('course_id', $course->id)
+            ->groupBy('teacher_id')
+            ->get('teacher_id')
+            ->count();
+        $course->matched_hafizol_users_count = TeacherStudent::where('course_id', $course->id)
+            ->groupBy('student_id')
+            ->get('student_id')
+            ->count();
+        $course->matched_users_count = $course->matched_hafizkal_users_count + $course->matched_hafizol_users_count;
+        $course->unmatched_users_count = $course->total_users_count - $course->matched_users_count;
 
         return response()->json(compact('course'));
     }
