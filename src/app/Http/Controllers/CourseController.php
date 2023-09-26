@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\CourseStudentsMatcher;
 use App\Models\Course;
 use App\Models\TeacherStudent;
 use Carbon\Carbon;
@@ -171,6 +172,22 @@ class CourseController extends Controller
     }
 
     /**
+     * @param  Course  $course
+     * @return JsonResponse
+     */
+    public function startStudentsMatchings(Course $course): JsonResponse
+    {
+        $this->authorize('update', [Course::class, $course]);
+
+        CourseStudentsMatcher::dispatch($course);
+
+        $course->students_matchings_started_at = now();
+        $course->save();
+
+        return response()->json(null, Response::HTTP_NO_CONTENT);
+    }
+
+    /**
      * @param  Request  $request
      * @param  Course  $course
      * @return JsonResponse
@@ -193,6 +210,7 @@ class CourseController extends Controller
                             Course::where('can_be_applied', true)
                                 ->where('id', '!=', $course->id)
                                 ->where('type', $request->type)
+                                ->where('can_be_applied_until', '>', now())
                                 ->exists()
                         ) {
                             $fail('Mevcutta zaten başvuruya açık dönem bulunuyor.');

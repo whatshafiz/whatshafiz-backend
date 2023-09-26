@@ -17,9 +17,9 @@ return new class extends Migration
     {
         Schema::create('teacher_students', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(Course::class, 'course_id')->constrained();
             $table->foreignIdFor(User::class, 'teacher_id')->constrained('users');
             $table->foreignIdFor(User::class, 'student_id')->constrained('users');
-            $table->foreignIdFor(Course::class, 'course_id')->constrained();
             $table->boolean('is_active')->default(true);
             $table->boolean('proficiency_exam_passed')->nullable();
             $table->string('proficiency_exam_failed_description')->nullable();

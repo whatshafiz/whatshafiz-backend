@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Jobs\CourseStudentsMatcher;
 use App\Models\Course;
 use App\Models\TeacherStudent;
 use App\Models\User;
@@ -10,6 +11,7 @@ use App\Models\WhatsappGroup;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Queue;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\BaseFeatureTest;
 
@@ -348,5 +350,32 @@ class CourseTest extends BaseFeatureTest
         $response->assertSuccessful();
 
         $this->assertSoftDeleted('courses', ['id' => $course->id]);
+    }
+
+    /** @test */
+    public function it_should_not_start_course_students_matchings_when_does_not_have_permission()
+    {
+        $course = Course::factory()->create();
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->json('POST', $this->uri . '/' . $course->id . '/students');
+
+        $response->assertForbidden();
+    }
+
+    /** @test */
+    public function it_should_start_course_students_matchings_when_has_permission()
+    {
+        $course = Course::factory()->create();
+        $user = User::factory()->create();
+        $user->givePermissionTo('courses.update');
+
+        Queue::fake();
+
+        $response = $this->actingAs($user)->json('POST', $this->uri . '/' . $course->id . '/students');
+
+        $response->assertSuccessful();
+
+        Queue::assertPushed(CourseStudentsMatcher::class);
     }
 }

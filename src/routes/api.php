@@ -67,6 +67,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('my/courses', [CourseController::class, 'myCourses']);
     Route::get('courses/paginate', [CourseController::class, 'indexPaginate']);
+    Route::post('courses/{course}/students', [CourseController::class, 'startStudentsMatchings']);
     Route::apiResource('courses', CourseController::class);
 
     Route::get('universities/paginate', [UniversityController::class, 'indexPaginate']);

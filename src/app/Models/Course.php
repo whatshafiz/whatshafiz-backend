@@ -23,6 +23,7 @@ class Course extends BaseModel
         'start_at' => 'datetime:d-m-Y H:i',
         'can_be_applied_until' => 'datetime:d-m-Y H:i',
         'proficiency_exam_start_time' => 'datetime:d-m-Y H:i',
+        'students_matchings_started_at' => 'datetime:d-m-Y H:i',
         'created_at' => 'datetime:d-m-Y H:i',
         'updated_at' => 'datetime:d-m-Y H:i',
         'deleted_at' => 'datetime:d-m-Y H:i',
