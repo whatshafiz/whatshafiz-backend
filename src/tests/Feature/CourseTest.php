@@ -353,18 +353,19 @@ class CourseTest extends BaseFeatureTest
     }
 
     /** @test */
-    public function it_should_not_start_course_students_matchings_when_does_not_have_permission()
+    public function it_should_not_start_course_teacher_students_matchings_when_does_not_have_permission()
     {
         $course = Course::factory()->create();
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->json('POST', $this->uri . '/' . $course->id . '/students');
+        $response = $this->actingAs($user)
+            ->json('POST', $this->uri . '/' . $course->id . '/teacher-students-matchings');
 
         $response->assertForbidden();
     }
 
     /** @test */
-    public function it_should_start_course_students_matchings_when_has_permission()
+    public function it_should_start_course_teacher_students_matchings_when_has_permission()
     {
         $course = Course::factory()->create();
         $user = User::factory()->create();
@@ -372,10 +373,42 @@ class CourseTest extends BaseFeatureTest
 
         Queue::fake();
 
-        $response = $this->actingAs($user)->json('POST', $this->uri . '/' . $course->id . '/students');
+        $response = $this->actingAs($user)
+            ->json('POST', $this->uri . '/' . $course->id . '/teacher-students-matchings');
 
         $response->assertSuccessful();
 
         Queue::assertPushed(CourseStudentsMatcher::class);
+    }
+
+    /** @test */
+    public function it_should_get_course_teacher_students_matching_list_when_has_permission_by_filtering_and_as_paginated()
+    {
+        $user = User::factory()->create();
+        $user->givePermissionTo('courses.view');
+        $course = Course::factory()->create();
+
+        $teacherStudents = TeacherStudent::factory()->count(rand(5, 9))->create(['teacher_id' => $user->id, 'course_id' => $course->id]);
+        $teacherIds = $teacherStudents->pluck('teacher_id')->unique();
+
+        $response = $this->actingAs($user)->json('GET', $this->uri . '/' . $course->id . '/teacher-students-matchings');
+
+        $response->assertOk();
+
+        foreach ($teacherIds as $teacherId) {
+            $response->assertJsonFragment([
+                'teacher_id' => $teacherId,
+                'students_count' => $teacherStudents->where('teacher_id', $teacherId)->count(),
+                'passed_students_count' => (string)$teacherStudents->where('teacher_id', $teacherId)
+                    ->whereStrict('proficiency_exam_passed', true)
+                    ->count(),
+                'failed_students_count' => (string)$teacherStudents->where('teacher_id', $teacherId)
+                    ->whereStrict('proficiency_exam_passed', false)
+                    ->count(),
+                'awaiting_students_count' => (string)$teacherStudents->where('teacher_id', $teacherId)
+                    ->whereStrict('proficiency_exam_passed', null)
+                    ->count(),
+            ]);
+        }
     }
 }

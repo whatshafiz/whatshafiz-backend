@@ -10,6 +10,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 
 class CourseController extends Controller
@@ -58,7 +59,7 @@ class CourseController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param  Request  $request
      * @return JsonResponse
      * @throws ValidationException
      */
@@ -175,7 +176,7 @@ class CourseController extends Controller
      * @param  Course  $course
      * @return JsonResponse
      */
-    public function startStudentsMatchings(Course $course): JsonResponse
+    public function startTeacherStudentsMatchings(Course $course): JsonResponse
     {
         $this->authorize('update', [Course::class, $course]);
 
@@ -185,6 +186,48 @@ class CourseController extends Controller
         $course->save();
 
         return response()->json(null, Response::HTTP_NO_CONTENT);
+    }
+
+    /**
+     * @param  Request  $request
+     * @param  Course  $course
+     * @return JsonResponse
+     */
+    public function getTeacherStudentsMatchings(Request $request, Course $course): JsonResponse
+    {
+        $this->authorize('view', [Course::class, $course]);
+
+        $filters = $this->validate($request, ['teacher_id' => 'nullable|integer|exists:users,id']);
+        $searchKey = $this->getTabulatorSearchKey($request);
+
+        $teacherStudentsMatchings = $course->teacherStudentsMatchings()
+            ->when(!empty($searchKey), function ($query) use ($searchKey) {
+                return $query->where(function ($subQuery) use ($searchKey) {
+                    return $subQuery->where('id', $searchKey)
+                        ->orWhereHas('teacher', function ($subQuery) use ($searchKey) {
+                            return $subQuery->where('id', $searchKey)
+                                ->orWhere(DB::raw('CONCAT(name, " ", surname)'), 'like', "%{$searchKey}%")
+                                ->orWhere('phone_number', 'like', "%{$searchKey}%");
+                        });
+                });
+            })
+            ->with('teacher:id,name,surname,email,gender,phone_number')
+            ->groupBy('teacher_id')
+            ->select(DB::raw('*, COUNT(student_id) as students_count'))
+            ->addSelect(
+                DB::raw('SUM(CASE WHEN proficiency_exam_passed = 1 THEN 1 ELSE 0 END) AS passed_students_count')
+            )
+            ->addSelect(
+                DB::raw('SUM(CASE WHEN proficiency_exam_passed = 0 THEN 1 ELSE 0 END) AS failed_students_count')
+            )
+            ->addSelect(
+                DB::raw('SUM(CASE WHEN proficiency_exam_passed IS NULL THEN 1 ELSE 0 END) AS awaiting_students_count')
+            )
+            ->orderByTabulator($request)
+            ->paginate($request->size)
+            ->appends(array_merge($this->filters, $filters));
+
+        return response()->json($teacherStudentsMatchings->toArray());
     }
 
     /**

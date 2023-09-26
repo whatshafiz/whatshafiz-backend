@@ -89,6 +89,14 @@ class Course extends BaseModel
     /**
      * @return HasMany
      */
+    public function teacherStudentsMatchings(): HasMany
+    {
+        return $this->hasMany(TeacherStudent::class);
+    }
+
+    /**
+     * @return HasMany
+     */
     public function whatsappGroups(): HasMany
     {
         return $this->hasMany(WhatsappGroup::class);
