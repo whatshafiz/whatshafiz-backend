@@ -2,7 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Jobs\CourseStudentsMatcher;
+use App\Jobs\CourseTeacherStudentsMatcher;
+use App\Jobs\CourseWhatsappGroupsOrganizer;
 use App\Models\Course;
 use App\Models\TeacherStudent;
 use App\Models\User;
@@ -378,7 +379,7 @@ class CourseTest extends BaseFeatureTest
 
         $response->assertSuccessful();
 
-        Queue::assertPushed(CourseStudentsMatcher::class);
+        Queue::assertPushed(CourseTeacherStudentsMatcher::class);
     }
 
     /** @test */
@@ -386,9 +387,9 @@ class CourseTest extends BaseFeatureTest
     {
         $user = User::factory()->create();
         $user->givePermissionTo('courses.view');
-        $course = Course::factory()->create();
+        $course = Course::factory()->whatshafiz()->create();
 
-        $teacherStudents = TeacherStudent::factory()->count(rand(5, 9))->create(['teacher_id' => $user->id, 'course_id' => $course->id]);
+        $teacherStudents = TeacherStudent::factory()->count(9)->create(['course_id' => $course->id]);
         $teacherIds = $teacherStudents->pluck('teacher_id')->unique();
 
         $response = $this->actingAs($user)->json('GET', $this->uri . '/' . $course->id . '/teacher-students-matchings');
@@ -410,5 +411,21 @@ class CourseTest extends BaseFeatureTest
                     ->count(),
             ]);
         }
+    }
+
+    /** @test */
+    public function it_should_start_organization_of_whatsapp_groups_when_has_permission()
+    {
+        $course = Course::factory()->create();
+        $user = User::factory()->create();
+        $user->givePermissionTo('courses.update');
+
+        Queue::fake();
+
+        $response = $this->actingAs($user)->json('POST', $this->uri . '/' . $course->id . '/whatsapp-groups');
+
+        $response->assertSuccessful();
+
+        Queue::assertPushed(CourseWhatsappGroupsOrganizer::class);
     }
 }

@@ -72,6 +72,7 @@ Route::middleware('auth:sanctum')->group(function () {
         'courses/{course}/teacher-students-matchings',
         [CourseController::class, 'startTeacherStudentsMatchings']
     );
+    Route::post('courses/{course}/whatsapp-groups', [CourseController::class, 'organizeWhatsappGroups']);
     Route::apiResource('courses', CourseController::class);
 
     Route::get('universities/paginate', [UniversityController::class, 'indexPaginate']);

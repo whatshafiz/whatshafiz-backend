@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\CourseStudentsMatcher;
+use App\Jobs\CourseTeacherStudentsMatcher;
+use App\Jobs\CourseWhatsappGroupsOrganizer;
 use App\Models\Course;
 use App\Models\TeacherStudent;
 use Carbon\Carbon;
@@ -173,64 +174,6 @@ class CourseController extends Controller
     }
 
     /**
-     * @param  Course  $course
-     * @return JsonResponse
-     */
-    public function startTeacherStudentsMatchings(Course $course): JsonResponse
-    {
-        $this->authorize('update', [Course::class, $course]);
-
-        CourseStudentsMatcher::dispatch($course);
-
-        $course->students_matchings_started_at = now();
-        $course->save();
-
-        return response()->json(null, Response::HTTP_NO_CONTENT);
-    }
-
-    /**
-     * @param  Request  $request
-     * @param  Course  $course
-     * @return JsonResponse
-     */
-    public function getTeacherStudentsMatchings(Request $request, Course $course): JsonResponse
-    {
-        $this->authorize('view', [Course::class, $course]);
-
-        $filters = $this->validate($request, ['teacher_id' => 'nullable|integer|exists:users,id']);
-        $searchKey = $this->getTabulatorSearchKey($request);
-
-        $teacherStudentsMatchings = $course->teacherStudentsMatchings()
-            ->when(!empty($searchKey), function ($query) use ($searchKey) {
-                return $query->where(function ($subQuery) use ($searchKey) {
-                    return $subQuery->where('id', $searchKey)
-                        ->orWhereHas('teacher', function ($subQuery) use ($searchKey) {
-                            return $subQuery->where('id', $searchKey)
-                                ->orWhere(DB::raw('CONCAT(name, " ", surname)'), 'like', "%{$searchKey}%")
-                                ->orWhere('phone_number', 'like', "%{$searchKey}%");
-                        });
-                });
-            })
-            ->with('teacher:id,name,surname,email,gender,phone_number')
-            ->groupBy('teacher_id')
-            ->select(DB::raw('*, COUNT(student_id) as students_count'))
-            ->addSelect(
-                DB::raw('SUM(CASE WHEN proficiency_exam_passed = 1 THEN 1 ELSE 0 END) AS passed_students_count')
-            )
-            ->addSelect(
-                DB::raw('SUM(CASE WHEN proficiency_exam_passed = 0 THEN 1 ELSE 0 END) AS failed_students_count')
-            )
-            ->addSelect(
-                DB::raw('SUM(CASE WHEN proficiency_exam_passed IS NULL THEN 1 ELSE 0 END) AS awaiting_students_count')
-            )
-            ->orderByTabulator($request)
-            ->paginate($request->size)
-            ->appends(array_merge($this->filters, $filters));
-
-        return response()->json($teacherStudentsMatchings->toArray());
-    }
-
-    /**
      * @param  Request  $request
      * @param  Course  $course
      * @return JsonResponse
@@ -297,6 +240,77 @@ class CourseController extends Controller
 
         //TODO: Course için başvuru yapılmışsa, aktif dönem varsa vb. durumlarda silme işlemi kontrole bağlı olacak.
         $course->delete();
+
+        return response()->json(null, Response::HTTP_NO_CONTENT);
+    }
+
+    /**
+     * @param  Course  $course
+     * @return JsonResponse
+     */
+    public function startTeacherStudentsMatchings(Course $course): JsonResponse
+    {
+        $this->authorize('update', [Course::class, $course]);
+
+        CourseTeacherStudentsMatcher::dispatch($course);
+
+        $course->students_matchings_started_at = now();
+        $course->save();
+
+        return response()->json(null, Response::HTTP_NO_CONTENT);
+    }
+
+    /**
+     * @param  Request  $request
+     * @param  Course  $course
+     * @return JsonResponse
+     */
+    public function getTeacherStudentsMatchings(Request $request, Course $course): JsonResponse
+    {
+        $this->authorize('view', [Course::class, $course]);
+
+        $filters = $this->validate($request, ['teacher_id' => 'nullable|integer|exists:users,id']);
+        $searchKey = $this->getTabulatorSearchKey($request);
+
+        $teacherStudentsMatchings = $course->teacherStudentsMatchings()
+            ->when(!empty($searchKey), function ($query) use ($searchKey) {
+                return $query->where(function ($subQuery) use ($searchKey) {
+                    return $subQuery->where('id', $searchKey)
+                        ->orWhereHas('teacher', function ($subQuery) use ($searchKey) {
+                            return $subQuery->where('id', $searchKey)
+                                ->orWhere(DB::raw('CONCAT(name, " ", surname)'), 'like', "%{$searchKey}%")
+                                ->orWhere('phone_number', 'like', "%{$searchKey}%");
+                        });
+                });
+            })
+            ->with('teacher:id,name,surname,email,gender,phone_number')
+            ->groupBy('teacher_id')
+            ->select(DB::raw('*, COUNT(student_id) as students_count'))
+            ->addSelect(
+                DB::raw('SUM(CASE WHEN proficiency_exam_passed = 1 THEN 1 ELSE 0 END) AS passed_students_count')
+            )
+            ->addSelect(
+                DB::raw('SUM(CASE WHEN proficiency_exam_passed = 0 THEN 1 ELSE 0 END) AS failed_students_count')
+            )
+            ->addSelect(
+                DB::raw('SUM(CASE WHEN proficiency_exam_passed IS NULL THEN 1 ELSE 0 END) AS awaiting_students_count')
+            )
+            ->orderByTabulator($request)
+            ->paginate($request->size)
+            ->appends(array_merge($this->filters, $filters));
+
+        return response()->json($teacherStudentsMatchings->toArray());
+    }
+
+    /**
+     * @param  Course  $course
+     * @return JsonResponse
+     */
+    public function organizeWhatsappGroups(Course $course): JsonResponse
+    {
+        $this->authorize('update', [Course::class, $course]);
+
+        CourseWhatsappGroupsOrganizer::dispatch($course);
 
         return response()->json(null, Response::HTTP_NO_CONTENT);
     }
