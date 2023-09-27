@@ -9,6 +9,7 @@ use App\Models\TeacherStudent;
 use App\Models\User;
 use App\Models\UserCourse;
 use App\Models\WhatsappGroup;
+use App\Models\WhatsappGroupUser;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
@@ -49,7 +50,15 @@ class CourseTest extends BaseFeatureTest
         $user->givePermissionTo('courses.view');
 
         $whatsappGroupCount = rand(1, 3);
-        WhatsappGroup::factory()->count($whatsappGroupCount)->create(['course_id' => $course->id]);
+        $whatsappGroupUsersCount = 0;
+        WhatsappGroup::factory()
+            ->count($whatsappGroupCount)
+            ->create(['course_id' => $course->id])
+            ->each(function($whatsappGroup) use (&$whatsappGroupUsersCount) {
+                $count = rand(1, 5);
+                WhatsappGroupUser::factory()->count($count)->create(['whatsapp_group_id' => $whatsappGroup->id]);
+                $whatsappGroupUsersCount += $count;
+            });
         $usersCount = rand(11, 23);
         $courseUsers = [];
         User::factory()
@@ -97,6 +106,7 @@ class CourseTest extends BaseFeatureTest
                     [
                         'total_users_count' => $usersCount,
                         'whatsapp_groups_count' => $whatsappGroupCount,
+                        'whatsapp_groups_users_count' => $whatsappGroupUsersCount,
                         'hafizkal_users_count' => $hafizkalUsersCount,
                         'hafizol_users_count' => $hafizolUsersCount,
                         'matched_hafizkal_users_count' => $matchedHafizkalUsersCount,

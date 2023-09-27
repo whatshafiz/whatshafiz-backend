@@ -156,7 +156,8 @@ class CourseController extends Controller
         $this->authorize('view', [Course::class, $course]);
 
         $course->total_users_count = $course->users()->count();
-        $course->whatsapp_groups_count = $course->whatsappGroups()->count();;
+        $course->whatsapp_groups_count = $course->whatsappGroups()->count();
+        $course->whatsapp_groups_users_count = $course->whatsappGroupUsers()->count();
         $course->hafizkal_users_count = $course->users()->where('is_teacher', true)->count();
         $course->hafizol_users_count = $course->users()->where('is_teacher', false)->count();
         $course->matched_hafizkal_users_count = TeacherStudent::where('course_id', $course->id)
@@ -311,6 +312,9 @@ class CourseController extends Controller
         $this->authorize('update', [Course::class, $course]);
 
         CourseWhatsappGroupsOrganizer::dispatch($course);
+
+        $course->students_matchings_started_at = now();
+        $course->save();
 
         return response()->json(null, Response::HTTP_NO_CONTENT);
     }
