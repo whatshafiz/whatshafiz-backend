@@ -131,7 +131,7 @@ class CourseTest extends BaseFeatureTest
     /** @test */
     public function it_should_get_courses_list_when_has_permission()
     {
-        $courses = Course::factory()->count(2, 5)->create();
+        $courses = Course::factory()->count(rand(2, 5))->create();
         $user = User::factory()->create();
         $user->givePermissionTo('courses.list');
 
@@ -147,7 +147,7 @@ class CourseTest extends BaseFeatureTest
     /** @test */
     public function it_should_get_own_courses_list_when_has_permission()
     {
-        $courses = Course::factory()->count(2, 5)->create();
+        $courses = Course::factory()->count(rand(2, 5))->create();
         $user = User::factory()->create();
         $user->courses()->attach($courses);
 
@@ -184,7 +184,7 @@ class CourseTest extends BaseFeatureTest
     public function it_should_get_available_courses_list_from_cache_when_available_courses_cached_before()
     {
         Course::query()->update(['can_be_applied' => false]);
-        $availableCourses = Course::factory()->available()->count(2, 5)->create();
+        $availableCourses = Course::factory()->available()->count(rand(2, 5))->create();
 
         Cache::shouldReceive('has')->with(Course::AVAILABLE_COURSES_CACHE_KEY)->once()->andReturn(true);
         Cache::shouldReceive('get')->with(Course::AVAILABLE_COURSES_CACHE_KEY)->once()->andReturn($availableCourses);
@@ -207,7 +207,7 @@ class CourseTest extends BaseFeatureTest
     public function it_should_get_available_courses_list_from_database_and_put_it_to_cache_when_available_courses_did_not_cached_before()
     {
         Course::query()->update(['can_be_applied' => false]);
-        $availableCourses = Course::factory()->available()->count(2, 5)->create();
+        $availableCourses = Course::factory()->available()->count(rand(2, 5))->create();
 
         Cache::shouldReceive('has')->with(Course::AVAILABLE_COURSES_CACHE_KEY)->once()->andReturn(false);
         Cache::shouldReceive('get')->with(Course::AVAILABLE_COURSES_CACHE_KEY)->never();

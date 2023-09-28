@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -214,5 +215,21 @@ class User extends Authenticatable
     public function answerAttempts(): HasMany
     {
         return $this->hasMany(AnswerAttempt::class);
+    }
+
+    /**
+     * @return HasManyThrough
+     */
+    public function students(): HasMany
+    {
+        return $this->hasMany(TeacherStudent::class, 'teacher_id')->with('student');
+    }
+
+    /**
+     * @return HasManyThrough
+     */
+    public function teachers(): HasMany
+    {
+        return $this->hasMany(TeacherStudent::class, 'student_id')->with('teacher');
     }
 }

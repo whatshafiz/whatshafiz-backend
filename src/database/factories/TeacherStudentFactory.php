@@ -32,7 +32,7 @@ class TeacherStudentFactory extends Factory
             'course_id' => $courseId,
             'is_active' => $examPassed && $this->faker->boolean(90),
             'proficiency_exam_passed' => $examPassed,
-            'proficiency_exam_failed_description' => $examPassed ? null : $this->faker->sentence,
+            'proficiency_exam_failed_description' => !$examPassed ? $this->faker->sentence : null,
         ];
     }
 }
