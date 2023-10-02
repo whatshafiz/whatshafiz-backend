@@ -134,6 +134,9 @@ class CourseTeacherStudentsMatcher implements ShouldQueue
                 })
                 ->orWhere(function($subQuery) use ($teacher) {
                     return $subQuery->where('university_id', $teacher->university_id);
+                })
+                ->orWhere(function($subQuery) use ($teacher) {
+                    return $subQuery->where('users.id', '>', '1');
                 });
             })
             ->addSelect(DB::raw("users.*,
