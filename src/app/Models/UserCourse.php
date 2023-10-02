@@ -20,4 +20,12 @@ class UserCourse extends BaseModel
     {
         return $this->belongsTo(Course::class);
     }
+
+    /**
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }

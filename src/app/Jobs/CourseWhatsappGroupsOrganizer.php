@@ -33,6 +33,7 @@ class CourseWhatsappGroupsOrganizer implements ShouldQueue
      */
     public function handle()
     {
+        // sınavı geçmiş öğrencileri atayacaksın
         dd($this->course);
     }
 }

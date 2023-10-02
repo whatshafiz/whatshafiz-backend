@@ -29,4 +29,14 @@ class UserCourseFactory extends Factory
             'removed_at' => $this->faker->optional(0.2)->datetime,
         ];
     }
+
+    /**
+     * @return static
+     */
+    public function withNewUser()
+    {
+        return $this->state(fn (array $attributes) => [
+            'user_id' => User::factory()->completed()->create()->id,
+        ]);
+    }
 }

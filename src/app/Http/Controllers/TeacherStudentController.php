@@ -41,7 +41,10 @@ class TeacherStudentController extends Controller
             $request,
             [
                 'proficiency_exam_passed' => 'nullable|boolean',
-                'proficiency_exam_failed_description' => 'required_if:proficiency_exam_passed,false|string|max:255',
+                'proficiency_exam_failed_description' => 'required_if:proficiency_exam_passed,false|nullable|string|max:255',
+            ],
+            [
+                'proficiency_exam_failed_description.required_if' => 'Red nedenini belirtmek zorunludur.',
             ]
         );
 

@@ -50,7 +50,10 @@ class TeacherStudentTest extends BaseFeatureTest
     public function it_should_get_users_own_students_list()
     {
         $user = User::factory()->create();
-        $studentIds = TeacherStudent::factory()->count(rand(2, 5))->create(['teacher_id' => $user->id])->pluck('student_id');
+        $studentIds = TeacherStudent::factory()
+            ->count(rand(2, 5))
+            ->create(['teacher_id' => $user->id])
+            ->pluck('student_id');
 
         $response = $this->actingAs($user)->json('GET', $this->uri . '/my/students');
 
