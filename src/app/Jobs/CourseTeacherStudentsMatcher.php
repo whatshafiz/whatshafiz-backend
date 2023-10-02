@@ -146,8 +146,8 @@ class CourseTeacherStudentsMatcher implements ShouldQueue
                     WHEN country_id = '{$teacher->country_id}' and education_level = '{$teacher->education_level}' and university_id = '{$teacher->university_id}' THEN '3'
                     WHEN country_id = '{$teacher->country_id}' and education_level = '{$teacher->education_level}' THEN '4'
                     WHEN university_id = '{$teacher->university_id}' THEN '5'
-                    WHEN education_level = '{$teacher->education_level}' THEN '6'
-                    WHEN country_id = '{$teacher->country_id}' THEN '7'
+                    WHEN country_id = '{$teacher->country_id}' THEN '6'
+                    WHEN education_level = '{$teacher->education_level}' THEN '7'
                     ELSE '99'
                 END AS relation_level
             "))

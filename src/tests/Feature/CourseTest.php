@@ -66,7 +66,7 @@ class CourseTest extends BaseFeatureTest
             ->create()
             ->each(function ($user) use ($course, &$courseUsers) {
                 $courseUsers[] = UserCourse::factory()
-                    ->create(['course_id' => $course->id, 'user_id' => $user->id])
+                    ->create(['type' => 'whatshafiz', 'course_id' => $course->id, 'user_id' => $user->id])
                     ->toArray();
             });
 
@@ -99,23 +99,26 @@ class CourseTest extends BaseFeatureTest
 
         $response = $this->actingAs($user)->json('GET', $this->uri . '/' . $course->id);
 
-        $response->assertOk()
-            ->assertJsonFragment(
-                array_merge(
-                    $course->toArray(),
-                    [
-                        'total_users_count' => $usersCount,
-                        'whatsapp_groups_count' => $whatsappGroupCount,
-                        'whatsapp_groups_users_count' => $whatsappGroupUsersCount,
-                        'hafizkal_users_count' => $hafizkalUsersCount,
-                        'hafizol_users_count' => $hafizolUsersCount,
-                        'matched_hafizkal_users_count' => $matchedHafizkalUsersCount,
-                        'matched_hafizol_users_count' => $matchedHafizolUsersCount,
-                        'matched_users_count' => $matchedUsersCount,
-                        'unmatched_users_count' => $usersCount - $matchedUsersCount,
-                    ]
-                )
-            );
+        $response->assertOk();
+
+        $usersCount = $course->users()->count();
+
+        $response->assertJsonFragment(
+            array_merge(
+                $course->toArray(),
+                [
+                    'total_users_count' => $usersCount,
+                    'whatsapp_groups_count' => $whatsappGroupCount,
+                    'whatsapp_groups_users_count' => $whatsappGroupUsersCount,
+                    'hafizkal_users_count' => $course->users()->where('is_teacher', true)->count(),
+                    'hafizol_users_count' => $course->users()->where('is_teacher', false)->count(),
+                    'matched_hafizkal_users_count' => $matchedHafizkalUsersCount,
+                    'matched_hafizol_users_count' => $matchedHafizolUsersCount,
+                    'matched_users_count' => $matchedUsersCount,
+                    'unmatched_users_count' => $usersCount - $matchedUsersCount,
+                ]
+            )
+        );
     }
 
     /** @test */
