@@ -23,8 +23,8 @@ class TeacherStudentFactory extends Factory
         $courseId = Course::where('type', 'whatshafiz')->inRandomOrder()->first('id')->id;
         $teacherId = User::inRandomOrder()->first('id')->id;
         $studentId = User::inRandomOrder()->first('id')->id;
-        UserCourse::factory()->create(['course_id' => $courseId, 'user_id' => $teacherId, 'is_teacher' => true]);
-        UserCourse::factory()->create(['course_id' => $courseId, 'user_id' => $studentId, 'is_teacher' => false]);
+        // UserCourse::factory()->create(['course_id' => $courseId, 'user_id' => $teacherId, 'is_teacher' => true]);
+        // UserCourse::factory()->create(['course_id' => $courseId, 'user_id' => $studentId, 'is_teacher' => false]);
 
         return [
             'teacher_id' => $teacherId,
