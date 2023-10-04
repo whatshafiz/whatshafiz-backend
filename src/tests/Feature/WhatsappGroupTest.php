@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Course;
 use App\Models\User;
 use App\Models\WhatsappGroup;
 use App\Models\WhatsappGroupUser;
@@ -112,6 +113,32 @@ class WhatsappGroupTest extends BaseFeatureTest
 
         foreach ($filteredWhatsappGroups as $filteredWhatsappGroup) {
             $response->assertJsonFragment($filteredWhatsappGroup->toArray());
+        }
+
+        foreach ($otherWhatsappGroups as $otherWhatsappGroup) {
+            $response->assertJsonMissing($otherWhatsappGroup->toArray(), true);
+        }
+    }
+
+    /** @test */
+    public function it_should_get_whatsapp_groups_list_when_has_permission_filtering_by_course_id()
+    {
+        $otherWhatsappGroups = WhatsappGroup::factory()->count(2, 5)->create();
+        $course = Course::factory()->create();
+        $filteredWhatsappGroups = WhatsappGroup::factory()->count(2, 5)->create(['course_id' => $course->id]);
+        $user = User::factory()->create();
+        $user->givePermissionTo('whatsappGroups.list');
+
+        $response = $this->actingAs($user)->json('GET', $this->uri, ['course_id' => $course->id]);
+
+        $response->assertOk();
+
+        foreach ($filteredWhatsappGroups as $filteredWhatsappGroup) {
+            $response->assertJsonFragment($filteredWhatsappGroup->toArray());
+        }
+
+        foreach ($otherWhatsappGroups as $otherWhatsappGroup) {
+            $response->assertJsonMissing($otherWhatsappGroup->toArray(), true);
         }
     }
 

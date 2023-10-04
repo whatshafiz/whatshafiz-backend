@@ -10,6 +10,7 @@ use App\Http\Controllers\QuranQuestionController;
 use App\Http\Controllers\RegulationController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\TeacherStudentController;
 use App\Http\Controllers\UniversityController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WhatsappGroupController;
@@ -67,6 +68,12 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('my/courses', [CourseController::class, 'myCourses']);
     Route::get('courses/paginate', [CourseController::class, 'indexPaginate']);
+    Route::get('courses/{course}/teacher-students-matchings', [CourseController::class, 'getTeacherStudentsMatchings']);
+    Route::post(
+        'courses/{course}/teacher-students-matchings',
+        [CourseController::class, 'startTeacherStudentsMatchings']
+    );
+    Route::post('courses/{course}/whatsapp-groups', [CourseController::class, 'organizeWhatsappGroups']);
     Route::apiResource('courses', CourseController::class);
 
     Route::get('universities/paginate', [UniversityController::class, 'indexPaginate']);
@@ -113,6 +120,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::apiResource('answer-attempts', AnswerAttemptController::class);
     Route::get('my/answer-attempts', [AnswerAttemptController::class, 'myAnswerAttempts']);
+
+    Route::get('my/teachers', [TeacherStudentController::class, 'myTeachers']);
+    Route::put('my/students/{teacherStudent}', [TeacherStudentController::class, 'updateStudentStatus']);
+    Route::get('my/students', [TeacherStudentController::class, 'myStudents']);
 });
 
 Route::middleware(['auth:sanctum', 'admin'])->group(function () {

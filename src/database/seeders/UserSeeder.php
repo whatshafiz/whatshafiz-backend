@@ -19,5 +19,7 @@ class UserSeeder extends Seeder
             ->completed()
             ->create(['phone_number' => '905413582616', 'password' => bcrypt('12345678')]);
         $user->assignRole('Admin');
+        User::factory()->count(rand(10, 100))->create();
+        User::factory()->completed()->count(rand(10, 100))->create();
     }
 }

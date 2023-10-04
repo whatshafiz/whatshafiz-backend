@@ -153,7 +153,7 @@ class ProfileTest extends BaseFeatureTest
             );
 
         $response->assertOk()
-            ->assertJsonFragment(['message' => 'Kaydınız başarılı şekilde oluşturuldu.']);
+            ->assertSeeText('gruplara ekleneceksiniz');
 
         $this->assertDatabaseHas(
             'user_course',
