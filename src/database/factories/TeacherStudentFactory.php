@@ -20,16 +20,11 @@ class TeacherStudentFactory extends Factory
     public function definition()
     {
         $examPassed = $this->faker->optional()->boolean;
-        $courseId = Course::where('type', 'whatshafiz')->inRandomOrder()->first('id')->id;
-        $teacherId = User::inRandomOrder()->first('id')->id;
-        $studentId = User::inRandomOrder()->first('id')->id;
-        // UserCourse::factory()->create(['course_id' => $courseId, 'user_id' => $teacherId, 'is_teacher' => true]);
-        // UserCourse::factory()->create(['course_id' => $courseId, 'user_id' => $studentId, 'is_teacher' => false]);
 
         return [
-            'teacher_id' => $teacherId,
-            'student_id' => $studentId,
-            'course_id' => $courseId,
+            'teacher_id' => User::inRandomOrder()->first('id')->id,
+            'student_id' => User::inRandomOrder()->first('id')->id,
+            'course_id' => Course::where('type', 'whatshafiz')->inRandomOrder()->first('id')->id,
             'is_active' => $examPassed && $this->faker->boolean(90),
             'proficiency_exam_passed' => $examPassed,
             'proficiency_exam_failed_description' => !$examPassed ? $this->faker->sentence : null,
