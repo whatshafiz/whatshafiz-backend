@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\CourseTeacherStudentsMatcher;
+use App\Jobs\CourseWhatsappGroupsOrganizer;
 use App\Models\Course;
+use App\Models\TeacherStudent;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 
 class CourseController extends Controller
@@ -56,7 +60,7 @@ class CourseController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param  Request  $request
      * @return JsonResponse
      * @throws ValidationException
      */
@@ -76,7 +80,15 @@ class CourseController extends Controller
             $availableCourses = Cache::get(Course::AVAILABLE_COURSES_CACHE_KEY);
         } else {
             $availableCourses = Course::available()
-                ->get(['id', 'type', 'name', 'can_be_applied', 'can_be_applied_until', 'start_at']);
+                ->get([
+                    'id',
+                    'type',
+                    'name',
+                    'start_at',
+                    'can_be_applied',
+                    'can_be_applied_until',
+                    'proficiency_exam_start_time',
+                ]);
             Cache::put(Course::AVAILABLE_COURSES_CACHE_KEY, $availableCourses);
         }
 
@@ -108,8 +120,9 @@ class CourseController extends Controller
                         }
                     },
                 ],
-                'can_be_applied_until' => 'nullable|date_format:Y-m-d\TH:i',
                 'start_at' => 'nullable|date_format:Y-m-d\TH:i',
+                'can_be_applied_until' => 'nullable|date_format:Y-m-d\TH:i',
+                'proficiency_exam_start_time' => 'nullable|date_format:Y-m-d\TH:i',
             ]
         );
 
@@ -119,6 +132,13 @@ class CourseController extends Controller
 
         if (isset($validatedCourseData['can_be_applied_until'])) {
             $validatedCourseData['can_be_applied_until'] = Carbon::parse($validatedCourseData['can_be_applied_until'])
+                ->format('Y-m-d H:i:s');
+        }
+
+        if (isset($validatedCourseData['proficiency_exam_start_time'])) {
+            $validatedCourseData['proficiency_exam_start_time'] = Carbon::parse(
+                $validatedCourseData['proficiency_exam_start_time']
+            )
                 ->format('Y-m-d H:i:s');
         }
 
@@ -134,6 +154,22 @@ class CourseController extends Controller
     public function show(Course $course): JsonResponse
     {
         $this->authorize('view', [Course::class, $course]);
+
+        $course->total_users_count = $course->users()->count();
+        $course->whatsapp_groups_count = $course->whatsappGroups()->count();
+        $course->whatsapp_groups_users_count = $course->whatsappGroupUsers()->count();
+        $course->hafizkal_users_count = $course->users()->where('is_teacher', true)->count();
+        $course->hafizol_users_count = $course->users()->where('is_teacher', false)->count();
+        $course->matched_hafizkal_users_count = TeacherStudent::where('course_id', $course->id)
+            ->groupBy('teacher_id')
+            ->get('teacher_id')
+            ->count();
+        $course->matched_hafizol_users_count = TeacherStudent::where('course_id', $course->id)
+            ->groupBy('student_id')
+            ->get('student_id')
+            ->count();
+        $course->matched_users_count = $course->matched_hafizkal_users_count + $course->matched_hafizol_users_count;
+        $course->unmatched_users_count = $course->total_users_count - $course->matched_users_count;
 
         return response()->json(compact('course'));
     }
@@ -161,14 +197,16 @@ class CourseController extends Controller
                             Course::where('can_be_applied', true)
                                 ->where('id', '!=', $course->id)
                                 ->where('type', $request->type)
+                                ->where('can_be_applied_until', '>', now())
                                 ->exists()
                         ) {
                             $fail('Mevcutta zaten başvuruya açık dönem bulunuyor.');
                         }
                     },
                 ],
-                'can_be_applied_until' => 'nullable|date_format:Y-m-d\TH:i',
                 'start_at' => 'nullable|date_format:Y-m-d\TH:i',
+                'can_be_applied_until' => 'nullable|date_format:Y-m-d\TH:i',
+                'proficiency_exam_start_time' => 'nullable|date_format:Y-m-d\TH:i',
             ]
         );
 
@@ -178,6 +216,13 @@ class CourseController extends Controller
 
         if (isset($validatedCourseData['can_be_applied_until'])) {
             $validatedCourseData['can_be_applied_until'] = Carbon::parse($validatedCourseData['can_be_applied_until'])
+                ->format('Y-m-d H:i:s');
+        }
+
+        if (isset($validatedCourseData['proficiency_exam_start_time'])) {
+            $validatedCourseData['proficiency_exam_start_time'] = Carbon::parse(
+                $validatedCourseData['proficiency_exam_start_time']
+            )
                 ->format('Y-m-d H:i:s');
         }
 
@@ -196,6 +241,80 @@ class CourseController extends Controller
 
         //TODO: Course için başvuru yapılmışsa, aktif dönem varsa vb. durumlarda silme işlemi kontrole bağlı olacak.
         $course->delete();
+
+        return response()->json(null, Response::HTTP_NO_CONTENT);
+    }
+
+    /**
+     * @param  Course  $course
+     * @return JsonResponse
+     */
+    public function startTeacherStudentsMatchings(Course $course): JsonResponse
+    {
+        $this->authorize('update', [Course::class, $course]);
+
+        CourseTeacherStudentsMatcher::dispatch($course);
+
+        $course->students_matchings_started_at = now();
+        $course->save();
+
+        return response()->json(null, Response::HTTP_NO_CONTENT);
+    }
+
+    /**
+     * @param  Request  $request
+     * @param  Course  $course
+     * @return JsonResponse
+     */
+    public function getTeacherStudentsMatchings(Request $request, Course $course): JsonResponse
+    {
+        $this->authorize('view', [Course::class, $course]);
+
+        $filters = $this->validate($request, ['teacher_id' => 'nullable|integer|exists:users,id']);
+        $searchKey = $this->getTabulatorSearchKey($request);
+
+        $teacherStudentsMatchings = $course->teacherStudentsMatchings()
+            ->when(!empty($searchKey), function ($query) use ($searchKey) {
+                return $query->where(function ($subQuery) use ($searchKey) {
+                    return $subQuery->where('id', $searchKey)
+                        ->orWhereHas('teacher', function ($subQuery) use ($searchKey) {
+                            return $subQuery->where('id', $searchKey)
+                                ->orWhere(DB::raw('CONCAT(name, " ", surname)'), 'like', "%{$searchKey}%")
+                                ->orWhere('phone_number', 'like', "%{$searchKey}%");
+                        });
+                });
+            })
+            ->with('teacher:id,name,surname,email,gender,phone_number')
+            ->groupBy('teacher_id')
+            ->select(DB::raw('*, COUNT(student_id) as students_count'))
+            ->addSelect(
+                DB::raw('SUM(CASE WHEN proficiency_exam_passed = 1 THEN 1 ELSE 0 END) AS passed_students_count')
+            )
+            ->addSelect(
+                DB::raw('SUM(CASE WHEN proficiency_exam_passed = 0 THEN 1 ELSE 0 END) AS failed_students_count')
+            )
+            ->addSelect(
+                DB::raw('SUM(CASE WHEN proficiency_exam_passed IS NULL THEN 1 ELSE 0 END) AS awaiting_students_count')
+            )
+            ->orderByTabulator($request)
+            ->paginate($request->size)
+            ->appends(array_merge($this->filters, $filters));
+
+        return response()->json($teacherStudentsMatchings->toArray());
+    }
+
+    /**
+     * @param  Course  $course
+     * @return JsonResponse
+     */
+    public function organizeWhatsappGroups(Course $course): JsonResponse
+    {
+        $this->authorize('update', [Course::class, $course]);
+
+        CourseWhatsappGroupsOrganizer::dispatch($course);
+
+        $course->students_matchings_started_at = now();
+        $course->save();
 
         return response()->json(null, Response::HTTP_NO_CONTENT);
     }

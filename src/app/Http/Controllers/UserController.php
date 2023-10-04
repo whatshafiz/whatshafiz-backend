@@ -368,7 +368,22 @@ class UserController extends Controller
                 $user->assignRole($request->is_teacher ? 'HafızKal' : 'HafızOl');
                 DB::commit();
 
-                return response()->json(['message' => 'Kaydınız başarılı şekilde oluşturuldu.']);
+                $message = '<br> <strong>Kaydınız başarılı şekilde oluşturuldu.</strong> <br><br> ';
+
+                if ($request->is_teacher) {
+                    $message .= 'Öğrenci atamalarınız HafızOl Kabul Sınavı tarihinde yapılacaktır. <br><br>' .
+                        'Kabul sınavı başlangıç zamanından sonra, bu sisteme giriş yaparak size atanan öğrencileri görebilirsiniz. <br><br>' .
+                        'Öğrencileriniz ile iletişime geçerek sınavlarını yapın ve kabul/red olarak işaretleyin. <br><br>' .
+                        'Kursa kabul ettiğiniz öğrenciler ile birlikte whatsapp gruplarına kurs başlamadan ekleneceksiniz. <br><br>';
+                } else {
+                    $message .= 'Hocanızın ataması HafızOl Kabul Sınavı tarihinde yapılacaktır. <br><br>' .
+                        'Kabul sınavı başlangıç zamanından sonra, bu sisteme giriş yaparak size atanan hocanızın bilgilerini görebilirsiniz. <br><br>' .
+                        'Hocanız sizinle iletişime geçerek sınavınızı yapacak. <br><br>';
+                }
+
+                $message .= 'Whatsapp grupları sınavlar tamamlandıktan sonra oluşturulacak ve gruplara ekleneceksiniz. <br><br>';
+
+                return response()->json(['message' => $message]);
             }
 
             $user->assignRole(Str::ucfirst($course->type));

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Cache;
 
@@ -22,6 +23,8 @@ class Course extends BaseModel
         'is_active' => 'boolean',
         'start_at' => 'datetime:d-m-Y H:i',
         'can_be_applied_until' => 'datetime:d-m-Y H:i',
+        'proficiency_exam_start_time' => 'datetime:d-m-Y H:i',
+        'students_matchings_started_at' => 'datetime:d-m-Y H:i',
         'created_at' => 'datetime:d-m-Y H:i',
         'updated_at' => 'datetime:d-m-Y H:i',
         'deleted_at' => 'datetime:d-m-Y H:i',
@@ -87,9 +90,25 @@ class Course extends BaseModel
     /**
      * @return HasMany
      */
+    public function teacherStudentsMatchings(): HasMany
+    {
+        return $this->hasMany(TeacherStudent::class);
+    }
+
+    /**
+     * @return HasMany
+     */
     public function whatsappGroups(): HasMany
     {
         return $this->hasMany(WhatsappGroup::class);
+    }
+
+    /**
+     * @return HasManyThrough
+     */
+    public function whatsappGroupUsers(): HasManyThrough
+    {
+        return $this->hasManyThrough(WhatsappGroupUser::class, WhatsappGroup::class);
     }
 
     /**
