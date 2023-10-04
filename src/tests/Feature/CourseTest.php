@@ -54,7 +54,7 @@ class CourseTest extends BaseFeatureTest
         WhatsappGroup::factory()
             ->count($whatsappGroupCount)
             ->create(['course_id' => $course->id])
-            ->each(function($whatsappGroup) use (&$whatsappGroupUsersCount) {
+            ->each(function ($whatsappGroup) use (&$whatsappGroupUsersCount) {
                 $count = rand(1, 5);
                 WhatsappGroupUser::factory()->count($count)->create(['whatsapp_group_id' => $whatsappGroup->id]);
                 $whatsappGroupUsersCount += $count;

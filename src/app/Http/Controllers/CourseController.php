@@ -137,8 +137,8 @@ class CourseController extends Controller
 
         if (isset($validatedCourseData['proficiency_exam_start_time'])) {
             $validatedCourseData['proficiency_exam_start_time'] = Carbon::parse(
-                    $validatedCourseData['proficiency_exam_start_time']
-                )
+                $validatedCourseData['proficiency_exam_start_time']
+            )
                 ->format('Y-m-d H:i:s');
         }
 
@@ -221,8 +221,8 @@ class CourseController extends Controller
 
         if (isset($validatedCourseData['proficiency_exam_start_time'])) {
             $validatedCourseData['proficiency_exam_start_time'] = Carbon::parse(
-                    $validatedCourseData['proficiency_exam_start_time']
-                )
+                $validatedCourseData['proficiency_exam_start_time']
+            )
                 ->format('Y-m-d H:i:s');
         }
 

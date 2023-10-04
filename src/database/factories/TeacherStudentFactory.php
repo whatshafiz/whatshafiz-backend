@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\Course;
 use App\Models\User;
-use App\Models\UserCourse;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

@@ -3,10 +3,8 @@
 namespace App\Jobs;
 
 use App\Models\Course;
-use App\Models\TeacherStudent;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -16,7 +14,10 @@ use Illuminate\Support\Facades\DB;
 
 class CourseTeacherStudentsMatcher implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     protected Course $course;
 
@@ -75,7 +76,7 @@ class CourseTeacherStudentsMatcher implements ShouldQueue
             ->where('teacher_students.course_id', $this->course->id)
             ->where('is_teacher', true)
             ->where('users.gender', $gender)
-            ->where(function($subQuery) {
+            ->where(function ($subQuery) {
                 return $subQuery->where('teacher_students.proficiency_exam_passed', '=', '1')
                     ->orWhereNull('teacher_students.proficiency_exam_passed');
             })
@@ -105,39 +106,39 @@ class CourseTeacherStudentsMatcher implements ShouldQueue
             ->whereDoesntHave('teachers', function ($query) {
                 return $query->where('course_id', $this->course->id);
             })
-            ->where(function($query) use ($teacher) {
-                $query->where(function($subQuery) use ($teacher) {
+            ->where(function ($query) use ($teacher) {
+                $query->where(function ($subQuery) use ($teacher) {
                     return $subQuery->where('country_id', $teacher->country_id)
                         ->where('city_id', $teacher->city_id)
                         ->where('education_level', $teacher->education_level)
                         ->where('university_id', $teacher->university_id);
                 })
-                ->orWhere(function($subQuery) use ($teacher) {
-                    return $subQuery->where('country_id', $teacher->country_id)
-                        ->where('city_id', $teacher->city_id)
-                        ->where('education_level', $teacher->education_level);
-                })
-                ->orWhere(function($subQuery) use ($teacher) {
-                    return $subQuery->where('country_id', $teacher->country_id)
-                        ->where('education_level', $teacher->education_level)
-                        ->where('university_id', $teacher->university_id);
-                })
-                ->orWhere(function($subQuery) use ($teacher) {
-                    return $subQuery->where('country_id', $teacher->country_id)
-                        ->where('education_level', $teacher->education_level);
-                })
-                ->orWhere(function($subQuery) use ($teacher) {
-                    return $subQuery->where('country_id', $teacher->country_id);
-                })
-                ->orWhere(function($subQuery) use ($teacher) {
-                    return $subQuery->where('education_level', $teacher->education_level);
-                })
-                ->orWhere(function($subQuery) use ($teacher) {
-                    return $subQuery->where('university_id', $teacher->university_id);
-                })
-                ->orWhere(function($subQuery) use ($teacher) {
-                    return $subQuery->where('users.id', '>', '1');
-                });
+                    ->orWhere(function ($subQuery) use ($teacher) {
+                        return $subQuery->where('country_id', $teacher->country_id)
+                            ->where('city_id', $teacher->city_id)
+                            ->where('education_level', $teacher->education_level);
+                    })
+                    ->orWhere(function ($subQuery) use ($teacher) {
+                        return $subQuery->where('country_id', $teacher->country_id)
+                            ->where('education_level', $teacher->education_level)
+                            ->where('university_id', $teacher->university_id);
+                    })
+                    ->orWhere(function ($subQuery) use ($teacher) {
+                        return $subQuery->where('country_id', $teacher->country_id)
+                            ->where('education_level', $teacher->education_level);
+                    })
+                    ->orWhere(function ($subQuery) use ($teacher) {
+                        return $subQuery->where('country_id', $teacher->country_id);
+                    })
+                    ->orWhere(function ($subQuery) use ($teacher) {
+                        return $subQuery->where('education_level', $teacher->education_level);
+                    })
+                    ->orWhere(function ($subQuery) use ($teacher) {
+                        return $subQuery->where('university_id', $teacher->university_id);
+                    })
+                    ->orWhere(function ($subQuery) use ($teacher) {
+                        return $subQuery->where('users.id', '>', '1');
+                    });
             })
             ->addSelect(DB::raw("users.*,
                 CASE

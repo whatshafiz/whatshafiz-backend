@@ -5,12 +5,8 @@ namespace Tests\Feature\Jobs;
 use App\Jobs\CourseWhatsappGroupsOrganizer;
 use App\Models\Course;
 use App\Models\TeacherStudent;
-use App\Models\User;
 use App\Models\UserCourse;
 use App\Models\WhatsappGroup;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Support\Facades\Queue;
 use Tests\BaseFeatureTest;
 
 class CourseWhatsappGroupsOrganizerTest extends BaseFeatureTest

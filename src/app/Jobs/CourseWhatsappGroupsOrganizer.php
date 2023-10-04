@@ -6,7 +6,6 @@ use App\Models\Course;
 use App\Models\User;
 use App\Models\WhatsappGroupUser;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -15,7 +14,10 @@ use Illuminate\Queue\SerializesModels;
 
 class CourseWhatsappGroupsOrganizer implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     protected Course $course;
 
@@ -95,7 +97,6 @@ class CourseWhatsappGroupsOrganizer implements ShouldQueue
 
         return $whatsappGroups;
     }
-
 
     /**
      * @param  string  $gender

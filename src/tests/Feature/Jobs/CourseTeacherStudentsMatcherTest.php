@@ -7,8 +7,6 @@ use App\Models\Course;
 use App\Models\TeacherStudent;
 use App\Models\User;
 use App\Models\UserCourse;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Queue;
 use Tests\BaseFeatureTest;
 
@@ -39,7 +37,7 @@ class CourseTeacherStudentsMatcherTest extends BaseFeatureTest
                         'course_id' => $course->id,
                         'teacher_id' => $userCourseForTeacher->user_id,
                         'student_id' => $userCourseForStudent->user_id,
-                        'proficiency_exam_passed' => $this->faker->randomElement([1, NULL]),
+                        'proficiency_exam_passed' => $this->faker->randomElement([1, null]),
                     ]);
             }
         }

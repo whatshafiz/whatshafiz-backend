@@ -2,18 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Jobs\TeacherStudentTeacherStudentsMatcher;
-use App\Jobs\TeacherStudentWhatsappGroupsOrganizer;
 use App\Models\TeacherStudent;
 use App\Models\User;
-use App\Models\UserTeacherStudent;
-use App\Models\WhatsappGroup;
-use App\Models\WhatsappGroupUser;
-use Carbon\Carbon;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Queue;
-use Symfony\Component\HttpFoundation\Response;
 use Tests\BaseFeatureTest;
 
 class TeacherStudentTest extends BaseFeatureTest
