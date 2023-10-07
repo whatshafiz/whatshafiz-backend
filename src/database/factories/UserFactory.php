@@ -21,16 +21,17 @@ class UserFactory extends Factory
     {
         $universityDepartment = $this->faker->boolean ? null : UniversityDepartment::inRandomOrder()->first();
         $city = $this->faker->boolean ? null : City::inRandomOrder()->first();
+        $gender = $this->faker->optional()->randomElement(['male', 'female']);
 
         return [
-            'name' => $this->faker->firstname(),
+            'name' => $this->faker->firstname($gender),
             'surname' => $this->faker->lastname(),
             'email' => $this->faker->optional()->email(),
             'phone_number' => $this->faker->unique()->e164PhoneNumber(),
             'phone_number_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'gender' => $this->faker->optional()->randomElement(['male', 'female']),
+            'gender' => $gender,
             'country_id' => $city ? $city->country_id : null,
             'city_id' => $city ? $city->id : null,
             'education_level' => $this->faker->randomElement(['İlkokul', 'Lise', 'Lisans', 'Ön Lisans']) . ' Mezunu',
@@ -71,6 +72,32 @@ class UserFactory extends Factory
     {
         return $this->state(fn (array $attributes) => [
             'phone_number_verified_at' => null,
+        ]);
+    }
+
+    /**
+     * Indicate that the model's phone number should be unverified.
+     *
+     * @return static
+     */
+    public function male()
+    {
+        return $this->state(fn (array $attributes) => [
+            'name' => $this->faker->name('male'),
+            'gender' => 'male',
+        ]);
+    }
+
+    /**
+     * Indicate that the model's phone number should be unverified.
+     *
+     * @return static
+     */
+    public function female()
+    {
+        return $this->state(fn (array $attributes) => [
+            'name' => $this->faker->name('female'),
+            'gender' => 'female',
         ]);
     }
 
