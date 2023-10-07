@@ -35,7 +35,7 @@ class CourseFactory extends Factory
         return $this->state(fn (array $attributes) => [
             'type' => 'whatshafiz',
             'proficiency_exam_start_time' => Carbon::now()->addDays(rand(1, 14)),
-            'students_matchings_started_at' => $this->faker->boolean ? Carbon::now()->addDays(rand(1, 14)) : null,
+            'students_matchings_started_at' => $this->faker->boolean ? Carbon::now()->subDays(rand(1, 14)) : null,
         ]);
     }
 

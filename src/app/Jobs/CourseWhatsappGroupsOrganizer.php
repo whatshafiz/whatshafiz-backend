@@ -133,6 +133,10 @@ class CourseWhatsappGroupsOrganizer implements ShouldQueue
         $unMatchedStudentsCount = $this->course
             ->users()
             ->where('is_teacher', false)
+            ->whereHas('teachers', function ($query) {
+                return $query->where('course_id', $this->course->id)
+                    ->where('proficiency_exam_passed', true);
+            })
             ->whereDoesntHave('whatsappGroups', function ($query) {
                 return $query->where('course_id', $this->course->id);
             })
