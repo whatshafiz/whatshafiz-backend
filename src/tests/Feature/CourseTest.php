@@ -427,6 +427,31 @@ class CourseTest extends BaseFeatureTest
     }
 
     /** @test */
+    public function it_should_get_course_teacher_students_status_list_when_has_permission_by_filtering_teacher_id()
+    {
+        $user = User::factory()->create();
+        $user->givePermissionTo('courses.view');
+        $course = Course::factory()->whatshafiz()->create();
+        $teacher = User::inRandomOrder()->first();
+
+        $teacherStudents = TeacherStudent::factory()
+            ->count(rand(3, 9))
+            ->create(['course_id' => $course->id, 'teacher_id' => $teacher->id]);
+
+        $response = $this->actingAs($user)
+            ->json(
+                'GET',
+                $this->uri . '/' . $course->id . '/teacher-students-matchings?teacher_id=' . $teacher->id
+            );
+
+        $response->assertOk();
+
+        foreach ($teacherStudents as $teacherStudent) {
+            $response->assertJsonFragment($teacherStudent->toArray());
+        }
+    }
+
+    /** @test */
     public function it_should_start_organization_of_whatsapp_groups_when_has_permission()
     {
         $course = Course::factory()->create();

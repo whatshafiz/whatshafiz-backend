@@ -284,18 +284,24 @@ class CourseController extends Controller
                         });
                 });
             })
+            ->when(!empty($filters['teacher_id']), function ($query) use ($filters) {
+                return $query->where('teacher_id', $filters['teacher_id'])
+                    ->with('student:id,name,surname,email,gender,phone_number');
+            })
+            ->when(empty($filters['teacher_id']), function ($query) {
+                return $query->groupBy('teacher_id')
+                    ->select(DB::raw('*, COUNT(student_id) as students_count'))
+                    ->addSelect(
+                        DB::raw('SUM(CASE WHEN proficiency_exam_passed = 1 THEN 1 ELSE 0 END) AS passed_students_count')
+                    )
+                    ->addSelect(
+                        DB::raw('SUM(CASE WHEN proficiency_exam_passed = 0 THEN 1 ELSE 0 END) AS failed_students_count')
+                    )
+                    ->addSelect(
+                        DB::raw('SUM(CASE WHEN proficiency_exam_passed IS NULL THEN 1 ELSE 0 END) AS awaiting_students_count')
+                    );
+            })
             ->with('teacher:id,name,surname,email,gender,phone_number')
-            ->groupBy('teacher_id')
-            ->select(DB::raw('*, COUNT(student_id) as students_count'))
-            ->addSelect(
-                DB::raw('SUM(CASE WHEN proficiency_exam_passed = 1 THEN 1 ELSE 0 END) AS passed_students_count')
-            )
-            ->addSelect(
-                DB::raw('SUM(CASE WHEN proficiency_exam_passed = 0 THEN 1 ELSE 0 END) AS failed_students_count')
-            )
-            ->addSelect(
-                DB::raw('SUM(CASE WHEN proficiency_exam_passed IS NULL THEN 1 ELSE 0 END) AS awaiting_students_count')
-            )
             ->orderByTabulator($request)
             ->paginate($request->size)
             ->appends(array_merge($this->filters, $filters));
