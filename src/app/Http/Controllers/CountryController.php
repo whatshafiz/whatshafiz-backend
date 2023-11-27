@@ -21,7 +21,9 @@ class CountryController extends Controller
         if (Cache::has($cacheKey)) {
             $countries = Cache::get($cacheKey);
         } else {
-            $countries = Country::get();
+            $countries = Country::where('name', '!=', 'Türkiye')->orderBy('name')->get();
+            $countries->prepend(Country::where('name', 'Türkiye')->first());
+
             Cache::put($cacheKey, $countries);
         }
 
@@ -170,7 +172,7 @@ class CountryController extends Controller
         if (Cache::has($cacheKey)) {
             $cities = Cache::get($cacheKey);
         } else {
-            $cities = $country->cities()->get(['id', 'name']);
+            $cities = $country->cities()->orderBy('name')->get(['id', 'name']);
             Cache::put($cacheKey, $cities);
         }
 
