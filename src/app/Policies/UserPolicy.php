@@ -36,8 +36,8 @@ class UserPolicy
     {
         return $user->hasPermissionTo('users.list') ||
             $user->hasPermissionTo('users.view') ||
-            Arr::has($user->courses()->with('users')->get()->pluck('users.*.id')->first(), $relatedUser->id) ||
-            Arr::has($user->whatsappGroups()->with('users')->get()->pluck('users.*.id')->first(), $relatedUser->id);
+            in_array($relatedUser->id, $user->courses()->with('users')->get()->pluck('users.*.id')->first()) ||
+            in_array($relatedUser->id, $user->whatsappGroups()->with('users')->get()->pluck('users.*.user_id')->first());
     }
 
     /**
