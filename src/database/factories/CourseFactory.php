@@ -20,6 +20,7 @@ class CourseFactory extends Factory
         return [
             'type' => $this->faker->randomElement(['whatshafiz', 'whatsenglish', 'whatsarapp']),
             'name' => $this->faker->numerify('WhatsHafız-######'),
+            'whatsapp_channel_join_url' => $this->faker->optional(0.7)->url,
             'is_active' => $this->faker->boolean,
             'can_be_applied' => $this->faker->boolean,
             'can_be_applied_until' => Carbon::now()->addDays(rand(1, 14)),
