@@ -107,18 +107,20 @@ class UserController extends Controller
     {
         $this->authorize('view', [User::class, $user]);
 
-        $user->load([
-                'roles',
-                'permissions',
-                'whatsappGroups',
-                'courses',
-                'country',
-                'city',
-                'university',
-                'universityFaculty',
-                'universityDepartment',
-            ])
-            ->toArray();
+        if (Auth::user()->hasPermissionTo('users.list')) {
+            $user->load([
+                    'roles',
+                    'permissions',
+                    'whatsappGroups',
+                    'courses',
+                    'country',
+                    'city',
+                    'university',
+                    'universityFaculty',
+                    'universityDepartment',
+                ])
+                ->toArray();
+        }
 
         return response()->json(compact('user'));
     }

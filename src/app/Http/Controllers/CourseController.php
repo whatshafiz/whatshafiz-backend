@@ -108,6 +108,7 @@ class CourseController extends Controller
             [
                 'type' => 'required|string|in:whatshafiz,whatsenglish,whatsarapp',
                 'name' => 'required|string|min:3|max:100|unique:courses',
+                'whatsapp_channel_join_url' => 'nullable|url',
                 'is_active' => 'required|boolean',
                 'can_be_applied' => [
                     'required',
@@ -188,6 +189,7 @@ class CourseController extends Controller
             [
                 'type' => 'required|string|in:whatshafiz,whatsenglish,whatsarapp',
                 'name' => 'required|string|min:3|max:100|unique:courses,name,' . $course->id,
+                'whatsapp_channel_join_url' => 'nullable|url',
                 'is_active' => 'required|boolean',
                 'can_be_applied' => [
                     'required',
