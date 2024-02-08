@@ -170,7 +170,7 @@ class ProfileTest extends BaseFeatureTest
     }
 
     /** @test */
-    public function it_should_save_user_course_application_and_send_whatsapp_group_join_url_via_whatsapp_when_course_type_is_whatsenglish_or_whatsarapp()
+    public function it_should_save_user_course_application_and_send_whatsapp_channel_join_url_via_whatsapp_when_course_type_is_whatsenglish_or_whatsarapp()
     {
         $now = Carbon::now();
         Carbon::setTestNow($now);
@@ -178,51 +178,38 @@ class ProfileTest extends BaseFeatureTest
         Course::query()->update(['can_be_applied' => false]);
         $availableCourse = Course::factory()
             ->available()
-            ->create(['type' => $this->faker->randomElement(['whatsenglish', 'whatsarapp']), 'is_active' => true]);
-        $isTeacher = $this->faker->boolean;
-        WhatsappGroup::factory()
-            ->count(rand(1, 5))
-            ->create(['type' => $availableCourse->type, 'course_id' => $availableCourse->id, 'gender' => $user->gender])
-            ->each(function ($whatsappGroup) {
-                WhatsappGroupUser::factory()->count(3, 5)->create(['whatsapp_group_id' => $whatsappGroup->id]);
-            });
-        $joinUrl = $this->faker->url;
-        $whatsappGroupsHasMinimumUser = WhatsappGroup::factory()
-            ->count(rand(3, 5))
             ->create([
-                'type' => $availableCourse->type,
-                'course_id' => $availableCourse->id,
-                'gender' => $user->gender,
-                'join_url' => $joinUrl,
+                'type' => $this->faker->randomElement(['whatsenglish', 'whatsarapp']),
+                'whatsapp_channel_join_url' => $this->faker->url,
                 'is_active' => true,
-            ])
-            ->each(function ($whatsappGroup) {
-                WhatsappGroupUser::factory()->count(1, 2)->create(['whatsapp_group_id' => $whatsappGroup->id]);
-            });
+            ]);
+
         Queue::shouldReceive('connection')->once()->with('messenger-sqs')->andReturnSelf();
         Queue::shouldReceive('pushRaw')
             ->once()
             ->with(json_encode([
                 'phone' => $user->phone_number,
                 'text' => 'Aşağıdaki linki kullanarak *' . $availableCourse->type .
-                    '* kursu için atandığınız whatsapp grubuna katılın. ↘️ ' . $joinUrl
+                    '* kursu için whatsapp duyuru kanalına katılın ve buradan duyuruları takip edin. ↘️ ' .
+                    $availableCourse->whatsapp_channel_join_url
             ]));
 
         $response = $this->actingAs($user)
             ->json(
                 'POST',
                 $this->uri . '/courses',
-                ['type' => $availableCourse->type, 'is_teacher' => $isTeacher]
+                ['type' => $availableCourse->type]
             );
 
         $response->assertOk()
             ->assertJsonFragment([
                 'message' => '<strong>Kaydınız başarılı şekilde oluşturuldu. </strong><br><br>' .
-                    'Lütfen aşağıdaki <strong>Gruba Katıl</strong> butonunu kullanarak whatsapp grubuna katılın. <br><br>' .
-                    'Bu buton ile katılım sağlayamazsanız, whatsapp grubuna katılmak için gerekli link size whatsapp üzerinden de gönderilecek. <br><br>' .
+                    'Lütfen aşağıdaki <strong>Whatsapp Duyuru Kanalına Katıl</strong> butonunu kullanarak whatsapp duyuru kanalına katılın. <br><br>' .
+                    'Kurs ile ilgili tüm duyurular bu whatsapp kanalı üzerinden yapılacaktır. Lütfen duyuruları takip edin. <br><br><br>' .
+                    'Bu buton ile katılım sağlayamazsanız, kanala katılmak için gerekli link size whatsapp üzerinden de gönderilecek. <br><br>' .
                     'Lütfen gelen mesajı <strong>SPAM DEĞİL</strong> veya <strong>TAMAM</strong> olarak işaretleyin. <br><br>' .
                     '<i>Eğer gelen linke tıklayamıyorsanız mesaj gelen numarayı Kişilere Ekleyin</i> <br>',
-                'new_whatsapp_group_join_url' => $joinUrl,
+                'whatsapp_channel_join_url' => $availableCourse->whatsapp_channel_join_url,
             ]);
 
         $this->assertDatabaseHas(
@@ -231,24 +218,9 @@ class ProfileTest extends BaseFeatureTest
                 'user_id' => $user->id,
                 'course_id' => $availableCourse->id,
                 'type' => $availableCourse->type,
-                'is_teacher' => $isTeacher,
                 'applied_at' => $now->format('Y-m-d H:i:s'),
                 'removed_at' => null,
             ]
-        );
-        $this->assertDatabaseHas(
-            'whatsapp_group_users',
-            [
-                'user_id' => $user->id,
-                'role_type' => null,
-                'joined_at' => $now->format('Y-m-d H:i:s'),
-            ]
-        );
-        $this->assertTrue(
-            WhatsappGroupUser::whereIn('whatsapp_group_id', $whatsappGroupsHasMinimumUser->pluck('id')->toArray())
-                ->where('user_id', $user->id)
-                ->where('role_type', null)
-                ->exists()
         );
         $this->assertTrue($user->hasRole(Str::ucfirst($availableCourse->type)));
     }
