@@ -153,7 +153,9 @@ class ProfileTest extends BaseFeatureTest
             );
 
         $response->assertOk()
-            ->assertSeeText('gruplara ekleneceksiniz');
+            ->assertJsonFragment([
+                'whatsapp_channel_join_url' => $availableCourse->whatsapp_channel_join_url,
+            ]);
 
         $this->assertDatabaseHas(
             'user_course',
@@ -203,11 +205,12 @@ class ProfileTest extends BaseFeatureTest
 
         $response->assertOk()
             ->assertJsonFragment([
-                'message' => '<strong>Kaydınız başarılı şekilde oluşturuldu. </strong><br><br>' .
+                'message' => '<br> <strong>Kaydınız başarılı şekilde oluşturuldu.</strong> <br><br> ' .
+                    '<br><br>' .
                     'Lütfen aşağıdaki <strong>Whatsapp Duyuru Kanalına Katıl</strong> butonunu kullanarak whatsapp duyuru kanalına katılın. <br><br>' .
                     'Kurs ile ilgili tüm duyurular bu whatsapp kanalı üzerinden yapılacaktır. Lütfen duyuruları takip edin. <br><br><br>' .
-                    'Bu buton ile katılım sağlayamazsanız, kanala katılmak için gerekli link size whatsapp üzerinden de gönderilecek. <br><br>' .
-                    'Lütfen gelen mesajı <strong>SPAM DEĞİL</strong> veya <strong>TAMAM</strong> olarak işaretleyin. <br><br>' .
+                    '<i>Bu buton ile katılım sağlayamazsanız, kanala katılmak için gerekli link size whatsapp üzerinden de gönderilecek.</i> <br><br>' .
+                    '<i>Lütfen gelen mesajı <strong>SPAM DEĞİL</strong> veya <strong>TAMAM</strong> olarak işaretleyin.</i> <br><br>' .
                     '<i>Eğer gelen linke tıklayamıyorsanız mesaj gelen numarayı Kişilere Ekleyin</i> <br>',
                 'whatsapp_channel_join_url' => $availableCourse->whatsapp_channel_join_url,
             ]);

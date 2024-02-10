@@ -366,12 +366,18 @@ class UserController extends Controller
                 ]
             );
 
+
             if ($course->type === 'whatshafiz') {
                 $user->assignRole($request->is_teacher ? 'HafızKal' : 'HafızOl');
-                DB::commit();
+            } else {
+                $user->assignRole(Str::ucfirst($course->type));
+            }
 
-                $message = '<br> <strong>Kaydınız başarılı şekilde oluşturuldu.</strong> <br><br> ';
+            DB::commit();
 
+            $message = '<br> <strong>Kaydınız başarılı şekilde oluşturuldu.</strong> <br><br> ';
+
+            if ($course->type === 'whatshafiz') {                
                 if ($request->is_teacher) {
                     $message .= 'Öğrenci atamalarınız HafızOl Kabul Sınavı tarihinde yapılacaktır. <br><br>' .
                         'Kabul sınavı başlangıç zamanından sonra, bu sisteme giriş yaparak size atanan öğrencileri görebilirsiniz. <br><br>' .
@@ -382,29 +388,25 @@ class UserController extends Controller
                         'Kabul sınavı başlangıç zamanından sonra, bu sisteme giriş yaparak size atanan hocanızın bilgilerini görebilirsiniz. <br><br>' .
                         'Hocanız sizinle iletişime geçerek sınavınızı yapacak. <br><br>';
                 }
-
-                $message .= 'Whatsapp grupları sınavlar tamamlandıktan sonra oluşturulacak ve gruplara ekleneceksiniz. <br><br>';
-
-                return response()->json(['message' => $message]);
             }
 
-            $user->assignRole(Str::ucfirst($course->type));
+            if ($course->whatsapp_channel_join_url) {
+                $user->sendMessage(
+                    'Aşağıdaki linki kullanarak *' . $course->type .
+                        '* kursu için whatsapp duyuru kanalına katılın ve buradan duyuruları takip edin. ↘️ ' .
+                        $course->whatsapp_channel_join_url
+                );
 
-            $user->sendMessage(
-                'Aşağıdaki linki kullanarak *' . $course->type .
-                    '* kursu için whatsapp duyuru kanalına katılın ve buradan duyuruları takip edin. ↘️ ' .
-                    $course->whatsapp_channel_join_url
-            );
-
-            DB::commit();
-
-            return response()->json([
-                'message' => '<strong>Kaydınız başarılı şekilde oluşturuldu. </strong><br><br>' .
+                $message .= '<br><br>' .
                     'Lütfen aşağıdaki <strong>Whatsapp Duyuru Kanalına Katıl</strong> butonunu kullanarak whatsapp duyuru kanalına katılın. <br><br>' .
                     'Kurs ile ilgili tüm duyurular bu whatsapp kanalı üzerinden yapılacaktır. Lütfen duyuruları takip edin. <br><br><br>' .
-                    'Bu buton ile katılım sağlayamazsanız, kanala katılmak için gerekli link size whatsapp üzerinden de gönderilecek. <br><br>' .
-                    'Lütfen gelen mesajı <strong>SPAM DEĞİL</strong> veya <strong>TAMAM</strong> olarak işaretleyin. <br><br>' .
-                    '<i>Eğer gelen linke tıklayamıyorsanız mesaj gelen numarayı Kişilere Ekleyin</i> <br>',
+                    '<i>Bu buton ile katılım sağlayamazsanız, kanala katılmak için gerekli link size whatsapp üzerinden de gönderilecek.</i> <br><br>' .
+                    '<i>Lütfen gelen mesajı <strong>SPAM DEĞİL</strong> veya <strong>TAMAM</strong> olarak işaretleyin.</i> <br><br>' .
+                    '<i>Eğer gelen linke tıklayamıyorsanız mesaj gelen numarayı Kişilere Ekleyin</i> <br>';
+            }
+
+            return response()->json([
+                'message' => $message,
                 'whatsapp_channel_join_url' => ($course->whatsapp_channel_join_url ?? null),
             ]);
         } catch (Exception $exception) {
