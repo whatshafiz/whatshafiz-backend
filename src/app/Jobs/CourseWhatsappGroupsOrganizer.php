@@ -109,7 +109,7 @@ class CourseWhatsappGroupsOrganizer implements ShouldQueue
             7 => 'education_level',
             8 => 'country_id',
             9 => 'university_id',
-            10 => 'is_banned',
+            10 => 'country_id',
         ];
 
         return DB::select(
