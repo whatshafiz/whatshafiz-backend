@@ -64,7 +64,7 @@ class CourseWhatsappGroupsOrganizerTest extends BaseFeatureTest
                 'education_level' => $this->faker->randomElement(['İlkokul', 'Lise', 'Lisans', 'Ön Lisans']) . ' Mezunu',
                 'university_id' => University::inRandomOrder()->value('id'),
             ]);
-        $otherUsers = User::factory()->count($whatsappGroupCount * $userCountPerWhatsappGroup)->create();
+        $otherUsers = User::factory()->completed()->count($whatsappGroupCount * $userCountPerWhatsappGroup)->create();
         $course->users()->attach($maleSimilarUsers, ['type' => $course->type]);
         $course->users()->attach($maleSimilarUsersSecondGroup, ['type' => $course->type]);
         $course->users()->attach($femaleSimilarUsers, ['type' => $course->type]);
