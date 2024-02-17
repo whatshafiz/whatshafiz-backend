@@ -102,14 +102,12 @@ class CourseWhatsappGroupsOrganizer implements ShouldQueue
         $levelColumns = [
             1 => 'country_id, city_id, education_level, university_id',
             2 => 'country_id, city_id, education_level',
-            3 => 'country_id, city_id, education_level, university_id',
-            4 => 'country_id, education_level, university_id',
-            5 => 'country_id, education_level',
-            6 => 'country_id, city_id',
-            7 => 'education_level',
+            3 => 'country_id, education_level, university_id',
+            4 => 'country_id, education_level',
+            5 => 'country_id, city_id',
+            6 => 'education_level',
+            7 => 'university_id',
             8 => 'country_id',
-            9 => 'university_id',
-            10 => 'country_id',
         ];
 
         return DB::select(
