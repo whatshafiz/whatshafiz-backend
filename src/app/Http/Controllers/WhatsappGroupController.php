@@ -170,6 +170,7 @@ class WhatsappGroupController extends Controller
         );
 
         $validatedWhatsappGroupUserData['joined_at'] = Carbon::now();
+        $validatedWhatsappGroupUserData['course_id'] = $whatsappGroup->course_id;
         $whatsappGroupUser = $whatsappGroup->users()->create($validatedWhatsappGroupUserData);
 
         return response()->json($whatsappGroupUser->refresh()->load('user')->toArray(), Response::HTTP_CREATED);

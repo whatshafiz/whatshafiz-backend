@@ -104,11 +104,11 @@ class Course extends BaseModel
     }
 
     /**
-     * @return HasManyThrough
+     * @return HasMany
      */
-    public function whatsappGroupUsers(): HasManyThrough
+    public function whatsappGroupUsers(): HasMany
     {
-        return $this->hasManyThrough(WhatsappGroupUser::class, WhatsappGroup::class);
+        return $this->hasMany(WhatsappGroupUser::class);
     }
 
     /**

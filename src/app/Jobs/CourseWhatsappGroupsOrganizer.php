@@ -4,6 +4,8 @@ namespace App\Jobs;
 
 use App\Models\Course;
 use App\Models\User;
+use App\Models\UserCourse;
+use App\Models\WhatsappGroup;
 use App\Models\WhatsappGroupUser;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -11,6 +13,8 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 
 class CourseWhatsappGroupsOrganizer implements ShouldQueue
 {
@@ -41,39 +45,84 @@ class CourseWhatsappGroupsOrganizer implements ShouldQueue
         foreach (['male', 'female'] as $gender) {
             $whatsappGroupsQuery = $this->course->whatsappGroups()->where('gender', $gender);
             $whatsappGroupCount = $whatsappGroupsQuery->count();
-            $teacherCount = $this->course->users()->where('is_teacher', true)->where('gender', $gender)->count();
-            $studentCount = $this->course->users()->where('is_teacher', false)->where('gender', $gender)->count();
-            $usersCount = $studentCount + $teacherCount;
+            $usersQuery = $this->course->users()->where('gender', $gender);
+            $usersCount = $usersQuery->count();
 
             if ($whatsappGroupCount === 0 || $usersCount === 0) {
                 continue;
             }
 
-            $maxTeacherCountPerWhatsappGroup = (int)ceil($teacherCount / $whatsappGroupCount);
-            $whatsappGroups = $this->getWhatsappGroupsForMatchings($gender, $maxTeacherCountPerWhatsappGroup);
+            $avgUserCountPerGroup = ceil($usersCount / $whatsappGroupCount);
+            $groups = DB::select(
+                '
+                    SELECT subquery2.*
+                    FROM (
+                      SELECT
+                        subquery.*,
+                        COUNT(*) OVER (
+                          PARTITION BY subquery.group_number
+                        ) AS group_member_count
+                      FROM
+                        (
+                          SELECT
+                            users.id as user_id,
+                            DENSE_RANK() OVER (
+                              ORDER BY
+                                country_id,
+                                city_id,
+                                education_level,
+                                university_id
+                            ) AS group_number
+                          FROM
+                            users
+                            INNER JOIN user_course ON user_course.user_id = users.id
+                          WHERE
+                            user_course.course_id = ?
+                            AND users.gender = ?
+                            AND user_course.whatsapp_group_id IS NULL
+                            AND user_course.deleted_at IS NULL
+                            AND users.country_id IS NOT NULL
+                            AND users.city_id IS NOT NULL
+                            AND users.education_level IS NOT NULL
+                        ) as subquery
+                      ) as subquery2
+                    WHERE subquery2.group_member_count > 1
+                    ORDER BY subquery2.group_number ASC;
+                ',
+                [$this->course->id, $gender]
+            );
 
-            foreach ($whatsappGroups as $whatsappGroup) {
-                $teacher = $this->findTeacherAndStudents($gender);
+            $groupMembers = [];
 
-                if ($teacher) {
-                    WhatsappGroupUser::create([
+            foreach ($groups as $group) {
+                $groupMembers[$group->group_number][] = $group->user_id;
+            }
+
+            foreach ($groupMembers as $groupNumber => $userIds) {
+                $whatsappGroup = WhatsappGroup::where('course_id', $this->course->id)
+                    ->where('gender', $gender)
+                    ->withCount('users')
+                    ->orderBy('users_count')
+                    ->first();
+
+                $users = [];
+
+                foreach ($userIds as $userId) {
+                    $users[] = [
                         'whatsapp_group_id' => $whatsappGroup->id,
-                        'user_id' => $teacher->id,
-                        'role_type' => 'hafizkal',
-                    ]);
-
-                    foreach ($teacher->students as $student) {
-                        WhatsappGroupUser::create([
-                            'whatsapp_group_id' => $whatsappGroup->id,
-                            'user_id' => $student->student_id,
-                            'role_type' => 'hafizol',
-                        ]);
-                    }
+                        'course_id' => $this->course->id,
+                        'user_id' => $userId,
+                    ];
                 }
+
+                WhatsappGroupUser::insert($users);
+                UserCourse::where('course_id', $this->course->id)
+                    ->whereIn('user_id', $userIds)
+                    ->update(['whatsapp_group_id' => $whatsappGroup->id]);
             }
         }
 
-        $this->dispatchIf($this->existsUnmatchedUsers(), $this->course);
+        // $this->dispatchIf($this->existsUnmatchedUsers(), $this->course);
     }
 
     /**

@@ -41,7 +41,7 @@ class WhatsappGroupTest extends BaseFeatureTest
         $whatsappGroup = WhatsappGroup::factory()->create();
         $whatsappGroupUsers = WhatsappGroupUser::factory()
             ->count(rand(1, 3))
-            ->create(['whatsapp_group_id' => $whatsappGroup->id]);
+            ->create(['whatsapp_group_id' => $whatsappGroup->id, 'course_id' => $whatsappGroup->course_id]);
         $user = User::find($whatsappGroupUsers->random()->user_id);
         $user->givePermissionTo('whatsappGroups.view');
 
@@ -219,7 +219,12 @@ class WhatsappGroupTest extends BaseFeatureTest
         $user = User::factory()->create();
         $whatsappGroup = WhatsappGroup::factory()->create();
         WhatsappGroupUser::factory()
-            ->create(['user_id' => $user->id, 'whatsapp_group_id' => $whatsappGroup->id, 'is_moderator' => true]);
+            ->create([
+                'user_id' => $user->id,
+                'whatsapp_group_id' => $whatsappGroup->id,
+                'course_id' => $whatsappGroup->course_id,
+                'is_moderator' => true,
+            ]);
 
         $whatsappGroupData = WhatsappGroup::factory()->raw();
 
@@ -268,6 +273,7 @@ class WhatsappGroupTest extends BaseFeatureTest
             ->raw([
                 'user_id' => User::factory()->create()->id,
                 'whatsapp_group_id' => $whatsappGroup->id,
+                'course_id' => $whatsappGroup->course_id,
                 'joined_at' => $now->format('Y-m-d H:i:s'),
             ]);
 
@@ -295,6 +301,7 @@ class WhatsappGroupTest extends BaseFeatureTest
             ->raw([
                 'user_id' => User::factory()->create()->id,
                 'whatsapp_group_id' => $whatsappGroup->id,
+                'course_id' => $whatsappGroup->course_id,
                 'joined_at' => $now->format('Y-m-d H:i:s'),
             ]);
 
@@ -316,7 +323,8 @@ class WhatsappGroupTest extends BaseFeatureTest
         $user = User::factory()->create();
         $user->givePermissionTo('whatsappGroups.update');
         $whatsappGroup = WhatsappGroup::factory()->create();
-        $whatsappGroupUser = WhatsappGroupUser::factory()->create(['whatsapp_group_id' => $whatsappGroup->id]);
+        $whatsappGroupUser = WhatsappGroupUser::factory()
+            ->create(['whatsapp_group_id' => $whatsappGroup->id, 'course_id' => $whatsappGroup->course_id]);
 
         $whatsappGroupUserNewData = Arr::only(
             WhatsappGroupUser::factory()->raw(),
@@ -346,8 +354,14 @@ class WhatsappGroupTest extends BaseFeatureTest
         $user = User::factory()->create();
         $whatsappGroup = WhatsappGroup::factory()->create();
         WhatsappGroupUser::factory()
-            ->create(['user_id' => $user->id, 'whatsapp_group_id' => $whatsappGroup->id, 'is_moderator' => true]);
-        $whatsappGroupUser = WhatsappGroupUser::factory()->create(['whatsapp_group_id' => $whatsappGroup->id]);
+            ->create([
+                'user_id' => $user->id,
+                'whatsapp_group_id' => $whatsappGroup->id,
+                'course_id' => $whatsappGroup->course_id,
+                'is_moderator' => true,
+            ]);
+        $whatsappGroupUser = WhatsappGroupUser::factory()
+            ->create(['whatsapp_group_id' => $whatsappGroup->id, 'course_id' => $whatsappGroup->course_id]);
 
         $whatsappGroupUserNewData = Arr::only(
             WhatsappGroupUser::factory()->raw(),
@@ -373,7 +387,8 @@ class WhatsappGroupTest extends BaseFeatureTest
     public function it_should_delete_whatsapp_group_users_when_has_permission()
     {
         $whatsappGroup = WhatsappGroup::factory()->create();
-        $whatsappGroupUser = WhatsappGroupUser::factory()->create(['whatsapp_group_id' => $whatsappGroup->id]);
+        $whatsappGroupUser = WhatsappGroupUser::factory()
+            ->create(['whatsapp_group_id' => $whatsappGroup->id, 'course_id' => $whatsappGroup->course_id]);
         $user = User::factory()->create();
         $user->givePermissionTo('whatsappGroups.update');
 
@@ -389,10 +404,16 @@ class WhatsappGroupTest extends BaseFeatureTest
     public function it_should_delete_whatsapp_group_users_when_user_is_moderator_of_group()
     {
         $whatsappGroup = WhatsappGroup::factory()->create();
-        $whatsappGroupUser = WhatsappGroupUser::factory()->create(['whatsapp_group_id' => $whatsappGroup->id]);
+        $whatsappGroupUser = WhatsappGroupUser::factory()
+            ->create(['whatsapp_group_id' => $whatsappGroup->id, 'course_id' => $whatsappGroup->course_id]);
         $user = User::factory()->create();
         WhatsappGroupUser::factory()
-            ->create(['user_id' => $user->id, 'whatsapp_group_id' => $whatsappGroup->id, 'is_moderator' => true]);
+            ->create([
+                'user_id' => $user->id,
+                'whatsapp_group_id' => $whatsappGroup->id,
+                'course_id' => $whatsappGroup->course_id,
+                'is_moderator' => true,
+            ]);
 
         $response = $this->actingAs($user)
             ->json('DELETE', $this->uri . '/' . $whatsappGroup->id . '/users/' . $whatsappGroupUser->id);

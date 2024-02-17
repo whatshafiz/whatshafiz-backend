@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Jobs\CourseTeacherStudentsMatcher;
 use App\Jobs\CourseWhatsappGroupsOrganizer;
+use App\Jobs\WhatshafizCourseWhatsappGroupsOrganizer;
 use App\Models\Course;
 use App\Models\TeacherStudent;
 use Carbon\Carbon;
@@ -319,7 +320,11 @@ class CourseController extends Controller
     {
         $this->authorize('update', [Course::class, $course]);
 
-        CourseWhatsappGroupsOrganizer::dispatch($course);
+        if ($course->type === 'whatshafiz') {
+            WhatshafizCourseWhatsappGroupsOrganizer::dispatch($course);
+        } else {
+            CourseWhatsappGroupsOrganizer::dispatch($course);
+        }
 
         $course->students_matchings_started_at = now();
         $course->save();
