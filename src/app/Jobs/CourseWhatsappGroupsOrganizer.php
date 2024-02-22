@@ -65,7 +65,7 @@ class CourseWhatsappGroupsOrganizer implements ShouldQueue
                 continue;
             }
 
-            $avgUserCountPerGroup = ceil($usersCount / $whatsappGroupCount);
+            $maxUserCountPerGroup = ceil($usersCount / $whatsappGroupCount);
             $groups = $this->getSimilarUsersForGroups($gender, $this->course->id, $this->level);
 
             $groupMembers = [];
@@ -82,7 +82,8 @@ class CourseWhatsappGroupsOrganizer implements ShouldQueue
                 $whatsappGroup = WhatsappGroup::where('course_id', $this->course->id)
                     ->where('gender', $gender)
                     ->withCount('users')
-                    ->orderBy('users_count')
+                    ->orderBy('id')
+                    ->having('users_count', '<', $maxUserCountPerGroup)
                     ->first();
 
                 $users = [];

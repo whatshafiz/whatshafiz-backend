@@ -37,9 +37,9 @@ class ProductionLoadTestSeeder extends Seeder
 
         $this->generateWhatsenglishCourseAndUsers();
 
-        // $this->generateWhatshafizCourseAndUsers();
+        $this->generateWhatshafizCourseAndUsers();
 
-        // $this->generateWhatshafizCourseAndUsers(true);
+        $this->generateWhatshafizCourseAndUsers(true);
     }
 
     /**
