@@ -25,6 +25,16 @@ class CourseWhatsappGroupsOrganizer implements ShouldQueue
 
     protected Course $course;
     protected int $level;
+    protected array $levelColumns = [
+        1 => 'country_id, city_id, education_level, university_id',
+        2 => 'country_id, city_id, education_level',
+        3 => 'country_id, education_level, university_id',
+        4 => 'country_id, education_level',
+        5 => 'country_id, city_id',
+        6 => 'education_level',
+        7 => 'university_id',
+        8 => 'country_id',
+    ];
 
     /**
      * @param  Course  $course
@@ -61,6 +71,10 @@ class CourseWhatsappGroupsOrganizer implements ShouldQueue
             $groupMembers = [];
 
             foreach ($groups as $group) {
+                if (!isset($groupMembers[$group->group_number])) {
+                    $groupMembers[$group->group_number] = []; 
+                }
+
                 $groupMembers[$group->group_number][] = $group->user_id;
             }
 
@@ -99,17 +113,6 @@ class CourseWhatsappGroupsOrganizer implements ShouldQueue
      */
     public function getSimilarUsersForGroups(string $gender, int $courseId, int $level): array
     {
-        $levelColumns = [
-            1 => 'country_id, city_id, education_level, university_id',
-            2 => 'country_id, city_id, education_level',
-            3 => 'country_id, education_level, university_id',
-            4 => 'country_id, education_level',
-            5 => 'country_id, city_id',
-            6 => 'education_level',
-            7 => 'university_id',
-            8 => 'country_id',
-        ];
-
         return DB::select(
             '
                 SELECT subquery2.*
@@ -125,7 +128,7 @@ class CourseWhatsappGroupsOrganizer implements ShouldQueue
                         users.id as user_id,
                         DENSE_RANK() OVER (
                           ORDER BY
-                            ' . $levelColumns[$level] . '
+                            ' . $this->levelColumns[$level] . '
                         ) AS group_number
                       FROM
                         users
@@ -137,14 +140,13 @@ class CourseWhatsappGroupsOrganizer implements ShouldQueue
                         AND user_course.whatsapp_group_id IS NULL
                         AND user_course.deleted_at IS NULL
                         AND users.country_id IS NOT NULL
-                        AND users.city_id IS NOT NULL
-                        AND users.education_level IS NOT NULL
+                        AND users.gender IS NOT NULL
                     ) as subquery
                   ) as subquery2
                 WHERE subquery2.group_member_count > ?
                 ORDER BY subquery2.group_number ASC;
             ',
-            [$courseId, $gender, ($level < count($levelColumns) ? 1 : 0)]
+            [$courseId, $gender, ($level < count($this->levelColumns) ? 1 : 0)]
         );
     }
 
