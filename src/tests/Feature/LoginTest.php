@@ -97,7 +97,7 @@ class LoginTest extends BaseFeatureTest
     {
         $now = Carbon::now();
         Carbon::setTestNow($now);
-        $this->app->detectEnvironment(function() { return 'production'; });
+        $this->app->detectEnvironment(function () { return 'production'; });
         $user = User::factory()->create();
         Queue::shouldReceive('connection')->once()->with('messenger-sqs')->andReturnSelf();
         Queue::shouldReceive('pushRaw')->once();
