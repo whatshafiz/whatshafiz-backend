@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\User;
 use App\Models\WhatsappMessengerNumber;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Queue;
 use Tests\BaseFeatureTest;
 
 class WhatsappMessengerNumberTest extends BaseFeatureTest
@@ -132,5 +133,27 @@ class WhatsappMessengerNumberTest extends BaseFeatureTest
             'whatsapp_messenger_numbers',
             ['id' => $whatsappMessengerNumber->id, 'is_active' => false, 'last_activity_at' => $now]
         );
+    }
+
+    /** @test */
+    public function it_should_send_test_message_to_whatsapp(){
+        $user = User::factory()->create();
+        $user->assignRole('Admin');
+        $now = Carbon::now();
+        $this->app->detectEnvironment(function () { return 'production'; });
+
+        Queue::shouldReceive('connection')->once()->with('messenger-sqs')->andReturnSelf();
+        Queue::shouldReceive('pushRaw')
+            ->once()
+            ->with(json_encode([
+                'phone' => $user->phone_number,
+                'text' => 'Merhaba ' . $user->name . ' ' . $user->surname . ', Bu bir test mesajıdır.' .
+                    'Tarih ve saat şuan: ' . $now->format('d-m-Y H:i:s'),
+            ]));
+
+        $response = $this->actingAs($user)->json('POST', $this->uri . '/send-test-message');
+
+        $response->assertOk()
+            ->assertJsonFragment(['message' => 'Mesaj gönderildi.']);
     }
 }
