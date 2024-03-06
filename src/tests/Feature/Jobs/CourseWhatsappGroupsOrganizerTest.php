@@ -5,10 +5,8 @@ namespace Tests\Feature\Jobs;
 use App\Jobs\CourseWhatsappGroupsOrganizer;
 use App\Models\City;
 use App\Models\Course;
-use App\Models\TeacherStudent;
 use App\Models\University;
 use App\Models\User;
-use App\Models\UserCourse;
 use App\Models\WhatsappGroup;
 use App\Models\WhatsappGroupUser;
 use Tests\BaseFeatureTest;
@@ -232,7 +230,6 @@ class CourseWhatsappGroupsOrganizerTest extends BaseFeatureTest
                 ->count()
         );
     }
-
 
     /** @test */
     public function it_should_assign_users_to_whatsapp_groups_by_grouping_users_their_similarity_attributes_for_level_4_and_5()

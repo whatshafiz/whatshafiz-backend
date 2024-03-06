@@ -377,7 +377,7 @@ class UserController extends Controller
 
             $message = '<br> <strong>Kaydınız başarılı şekilde oluşturuldu.</strong> <br><br> ';
 
-            if ($course->type === 'whatshafiz') {                
+            if ($course->type === 'whatshafiz') {
                 if ($request->is_teacher) {
                     $message .= 'Öğrenci atamalarınız HafızOl Kabul Sınavı tarihinde yapılacaktır. <br><br>' .
                         'Kabul sınavı başlangıç zamanından sonra, bu sisteme giriş yaparak size atanan öğrencileri görebilirsiniz. <br><br>' .

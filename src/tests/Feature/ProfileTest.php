@@ -6,7 +6,6 @@ use App\Models\Course;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\UserCourse;
-use App\Models\WhatsappGroup;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Str;
