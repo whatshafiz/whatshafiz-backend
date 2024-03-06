@@ -87,7 +87,7 @@ class User extends Authenticatable
     {
         $message = json_encode(['phone' => $this->phone_number, 'text' => $message]);
 
-        App::isLocal() ? Log::info($message) : Queue::connection('messenger-sqs')->pushRaw($message);
+        App::isProduction() ? Queue::connection('messenger-sqs')->pushRaw($message) : Log::info($message);
     }
 
     /**

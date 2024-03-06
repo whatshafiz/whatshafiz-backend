@@ -18,9 +18,11 @@ class WhatsappGroupUserFactory extends Factory
      */
     public function definition()
     {
+        $whatsappGroup = WhatsappGroup::inRandomOrder()->first() ?? WhatsappGroup::factory()->create();
+
         return [
-            'whatsapp_group_id' => WhatsappGroup::inRandomOrder()->value('id') ??
-                WhatsappGroup::factory()->create()->id,
+            'whatsapp_group_id' => $whatsappGroup->id,
+            'course_id' => $whatsappGroup->course_id,
             'user_id' => User::inRandomOrder()->value('id') ?? User::factory()->create()->id,
             'joined_at' => $this->faker->datetime->format('Y-m-d H:i:s'),
             'role_type' => $this->faker->randomElement(['hafizol', 'hafizkal']),

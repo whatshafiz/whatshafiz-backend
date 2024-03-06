@@ -48,18 +48,19 @@ class UserFactory extends Factory
      */
     public function completed()
     {
-        $universityDepartment = UniversityDepartment::inRandomOrder()->first();
-        $city = City::inRandomOrder()->first();
-
         return $this->state(fn (array $attributes) => [
             'email' => $this->faker->email(),
             'gender' => $this->faker->randomElement(['male', 'female']),
-            'country_id' => $city->country_id,
-            'city_id' => $city->id,
+            'country_id' => ($city = City::inRandomOrder()->where('id', '<', '10')->first()) ? $city->country_id : null,
+            'city_id' => $city->id ?? null,
             'education_level' => $this->faker->randomElement(['İlkokul', 'Lise', 'Lisans', 'Ön Lisans']) . ' Mezunu',
-            'university_id' => $universityDepartment->university_id,
-            'university_faculty_id' => $universityDepartment->university_faculty_id,
-            'university_department_id' => $universityDepartment->id,
+            'university_id' => (
+                $universityDepartment = UniversityDepartment::inRandomOrder()->where('id', '<', '1000')->first()
+            ) ?
+                $universityDepartment->university_id :
+                null,
+            'university_faculty_id' => $universityDepartment->university_faculty_id ?? null,
+            'university_department_id' => $universityDepartment->id ?? null,
         ]);
     }
 
