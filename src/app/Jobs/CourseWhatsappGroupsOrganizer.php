@@ -3,17 +3,14 @@
 namespace App\Jobs;
 
 use App\Models\Course;
-use App\Models\User;
 use App\Models\UserCourse;
 use App\Models\WhatsappGroup;
 use App\Models\WhatsappGroupUser;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
 class CourseWhatsappGroupsOrganizer implements ShouldQueue
@@ -72,7 +69,7 @@ class CourseWhatsappGroupsOrganizer implements ShouldQueue
 
             foreach ($groups as $group) {
                 if (!isset($groupMembers[$group->group_number])) {
-                    $groupMembers[$group->group_number] = []; 
+                    $groupMembers[$group->group_number] = [];
                 }
 
                 $groupMembers[$group->group_number][] = $group->user_id;

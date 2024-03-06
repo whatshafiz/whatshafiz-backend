@@ -55,8 +55,8 @@ class UserFactory extends Factory
             'city_id' => $city->id ?? null,
             'education_level' => $this->faker->randomElement(['İlkokul', 'Lise', 'Lisans', 'Ön Lisans']) . ' Mezunu',
             'university_id' => (
-                    $universityDepartment = UniversityDepartment::inRandomOrder()->where('id', '<', '1000')->first()
-                ) ?
+                $universityDepartment = UniversityDepartment::inRandomOrder()->where('id', '<', '1000')->first()
+            ) ?
                 $universityDepartment->university_id :
                 null,
             'university_faculty_id' => $universityDepartment->university_faculty_id ?? null,
