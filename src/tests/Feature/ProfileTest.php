@@ -8,6 +8,8 @@ use App\Models\User;
 use App\Models\UserCourse;
 use App\Models\WhatsappGroup;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Str;
 use Spatie\Permission\Models\Permission;
@@ -175,6 +177,7 @@ class ProfileTest extends BaseFeatureTest
     {
         $now = Carbon::now();
         Carbon::setTestNow($now);
+        $this->app->detectEnvironment(function() { return 'production'; });
         $user = User::factory()->hasGender()->create();
         Course::query()->update(['can_be_applied' => false]);
         $availableCourse = Course::factory()
