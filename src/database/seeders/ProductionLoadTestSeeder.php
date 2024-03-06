@@ -35,16 +35,67 @@ class ProductionLoadTestSeeder extends Seeder
     {
         $this->setUpFaker();
 
-        $this->generateCourseAndUsers();
+        $this->generateWhatsenglishCourseAndUsers();
 
-        $this->generateCourseAndUsers(true);
+        $this->generateWhatshafizCourseAndUsers();
+
+        $this->generateWhatshafizCourseAndUsers(true);
+    }
+
+    /**
+     * @return void
+     */
+    public function generateWhatsenglishCourseAndUsers()
+    {
+        $course = Course::factory()->whatsenglish()->available()->create();
+        WhatsappGroup::factory()
+            ->count(50)
+            ->create([
+                'type' => 'whatsenglish',
+                'course_id' => $course->id,
+                'gender' => 'male',
+                'is_active' => true,
+                'join_url' => $this->faker->randomElement($this->whatsappGroupsJoinUrls),
+            ]);
+        WhatsappGroup::factory()
+            ->count(50)
+            ->create([
+                'type' => 'whatsenglish',
+                'course_id' => $course->id,
+                'gender' => 'female',
+                'is_active' => true,
+                'join_url' => $this->faker->randomElement($this->whatsappGroupsJoinUrls),
+            ]);
+
+        $maleUsers = User::factory()->count(6500)->completed()->male()->create();
+        $femaleUsers = User::factory()->count(3500)->completed()->female()->create();
+
+        foreach ($maleUsers as $user) {
+            UserCourse::factory()
+                ->create([
+                    'type' => 'whatsenglish',
+                    'user_id' => $user->id,
+                    'course_id' => $course->id,
+                    'is_teacher' => $this->faker->boolean(5),
+                ]);
+        }
+
+        foreach ($femaleUsers as $user) {
+            UserCourse::factory()
+                ->create([
+                    'type' => 'whatsenglish',
+                    'user_id' => $user->id,
+                    'course_id' => $course->id,
+                    'is_teacher' => $this->faker->boolean(10),
+                ]);
+        }
     }
 
     /**
      * @param  bool  $generateMatchings
      * @return void
      */
-    public function generateCourseAndUsers($generateMatchings = false)
+    public function generateWhatshafizCourseAndUsers($generateMatchings = false)
     {
         $course = Course::factory()->whatshafiz()->available()->create();
         WhatsappGroup::factory()
@@ -66,10 +117,10 @@ class ProductionLoadTestSeeder extends Seeder
                 'join_url' => $this->faker->randomElement($this->whatsappGroupsJoinUrls),
             ]);
 
-        $menUsers = User::factory()->count(6500)->completed()->male()->create();
-        $womenUsers = User::factory()->count(3500)->completed()->female()->create();
+        $maleUsers = User::factory()->count(6500)->completed()->male()->create();
+        $femaleUsers = User::factory()->count(3500)->completed()->female()->create();
 
-        foreach ($menUsers as $user) {
+        foreach ($maleUsers as $user) {
             UserCourse::factory()
                 ->create([
                     'type' => 'whatshafiz',
@@ -79,7 +130,7 @@ class ProductionLoadTestSeeder extends Seeder
                 ]);
         }
 
-        foreach ($womenUsers as $user) {
+        foreach ($femaleUsers as $user) {
             UserCourse::factory()
                 ->create([
                     'type' => 'whatshafiz',
