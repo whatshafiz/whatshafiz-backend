@@ -4,8 +4,6 @@ namespace App\Console\Commands;
 
 use App\Factories\SnsClientFactory;
 use App\Models\WhatsappMessengerNumber;
-use Aws\Credentials\Credentials;
-use Aws\Sns\SnsClient;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 
@@ -38,7 +36,8 @@ class CheckWhatsappMessengerNumbers extends Command
             ->where(
                 'last_activity_at',
                 '<=',
-                Carbon::now()->subMinutes(self::MAX_DURATION_FOR_ALERT)->format('Y-m-d H:i:s'))
+                Carbon::now()->subMinutes(self::MAX_DURATION_FOR_ALERT)->format('Y-m-d H:i:s')
+            )
             ->get();
 
         if ($notUpdatedNumbers->count() > 0) {

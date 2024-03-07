@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Console\Commands\CheckWhatsappMessengerNumbers;
 use App\Factories\SnsClientFactory;
 use App\Models\User;
 use App\Models\WhatsappMessengerNumber;
@@ -181,7 +180,7 @@ class WhatsappMessengerNumberTest extends BaseFeatureTest
             $mock->shouldReceive('publish')->once();
         });
 
-        $this->mock(SnsClientFactory::class, function(MockInterface $mock) use ($snsClientMock) {
+        $this->mock(SnsClientFactory::class, function (MockInterface $mock) use ($snsClientMock) {
             $mock->shouldReceive('create')->once()->andReturn($snsClientMock);
         });
 
