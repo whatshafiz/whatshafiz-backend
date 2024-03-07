@@ -2,9 +2,14 @@
 
 namespace Tests\Feature;
 
+use App\Factories\SnsClientFactory;
 use App\Models\User;
 use App\Models\WhatsappMessengerNumber;
+use Aws\Sns\SnsClient;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Queue;
+use Mockery\MockInterface;
 use Tests\BaseFeatureTest;
 
 class WhatsappMessengerNumberTest extends BaseFeatureTest
@@ -132,5 +137,55 @@ class WhatsappMessengerNumberTest extends BaseFeatureTest
             'whatsapp_messenger_numbers',
             ['id' => $whatsappMessengerNumber->id, 'is_active' => false, 'last_activity_at' => $now]
         );
+    }
+
+    /** @test */
+    public function it_should_send_test_message_to_whatsapp()
+    {
+        $user = User::factory()->create();
+        $user->assignRole('Admin');
+        $now = Carbon::now();
+        Carbon::setTestNow($now);
+        $this->app->detectEnvironment(function () { return 'production'; });
+
+        Queue::shouldReceive('connection')->once()->with('messenger-sqs')->andReturnSelf();
+        Queue::shouldReceive('pushRaw')
+            ->once()
+            ->with(json_encode([
+                'phone' => $user->phone_number,
+                'text' => 'Merhaba ' . $user->name . ' ' . $user->surname . ', Bu bir test mesajıdır.' .
+                    'Tarih ve saat şuan: ' . $now->format('d-m-Y H:i:s'),
+            ]));
+
+        $response = $this->actingAs($user)->json('POST', $this->uri . '/send-test-message');
+
+        $response->assertOk()
+            ->assertJsonFragment(['message' => 'Mesaj gönderildi.']);
+    }
+
+    /** @test */
+    public function it_should_send_sns_alert_when_one_of_number_has_not_updated()
+    {
+        $now = Carbon::now();
+        Carbon::setTestNow($now);
+        DB::table('whatsapp_messenger_numbers')->update(['last_activity_at' => Carbon::now()]);
+        $notUpdatedNumber = WhatsappMessengerNumber::factory()
+            ->raw([
+                'is_active' => true,
+                'last_activity_at' => $now->copy()->subMinutes(rand(100, 300))->format('d-m-Y H:i:s'),
+            ]);
+        DB::table('whatsapp_messenger_numbers')->insert($notUpdatedNumber);
+
+        $snsClientMock = $this->mock(SnsClient::class, function (MockInterface $mock) {
+            $mock->shouldReceive('publish')->once();
+        });
+
+        $this->mock(SnsClientFactory::class, function (MockInterface $mock) use ($snsClientMock) {
+            $mock->shouldReceive('create')->once()->andReturn($snsClientMock);
+        });
+
+        $response = $this->artisan('check:whatsapp-messenger-numbers');
+
+        $response->assertSuccessful();
     }
 }

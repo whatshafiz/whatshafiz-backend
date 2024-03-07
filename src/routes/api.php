@@ -131,6 +131,10 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
 
     Route::get('whatsapp-messenger-numbers', [WhatsappMessengerNumberController::class, 'index']);
     Route::post('whatsapp-messenger-numbers', [WhatsappMessengerNumberController::class, 'store']);
+    Route::post(
+        'whatsapp-messenger-numbers/send-test-message',
+        [WhatsappMessengerNumberController::class, 'sendTestMessage']
+    );
 
     Route::get('roles/paginate', [RoleController::class, 'indexPaginate']);
     Route::apiResource('roles', RoleController::class);
