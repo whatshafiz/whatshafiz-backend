@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Permission;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\ValidationException;
-use Spatie\Permission\Models\Permission;
 
 class PermissionController extends Controller
 {

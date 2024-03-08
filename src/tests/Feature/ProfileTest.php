@@ -3,13 +3,13 @@
 namespace Tests\Feature;
 
 use App\Models\Course;
+use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\UserCourse;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Str;
-use Spatie\Permission\Models\Permission;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\BaseFeatureTest;
 
