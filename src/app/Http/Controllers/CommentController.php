@@ -29,7 +29,7 @@ class CommentController extends Controller
         $filters = $this->validate(
             $request,
             [
-                'type' => 'nullable|string|in:whatshafiz,whatsenglish,whatsarapp',
+                'type' => 'nullable|string|exists:course_types',
                 'commented_by_id' => 'nullable|integer|exists:users,id',
                 'approved_by_id' => 'nullable|integer|exists:users,id',
                 'is_approved' => 'nullable|boolean',
@@ -125,7 +125,7 @@ class CommentController extends Controller
         $validatedCommentData = $this->validate(
             $request,
             [
-                'type' => 'required|string|in:whatshafiz,whatsenglish,whatsarapp|unique:comments,type,NULL,NULL,deleted_at,NULL,commented_by_id,' . Auth::id(),
+                'type' => 'required|string|exists:course_types|unique:comments,type,NULL,NULL,deleted_at,NULL,commented_by_id,' . Auth::id(),
                 'title' => 'required|string|min:3|max:100',
                 'comment' => 'required|string|min:3|max:1000',
             ],
@@ -170,7 +170,7 @@ class CommentController extends Controller
         $this->authorize('update', $comment);
 
         $validationRules = [
-            'type' => 'required|string|in:whatshafiz,whatsenglish,whatsarapp|unique:comments,type,' . $comment->id . ',id,deleted_at,NULL,commented_by_id,' . Auth::id(),
+            'type' => 'required|string|exists:course_types|unique:comments,type,' . $comment->id . ',id,deleted_at,NULL,commented_by_id,' . Auth::id(),
             'title' => 'required|string|min:3|max:100',
             'comment' => 'required|string|min:3|max:1000',
         ];

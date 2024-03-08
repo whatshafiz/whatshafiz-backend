@@ -408,7 +408,7 @@
 								{
 									"key": "type",
 									"value": "whatsenglish",
-									"description": "required|string|in:whatshafiz,whatsenglish,whatsarapp",
+									"description": "required|string|exists:course_types",
 									"type": "text"
 								},
 								{
@@ -1323,7 +1323,7 @@
 								{
 									"key": "type",
 									"value": "whatshafiz",
-									"description": "nullable|string|in:whatshafiz,whatsenglish,whatsarapp",
+									"description": "nullable|string|exists:course_types",
 									"disabled": true
 								},
 								{
@@ -1402,7 +1402,7 @@
 								{
 									"key": "type",
 									"value": "whatshafiz",
-									"description": "nullable|string|in:whatshafiz,whatsenglish,whatsarapp",
+									"description": "nullable|string|exists:course_types",
 									"disabled": true
 								},
 								{
@@ -1481,7 +1481,7 @@
 								{
 									"key": "type",
 									"value": "whatshafiz",
-									"description": "nullable|string|in:whatshafiz,whatsenglish,whatsarapp",
+									"description": "nullable|string|exists:course_types",
 									"disabled": true
 								},
 								{
@@ -1595,7 +1595,7 @@
 								{
 									"key": "type",
 									"value": "whatshafiz",
-									"description": "required|string|in:whatshafiz,whatsenglish,whatsarapp",
+									"description": "required|string|exists:course_types",
 									"type": "text"
 								},
 								{
@@ -1683,7 +1683,7 @@
 								{
 									"key": "type",
 									"value": "whatshafiz",
-									"description": "required|string|in:whatshafiz,whatsenglish,whatsarapp",
+									"description": "required|string|exists:course_types",
 									"type": "text"
 								},
 								{
@@ -3407,7 +3407,7 @@
 								{
 									"key": "type",
 									"value": "whatshafiz",
-									"description": "nullable|string|in:whatshafiz,whatsenglish,whatsarapp",
+									"description": "nullable|string|exists:course_types",
 									"disabled": true
 								},
 								{
@@ -3497,7 +3497,7 @@
 								{
 									"key": "type",
 									"value": "whatshafiz",
-									"description": "nullable|string|in:whatshafiz,whatsenglish,whatsarapp",
+									"description": "nullable|string|exists:course_types",
 									"disabled": true
 								},
 								{
@@ -3576,7 +3576,7 @@
 								{
 									"key": "type",
 									"value": "whatshafiz",
-									"description": "required|string|in:whatshafiz,whatsenglish,whatsarapp",
+									"description": "required|string|exists:course_types",
 									"type": "text"
 								},
 								{
@@ -3664,7 +3664,7 @@
 								{
 									"key": "type",
 									"value": "whatshafiz",
-									"description": "required|string|in:whatshafiz,whatsenglish,whatsarapp",
+									"description": "required|string|exists:course_types",
 									"type": "text"
 								},
 								{
@@ -4684,7 +4684,7 @@
 								{
 									"key": "type",
 									"value": "whatshafiz",
-									"description": "nullable|string|in:whatshafiz,whatsenglish,whatsarapp",
+									"description": "nullable|string|exists:course_types",
 									"type": "text"
 								},
 								{
@@ -4772,7 +4772,7 @@
 								{
 									"key": "type",
 									"value": "whatshafiz",
-									"description": "nullable|string|in:whatshafiz,whatsenglish,whatsarapp",
+									"description": "nullable|string|exists:course_types",
 									"type": "text"
 								}
 							]
@@ -4999,7 +4999,7 @@
 								{
 									"key": "type",
 									"value": "whatshafiz",
-									"description": "nullable|string|in:whatshafiz,whatsenglish,whatsarapp"
+									"description": "nullable|string|exists:course_types"
 								},
 								{
 									"key": "commented_by_id",
@@ -5120,7 +5120,7 @@
 								{
 									"key": "type",
 									"value": "whatshafiz",
-									"description": "nullable|string|in:whatshafiz,whatsenglish,whatsarapp",
+									"description": "nullable|string|exists:course_types",
 									"type": "text"
 								},
 								{

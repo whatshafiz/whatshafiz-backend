@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\CourseType;
 use App\Models\Regulation;
 use App\Models\User;
 use Illuminate\Support\Facades\Cache;

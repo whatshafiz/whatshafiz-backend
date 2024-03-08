@@ -107,7 +107,7 @@ class CourseController extends Controller
         $validatedCourseData = $this->validate(
             $request,
             [
-                'type' => 'required|string|in:whatshafiz,whatsenglish,whatsarapp',
+                'type' => 'required|string|exists:course_types',
                 'name' => 'required|string|min:3|max:100|unique:courses',
                 'whatsapp_channel_join_url' => 'nullable|url',
                 'is_active' => 'required|boolean',
@@ -188,7 +188,7 @@ class CourseController extends Controller
         $validatedCourseData = $this->validate(
             $request,
             [
-                'type' => 'required|string|in:whatshafiz,whatsenglish,whatsarapp',
+                'type' => 'required|string|exists:course_types',
                 'name' => 'required|string|min:3|max:100|unique:courses,name,' . $course->id,
                 'whatsapp_channel_join_url' => 'nullable|url',
                 'is_active' => 'required|boolean',

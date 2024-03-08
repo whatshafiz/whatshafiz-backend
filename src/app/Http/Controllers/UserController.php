@@ -326,7 +326,7 @@ class UserController extends Controller
     public function saveCourse(Request $request): JsonResponse
     {
         $request->validate([
-            'type' => 'required|string|in:whatshafiz,whatsenglish,whatsarapp',
+            'type' => 'required|string|exists:course_types',
             'is_teacher' => 'required_if:type,whatshafiz|boolean',
         ]);
 

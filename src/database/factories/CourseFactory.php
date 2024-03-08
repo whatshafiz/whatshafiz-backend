@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\CourseType;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -18,7 +19,7 @@ class CourseFactory extends Factory
     public function definition()
     {
         return [
-            'type' => $this->faker->randomElement(['whatshafiz', 'whatsenglish', 'whatsarapp']),
+            'type' => CourseType::inRandomOrder()->value('type'),
             'name' => $this->faker->numerify('WhatsHafız-######'),
             'whatsapp_channel_join_url' => $this->faker->optional(0.7)->url,
             'is_active' => $this->faker->boolean,
