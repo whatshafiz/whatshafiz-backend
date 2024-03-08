@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
+use App\Models\Permission;
 use App\Models\User;
-use Spatie\Permission\Models\Permission;
 use Tests\BaseFeatureTest;
 
 class PermissionTest extends BaseFeatureTest
