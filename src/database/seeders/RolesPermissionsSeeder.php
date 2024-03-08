@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Permission;
 
 class RolesPermissionsSeeder extends Seeder
 {
@@ -39,13 +39,6 @@ class RolesPermissionsSeeder extends Seeder
             'roles.delete',
             'roles.user-view',
             'roles.user-update',
-
-            'quiz.*',
-            'quiz.view',
-            'quiz.list',
-            'quiz.update',
-            'quiz.create',
-            'quiz.delete',
 
             'regulations.*',
             'regulations.view',
@@ -110,7 +103,10 @@ class RolesPermissionsSeeder extends Seeder
         ];
 
         foreach ($permissions as $permission) {
-            Permission::create(['name' => $permission]);
+            Permission::create([
+                'name' => $permission,
+                'label' => Permission::generateLabel($permission)
+            ]);
         }
 
         $roles = [
@@ -130,7 +126,6 @@ class RolesPermissionsSeeder extends Seeder
             ->givePermissionTo([
                 'whatsappGroups.*',
                 'users.*',
-                'quiz.*',
                 'regulations.*',
             ]);
         Role::create(['name' => 'Denetmen'])

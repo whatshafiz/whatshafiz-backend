@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Permission;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\ValidationException;
-use Spatie\Permission\Models\Permission;
 
 class PermissionController extends Controller
 {
@@ -19,7 +19,7 @@ class PermissionController extends Controller
     {
         $this->authorize('viewAny', Permission::class);
 
-        $permissions = Permission::orderBy('id')->get(['id', 'name']);
+        $permissions = Permission::orderBy('id')->get(['id', 'name', 'label']);
 
         return response()->json(compact('permissions'));
     }
