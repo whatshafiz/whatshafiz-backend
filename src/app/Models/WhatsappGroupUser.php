@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class WhatsappGroupUser extends BaseModel
 {
+    public $table = 'user_course';
+
     use HasFactory;
     use SoftDeletes;
 

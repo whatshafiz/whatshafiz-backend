@@ -19,7 +19,7 @@ class CourseFactory extends Factory
     public function definition()
     {
         return [
-            'type' => CourseType::inRandomOrder()->value('type'),
+            'course_type_id' => CourseType::inRandomOrder()->value('id'),
             'name' => $this->faker->numerify('WhatsHafız-######'),
             'whatsapp_channel_join_url' => $this->faker->optional(0.7)->url,
             'is_active' => $this->faker->boolean,
@@ -35,7 +35,7 @@ class CourseFactory extends Factory
     public function whatshafiz()
     {
         return $this->state(fn (array $attributes) => [
-            'type' => 'whatshafiz',
+            'course_type_id' => CourseType::where('slug', 'whatshafiz')->value('id'),
             'proficiency_exam_start_time' => Carbon::now()->addDays(rand(1, 14)),
             'students_matchings_started_at' => $this->faker->boolean ? Carbon::now()->subDays(rand(1, 14)) : null,
         ]);
@@ -47,7 +47,7 @@ class CourseFactory extends Factory
     public function whatsarapp()
     {
         return $this->state(fn (array $attributes) => [
-            'type' => 'whatsarapp',
+            'course_type_id' => CourseType::where('slug', 'whatsarapp')->value('id'),
         ]);
     }
 
@@ -57,7 +57,7 @@ class CourseFactory extends Factory
     public function whatsenglish()
     {
         return $this->state(fn (array $attributes) => [
-            'type' => 'whatsenglish',
+            'course_type_id' => CourseType::where('slug', 'whatsenglish')->value('id'),
         ]);
     }
 

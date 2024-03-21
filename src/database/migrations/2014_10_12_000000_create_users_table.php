@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('phone_number')->unique();
             $table->timestamp('phone_number_verified_at')->nullable();
+            $table->string('education_level')->nullable();
             $table->string('password');
             $table->boolean('is_banned')->default(false);
             $table->rememberToken();

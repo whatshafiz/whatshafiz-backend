@@ -21,8 +21,8 @@ class UserCourseFactory extends Factory
         $course = Course::inRandomOrder()->first();
 
         return [
-            'type' => $course->type,
-            'user_id' => User::inRandomOrder()->value('id'),
+            'course_type_id' => $course->course_type_id,
+            'user_id' => User::factory()->create()->id,
             'course_id' => $course->id,
             'is_teacher' => $this->faker->boolean,
             'applied_at' => $this->faker->datetime,

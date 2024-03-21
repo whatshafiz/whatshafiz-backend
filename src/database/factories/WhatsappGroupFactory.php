@@ -20,7 +20,7 @@ class WhatsappGroupFactory extends Factory
     {
         return [
             'course_id' => Course::inRandomOrder()->value('id') ?? Course::factory()->create()->id,
-            'type' => CourseType::inRandomOrder()->value('type'),
+            'course_type_id' => CourseType::inRandomOrder()->value('id'),
             'gender' => $this->faker->randomElement(['male', 'female']),
             'name' => $this->faker->numerify('WhatsGroup-##-##-##'),
             'is_active' => $this->faker->boolean,

@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -16,18 +15,18 @@ return new class extends Migration
     {
         Schema::create('course_types', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('type');
+            $table->foreignId('parent_id')->nullable()->constrained('course_types');
+            $table->string('name', 100);
+            $table->string('slug', 100);
+            $table->boolean('is_active')->default(true);
+            $table->boolean('has_admission_exam')->default(true);
+            $table->tinyInteger('min_age')->nullable();
+            $table->json('genders')->nullable();
+            $table->json('education_levels')->nullable();
+
             $table->timestamps();
             $table->softDeletes();
         });
-
-        DB::table('course_types')
-            ->insert([
-                ['name' => 'WhatsHafiz', 'type' => 'whatshafiz'],
-                ['name' => 'WhatsEnglish', 'type' => 'whatsenglish'],
-                ['name' => 'WhatsArapp', 'type' => 'whatsarapp'],
-            ]);
     }
 
     /**

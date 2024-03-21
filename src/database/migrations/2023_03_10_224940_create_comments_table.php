@@ -1,9 +1,10 @@
 <?php
 
+use App\Models\CourseType;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\User;
 
 return new class extends Migration
 {
@@ -16,7 +17,7 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['whatshafiz', 'whatsenglish', 'whatsarapp']);
+            $table->foreignIdFor(CourseType::class)->nullable()->constrained();
             $table->string('title');
             $table->text('comment');
             $table->foreignIdFor(User::class, 'commented_by_id')->constrained('users');

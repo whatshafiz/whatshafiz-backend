@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\City;
+use App\Models\EducationLevel;
 use App\Models\UniversityDepartment;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -34,7 +35,7 @@ class UserFactory extends Factory
             'gender' => $gender,
             'country_id' => $city ? $city->country_id : null,
             'city_id' => $city ? $city->id : null,
-            'education_level' => $this->faker->randomElement(['İlkokul', 'Lise', 'Lisans', 'Ön Lisans']) . ' Mezunu',
+            'education_level' => EducationLevel::inRandomOrder()->value('name'),
             'university_id' => $universityDepartment ? $universityDepartment->university_id : null,
             'university_faculty_id' => $universityDepartment ? $universityDepartment->university_faculty_id : null,
             'university_department_id' => $universityDepartment ? $universityDepartment->id : null,
@@ -53,7 +54,7 @@ class UserFactory extends Factory
             'gender' => $this->faker->randomElement(['male', 'female']),
             'country_id' => ($city = City::inRandomOrder()->where('id', '<', '10')->first()) ? $city->country_id : null,
             'city_id' => $city->id ?? null,
-            'education_level' => $this->faker->randomElement(['İlkokul', 'Lise', 'Lisans', 'Ön Lisans']) . ' Mezunu',
+            'education_level' => EducationLevel::inRandomOrder()->value('name'),
             'university_id' => (
                 $universityDepartment = UniversityDepartment::inRandomOrder()->where('id', '<', '1000')->first()
             ) ?

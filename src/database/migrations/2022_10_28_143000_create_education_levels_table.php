@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('courses', function (Blueprint $table) {
-            $table->string('whatsapp_channel_join_url')->nullable()->after('name');
+        Schema::create('education_levels', function (Blueprint $table) {
+            $table->id();
+            $table->string('name', 50);
         });
     }
 
@@ -25,8 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('courses', function (Blueprint $table) {
-            $table->dropColumn('whatsapp_channel_join_url');
-        });
+        Schema::dropIfExists('education_levels');
     }
 };

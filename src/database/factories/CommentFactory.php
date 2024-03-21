@@ -21,7 +21,7 @@ class CommentFactory extends Factory
         $is_approved = $this->faker->boolean;
 
         return [
-            'type' => CourseType::inRandomOrder()->value('type'),
+            'course_type_id' => CourseType::inRandomOrder()->value('id'),
             'title' => $this->faker->sentence,
             'comment' => $this->faker->text,
             'commented_by_id' => User::factory()->create()->id,
