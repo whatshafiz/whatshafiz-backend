@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Jobs\CourseTeacherStudentsMatcher;
 use App\Models\Course;
+use App\Models\CourseType;
 use App\Models\TeacherStudent;
 use App\Models\User;
 use App\Models\UserCourse;
@@ -51,7 +52,7 @@ class ProductionLoadTestSeeder extends Seeder
         WhatsappGroup::factory()
             ->count(50)
             ->create([
-                'type' => 'whatsenglish',
+                'course_type_id' => CourseType::where('slug', 'whatsenglish')->value('id'),
                 'course_id' => $course->id,
                 'gender' => 'male',
                 'is_active' => true,
@@ -60,7 +61,7 @@ class ProductionLoadTestSeeder extends Seeder
         WhatsappGroup::factory()
             ->count(50)
             ->create([
-                'type' => 'whatsenglish',
+                'course_type_id' => CourseType::where('slug', 'whatsenglish')->value('id'),
                 'course_id' => $course->id,
                 'gender' => 'female',
                 'is_active' => true,
@@ -73,7 +74,7 @@ class ProductionLoadTestSeeder extends Seeder
         foreach ($maleUsers as $user) {
             UserCourse::factory()
                 ->create([
-                    'type' => 'whatsenglish',
+                    'course_type_id' => CourseType::where('slug', 'whatsenglish')->value('id'),
                     'user_id' => $user->id,
                     'course_id' => $course->id,
                     'is_teacher' => $this->faker->boolean(5),
@@ -83,7 +84,7 @@ class ProductionLoadTestSeeder extends Seeder
         foreach ($femaleUsers as $user) {
             UserCourse::factory()
                 ->create([
-                    'type' => 'whatsenglish',
+                    'course_type_id' => CourseType::where('slug', 'whatsenglish')->value('id'),
                     'user_id' => $user->id,
                     'course_id' => $course->id,
                     'is_teacher' => $this->faker->boolean(10),
@@ -101,7 +102,7 @@ class ProductionLoadTestSeeder extends Seeder
         WhatsappGroup::factory()
             ->count(50)
             ->create([
-                'type' => 'whatshafiz',
+                'course_type_id' => CourseType::where('slug', 'whatshafiz')->value('id'),
                 'course_id' => $course->id,
                 'gender' => 'male',
                 'is_active' => true,
@@ -110,7 +111,7 @@ class ProductionLoadTestSeeder extends Seeder
         WhatsappGroup::factory()
             ->count(50)
             ->create([
-                'type' => 'whatshafiz',
+                'course_type_id' => CourseType::where('slug', 'whatshafiz')->value('id'),
                 'course_id' => $course->id,
                 'gender' => 'female',
                 'is_active' => true,
@@ -123,7 +124,7 @@ class ProductionLoadTestSeeder extends Seeder
         foreach ($maleUsers as $user) {
             UserCourse::factory()
                 ->create([
-                    'type' => 'whatshafiz',
+                    'course_type_id' => CourseType::where('slug', 'whatshafiz')->value('id'),
                     'user_id' => $user->id,
                     'course_id' => $course->id,
                     'is_teacher' => $this->faker->boolean(5),
@@ -133,7 +134,7 @@ class ProductionLoadTestSeeder extends Seeder
         foreach ($femaleUsers as $user) {
             UserCourse::factory()
                 ->create([
-                    'type' => 'whatshafiz',
+                    'course_type_id' => CourseType::where('slug', 'whatshafiz')->value('id'),
                     'user_id' => $user->id,
                     'course_id' => $course->id,
                     'is_teacher' => $this->faker->boolean(10),

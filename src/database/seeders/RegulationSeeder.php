@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\CourseType;
 use App\Models\Regulation;
 use Illuminate\Database\Seeder;
 
@@ -15,6 +16,7 @@ class RegulationSeeder extends Seeder
     public function run()
     {
         $hafizol = [
+            'course_type_id' => CourseType::where('slug', 'hafizol')->value('id'),
             'name' => 'HafızOl',
             'slug' => 'hafizol',
             'summary' => "Bu program sıfırdan başlamaktadır. Daha önce hafızlık yapmış olanlar dilerlerse bu programa da katılabilirler.
@@ -34,6 +36,7 @@ class RegulationSeeder extends Seeder
                 4.1 Hafızkal öğrencileri, hafızol öğrencisini dinlerken öğrenciye sayfa başı en fazla 2 dakika süre tanıyacaktır. Öğrenci hocayı bir sayfa ezber vermek için, 2 dakikadan daha fazla oyalayamaz. Bu durumda öğrenci küme düşer.",
         ];
         $hafizkal = [
+            'course_type_id' => CourseType::where('slug', 'hafizkal')->value('id'),
             'name' => 'HafızKal',
             'slug' => 'hafizkal',
             'summary' => "Bu programa sadece daha önce hafızlığını tamamlamış olanlar (yarıda bırakmış olmaz) katılabilir.
@@ -53,6 +56,7 @@ class RegulationSeeder extends Seeder
                 4.1 Verilen sayfa ezber tablosunda eşleşen öğrenciler o günün sayfalarını birbirlerine verirler. Her sayfa için 2 dakikadan daha fazla süre verilemez. Bir sayfayı ezber verme süresi 2 dakikayı aşarsa öğrenci küme düşer.",
         ];
         $whatsenglish = [
+            'course_type_id' => CourseType::where('slug', 'whatsenglish')->value('id'),
             'name' => 'WhatsEnglish',
             'slug' => 'whatsenglish',
             'summary' => '',
@@ -61,6 +65,7 @@ class RegulationSeeder extends Seeder
                 1b) Toplam 2 kurdan oluşmaktadır. Her kur 25 haftalıktır. Türkiye Türkçesi dilbilgisi kurallarına uygun ve ingilizceyi hiç bilmeyenlere yönelik şekilde hazırlanan programda, İngilizce gramer konularının büyük çoğunluğu tamamlanmaktadır. Toplamda yaklaşık 1000 kelime ezberlenmektedir.",
         ];
         $whatsarapp = [
+            'course_type_id' => CourseType::where('slug', 'whatsarapp')->value('id'),
             'name' => 'WhatsArapp',
             'slug' => 'whatsarapp',
             'summary' => '',
