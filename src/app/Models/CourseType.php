@@ -14,6 +14,8 @@ class CourseType extends BaseModel
     protected $casts = [
         'is_active' => 'boolean',
         'has_admission_exam' => 'boolean',
+        'genders' => 'array',
+        'education_levels' => 'array',
         'created_at' => 'datetime:d-m-Y H:i',
         'updated_at' => 'datetime:d-m-Y H:i',
         'deleted_at' => 'datetime:d-m-Y H:i',

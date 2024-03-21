@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\CourseType;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Course>
@@ -18,9 +19,11 @@ class CourseFactory extends Factory
      */
     public function definition()
     {
+        $courseType = CourseType::inRandomOrder()->first();
+
         return [
-            'course_type_id' => CourseType::inRandomOrder()->value('id'),
-            'name' => $this->faker->numerify('WhatsHafız-######'),
+            'course_type_id' => $courseType->id,
+            'name' => $this->faker->numerify(Str::studly($courseType->name) . '-######'),
             'whatsapp_channel_join_url' => $this->faker->optional(0.7)->url,
             'is_active' => $this->faker->boolean,
             'can_be_applied' => $this->faker->boolean,

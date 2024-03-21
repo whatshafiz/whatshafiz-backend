@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\CourseType;
 use Carbon\Carbon;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
@@ -29,7 +30,7 @@ class CommentController extends Controller
         $filters = $this->validate(
             $request,
             [
-                'type' => 'nullable|string|exists:course_types',
+                'course_type_id' => 'nullable|integer|min:1|exists:course_types,id',
                 'commented_by_id' => 'nullable|integer|exists:users,id',
                 'approved_by_id' => 'nullable|integer|exists:users,id',
                 'is_approved' => 'nullable|boolean',
@@ -39,8 +40,8 @@ class CommentController extends Controller
         $searchKey = $this->getTabulatorSearchKey($request);
 
         $comments = Comment::with(['commentedBy', 'approvedBy'])
-            ->when(isset($filters['type']), function ($query) use ($filters) {
-                return $query->where('type', $filters['type']);
+            ->when(isset($filters['course_type_id']), function ($query) use ($filters) {
+                return $query->where('course_type_id', $filters['course_type_id']);
             })
             ->when(isset($filters['commented_by_id']), function ($query) use ($filters) {
                 return $query->where('commented_by_id', $filters['commented_by_id']);
@@ -86,20 +87,20 @@ class CommentController extends Controller
     }
 
     /**
-     * @param  string  $type
+     * @param  CourseType  $courseType
      * @return JsonResponse
      * @throws ValidationException
      */
-    public function indexApprovedComments(string $type): JsonResponse
+    public function indexApprovedComments(CourseType $courseType): JsonResponse
     {
         return response()->json(
-            Comment::approved()
-                ->where('type', $type)
-                ->latest('id')
+            $courseType->comments()
+                ->approved()
+                ->latest('comments.id')
                 ->join('users', 'users.id', '=', 'comments.commented_by_id')
                 ->select([
                     'comments.id',
-                    'comments.type',
+                    'comments.course_type_id',
                     'comments.title',
                     'comments.comment',
                     DB::raw('CONCAT(users.name, " ", users.surname) as commented_by'),
@@ -125,12 +126,13 @@ class CommentController extends Controller
         $validatedCommentData = $this->validate(
             $request,
             [
-                'type' => 'required|string|exists:course_types|unique:comments,type,NULL,NULL,deleted_at,NULL,commented_by_id,' . Auth::id(),
+                'course_type_id' => 'required|integer|min:1|exists:course_types,id|' .
+                    'unique:comments,course_type_id,NULL,NULL,deleted_at,NULL,commented_by_id,' . Auth::id(),
                 'title' => 'required|string|min:3|max:100',
                 'comment' => 'required|string|min:3|max:1000',
             ],
             [
-                'type.unique' => 'Aynı kurs türü için bir kere yorum yapabilirsiniz.',
+                'course_type_id.unique' => 'Aynı kurs türü için bir kere yorum yapabilirsiniz.',
             ]
         );
 
@@ -170,7 +172,8 @@ class CommentController extends Controller
         $this->authorize('update', $comment);
 
         $validationRules = [
-            'type' => 'required|string|exists:course_types|unique:comments,type,' . $comment->id . ',id,deleted_at,NULL,commented_by_id,' . Auth::id(),
+            'course_type_id' => 'required|integer|min:1|exists:course_types,id|unique:comments,course_type_id,' .
+                $comment->id . ',id,deleted_at,NULL,commented_by_id,' . Auth::id(),
             'title' => 'required|string|min:3|max:100',
             'comment' => 'required|string|min:3|max:1000',
         ];
@@ -182,7 +185,7 @@ class CommentController extends Controller
         $validatedCommentData = $this->validate(
             $request,
             $validationRules,
-            ['type.unique' => 'Aynı kurs türü için bir kere yorum yapabilirsiniz.']
+            ['course_type_id.unique' => 'Aynı kurs türü için bir kere yorum yapabilirsiniz.']
         );
 
         if (!$comment->is_approved && !empty($validatedCommentData['is_approved'])) {

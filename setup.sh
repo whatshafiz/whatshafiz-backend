@@ -1,6 +1,6 @@
 #!/bin/bash
 
-docker volume create whatshafiz-mariadb-data
+docker volume create whatshafiz-mysql-data
 
 docker-compose -f docker-compose-dev.yml up -d
 

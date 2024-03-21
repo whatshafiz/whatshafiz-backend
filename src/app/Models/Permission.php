@@ -22,6 +22,7 @@ class Permission extends SpatiePermission
         'users' => 'Kullanıcı',
         'roles' => 'Rol',
         'regulations' => 'Yönetmelik',
+        'courseTypes' => 'Kurs Türleri',
         'courses' => 'Kurs',
         'complaints' => 'Şikayet',
         'comments' => 'Kullanıcı Yorumu',

@@ -5,6 +5,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\CourseTypeController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\QuranQuestionController;
 use App\Http\Controllers\RegulationController;
@@ -25,10 +26,9 @@ Route::post('login', [UserController::class, 'login'])->name('login');
 Route::post('forgot-password', [UserController::class, 'forgotPassword']);
 Route::post('update-password', [UserController::class, 'updatePassword']);
 
-Route::get('regulations/{regulation:slug}', [RegulationController::class, 'show']);
+Route::get('regulations/{regulation:slug}', [w::class, 'show']);
 Route::get('courses/available', [CourseController::class, 'indexAvailableCourses']);
-Route::get('comments/{type}', [CommentController::class, 'indexApprovedComments'])
-    ->whereIn('type', ['whatshafiz', 'whatsenglish', 'whatsarapp']);
+Route::get('comments/approved/{courseType:slug}', [CommentController::class, 'indexApprovedComments']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('users', [UserController::class, 'index']);
@@ -128,6 +128,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::middleware(['auth:sanctum', 'admin'])->group(function () {
     Route::get('permissions', [PermissionController::class, 'index']);
+
+    Route::get('course-types/paginate', [CourseTypeController::class, 'indexPaginate']);
+    Route::apiResource('course-types', CourseTypeController::class);
 
     Route::get('whatsapp-messenger-numbers', [WhatsappMessengerNumberController::class, 'index']);
     Route::post('whatsapp-messenger-numbers', [WhatsappMessengerNumberController::class, 'store']);
