@@ -39,7 +39,7 @@ class CommentController extends Controller
 
         $searchKey = $this->getTabulatorSearchKey($request);
 
-        $comments = Comment::with(['commentedBy', 'approvedBy'])
+        $comments = Comment::with(['courseType:id,name', 'commentedBy', 'approvedBy'])
             ->when(isset($filters['course_type_id']), function ($query) use ($filters) {
                 return $query->where('course_type_id', $filters['course_type_id']);
             })

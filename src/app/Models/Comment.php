@@ -22,6 +22,14 @@ class Comment extends BaseModel
     /**
      * @return BelongsTo
      */
+    public function courseType(): BelongsTo
+    {
+        return $this->belongsTo(CourseType::class);
+    }
+
+    /**
+     * @return BelongsTo
+     */
     public function commentedBy(): BelongsTo
     {
         return $this->belongsTo(User::class);

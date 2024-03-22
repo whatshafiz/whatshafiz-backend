@@ -127,12 +127,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('my/teachers', [TeacherStudentController::class, 'myTeachers']);
     Route::put('my/students/{teacherStudent}', [TeacherStudentController::class, 'updateStudentStatus']);
     Route::get('my/students', [TeacherStudentController::class, 'myStudents']);
+
+    Route::get('course-types/paginate', [CourseTypeController::class, 'indexPaginate']);
+    Route::get('course-types', [CourseTypeController::class, 'index']);
 });
 
 Route::middleware(['auth:sanctum', 'admin'])->group(function () {
     Route::get('permissions', [PermissionController::class, 'index']);
 
-    Route::get('course-types/paginate', [CourseTypeController::class, 'indexPaginate']);
     Route::apiResource('course-types', CourseTypeController::class);
 
     Route::get('whatsapp-messenger-numbers', [WhatsappMessengerNumberController::class, 'index']);
