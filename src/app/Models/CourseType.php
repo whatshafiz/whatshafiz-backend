@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -20,6 +21,14 @@ class CourseType extends BaseModel
         'updated_at' => 'datetime:d-m-Y H:i',
         'deleted_at' => 'datetime:d-m-Y H:i',
     ];
+
+    /**
+     * @return BelongsTo
+     */
+    public function parent(): BelongsTo
+    {
+        return $this->belongsTo(CourseType::class);
+    }
 
     /**
      * @return HasMany

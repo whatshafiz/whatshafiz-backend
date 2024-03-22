@@ -30,6 +30,7 @@ class CourseTypeController extends Controller
                 'userCourses as active_users_count' => fn($query) => $query->whereNull('removed_at'),
                 'comments',
             ])
+            ->with('parent')
             ->when(!empty($searchKey), function ($query) use ($searchKey) {
                 return $query->where('id', $searchKey)
                     ->orWhere('name', 'LIKE', '%' . $searchKey . '%')
