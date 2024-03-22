@@ -6,6 +6,7 @@ use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CourseTypeController;
+use App\Http\Controllers\EducationLevelController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\QuranQuestionController;
 use App\Http\Controllers\RegulationController;
@@ -43,6 +44,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('settings/paginate', [SettingController::class, 'indexPaginate']);
     Route::get('settings/{setting}', [SettingController::class, 'show']);
     Route::put('settings/{setting}', [SettingController::class, 'update']);
+
+    Route::get('education-levels', [EducationLevelController::class, 'index']);
 
     Route::post('register/verification-code/send', [UserController::class, 'sendVerificationCode']);
     Route::post('register/verification-code/verify', [UserController::class, 'verifyVerificationCode']);

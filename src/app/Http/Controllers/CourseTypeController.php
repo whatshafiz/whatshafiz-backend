@@ -23,7 +23,13 @@ class CourseTypeController extends Controller
     {
         $searchKey = $this->getTabulatorSearchKey($request);
 
-        $questions = CourseType::withCount('courses', 'whatsappGroups', 'userCourses', 'comments')
+        $questions = CourseType::withCount([
+                'courses',
+                'whatsappGroups',
+                'userCourses as total_users_count',
+                'userCourses as active_users_count' => fn($query) => $query->whereNull('removed_at'),
+                'comments',
+            ])
             ->when(!empty($searchKey), function ($query) use ($searchKey) {
                 return $query->where('id', $searchKey)
                     ->orWhere('name', 'LIKE', '%' . $searchKey . '%')
