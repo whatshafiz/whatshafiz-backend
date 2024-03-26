@@ -14,6 +14,7 @@ class WhatsappGroupUser extends BaseModel
     use SoftDeletes;
 
     protected $casts = [
+        'is_teacher' => 'boolean',
         'is_moderator' => 'boolean',
         'joined_at' => 'datetime:d-m-Y H:i',
         'moderation_started_at' => 'datetime:d-m-Y H:i',
