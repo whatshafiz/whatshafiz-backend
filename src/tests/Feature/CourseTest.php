@@ -6,6 +6,7 @@ use App\Jobs\CourseTeacherStudentsMatcher;
 use App\Jobs\CourseWhatsappGroupsOrganizer;
 use App\Jobs\WhatshafizCourseWhatsappGroupsOrganizer;
 use App\Models\Course;
+use App\Models\CourseType;
 use App\Models\TeacherStudent;
 use App\Models\User;
 use App\Models\UserCourse;
@@ -46,7 +47,7 @@ class CourseTest extends BaseFeatureTest
     /** @test */
     public function it_should_get_course_details_when_has_permission()
     {
-        $course = Course::factory()->create();
+        $course = Course::factory()->create(['course_type_id' => CourseType::where('slug', 'whatshafiz')->value('id')]);
         $user = User::factory()->create();
         $user->givePermissionTo('courses.view');
 
@@ -54,12 +55,19 @@ class CourseTest extends BaseFeatureTest
         $whatsappGroupUsersCount = 0;
         WhatsappGroup::factory()
             ->count($whatsappGroupCount)
-            ->create(['course_id' => $course->id])
+            ->create([
+                'course_type_id' => CourseType::where('slug', 'whatshafiz')->value('id'),
+                'course_id' => $course->id,
+            ])
             ->each(function ($whatsappGroup) use (&$whatsappGroupUsersCount) {
                 $count = rand(1, 5);
                 WhatsappGroupUser::factory()
                     ->count($count)
-                    ->create(['whatsapp_group_id' => $whatsappGroup->id, 'course_id' => $whatsappGroup->course_id]);
+                    ->create([
+                        'course_type_id' => $whatsappGroup->course_type_id,
+                        'whatsapp_group_id' => $whatsappGroup->id,
+                        'course_id' => $whatsappGroup->course_id,
+                    ]);
                 $whatsappGroupUsersCount += $count;
             });
         $usersCount = rand(11, 23);
@@ -69,7 +77,12 @@ class CourseTest extends BaseFeatureTest
             ->create()
             ->each(function ($user) use ($course, &$courseUsers) {
                 $courseUsers[] = UserCourse::factory()
-                    ->create(['type' => 'whatshafiz', 'course_id' => $course->id, 'user_id' => $user->id])
+                    ->create([
+                        'course_type_id' => CourseType::where('slug', 'whatshafiz')->value('id'),
+                        'course_id' => $course->id,
+                        'user_id' => $user->id,
+                        'whatsapp_group_id' => null,
+                    ])
                     ->toArray();
             });
 
@@ -153,9 +166,18 @@ class CourseTest extends BaseFeatureTest
     /** @test */
     public function it_should_get_own_courses_list_when_has_permission()
     {
-        $courses = Course::factory()->count(rand(2, 5))->create();
         $user = User::factory()->create();
-        $user->courses()->attach($courses);
+        $courses = Course::factory()
+            ->count(rand(2, 5))
+            ->create()
+            ->each(function ($course) use ($user) {;
+              UserCourse::factory()
+                ->create([
+                    'user_id' => $user->id,
+                    'course_id' => $course->id,
+                    'course_type_id' => $course->course_type_id,
+                ]);
+            });
 
         $response = $this->actingAs($user)->json('GET', self::BASE_URI . '/my/courses');
 
@@ -174,7 +196,12 @@ class CourseTest extends BaseFeatureTest
 
         $courses = Course::factory()->count(5)->create();
         $searchCourse = $courses->random();
-        $user->courses()->attach($searchCourse);
+        UserCourse::factory()
+            ->create([
+                'user_id' => $user->id,
+                'course_id' => $searchCourse->id,
+                'course_type_id' => $searchCourse->course_type_id,
+            ]);
         $searchQuery = [
             'user_id' => $user->id,
             'filter' => [['value' => $searchCourse->name]],
@@ -203,7 +230,7 @@ class CourseTest extends BaseFeatureTest
             $response->assertJsonFragment(
                 Arr::only(
                     $availableCourse->toArray(),
-                    ['id', 'type', 'name', 'can_be_applied', 'can_be_applied_until', 'start_at']
+                    ['id', 'course_type_id', 'name', 'can_be_applied', 'can_be_applied_until', 'start_at']
                 )
             );
         }
@@ -227,7 +254,7 @@ class CourseTest extends BaseFeatureTest
             $response->assertJsonFragment(
                 Arr::only(
                     $availableCourse->toArray(),
-                    ['id', 'type', 'name', 'can_be_applied', 'can_be_applied_until', 'start_at']
+                    ['id', 'course_type_id', 'name', 'can_be_applied', 'can_be_applied_until', 'start_at']
                 )
             );
         }
@@ -282,7 +309,7 @@ class CourseTest extends BaseFeatureTest
         $user->givePermissionTo('courses.create');
 
         $courseData = Course::factory()->raw(['can_be_applied' => true]);
-        Course::factory()->create(['can_be_applied' => true, 'type' => $courseData['type']]);
+        Course::factory()->create(['can_be_applied' => true, 'course_type_id' => $courseData['course_type_id']]);
 
         $response = $this->actingAs($user)->json('POST', $this->uri, $courseData);
 
@@ -332,11 +359,11 @@ class CourseTest extends BaseFeatureTest
     public function it_should_not_update_course_as_can_be_applied_when_there_is_already_can_be_applied_course_for_type()
     {
         $course = Course::factory()->create(['can_be_applied' => false]);
-        Course::factory()->create(['can_be_applied' => true, 'type' => $course->type]);
+        Course::factory()->create(['can_be_applied' => true, 'course_type_id' => $course->course_type_id]);
         $user = User::factory()->create();
         $user->givePermissionTo('courses.update');
 
-        $courseData = Course::factory()->raw(['can_be_applied' => true, 'type' => $course->type]);
+        $courseData = Course::factory()->raw(['can_be_applied' => true, 'course_type_id' => $course->course_type_id]);
 
         $response = $this->actingAs($user)->json('PUT', $this->uri . '/' . $course->id, $courseData);
 
@@ -473,7 +500,12 @@ class CourseTest extends BaseFeatureTest
     /** @test */
     public function it_should_start_organization_of_whatsapp_groups_when_has_permission()
     {
-        $course = Course::factory()->create(['type' => $this->faker->randomElement(['whatsenglish', 'whatsarapp'])]);
+        $course = Course::factory()
+            ->create([
+                'course_type_id' => CourseType::inRandomOrder()
+                    ->whereIn('slug', ['whatsenglish', 'whatsarapp'])
+                    ->value('id'),
+            ]);
         $user = User::factory()->create();
         $user->givePermissionTo('courses.update');
 

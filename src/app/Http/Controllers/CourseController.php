@@ -41,6 +41,7 @@ class CourseController extends Controller
         $searchKey = $this->getTabulatorSearchKey($request);
 
         $courses = Course::withCount('users')
+            ->with('courseType:id,name')
             ->when(isset($filters['user_id']), function ($query) use ($filters) {
                 return $query->whereHas('users', function ($subQuery) use ($filters) {
                     return $subQuery->where('users.id', $filters['user_id']);
@@ -49,7 +50,6 @@ class CourseController extends Controller
             ->when(!empty($searchKey), function ($query) use ($searchKey) {
                 return $query->where(function ($subQuery) use ($searchKey) {
                     return $subQuery->where('id', $searchKey)
-                        ->orWhere('type', 'LIKE', '%' . $searchKey . '%')
                         ->orWhere('name', 'LIKE', '%' . $searchKey . '%');
                 });
             })
@@ -81,9 +81,10 @@ class CourseController extends Controller
             $availableCourses = Cache::get(Course::AVAILABLE_COURSES_CACHE_KEY);
         } else {
             $availableCourses = Course::available()
+                ->with('courseType:id,name')
                 ->get([
                     'id',
-                    'type',
+                    'course_type_id',
                     'name',
                     'start_at',
                     'can_be_applied',
@@ -107,7 +108,7 @@ class CourseController extends Controller
         $validatedCourseData = $this->validate(
             $request,
             [
-                'type' => 'required|string|exists:course_types',
+                'course_type_id' => 'required|integer|min:1|exists:course_types,id|exists:course_types,id',
                 'name' => 'required|string|min:3|max:100|unique:courses',
                 'whatsapp_channel_join_url' => 'nullable|url',
                 'is_active' => 'required|boolean',
@@ -116,7 +117,9 @@ class CourseController extends Controller
                     'boolean',
                     function ($attribute, $can_be_applied, $fail) use ($request) {
                         if ($can_be_applied &&
-                            Course::where('can_be_applied', true)->where('type', $request->type)->exists()
+                            Course::where('can_be_applied', true)
+                                ->where('course_type_id', $request->course_type_id)
+                                ->exists()
                         ) {
                             $fail('Mevcutta zaten başvuruya açık dönem bulunuyor.');
                         }
@@ -172,6 +175,7 @@ class CourseController extends Controller
             ->count();
         $course->matched_users_count = $course->matched_hafizkal_users_count + $course->matched_hafizol_users_count;
         $course->unmatched_users_count = $course->total_users_count - $course->matched_users_count;
+        $course->load('courseType:id,name');
 
         return response()->json(compact('course'));
     }
@@ -188,7 +192,7 @@ class CourseController extends Controller
         $validatedCourseData = $this->validate(
             $request,
             [
-                'type' => 'required|string|exists:course_types',
+                'course_type_id' => 'required|integer|min:1|exists:course_types,id|exists:course_types,id',
                 'name' => 'required|string|min:3|max:100|unique:courses,name,' . $course->id,
                 'whatsapp_channel_join_url' => 'nullable|url',
                 'is_active' => 'required|boolean',
@@ -199,7 +203,7 @@ class CourseController extends Controller
                         if ($can_be_applied &&
                             Course::where('can_be_applied', true)
                                 ->where('id', '!=', $course->id)
-                                ->where('type', $request->type)
+                                ->where('course_type_id', $request->course_type_id)
                                 ->where('can_be_applied_until', '>', now())
                                 ->exists()
                         ) {
@@ -320,7 +324,7 @@ class CourseController extends Controller
     {
         $this->authorize('update', [Course::class, $course]);
 
-        if ($course->type === 'whatshafiz') {
+        if ($course->courseType->slug === 'whatshafiz') {
             WhatshafizCourseWhatsappGroupsOrganizer::dispatch($course);
         } else {
             CourseWhatsappGroupsOrganizer::dispatch($course);

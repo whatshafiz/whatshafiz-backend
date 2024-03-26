@@ -29,7 +29,7 @@ class WhatsappGroupController extends Controller
         );
         $searchKey = $this->getTabulatorSearchKey($request);
 
-        $whatsappGroups = WhatsappGroup::with('course')
+        $whatsappGroups = WhatsappGroup::with('course', 'courseType:id,name')
             ->withCount('users')
             ->when(isset($filters['user_id']), function ($query) use ($filters) {
                 return $query->whereHas('users', function ($subQuery) use ($filters) {

@@ -22,6 +22,14 @@ class WhatsappGroup extends BaseModel
     /**
      * @return BelongsTo
      */
+    public function courseType(): BelongsTo
+    {
+        return $this->belongsTo(CourseType::class);
+    }
+
+    /**
+     * @return BelongsTo
+     */
     public function course(): BelongsTo
     {
         return $this->belongsTo(Course::class);
