@@ -143,7 +143,7 @@ class User extends Authenticatable
      */
     public function whatsappGroups(): BelongsToMany
     {
-        return $this->belongsToMany(WhatsappGroup::class, 'whatsapp_group_users');
+        return $this->belongsToMany(WhatsappGroup::class, 'user_course');
     }
 
     /**

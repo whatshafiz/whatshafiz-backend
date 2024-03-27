@@ -48,7 +48,7 @@ class WhatsappGroup extends BaseModel
      */
     public function teachers(): HasMany
     {
-        return $this->hasMany(WhatsappGroupUser::class, 'user_id')->where('role_type', 'hafizkal');
+        return $this->hasMany(WhatsappGroupUser::class, 'user_id')->where('is_teacher', true);
     }
 
     /**

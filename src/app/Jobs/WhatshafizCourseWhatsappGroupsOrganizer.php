@@ -58,17 +58,19 @@ class WhatshafizCourseWhatsappGroupsOrganizer implements ShouldQueue
                 if ($teacher) {
                     WhatsappGroupUser::create([
                         'whatsapp_group_id' => $whatsappGroup->id,
+                        'course_type_id' => $whatsappGroup->course_type_id,
                         'course_id' => $whatsappGroup->course_id,
                         'user_id' => $teacher->id,
-                        'role_type' => 'hafizkal',
+                        'is_teacher' => true,
                     ]);
 
                     foreach ($teacher->students as $student) {
                         WhatsappGroupUser::create([
                             'whatsapp_group_id' => $whatsappGroup->id,
+                            'course_type_id' => $whatsappGroup->course_type_id,
                             'course_id' => $whatsappGroup->course_id,
                             'user_id' => $student->student_id,
-                            'role_type' => 'hafizol',
+                            'is_teacher' => false,
                         ]);
                     }
                 }

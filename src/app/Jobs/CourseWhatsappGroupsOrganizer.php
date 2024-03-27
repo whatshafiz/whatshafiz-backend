@@ -83,11 +83,16 @@ class CourseWhatsappGroupsOrganizer implements ShouldQueue
                     ->having('users_count', '<', $maxUserCountPerGroup)
                     ->first();
 
+                if (!$whatsappGroup) {
+                    break;
+                }
+
                 $users = [];
 
                 foreach ($userIds as $userId) {
                     $users[] = [
                         'whatsapp_group_id' => $whatsappGroup->id,
+                        'course_type_id' => $this->course->course_type_id,
                         'course_id' => $this->course->id,
                         'user_id' => $userId,
                     ];
