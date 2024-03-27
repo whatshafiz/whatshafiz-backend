@@ -69,8 +69,12 @@ class UserTest extends BaseFeatureTest
         $userForFilter = User::factory()->completed()->create();
         $whatsappGroup = WhatsappGroup::factory()->create();
         $course = $whatsappGroup->course;
-        $userForFilter->whatsappGroups()->attach($whatsappGroup);
-        $userForFilter->courses()->attach($course);
+        $userForFilter->whatsappGroups()
+            ->attach(
+                $whatsappGroup,
+                ['course_type_id' => $whatsappGroup->course_type_id, 'course_id' => $whatsappGroup->course_id]
+            );
+        $userForFilter->courses()->attach($course, ['course_type_id' => $course->course_type_id]);
 
         $filters = [
             'name' => $userForFilter->name,

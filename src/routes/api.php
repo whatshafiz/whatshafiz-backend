@@ -27,7 +27,7 @@ Route::post('login', [UserController::class, 'login'])->name('login');
 Route::post('forgot-password', [UserController::class, 'forgotPassword']);
 Route::post('update-password', [UserController::class, 'updatePassword']);
 
-Route::get('regulations/{regulation:slug}', [w::class, 'show']);
+Route::get('regulations/{regulation:slug}', [RegulationController::class, 'show']);
 Route::get('courses/available', [CourseController::class, 'indexAvailableCourses']);
 Route::get('comments/approved/{courseType:slug}', [CommentController::class, 'indexApprovedComments']);
 
