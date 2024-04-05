@@ -25,6 +25,7 @@ class WhatsappGroupController extends Controller
             [
                 'user_id' => 'nullable|integer|exists:users,id',
                 'course_id' => 'nullable|integer|min:1|exists:courses,id',
+                'gender' => 'nullable|string|in:male,female',
             ]
         );
         $searchKey = $this->getTabulatorSearchKey($request);
@@ -35,6 +36,9 @@ class WhatsappGroupController extends Controller
                 return $query->whereHas('users', function ($subQuery) use ($filters) {
                     return $subQuery->where('user_id', $filters['user_id']);
                 });
+            })
+            ->when(isset($filters['gender']), function ($query) use ($filters) {
+                return $query->where('gender', $filters['gender']);
             })
             ->when(isset($filters['course_id']), function ($query) use ($filters) {
                 return $query->whereHas('course', function ($subQuery) use ($filters) {
