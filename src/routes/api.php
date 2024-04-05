@@ -37,7 +37,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('users/{user}/ban', [UserController::class, 'banUser']);
     Route::post('users/{user}/roles', [UserController::class, 'assignRole'])->middleware('admin');
     Route::delete('users/{user}/roles/{role}', [UserController::class, 'removeRole']);
+    Route::post('users/{user}/courses', [UserController::class, 'attachCourse']);
     Route::delete('users/{user}/courses/{course}', [UserController::class, 'removeCourse']);
+    Route::post('users/{user}/whatsapp-groups', [UserController::class, 'attachWhatsappGroup']);
     Route::delete('users/{user}/whatsapp-groups/{whatsapp_group}', [UserController::class, 'removeWhatsappGroup']);
 
     Route::get('settings', [SettingController::class, 'index']);

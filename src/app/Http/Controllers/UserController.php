@@ -546,6 +546,25 @@ class UserController extends Controller
     /**
      * @param  Request  $request
      * @param  User  $user
+     * @return JsonResponse
+     * @throws AuthorizationException
+     */
+    public function attachCourse(Request $request, User $user): JsonResponse
+    {
+        $this->authorize('update', User::class);
+
+        $request->validate(['course_id' => 'required|integer|min:1|exists:courses,id']);
+
+        $course = Course::find($request->course_id);
+
+        $user->courses()->attach($request->course_id, ['course_type_id' => $course->course_type_id]);
+
+        return response()->json(null, Response::HTTP_NO_CONTENT);
+    }
+
+    /**
+     * @param  Request  $request
+     * @param  User  $user
      * @param  Course  $course
      * @return JsonResponse
      * @throws AuthorizationException
@@ -555,6 +574,25 @@ class UserController extends Controller
         $this->authorize('update', User::class);
 
         $user->courses()->detach($course);
+
+        return response()->json(null, Response::HTTP_NO_CONTENT);
+    }
+
+    /**
+     * @param  Request  $request
+     * @param  User  $user
+     * @return JsonResponse
+     * @throws AuthorizationException
+     */
+    public function attachWhatsappGroup(Request $request, User $user): JsonResponse
+    {
+        $this->authorize('update', User::class);
+
+        $request->validate(['whatsapp_group_id' => 'required|integer|min:1|exists:whatsapp_groups,id']);
+
+        $whatsappGroup = WhatsappGroup::find($request->whatsapp_group_id);
+
+        $user->whatsappGroups()->attach($request->whatsapp_group_id, $whatsappGroup->only('course_id', 'course_type_id'));
 
         return response()->json(null, Response::HTTP_NO_CONTENT);
     }

@@ -426,7 +426,7 @@ class CourseTest extends BaseFeatureTest
     }
 
     /** @test */
-    public function it_should_get_course_teacher_students_matching_list_when_has_permission_by_filtering_and_as_paginated()
+    public function it_should_get_course_teacher_students_matching_list_when_has_permission_and_as_paginated()
     {
         $user = User::factory()->create();
         $user->givePermissionTo('courses.view');
@@ -453,6 +453,61 @@ class CourseTest extends BaseFeatureTest
                     ->whereStrict('proficiency_exam_passed', null)
                     ->count(),
             ]);
+        }
+    }
+
+    /** @test */
+    public function it_should_get_course_teacher_students_matching_list_when_has_permission_by_filtering_and_as_paginated()
+    {
+        $user = User::factory()->create();
+        $user->givePermissionTo('courses.view');
+        $course = Course::factory()->whatshafiz()->create();
+
+        $teacherStudents = TeacherStudent::factory()->count(9)->create(['course_id' => $course->id]);
+        $teacherIds = $teacherStudents->pluck('teacher_id')->unique();
+        $teacherIds = $teacherIds->shuffle();
+        $teacherIdForFilter = $teacherIds->pop();
+
+        $searchQuery = [
+            'filter' => [['value' => (string)$teacherIdForFilter]],
+        ];
+
+        $response = $this->actingAs($user)
+            ->json('GET', $this->uri . '/' . $course->id . '/teacher-students-matchings', $searchQuery);
+
+        $response->assertOk();
+
+        $response->assertJsonFragment([
+            'teacher_id' => $teacherIdForFilter,
+            'students_count' => $teacherStudents->where('teacher_id', $teacherIdForFilter)->count(),
+            'passed_students_count' => (string)$teacherStudents->where('teacher_id', $teacherIdForFilter)
+                ->whereStrict('proficiency_exam_passed', true)
+                ->count(),
+            'failed_students_count' => (string)$teacherStudents->where('teacher_id', $teacherIdForFilter)
+                ->whereStrict('proficiency_exam_passed', false)
+                ->count(),
+            'awaiting_students_count' => (string)$teacherStudents->where('teacher_id', $teacherIdForFilter)
+                ->whereStrict('proficiency_exam_passed', null)
+                ->count(),
+        ]);
+
+        foreach ($teacherIds as $teacherId) {
+            $response->assertJsonMissing(
+                [
+                    'teacher_id' => $teacherId,
+                    'students_count' => $teacherStudents->where('teacher_id', $teacherId)->count(),
+                    'passed_students_count' => (string)$teacherStudents->where('teacher_id', $teacherId)
+                        ->whereStrict('proficiency_exam_passed', true)
+                        ->count(),
+                    'failed_students_count' => (string)$teacherStudents->where('teacher_id', $teacherId)
+                        ->whereStrict('proficiency_exam_passed', false)
+                        ->count(),
+                    'awaiting_students_count' => (string)$teacherStudents->where('teacher_id', $teacherId)
+                        ->whereStrict('proficiency_exam_passed', null)
+                        ->count(),
+                ],
+                true
+            );
         }
     }
 
