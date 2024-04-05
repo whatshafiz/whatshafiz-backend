@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Course;
 use App\Models\User;
+use App\Models\WhatsappGroup;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -27,6 +28,7 @@ class UserCourseFactory extends Factory
             'is_teacher' => $this->faker->boolean,
             'applied_at' => $this->faker->datetime,
             'removed_at' => $this->faker->optional(0.2)->datetime,
+            'whatsapp_group_id' => WhatsappGroup::inRandomOrder()->value('id'),
         ];
     }
 
