@@ -28,7 +28,7 @@ Route::post('forgot-password', [UserController::class, 'forgotPassword']);
 Route::post('update-password', [UserController::class, 'updatePassword']);
 
 Route::get('regulations/paginate', [RegulationController::class, 'indexPaginate'])->middleware('auth:sanctum');
-Route::get('regulations/{regulation:slug}', [RegulationController::class, 'show']);
+Route::get('regulations/{regulation}', [RegulationController::class, 'show']);
 Route::get('courses/available', [CourseController::class, 'indexAvailableCourses']);
 Route::get('comments/approved/{courseType:slug}', [CommentController::class, 'indexApprovedComments']);
 
@@ -59,7 +59,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('profile/courses', [UserController::class, 'getUserCourses']);
 
     Route::get('regulations', [RegulationController::class, 'index']);
-    Route::post('regulations/{regulation:slug}', [RegulationController::class, 'update']);
+    Route::post('regulations', [RegulationController::class, 'store']);
+    Route::delete('regulations/{regulation}', [RegulationController::class, 'destroy']);
+    Route::put('regulations/{regulation}', [RegulationController::class, 'update']);
 
     Route::get('countries/paginate', [CountryController::class, 'indexPaginate']);
     Route::get('cities/paginate', [CountryController::class, 'indexCitiesPaginate']);

@@ -30,7 +30,7 @@ class CourseTypeController extends Controller
                 'userCourses as active_users_count' => fn($query) => $query->whereNull('removed_at'),
                 'comments',
             ])
-            ->with('parent')
+            ->with('parent', 'regulation:id,name,course_type_id')
             ->when(!empty($searchKey), function ($query) use ($searchKey) {
                 return $query->where('id', $searchKey)
                     ->orWhere('name', 'LIKE', '%' . $searchKey . '%')
@@ -50,7 +50,7 @@ class CourseTypeController extends Controller
      */
     public function index(): JsonResponse
     {
-        $courseTypes = CourseType::get();
+        $courseTypes = CourseType::with('regulation:id,name,course_type_id')->get();
 
         return response()->json(compact('courseTypes'));
     }

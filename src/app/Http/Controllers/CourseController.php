@@ -108,7 +108,7 @@ class CourseController extends Controller
         $validatedCourseData = $this->validate(
             $request,
             [
-                'course_type_id' => 'required|integer|min:1|exists:course_types,id|exists:course_types,id',
+                'course_type_id' => 'required|integer|min:1|exists:course_types,id',
                 'name' => 'required|string|min:3|max:100|unique:courses',
                 'whatsapp_channel_join_url' => 'nullable|url',
                 'is_active' => 'required|boolean',
@@ -192,7 +192,7 @@ class CourseController extends Controller
         $validatedCourseData = $this->validate(
             $request,
             [
-                'course_type_id' => 'required|integer|min:1|exists:course_types,id|exists:course_types,id',
+                'course_type_id' => 'required|integer|min:1|exists:course_types,id',
                 'name' => 'required|string|min:3|max:100|unique:courses,name,' . $course->id,
                 'whatsapp_channel_join_url' => 'nullable|url',
                 'is_active' => 'required|boolean',

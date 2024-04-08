@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('regulations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('course_type_id')->nullable()->constrained('course_types');
-            $table->string('name', 20);
-            $table->string('slug', 20);
+            $table->string('name', 100);
+            $table->string('slug', 100);
             $table->longText('summary')->nullable();
             $table->longText('text');
             $table->timestamps();
