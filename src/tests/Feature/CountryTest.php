@@ -346,7 +346,7 @@ class CountryTest extends BaseFeatureTest
         $user = User::factory()->create();
         $user->givePermissionTo('countries.delete');
 
-        $city = City::whereDoesntHave('users')->inRandomOrder()->first();
+        $city = City::factory()->create();
 
         $response = $this->actingAs($user)->json('DELETE', self::BASE_URI . '/cities/' . $city->id);
 
