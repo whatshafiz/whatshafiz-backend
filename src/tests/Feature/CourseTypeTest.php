@@ -49,7 +49,7 @@ class CourseTypeTest extends BaseFeatureTest
     }
 
     /** @test */
-    public function user_can_list_course_types_when_has_admin_role_as_paginated_by_filtering()
+    public function it_should_can_list_course_types_when_has_admin_role_as_paginated_by_filtering()
     {
         $user = User::factory()->create();
         $user->assignRole('Admin');

@@ -23,106 +23,45 @@ class RegulationTest extends BaseFeatureTest
     }
 
     /** @test */
-    public function it_should_get_hafizol_regulations_from_cache_when_cached_before()
+    public function it_should_can_list_regulations_as_paginated_by_filtering()
     {
-        $hafizolRegulation = Regulation::where('slug', 'hafizol')->first();
+        $user = User::factory()->create();
 
-        Cache::shouldReceive('has')->with(Regulation::BASE_CACHE_KEY . 'hafizol')->once()->andReturn(true);
-        Cache::shouldReceive('get')->with(Regulation::BASE_CACHE_KEY . 'hafizol')->once()->andReturn($hafizolRegulation);
+        $searchRegulation = Regulation::inRandomOrder()->first();
 
-        $response = $this->json('GET', $this->uri . '/hafizol');
+        $searchQuery = [
+            'filter' => [['value' => $searchRegulation->name]],
+        ];
+
+        $response = $this->actingAs($user)->json('GET', $this->uri . '/paginate', $searchQuery);
 
         $response->assertOk()
-            ->assertJsonFragment([
-                'name' => 'HafızOl',
-                'slug' => 'hafizol',
-                'summary' => $hafizolRegulation->summary,
-                'text' => $hafizolRegulation->text,
-            ]);
+            ->assertJsonFragment($searchRegulation->toArray());
     }
 
     /** @test */
-    public function it_should_get_hafizol_regulations_from_database_and_put_it_to_cache_when_did_not_cached_before()
+    public function it_should_get_regulation_from_cache_when_cached_before()
     {
-        $hafizolRegulation = Regulation::where('slug', 'hafizol')->first();
+        $regulation = Regulation::inRandomOrder()->first();
 
-        Cache::shouldReceive('has')->with(Regulation::BASE_CACHE_KEY . 'hafizol')->once()->andReturn(false);
-        Cache::shouldReceive('get')->with(Regulation::BASE_CACHE_KEY . 'hafizol')->never();
-        Cache::shouldReceive('put')->once();
+        Cache::shouldReceive('has')->with(Regulation::BASE_CACHE_KEY . $regulation->id)->once()->andReturn(true);
+        Cache::shouldReceive('get')->with(Regulation::BASE_CACHE_KEY . $regulation->id)->once()->andReturn($regulation);
 
-        $response = $this->json('GET', $this->uri . '/hafizol');
+        $response = $this->json('GET', $this->uri . '/' . $regulation->id);
 
         $response->assertOk()
-            ->assertJsonFragment([
-                'name' => 'HafızOl',
-                'slug' => 'hafizol',
-                'summary' => $hafizolRegulation->summary,
-                'text' => $hafizolRegulation->text,
-            ]);
+            ->assertJsonFragment($regulation->only('name', 'slug', 'summary', 'text'));
     }
 
     /** @test */
-    public function it_should_get_hafizol_regulations()
+    public function it_should_get_regulation_details()
     {
-        $hafizolRegulation = Regulation::where('slug', 'hafizol')->first();
+        $regulation = Regulation::inRandomOrder()->first();
 
-        $response = $this->json('GET', $this->uri . '/hafizol');
+        $response = $this->json('GET', $this->uri . '/' . $regulation->id);
 
         $response->assertOk()
-            ->assertJsonFragment([
-                'name' => 'HafızOl',
-                'slug' => 'hafizol',
-                'summary' => $hafizolRegulation->summary,
-                'text' => $hafizolRegulation->text,
-            ]);
-    }
-
-    /** @test */
-    public function it_should_get_hafizkal_regulations()
-    {
-        $hafizkalRegulation = Regulation::where('slug', 'hafizkal')->first();
-
-        $response = $this->json('GET', $this->uri . '/hafizkal');
-
-        $response->assertOk()
-            ->assertJsonFragment([
-                'name' => 'HafızKal',
-                'slug' => 'hafizkal',
-                'summary' => $hafizkalRegulation->summary,
-                'text' => $hafizkalRegulation->text,
-            ]);
-    }
-
-    /** @test */
-    public function it_should_get_whatsenglish_regulations()
-    {
-        $whatsenglishRegulation = Regulation::where('slug', 'whatsenglish')->first();
-
-        $response = $this->json('GET', $this->uri . '/whatsenglish');
-
-        $response->assertOk()
-            ->assertJsonFragment([
-                'name' => 'WhatsEnglish',
-                'slug' => 'whatsenglish',
-                'summary' => $whatsenglishRegulation->summary,
-                'text' => $whatsenglishRegulation->text,
-            ]);
-    }
-
-    /** @test */
-    public function it_should_get_whatsarapp_regulations()
-    {
-        $whatsarappRegulation = Regulation::where('slug', 'whatsarapp')->first();
-
-        $response = $this->json('GET', $this->uri . '/whatsarapp');
-
-        $response->assertOk()
-            ->assertJsonFragment([
-                'name' => 'WhatsArapp',
-                'slug' => 'whatsarapp',
-                'summary' => $whatsarappRegulation->summary,
-                'text' => $whatsarappRegulation->text,
-            ]);
+            ->assertJsonFragment($regulation->only('name', 'slug', 'summary', 'text'));
     }
 
     /** @test */
@@ -133,11 +72,11 @@ class RegulationTest extends BaseFeatureTest
 
         $response = $this->actingAs($user)->json('GET', $this->uri);
 
-        $response->assertOk()
-            ->assertJsonFragment(['name' => 'HafızKal', 'slug' => 'hafizkal'])
-            ->assertJsonFragment(['name' => 'HafızOl', 'slug' => 'hafizol'])
-            ->assertJsonFragment(['name' => 'WhatsEnglish', 'slug' => 'whatsenglish'])
-            ->assertJsonFragment(['name' => 'WhatsArapp', 'slug' => 'whatsarapp']);
+        $response->assertOk();
+
+        foreach (Regulation::get() as $regulation) {
+            $response->assertJsonFragment($regulation->toArray());
+        }
     }
 
     /** @test */

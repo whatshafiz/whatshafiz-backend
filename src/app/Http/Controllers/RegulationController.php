@@ -10,6 +10,31 @@ use Illuminate\Support\Facades\Cache;
 class RegulationController extends Controller
 {
     /**
+     * Display a listing of the resource.
+     *
+     * @param Request $request
+     * @return JsonResponse
+     * @throws AuthorizationException
+     * @throws ValidationException
+     */
+    public function indexPaginate(Request $request): JsonResponse
+    {
+        $searchKey = $this->getTabulatorSearchKey($request);
+
+        $regulations = Regulation::with('courseType:id,name')
+            ->when(!empty($searchKey), function ($query) use ($searchKey) {
+                return $query->where('id', $searchKey)
+                    ->orWhere('name', 'LIKE', '%' . $searchKey . '%')
+                    ->orWhere('slug', 'LIKE', '%' . $searchKey . '%');
+            })
+            ->orderByTabulator($request)
+            ->paginate($request->size)
+            ->appends($this->filters);
+
+        return response()->json($regulations->toArray());
+    }
+
+    /**
      * @return JsonResponse
      */
     public function index(): JsonResponse
@@ -18,19 +43,19 @@ class RegulationController extends Controller
     }
 
     /**
-     * @param  string  $regulationSlug
+     * @param  int  $regulationId
      * @return JsonResponse
      */
-    public function show(string $regulationSlug): JsonResponse
+    public function show(int $regulationId): JsonResponse
     {
-        if (Cache::has(Regulation::BASE_CACHE_KEY . $regulationSlug)) {
-            $regulation = Cache::get(Regulation::BASE_CACHE_KEY . $regulationSlug);
+        if (Cache::has(Regulation::BASE_CACHE_KEY . $regulationId)) {
+            $regulation = Cache::get(Regulation::BASE_CACHE_KEY . $regulationId);
         } else {
-            $regulation = Regulation::where('slug', $regulationSlug)
+            $regulation = Regulation::where('id', $regulationId)
                 ->select('name', 'slug', 'text', 'summary')
                 ->first()
                 ->toArray();
-            Cache::put(Regulation::BASE_CACHE_KEY . $regulationSlug, $regulation);
+            Cache::put(Regulation::BASE_CACHE_KEY . $regulationId, $regulation);
         }
 
         return response()->json($regulation);

@@ -23,7 +23,7 @@ class CourseTypeController extends Controller
     {
         $searchKey = $this->getTabulatorSearchKey($request);
 
-        $questions = CourseType::withCount([
+        $courseTypes = CourseType::withCount([
                 'courses',
                 'whatsappGroups',
                 'userCourses as total_users_count',
@@ -40,7 +40,7 @@ class CourseTypeController extends Controller
             ->paginate($request->size)
             ->appends($this->filters);
 
-        return response()->json($questions->toArray());
+        return response()->json($courseTypes->toArray());
     }
 
     /**
