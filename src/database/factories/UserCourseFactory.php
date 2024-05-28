@@ -33,12 +33,13 @@ class UserCourseFactory extends Factory
     }
 
     /**
+     * @param string|null $gender
      * @return static
      */
-    public function withNewUser()
+    public function withNewUser($gender = null)
     {
         return $this->state(fn (array $attributes) => [
-            'user_id' => User::factory()->completed()->create()->id,
+            'user_id' => User::factory()->completed()->create(($gender ? ['gender' => $gender] : []))->id,
         ]);
     }
 }

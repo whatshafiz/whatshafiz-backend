@@ -4,7 +4,7 @@ namespace App\Jobs;
 
 use App\Models\Course;
 use App\Models\User;
-use App\Models\WhatsappGroupUser;
+use App\Models\UserCourse;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Database\Eloquent\Collection;
@@ -56,7 +56,7 @@ class WhatshafizCourseWhatsappGroupsOrganizer implements ShouldQueue
                 $teacher = $this->findTeacherAndStudents($gender);
 
                 if ($teacher) {
-                    WhatsappGroupUser::create([
+                    UserCourse::create([
                         'whatsapp_group_id' => $whatsappGroup->id,
                         'course_type_id' => $whatsappGroup->course_type_id,
                         'course_id' => $whatsappGroup->course_id,
@@ -65,7 +65,7 @@ class WhatshafizCourseWhatsappGroupsOrganizer implements ShouldQueue
                     ]);
 
                     foreach ($teacher->students as $student) {
-                        WhatsappGroupUser::create([
+                        UserCourse::create([
                             'whatsapp_group_id' => $whatsappGroup->id,
                             'course_type_id' => $whatsappGroup->course_type_id,
                             'course_id' => $whatsappGroup->course_id,
