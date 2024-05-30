@@ -17,14 +17,14 @@ class WhatshafizCourseWhatsappGroupsOrganizerTest extends BaseFeatureTest
     {
         $course = Course::factory()->whatshafiz()->create();
         WhatsappGroup::factory()
-            ->count(1, 2)
+            ->count(3, 5)
             ->create([
                 'course_type_id' => CourseType::where('slug', 'whatshafiz')->value('id'),
                 'course_id' => $course->id,
                 'gender' => 'male',
             ]);
         WhatsappGroup::factory()
-            ->count(1, 2)
+            ->count(3, 5)
             ->create([
                 'course_type_id' => CourseType::where('slug', 'whatshafiz')->value('id'),
                 'course_id' => $course->id,
@@ -32,21 +32,20 @@ class WhatshafizCourseWhatsappGroupsOrganizerTest extends BaseFeatureTest
             ]);
         $userCourseTeachers = UserCourse::factory()
             ->withNewUser()
-            ->count(rand(2, 5))
+            ->count(rand(5, 15))
             ->create([
                 'course_type_id' => CourseType::where('slug', 'whatshafiz')->value('id'),
                 'course_id' => $course->id,
                 'is_teacher' => true,
+                'whatsapp_group_id' => null,
             ]);
 
         foreach ($userCourseTeachers as $userCourseTeacher) {
             $userCourseTeacherStudents = UserCourse::factory()
                 ->withNewUser($userCourseTeacher->user->gender)
-                ->count(rand(1, 3))
+                ->count(rand(7, 11))
                 ->create([
                     'course_type_id' => CourseType::where('slug', 'whatshafiz')->value('id'),
-                    'course_id' => $course->id,
-                    'is_teacher' => false,
                     'course_id' => $course->id,
                     'is_teacher' => false,
                     'whatsapp_group_id' => null,
@@ -73,6 +72,7 @@ class WhatshafizCourseWhatsappGroupsOrganizerTest extends BaseFeatureTest
 
             $teacherStudents = TeacherStudent::where('course_id', $course->id)
                 ->where('teacher_id', $teacherId)
+                ->where('is_active', true)
                 ->where('proficiency_exam_passed', true)
                 ->get();
 
@@ -80,9 +80,11 @@ class WhatshafizCourseWhatsappGroupsOrganizerTest extends BaseFeatureTest
                 $this->assertDatabaseHas(
                     'user_course',
                     [
+                        'course_type_id' => $course->course_type_id,
                         'course_id' => $course->id,
                         'user_id' => $teacherStudent->student_id,
-                        'whatsapp_group_id' => $whatsappGroupId
+                        'whatsapp_group_id' => $whatsappGroupId,
+                        'is_teacher' => false,
                     ]
                 );
             }
@@ -93,11 +95,12 @@ class WhatshafizCourseWhatsappGroupsOrganizerTest extends BaseFeatureTest
                 ->get();
 
             foreach ($teacherDeclinedStudents as $teacherDeclinedStudent) {
-                $this->assertDatabaseMissing(
+                $this->assertDatabaseHas(
                     'user_course',
                     [
                         'course_id' => $course->id,
                         'user_id' => $teacherDeclinedStudent->student_id,
+                        'whatsapp_group_id' => null,
                     ]
                 );
             }

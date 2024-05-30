@@ -56,22 +56,30 @@ class WhatshafizCourseWhatsappGroupsOrganizer implements ShouldQueue
                 $teacher = $this->findTeacherAndStudents($gender);
 
                 if ($teacher) {
-                    UserCourse::create([
-                        'whatsapp_group_id' => $whatsappGroup->id,
-                        'course_type_id' => $whatsappGroup->course_type_id,
-                        'course_id' => $whatsappGroup->course_id,
-                        'user_id' => $teacher->id,
-                        'is_teacher' => true,
-                    ]);
-
-                    foreach ($teacher->students as $student) {
-                        UserCourse::create([
-                            'whatsapp_group_id' => $whatsappGroup->id,
+                    UserCourse::updateOrCreate(
+                        [
                             'course_type_id' => $whatsappGroup->course_type_id,
                             'course_id' => $whatsappGroup->course_id,
-                            'user_id' => $student->student_id,
-                            'is_teacher' => false,
-                        ]);
+                            'user_id' => $teacher->id,
+                        ],
+                        [
+                            'is_teacher' => true,
+                            'whatsapp_group_id' => $whatsappGroup->id,
+                        ]
+                    );
+
+                    foreach ($teacher->students as $student) {
+                        UserCourse::updateOrCreate(
+                            [
+                                'course_type_id' => $whatsappGroup->course_type_id,
+                                'course_id' => $whatsappGroup->course_id,
+                                'user_id' => $student->student_id,
+                            ],
+                            [
+                                'is_teacher' => false,
+                                'whatsapp_group_id' => $whatsappGroup->id,
+                            ]
+                        );
                     }
                 }
             }
