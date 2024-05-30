@@ -19,7 +19,7 @@ jobs:
 
       - name: Docker Build & Composer Install
         run: |
-          docker volume create whatshafiz-mariadb-data
+          docker volume create whatshafiz-mysql-data
           cp ./src/.env.example ./src/.env
           docker-compose -f docker-compose-dev.yml up -d
           docker exec -i whatshafiz_php-fpm composer install

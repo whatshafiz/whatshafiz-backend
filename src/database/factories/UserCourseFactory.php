@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Course;
 use App\Models\User;
+use App\Models\WhatsappGroup;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,22 +22,24 @@ class UserCourseFactory extends Factory
         $course = Course::inRandomOrder()->first();
 
         return [
-            'type' => $course->type,
-            'user_id' => User::inRandomOrder()->value('id'),
+            'course_type_id' => $course->course_type_id,
+            'user_id' => User::factory()->create()->id,
             'course_id' => $course->id,
             'is_teacher' => $this->faker->boolean,
             'applied_at' => $this->faker->datetime,
             'removed_at' => $this->faker->optional(0.2)->datetime,
+            'whatsapp_group_id' => WhatsappGroup::inRandomOrder()->value('id'),
         ];
     }
 
     /**
+     * @param string|null $gender
      * @return static
      */
-    public function withNewUser()
+    public function withNewUser($gender = null)
     {
         return $this->state(fn (array $attributes) => [
-            'user_id' => User::factory()->completed()->create()->id,
+            'user_id' => User::factory()->completed()->create(($gender ? ['gender' => $gender] : []))->id,
         ]);
     }
 }

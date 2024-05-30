@@ -16,7 +16,7 @@ Uygulamayı ilk kez kendi bilgisayarınıza kurmak için aşağıdaki komutu ça
 sh ./setup.sh
 ```
 
-Bu komut ile kurulum aşamasında `php-fpm, nginx, mariadb, redis` containerları oluşmakta.  
+Bu komut ile kurulum aşamasında `php-fpm, nginx, mysql, redis` containerları oluşmakta.  
 Kurulum tamamlandıktan sonra `http://localhost:8080` adresinden uygulamaya erişebilirsiniz.
 
 Sonraki kullanımlarda uygulamayı başlatmak için 

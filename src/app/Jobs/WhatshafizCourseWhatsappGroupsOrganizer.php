@@ -4,7 +4,7 @@ namespace App\Jobs;
 
 use App\Models\Course;
 use App\Models\User;
-use App\Models\WhatsappGroupUser;
+use App\Models\UserCourse;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Database\Eloquent\Collection;
@@ -56,20 +56,30 @@ class WhatshafizCourseWhatsappGroupsOrganizer implements ShouldQueue
                 $teacher = $this->findTeacherAndStudents($gender);
 
                 if ($teacher) {
-                    WhatsappGroupUser::create([
-                        'whatsapp_group_id' => $whatsappGroup->id,
-                        'course_id' => $whatsappGroup->course_id,
-                        'user_id' => $teacher->id,
-                        'role_type' => 'hafizkal',
-                    ]);
+                    UserCourse::updateOrCreate(
+                        [
+                            'course_type_id' => $whatsappGroup->course_type_id,
+                            'course_id' => $whatsappGroup->course_id,
+                            'user_id' => $teacher->id,
+                        ],
+                        [
+                            'is_teacher' => true,
+                            'whatsapp_group_id' => $whatsappGroup->id,
+                        ]
+                    );
 
                     foreach ($teacher->students as $student) {
-                        WhatsappGroupUser::create([
-                            'whatsapp_group_id' => $whatsappGroup->id,
-                            'course_id' => $whatsappGroup->course_id,
-                            'user_id' => $student->student_id,
-                            'role_type' => 'hafizol',
-                        ]);
+                        UserCourse::updateOrCreate(
+                            [
+                                'course_type_id' => $whatsappGroup->course_type_id,
+                                'course_id' => $whatsappGroup->course_id,
+                                'user_id' => $student->student_id,
+                            ],
+                            [
+                                'is_teacher' => false,
+                                'whatsapp_group_id' => $whatsappGroup->id,
+                            ]
+                        );
                     }
                 }
             }

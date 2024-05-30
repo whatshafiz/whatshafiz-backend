@@ -5,6 +5,8 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\CourseTypeController;
+use App\Http\Controllers\EducationLevelController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\QuranQuestionController;
 use App\Http\Controllers\RegulationController;
@@ -25,10 +27,10 @@ Route::post('login', [UserController::class, 'login'])->name('login');
 Route::post('forgot-password', [UserController::class, 'forgotPassword']);
 Route::post('update-password', [UserController::class, 'updatePassword']);
 
-Route::get('regulations/{regulation:slug}', [RegulationController::class, 'show']);
+Route::get('regulations/paginate', [RegulationController::class, 'indexPaginate'])->middleware('auth:sanctum');
+Route::get('regulations/{regulation}', [RegulationController::class, 'show']);
 Route::get('courses/available', [CourseController::class, 'indexAvailableCourses']);
-Route::get('comments/{type}', [CommentController::class, 'indexApprovedComments'])
-    ->whereIn('type', ['whatshafiz', 'whatsenglish', 'whatsarapp']);
+Route::get('comments/approved/{courseType:slug}', [CommentController::class, 'indexApprovedComments']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('users', [UserController::class, 'index']);
@@ -36,13 +38,17 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('users/{user}/ban', [UserController::class, 'banUser']);
     Route::post('users/{user}/roles', [UserController::class, 'assignRole'])->middleware('admin');
     Route::delete('users/{user}/roles/{role}', [UserController::class, 'removeRole']);
+    Route::post('users/{user}/courses', [UserController::class, 'attachCourse']);
     Route::delete('users/{user}/courses/{course}', [UserController::class, 'removeCourse']);
+    Route::post('users/{user}/whatsapp-groups', [UserController::class, 'attachWhatsappGroup']);
     Route::delete('users/{user}/whatsapp-groups/{whatsapp_group}', [UserController::class, 'removeWhatsappGroup']);
 
     Route::get('settings', [SettingController::class, 'index']);
     Route::get('settings/paginate', [SettingController::class, 'indexPaginate']);
     Route::get('settings/{setting}', [SettingController::class, 'show']);
     Route::put('settings/{setting}', [SettingController::class, 'update']);
+
+    Route::get('education-levels', [EducationLevelController::class, 'index']);
 
     Route::post('register/verification-code/send', [UserController::class, 'sendVerificationCode']);
     Route::post('register/verification-code/verify', [UserController::class, 'verifyVerificationCode']);
@@ -53,7 +59,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('profile/courses', [UserController::class, 'getUserCourses']);
 
     Route::get('regulations', [RegulationController::class, 'index']);
-    Route::post('regulations/{regulation:slug}', [RegulationController::class, 'update']);
+    Route::post('regulations', [RegulationController::class, 'store']);
+    Route::delete('regulations/{regulation}', [RegulationController::class, 'destroy']);
+    Route::put('regulations/{regulation}', [RegulationController::class, 'update']);
 
     Route::get('countries/paginate', [CountryController::class, 'indexPaginate']);
     Route::get('cities/paginate', [CountryController::class, 'indexCitiesPaginate']);
@@ -124,10 +132,15 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('my/teachers', [TeacherStudentController::class, 'myTeachers']);
     Route::put('my/students/{teacherStudent}', [TeacherStudentController::class, 'updateStudentStatus']);
     Route::get('my/students', [TeacherStudentController::class, 'myStudents']);
+
+    Route::get('course-types/paginate', [CourseTypeController::class, 'indexPaginate']);
+    Route::get('course-types', [CourseTypeController::class, 'index']);
 });
 
 Route::middleware(['auth:sanctum', 'admin'])->group(function () {
     Route::get('permissions', [PermissionController::class, 'index']);
+
+    Route::apiResource('course-types', CourseTypeController::class);
 
     Route::get('whatsapp-messenger-numbers', [WhatsappMessengerNumberController::class, 'index']);
     Route::post('whatsapp-messenger-numbers', [WhatsappMessengerNumberController::class, 'store']);

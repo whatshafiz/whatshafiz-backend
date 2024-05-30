@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -79,6 +80,14 @@ class Course extends BaseModel
     }
 
     /**
+     * @return BelongsTo
+     */
+    public function courseType(): BelongsTo
+    {
+        return $this->belongsTo(CourseType::class);
+    }
+
+    /**
      * @return BelongsToMany
      */
     public function users(): BelongsToMany
@@ -107,7 +116,7 @@ class Course extends BaseModel
      */
     public function whatsappGroupUsers(): HasMany
     {
-        return $this->hasMany(WhatsappGroupUser::class);
+        return $this->hasMany(WhatsappGroupUser::class)->where('whatsapp_group_id', '!=', null);
     }
 
     /**
