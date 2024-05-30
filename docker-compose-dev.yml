@@ -16,17 +16,17 @@ services:
        - DB_USERNAME=${DB_ROOT_USERNAME}
        - DB_PASSWORD=${DB_ROOT_PASSWORD}
 
-  whatshafiz-mariadb:
-    image: mariadb:10.6
-    container_name: whatshafiz_mariadb
-    hostname: whatshafiz_mariadb
+  whatshafiz_mysql:
+    image: "${DOCKER_MYSQL:-mysql:8.0.36}"
+    container_name: whatshafiz_mysql
     ports:
       - "${FORWARD_DB_PORT:-3306}:3306"
     volumes:
-      - whatshafiz-mariadb-data:/var/lib/mariadb
+      - whatshafiz-mysql-data:/var/lib/mysql
     environment:
-       - MARIADB_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
-       - MARIADB_DATABASE=${DB_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_PASSWORD=${DB_ROOT_PASSWORD}
     networks:
       - whatshafiz
 
@@ -53,7 +53,7 @@ services:
       - whatshafiz
 
 volumes:
-  whatshafiz-mariadb-data:
+  whatshafiz-mysql-data:
     external: true
 
 networks:

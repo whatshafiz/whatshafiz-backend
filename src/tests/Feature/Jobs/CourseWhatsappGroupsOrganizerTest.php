@@ -5,6 +5,7 @@ namespace Tests\Feature\Jobs;
 use App\Jobs\CourseWhatsappGroupsOrganizer;
 use App\Models\City;
 use App\Models\Course;
+use App\Models\CourseType;
 use App\Models\University;
 use App\Models\User;
 use App\Models\WhatsappGroup;
@@ -16,13 +17,18 @@ class CourseWhatsappGroupsOrganizerTest extends BaseFeatureTest
     /** @test */
     public function it_should_assign_users_to_whatsapp_groups_by_grouping_users_their_closest_attributes()
     {
-        $course = Course::factory()->create(['type' => $this->faker->randomElement(['whatsenglish', 'whatsarapp'])]);
+        $course = Course::factory()
+            ->create([
+                'course_type_id' => CourseType::whereIn('name', ['whatsenglish', 'whatsarapp'])
+                    ->inRandomOrder()
+                    ->value('id'),
+            ]);
         $maleWhatsappGroups = WhatsappGroup::factory()
             ->count(2, 5)
-            ->create(['type' => $course->type, 'gender' => 'male', 'course_id' => $course->id]);
+            ->create(['course_type_id' => $course->course_type_id, 'gender' => 'male', 'course_id' => $course->id]);
         $femaleWhatsappGroups = WhatsappGroup::factory()
             ->count(2, 5)
-            ->create(['type' => $course->type, 'gender' => 'female', 'course_id' => $course->id]);
+            ->create(['course_type_id' => $course->course_type_id, 'gender' => 'female', 'course_id' => $course->id]);
         $whatsappGroupCount = $maleWhatsappGroups->count() + $femaleWhatsappGroups->count();
         $userCountPerWhatsappGroup = 10;
         $city = City::inRandomOrder()->first();
@@ -63,46 +69,46 @@ class CourseWhatsappGroupsOrganizerTest extends BaseFeatureTest
                 'university_id' => University::inRandomOrder()->value('id'),
             ]);
         $otherUsers = User::factory()->completed()->count($whatsappGroupCount * $userCountPerWhatsappGroup)->create();
-        $course->users()->attach($maleSimilarUsers, ['type' => $course->type]);
-        $course->users()->attach($maleSimilarUsersSecondGroup, ['type' => $course->type]);
-        $course->users()->attach($femaleSimilarUsers, ['type' => $course->type]);
-        $course->users()->attach($femaleSimilarUsersSecondGroup, ['type' => $course->type]);
-        $course->users()->attach($otherUsers, ['type' => $course->type]);
+        $course->users()->attach($maleSimilarUsers, ['course_type_id' => $course->course_type_id]);
+        $course->users()->attach($maleSimilarUsersSecondGroup, ['course_type_id' => $course->course_type_id]);
+        $course->users()->attach($femaleSimilarUsers, ['course_type_id' => $course->course_type_id]);
+        $course->users()->attach($femaleSimilarUsersSecondGroup, ['course_type_id' => $course->course_type_id]);
+        $course->users()->attach($otherUsers, ['course_type_id' => $course->course_type_id]);
 
         $instance = resolve(CourseWhatsappGroupsOrganizer::class, ['course' => $course]);
         app()->call([$instance, 'handle']);
 
         foreach ($maleSimilarUsers as $maleSimilarUser) {
             $this->assertDatabaseHas(
-                'whatsapp_group_users',
+                'user_course',
                 ['course_id' => $course->id, 'user_id' => $maleSimilarUser->id]
             );
         }
 
         foreach ($femaleSimilarUsers as $femaleSimilarUser) {
             $this->assertDatabaseHas(
-                'whatsapp_group_users',
+                'user_course',
                 ['course_id' => $course->id, 'user_id' => $femaleSimilarUser->id]
             );
         }
 
         foreach ($maleSimilarUsersSecondGroup as $maleSimilarUser) {
             $this->assertDatabaseHas(
-                'whatsapp_group_users',
+                'user_course',
                 ['course_id' => $course->id, 'user_id' => $maleSimilarUser->id]
             );
         }
 
         foreach ($femaleSimilarUsersSecondGroup as $femaleSimilarUser) {
             $this->assertDatabaseHas(
-                'whatsapp_group_users',
+                'user_course',
                 ['course_id' => $course->id, 'user_id' => $femaleSimilarUser->id]
             );
         }
 
         foreach ($otherUsers as $otherUser) {
             $this->assertDatabaseHas(
-                'whatsapp_group_users',
+                'user_course',
                 ['course_id' => $course->id, 'user_id' => $otherUser->id]
             );
         }
@@ -151,13 +157,18 @@ class CourseWhatsappGroupsOrganizerTest extends BaseFeatureTest
     /** @test */
     public function it_should_assign_users_to_whatsapp_groups_by_grouping_users_their_similarity_attributes_for_level_2_and_3()
     {
-        $course = Course::factory()->create(['type' => $this->faker->randomElement(['whatsenglish', 'whatsarapp'])]);
+        $course = Course::factory()
+            ->create([
+                'course_type_id' => CourseType::whereIn('name', ['whatsenglish', 'whatsarapp'])
+                    ->inRandomOrder()
+                    ->value('id'),
+            ]);
         $maleWhatsappGroups = WhatsappGroup::factory()
             ->count(2, 5)
-            ->create(['type' => $course->type, 'gender' => 'male', 'course_id' => $course->id]);
+            ->create(['course_type_id' => $course->course_type_id, 'gender' => 'male', 'course_id' => $course->id]);
         $femaleWhatsappGroups = WhatsappGroup::factory()
             ->count(2, 5)
-            ->create(['type' => $course->type, 'gender' => 'female', 'course_id' => $course->id]);
+            ->create(['course_type_id' => $course->course_type_id, 'gender' => 'female', 'course_id' => $course->id]);
         $whatsappGroupCount = $maleWhatsappGroups->count() + $femaleWhatsappGroups->count();
         $userCountPerWhatsappGroup = 10;
         $city = City::inRandomOrder()->first();
@@ -182,30 +193,30 @@ class CourseWhatsappGroupsOrganizerTest extends BaseFeatureTest
                 'university_id' => University::inRandomOrder()->value('id'),
             ]);
         $otherUsers = User::factory()->completed()->count($whatsappGroupCount * $userCountPerWhatsappGroup)->create();
-        $course->users()->attach($maleSimilarUsers, ['type' => $course->type]);
-        $course->users()->attach($femaleSimilarUsers, ['type' => $course->type]);
-        $course->users()->attach($otherUsers, ['type' => $course->type]);
+        $course->users()->attach($maleSimilarUsers, ['course_type_id' => $course->course_type_id]);
+        $course->users()->attach($femaleSimilarUsers, ['course_type_id' => $course->course_type_id]);
+        $course->users()->attach($otherUsers, ['course_type_id' => $course->course_type_id]);
 
         $instance = resolve(CourseWhatsappGroupsOrganizer::class, ['course' => $course, 'level' => 2]);
         app()->call([$instance, 'handle']);
 
         foreach ($maleSimilarUsers as $maleSimilarUser) {
             $this->assertDatabaseHas(
-                'whatsapp_group_users',
+                'user_course',
                 ['course_id' => $course->id, 'user_id' => $maleSimilarUser->id]
             );
         }
 
         foreach ($femaleSimilarUsers as $femaleSimilarUser) {
             $this->assertDatabaseHas(
-                'whatsapp_group_users',
+                'user_course',
                 ['course_id' => $course->id, 'user_id' => $femaleSimilarUser->id]
             );
         }
 
         foreach ($otherUsers as $otherUser) {
             $this->assertDatabaseHas(
-                'whatsapp_group_users',
+                'user_course',
                 ['course_id' => $course->id, 'user_id' => $otherUser->id]
             );
         }
@@ -234,13 +245,18 @@ class CourseWhatsappGroupsOrganizerTest extends BaseFeatureTest
     /** @test */
     public function it_should_assign_users_to_whatsapp_groups_by_grouping_users_their_similarity_attributes_for_level_4_and_5()
     {
-        $course = Course::factory()->create(['type' => $this->faker->randomElement(['whatsenglish', 'whatsarapp'])]);
+        $course = Course::factory()
+            ->create([
+                'course_type_id' => CourseType::whereIn('name', ['whatsenglish', 'whatsarapp'])
+                    ->inRandomOrder()
+                    ->value('id'),
+            ]);
         $maleWhatsappGroups = WhatsappGroup::factory()
             ->count(2, 5)
-            ->create(['type' => $course->type, 'gender' => 'male', 'course_id' => $course->id]);
+            ->create(['course_type_id' => $course->course_type_id, 'gender' => 'male', 'course_id' => $course->id]);
         $femaleWhatsappGroups = WhatsappGroup::factory()
             ->count(2, 5)
-            ->create(['type' => $course->type, 'gender' => 'female', 'course_id' => $course->id]);
+            ->create(['course_type_id' => $course->course_type_id, 'gender' => 'female', 'course_id' => $course->id]);
         $whatsappGroupCount = $maleWhatsappGroups->count() + $femaleWhatsappGroups->count();
         $userCountPerWhatsappGroup = 10;
         $city = City::inRandomOrder()->first();
@@ -264,30 +280,30 @@ class CourseWhatsappGroupsOrganizerTest extends BaseFeatureTest
                 'education_level' => $this->faker->randomElement(['Lise', 'Lisans', 'Ön Lisans']) . ' Mezunu',
             ]);
         $otherUsers = User::factory()->completed()->count($whatsappGroupCount * $userCountPerWhatsappGroup)->create();
-        $course->users()->attach($maleSimilarUsers, ['type' => $course->type]);
-        $course->users()->attach($femaleSimilarUsers, ['type' => $course->type]);
-        $course->users()->attach($otherUsers, ['type' => $course->type]);
+        $course->users()->attach($maleSimilarUsers, ['course_type_id' => $course->course_type_id]);
+        $course->users()->attach($femaleSimilarUsers, ['course_type_id' => $course->course_type_id]);
+        $course->users()->attach($otherUsers, ['course_type_id' => $course->course_type_id]);
 
         $instance = resolve(CourseWhatsappGroupsOrganizer::class, ['course' => $course, 'level' => 4]);
         app()->call([$instance, 'handle']);
 
         foreach ($maleSimilarUsers as $maleSimilarUser) {
             $this->assertDatabaseHas(
-                'whatsapp_group_users',
+                'user_course',
                 ['course_id' => $course->id, 'user_id' => $maleSimilarUser->id]
             );
         }
 
         foreach ($femaleSimilarUsers as $femaleSimilarUser) {
             $this->assertDatabaseHas(
-                'whatsapp_group_users',
+                'user_course',
                 ['course_id' => $course->id, 'user_id' => $femaleSimilarUser->id]
             );
         }
 
         foreach ($otherUsers as $otherUser) {
             $this->assertDatabaseHas(
-                'whatsapp_group_users',
+                'user_course',
                 ['course_id' => $course->id, 'user_id' => $otherUser->id]
             );
         }

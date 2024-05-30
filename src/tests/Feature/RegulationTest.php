@@ -2,9 +2,12 @@
 
 namespace Tests\Feature;
 
+use App\Models\Course;
+use App\Models\CourseType;
 use App\Models\Regulation;
 use App\Models\User;
 use Illuminate\Support\Facades\Cache;
+use Symfony\Component\HttpFoundation\Response;
 use Tests\BaseFeatureTest;
 
 class RegulationTest extends BaseFeatureTest
@@ -22,106 +25,45 @@ class RegulationTest extends BaseFeatureTest
     }
 
     /** @test */
-    public function it_should_get_hafizol_regulations_from_cache_when_cached_before()
+    public function it_should_can_list_regulations_as_paginated_by_filtering()
     {
-        $hafizolRegulation = Regulation::where('slug', 'hafizol')->first();
+        $user = User::factory()->create();
 
-        Cache::shouldReceive('has')->with(Regulation::BASE_CACHE_KEY . 'hafizol')->once()->andReturn(true);
-        Cache::shouldReceive('get')->with(Regulation::BASE_CACHE_KEY . 'hafizol')->once()->andReturn($hafizolRegulation);
+        $searchRegulation = Regulation::inRandomOrder()->first();
 
-        $response = $this->json('GET', $this->uri . '/hafizol');
+        $searchQuery = [
+            'filter' => [['value' => $searchRegulation->name]],
+        ];
+
+        $response = $this->actingAs($user)->json('GET', $this->uri . '/paginate', $searchQuery);
 
         $response->assertOk()
-            ->assertJsonFragment([
-                'name' => 'HafızOl',
-                'slug' => 'hafizol',
-                'summary' => $hafizolRegulation->summary,
-                'text' => $hafizolRegulation->text,
-            ]);
+            ->assertJsonFragment($searchRegulation->toArray());
     }
 
     /** @test */
-    public function it_should_get_hafizol_regulations_from_database_and_put_it_to_cache_when_did_not_cached_before()
+    public function it_should_get_regulation_from_cache_when_cached_before()
     {
-        $hafizolRegulation = Regulation::where('slug', 'hafizol')->first();
+        $regulation = Regulation::inRandomOrder()->first();
 
-        Cache::shouldReceive('has')->with(Regulation::BASE_CACHE_KEY . 'hafizol')->once()->andReturn(false);
-        Cache::shouldReceive('get')->with(Regulation::BASE_CACHE_KEY . 'hafizol')->never();
-        Cache::shouldReceive('put')->once();
+        Cache::shouldReceive('has')->with(Regulation::BASE_CACHE_KEY . $regulation->id)->once()->andReturn(true);
+        Cache::shouldReceive('get')->with(Regulation::BASE_CACHE_KEY . $regulation->id)->once()->andReturn($regulation);
 
-        $response = $this->json('GET', $this->uri . '/hafizol');
+        $response = $this->json('GET', $this->uri . '/' . $regulation->id);
 
         $response->assertOk()
-            ->assertJsonFragment([
-                'name' => 'HafızOl',
-                'slug' => 'hafizol',
-                'summary' => $hafizolRegulation->summary,
-                'text' => $hafizolRegulation->text,
-            ]);
+            ->assertJsonFragment($regulation->only('name', 'slug', 'summary', 'text'));
     }
 
     /** @test */
-    public function it_should_get_hafizol_regulations()
+    public function it_should_get_regulation_details()
     {
-        $hafizolRegulation = Regulation::where('slug', 'hafizol')->first();
+        $regulation = Regulation::inRandomOrder()->first();
 
-        $response = $this->json('GET', $this->uri . '/hafizol');
+        $response = $this->json('GET', $this->uri . '/' . $regulation->id);
 
         $response->assertOk()
-            ->assertJsonFragment([
-                'name' => 'HafızOl',
-                'slug' => 'hafizol',
-                'summary' => $hafizolRegulation->summary,
-                'text' => $hafizolRegulation->text,
-            ]);
-    }
-
-    /** @test */
-    public function it_should_get_hafizkal_regulations()
-    {
-        $hafizkalRegulation = Regulation::where('slug', 'hafizkal')->first();
-
-        $response = $this->json('GET', $this->uri . '/hafizkal');
-
-        $response->assertOk()
-            ->assertJsonFragment([
-                'name' => 'HafızKal',
-                'slug' => 'hafizkal',
-                'summary' => $hafizkalRegulation->summary,
-                'text' => $hafizkalRegulation->text,
-            ]);
-    }
-
-    /** @test */
-    public function it_should_get_whatsenglish_regulations()
-    {
-        $whatsenglishRegulation = Regulation::where('slug', 'whatsenglish')->first();
-
-        $response = $this->json('GET', $this->uri . '/whatsenglish');
-
-        $response->assertOk()
-            ->assertJsonFragment([
-                'name' => 'WhatsEnglish',
-                'slug' => 'whatsenglish',
-                'summary' => $whatsenglishRegulation->summary,
-                'text' => $whatsenglishRegulation->text,
-            ]);
-    }
-
-    /** @test */
-    public function it_should_get_whatsarapp_regulations()
-    {
-        $whatsarappRegulation = Regulation::where('slug', 'whatsarapp')->first();
-
-        $response = $this->json('GET', $this->uri . '/whatsarapp');
-
-        $response->assertOk()
-            ->assertJsonFragment([
-                'name' => 'WhatsArapp',
-                'slug' => 'whatsarapp',
-                'summary' => $whatsarappRegulation->summary,
-                'text' => $whatsarappRegulation->text,
-            ]);
+            ->assertJsonFragment($regulation->only('name', 'slug', 'summary', 'text'));
     }
 
     /** @test */
@@ -132,24 +74,35 @@ class RegulationTest extends BaseFeatureTest
 
         $response = $this->actingAs($user)->json('GET', $this->uri);
 
-        $response->assertOk()
-            ->assertJsonFragment(['name' => 'HafızKal', 'slug' => 'hafizkal'])
-            ->assertJsonFragment(['name' => 'HafızOl', 'slug' => 'hafizol'])
-            ->assertJsonFragment(['name' => 'WhatsEnglish', 'slug' => 'whatsenglish'])
-            ->assertJsonFragment(['name' => 'WhatsArapp', 'slug' => 'whatsarapp']);
+        $response->assertOk();
+
+        foreach (Regulation::get() as $regulation) {
+            $response->assertJsonFragment($regulation->toArray());
+        }
+    }
+
+    /** @test */
+    public function it_should_create_regulations_when_has_permission()
+    {
+        $user = User::factory()->create();
+        $user->givePermissionTo('regulations.create');
+
+        $regulationData = Regulation::factory()->raw(['course_type_id' => CourseType::factory()->create()->id]);
+
+        $response = $this->actingAs($user)->json('POST', $this->uri, $regulationData);
+
+        $response->assertCreated();
+
+        $this->assertDatabaseHas('regulations', $regulationData);
     }
 
     /** @test */
     public function it_should_not_update_regulations_when_does_not_have_permission()
     {
         $user = User::factory()->create();
+        $regulation = Regulation::inRandomOrder()->first();
 
-        $response = $this->actingAs($user)
-            ->json(
-                'POST',
-                $this->uri . '/' . ($this->faker->randomElement(['hafizol', 'hafizkal', 'whatsenglish', 'whatsarapp'])),
-                ['summary' => $this->faker->paragraph(2), 'text' => $this->faker->paragraph(2)]
-            );
+        $response = $this->actingAs($user)->json('PUT', $this->uri . '/' . $regulation->id, $regulation->toArray());
 
         $response->assertForbidden();
     }
@@ -160,22 +113,48 @@ class RegulationTest extends BaseFeatureTest
         $user = User::factory()->create();
         $user->givePermissionTo('regulations.update');
 
-        $regulationSlug = $this->faker->randomElement(['hafizol', 'hafizkal', 'whatsenglish', 'whatsarapp']);
-        $newRegulationSummary = $this->faker->paragraph(rand(1, 5));
-        $newRegulationText = $this->faker->paragraph(rand(1, 5));
+        $courseType = CourseType::factory()->create();
+        $regulation = Regulation::factory()->create(['course_type_id' => $courseType->id]);
 
-        $response = $this->actingAs($user)
-            ->json(
-                'POST',
-                $this->uri . '/' . $regulationSlug,
-                ['summary' => $newRegulationSummary, 'text' => $newRegulationText]
-            );
+        $regulationData = Regulation::factory()->raw(['course_type_id' => $courseType->id]);
+
+        $response = $this->actingAs($user)->json('PUT', $this->uri . '/' . $regulation->id, $regulationData);
 
         $response->assertOk();
 
-        $this->assertDatabaseHas(
-            'regulations',
-            ['slug' => $regulationSlug, 'summary' => $newRegulationSummary, 'text' => $newRegulationText]
-        );
+        $this->assertDatabaseHas('regulations', array_merge(['id' => $regulation->id], $regulationData));
+    }
+
+    /** @test */
+    public function it_should_not_delete_regulation_when_regulation_has_course()
+    {
+        $user = User::factory()->create();
+        $user->givePermissionTo('regulations.delete');
+
+        $courseType = CourseType::factory()->create();
+        $regulation = Regulation::factory()->create(['course_type_id' => $courseType->id]);
+        Course::factory()->create(['course_type_id' => $courseType->id]);
+
+        $response = $this->actingAs($user)->json('DELETE', $this->uri . '/' . $regulation->id);
+
+        $response->assertStatus(Response::HTTP_BAD_REQUEST);
+
+        $this->assertNotSoftDeleted($regulation);
+    }
+
+    /** @test */
+    public function it_should_delete_regulation_when_has_permission_and_regulation_has_not_course()
+    {
+        $user = User::factory()->create();
+        $user->givePermissionTo('regulations.delete');
+
+        $courseType = CourseType::factory()->create();
+        $regulation = Regulation::factory()->create(['course_type_id' => $courseType->id]);
+
+        $response = $this->actingAs($user)->json('DELETE', $this->uri . '/' . $regulation->id);
+
+        $response->assertSuccessful();
+
+        $this->assertSoftDeleted($regulation);
     }
 }

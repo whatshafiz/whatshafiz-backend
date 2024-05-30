@@ -25,16 +25,20 @@ class WhatsappGroupController extends Controller
             [
                 'user_id' => 'nullable|integer|exists:users,id',
                 'course_id' => 'nullable|integer|min:1|exists:courses,id',
+                'gender' => 'nullable|string|in:male,female',
             ]
         );
         $searchKey = $this->getTabulatorSearchKey($request);
 
-        $whatsappGroups = WhatsappGroup::with('course')
+        $whatsappGroups = WhatsappGroup::with('course', 'courseType:id,name')
             ->withCount('users')
             ->when(isset($filters['user_id']), function ($query) use ($filters) {
                 return $query->whereHas('users', function ($subQuery) use ($filters) {
                     return $subQuery->where('user_id', $filters['user_id']);
                 });
+            })
+            ->when(isset($filters['gender']), function ($query) use ($filters) {
+                return $query->where('gender', $filters['gender']);
             })
             ->when(isset($filters['course_id']), function ($query) use ($filters) {
                 return $query->whereHas('course', function ($subQuery) use ($filters) {
@@ -45,7 +49,6 @@ class WhatsappGroupController extends Controller
                 return $query->where(function ($subQuery) use ($searchKey) {
                     return $subQuery->where('id', $searchKey)
                         ->orWhere('course_id', $searchKey)
-                        ->orWhere('type', $searchKey)
                         ->orWhere('gender', $searchKey)
                         ->orWhere('name', 'LIKE', '%' . $searchKey . '%')
                         ->orWhere('join_url', 'LIKE', '%' . $searchKey . '%')
@@ -86,7 +89,7 @@ class WhatsappGroupController extends Controller
             $request,
             [
                 'course_id' => 'required|integer|min:0|exists:courses,id',
-                'type' => 'required|string|in:whatshafiz,whatsenglish,whatsarapp',
+                'course_type_id' => 'required|integer|min:1|exists:course_types,id|exists:course_types,id',
                 'gender' => 'required|string|in:male,female',
                 'name' => 'required|string|max:100|unique:whatsapp_groups,name',
                 'is_active' => 'required|boolean',
@@ -123,7 +126,7 @@ class WhatsappGroupController extends Controller
             $request,
             [
                 'course_id' => 'required|integer|min:0|exists:courses,id',
-                'type' => 'required|string|in:whatshafiz,whatsenglish,whatsarapp',
+                'course_type_id' => 'required|integer|min:1|exists:course_types,id|exists:course_types,id',
                 'gender' => 'required|string|in:male,female',
                 'name' => 'required|string|max:100|unique:whatsapp_groups,name,' . $whatsappGroup->id,
                 'is_active' => 'required|boolean',
@@ -162,8 +165,8 @@ class WhatsappGroupController extends Controller
             $request,
             [
                 'user_id' => 'required|integer|min:0|exists:users,id' .
-                    '|unique:whatsapp_group_users,user_id,NULL,NULL,whatsapp_group_id,' . $whatsappGroup->id,
-                'role_type' => 'required|string|in:hafizol,hafizkal',
+                    '|unique:user_course,user_id,NULL,NULL,whatsapp_group_id,' . $whatsappGroup->id,
+                'is_teacher' => 'required|boolean',
                 'is_moderator' => 'required|boolean',
                 'moderation_started_at' => 'required_if:is_moderator,true|nullable|date_format:Y-m-d H:i:s',
             ]
@@ -171,6 +174,7 @@ class WhatsappGroupController extends Controller
 
         $validatedWhatsappGroupUserData['joined_at'] = Carbon::now();
         $validatedWhatsappGroupUserData['course_id'] = $whatsappGroup->course_id;
+        $validatedWhatsappGroupUserData['course_type_id'] = $whatsappGroup->course_type_id;
         $whatsappGroupUser = $whatsappGroup->users()->create($validatedWhatsappGroupUserData);
 
         return response()->json($whatsappGroupUser->refresh()->load('user')->toArray(), Response::HTTP_CREATED);
@@ -192,7 +196,7 @@ class WhatsappGroupController extends Controller
         $validatedWhatsappGroupUserData = $this->validate(
             $request,
             [
-                'role_type' => 'required|string|in:hafizol,hafizkal',
+                'is_teacher' => 'required|boolean',
                 'is_moderator' => 'required|boolean',
                 'moderation_started_at' => 'required_if:is_moderator,true|nullable|date_format:Y-m-d H:i:s',
             ]

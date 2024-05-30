@@ -47,6 +47,13 @@ class RolesPermissionsSeeder extends Seeder
             'regulations.create',
             'regulations.delete',
 
+            'courseTypes.*',
+            'courseTypes.view',
+            'courseTypes.list',
+            'courseTypes.update',
+            'courseTypes.create',
+            'courseTypes.delete',
+
             'courses.*',
             'courses.view',
             'courses.list',

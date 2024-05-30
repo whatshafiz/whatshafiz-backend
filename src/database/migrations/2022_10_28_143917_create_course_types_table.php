@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\Course;
-use App\Models\CourseType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,14 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('whatsapp_groups', function (Blueprint $table) {
+        Schema::create('course_types', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Course::class)->constrained();
-            $table->foreignIdFor(CourseType::class)->nullable()->constrained();
-            $table->enum('gender', ['male', 'female']);
+            $table->foreignId('parent_id')->nullable()->constrained('course_types');
             $table->string('name', 100);
+            $table->string('slug', 100);
             $table->boolean('is_active')->default(true);
-            $table->string('join_url')->nullable();
+            $table->boolean('has_admission_exam')->default(true);
+            $table->tinyInteger('min_age')->nullable();
+            $table->json('genders')->nullable();
+            $table->json('education_levels')->nullable();
+
             $table->timestamps();
             $table->softDeletes();
         });
@@ -35,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('whatsapp_groups');
+        Schema::dropIfExists('course_types');
     }
 };

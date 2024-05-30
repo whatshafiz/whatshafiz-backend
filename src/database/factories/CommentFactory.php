@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\CourseType;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -20,7 +21,7 @@ class CommentFactory extends Factory
         $is_approved = $this->faker->boolean;
 
         return [
-            'type' => $this->faker->randomElement(['whatshafiz', 'whatsenglish', 'whatsarapp']),
+            'course_type_id' => CourseType::inRandomOrder()->value('id'),
             'title' => $this->faker->sentence,
             'comment' => $this->faker->text,
             'commented_by_id' => User::factory()->create()->id,

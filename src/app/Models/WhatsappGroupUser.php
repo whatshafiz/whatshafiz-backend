@@ -8,10 +8,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class WhatsappGroupUser extends BaseModel
 {
+    public $table = 'user_course';
+
     use HasFactory;
     use SoftDeletes;
 
     protected $casts = [
+        'is_teacher' => 'boolean',
         'is_moderator' => 'boolean',
         'joined_at' => 'datetime:d-m-Y H:i',
         'moderation_started_at' => 'datetime:d-m-Y H:i',

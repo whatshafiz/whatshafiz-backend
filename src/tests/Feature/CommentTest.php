@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Comment;
+use App\Models\CourseType;
 use App\Models\User;
 use Carbon\Carbon;
 use Tests\BaseFeatureTest;
@@ -51,16 +52,15 @@ class CommentTest extends BaseFeatureTest
     /** @test */
     public function user_can_list_approved_comments_as_paginated()
     {
-        $type = $this->faker->randomElement(['whatshafiz', 'whatsenglish', 'whatsarapp']);
+        $courseType = CourseType::inRandomOrder()->first();
+        $comments = Comment::factory()->approved()->count(5)->create(['course_type_id' => $courseType->id]);
 
-        $comments = Comment::factory()->approved()->count(5)->create(['type' => $type]);
-
-        $response = $this->json('GET', $this->uri . '/' . $type);
+        $response = $this->json('GET', $this->uri . '/approved/' . $courseType->slug);
 
         $response->assertOk();
 
         foreach ($comments as $comment) {
-            $response->assertJsonFragment($comment->only(['id', 'type', 'title', 'comment']));
+            $response->assertJsonFragment($comment->only(['id', 'title', 'comment']));
         }
     }
 
@@ -76,7 +76,7 @@ class CommentTest extends BaseFeatureTest
         $response->assertOk();
 
         foreach ($comments as $comment) {
-            $response->assertJsonFragment($comment->only(['id', 'type', 'title', 'comment']));
+            $response->assertJsonFragment($comment->only(['id', 'title', 'comment']));
         }
     }
 
@@ -89,7 +89,7 @@ class CommentTest extends BaseFeatureTest
         $comments = Comment::factory()->count(5)->create();
         $searchComment = $comments->random();
         $searchQuery = [
-            'type' => $searchComment->type,
+            'course_type_id' => $searchComment->course_type_id,
             'commented_by_id' => $searchComment->commented_by_id,
             'approved_by_id' => $searchComment->approved_by_id ?? $user->id,
             'is_approved' => $searchComment->is_approved,
@@ -111,7 +111,7 @@ class CommentTest extends BaseFeatureTest
     /** @test */
     public function user_can_create_comment()
     {
-        $commentData = Comment::factory()->make()->only('type', 'title', 'comment');
+        $commentData = Comment::factory()->make()->only('course_type_id', 'title', 'comment');
 
         $user = User::factory()->create();
 
@@ -170,7 +170,7 @@ class CommentTest extends BaseFeatureTest
         $user->givePermissionTo('comments.update');
 
         $comment = Comment::factory()->create();
-        $newCommentData = Comment::factory()->make()->only('type', 'title', 'comment');
+        $newCommentData = Comment::factory()->make()->only('course_type_id', 'title', 'comment');
 
         $response = $this->actingAs($user)->json('PUT', $this->uri . '/' . $comment->id, $newCommentData);
 
@@ -186,7 +186,9 @@ class CommentTest extends BaseFeatureTest
         $user = User::factory()->create();
 
         $comment = Comment::factory()->create(['commented_by_id' => $user->id, 'is_approved' => false]);
-        $newCommentData = Comment::factory()->make(['type' => $comment->type])->only('type', 'title', 'comment');
+        $newCommentData = Comment::factory()
+            ->make(['course_type_id' => $comment->course_type_id])
+            ->only('course_type_id', 'title', 'comment');
 
         $response = $this->actingAs($user)->json('PUT', $this->uri . '/' . $comment->id, $newCommentData);
 
@@ -222,7 +224,7 @@ class CommentTest extends BaseFeatureTest
             ->json(
                 'PUT',
                 $this->uri . '/' . $comment->id,
-                array_merge($comment->only('type', 'title', 'comment'), ['is_approved' => true])
+                array_merge($comment->only('course_type_id', 'title', 'comment'), ['is_approved' => true])
             );
 
         $response->assertOk();

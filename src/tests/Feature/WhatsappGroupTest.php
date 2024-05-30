@@ -41,7 +41,11 @@ class WhatsappGroupTest extends BaseFeatureTest
         $whatsappGroup = WhatsappGroup::factory()->create();
         $whatsappGroupUsers = WhatsappGroupUser::factory()
             ->count(rand(1, 3))
-            ->create(['whatsapp_group_id' => $whatsappGroup->id, 'course_id' => $whatsappGroup->course_id]);
+            ->create([
+                'whatsapp_group_id' => $whatsappGroup->id,
+                'course_id' => $whatsappGroup->course_id,
+                'course_type_id' => $whatsappGroup->course_type_id,
+            ]);
         $user = User::find($whatsappGroupUsers->random()->user_id);
         $user->givePermissionTo('whatsappGroups.view');
 
@@ -85,9 +89,16 @@ class WhatsappGroupTest extends BaseFeatureTest
     /** @test */
     public function it_should_get_own_whatsapp_groups_list()
     {
-        $whatsappGroups = WhatsappGroup::factory()->count(2, 5)->create();
         $user = User::factory()->create();
-        $user->whatsappGroups()->attach($whatsappGroups);
+        $whatsappGroups = WhatsappGroup::factory()->count(2, 5)->create();
+        $whatsappGroups->each(function ($whatsappGroup) use ($user) {
+            WhatsappGroupUser::factory()->create([
+                'user_id' => $user->id,
+                'whatsapp_group_id' => $whatsappGroup->id,
+                'course_id' => $whatsappGroup->course_id,
+                'course_type_id' => $whatsappGroup->course_type_id,
+            ]);
+        });
 
         $response = $this->actingAs($user)->json('GET', self::BASE_URI . '/my/whatsapp-groups');
 
@@ -105,7 +116,14 @@ class WhatsappGroupTest extends BaseFeatureTest
         $filteredWhatsappGroups = WhatsappGroup::factory()->count(2, 5)->create();
         $user = User::factory()->create();
         $user->givePermissionTo('whatsappGroups.list');
-        $user->whatsappGroups()->attach($filteredWhatsappGroups);
+        $filteredWhatsappGroups->each(function ($whatsappGroup) use ($user) {
+            WhatsappGroupUser::factory()->create([
+                'user_id' => $user->id,
+                'whatsapp_group_id' => $whatsappGroup->id,
+                'course_id' => $whatsappGroup->course_id,
+                'course_type_id' => $whatsappGroup->course_type_id,
+            ]);
+        });
 
         $response = $this->actingAs($user)->json('GET', $this->uri, ['user_id' => $user->id]);
 
@@ -274,6 +292,7 @@ class WhatsappGroupTest extends BaseFeatureTest
                 'user_id' => User::factory()->create()->id,
                 'whatsapp_group_id' => $whatsappGroup->id,
                 'course_id' => $whatsappGroup->course_id,
+                'course_type_id' => $whatsappGroup->course_type_id,
                 'joined_at' => $now->format('Y-m-d H:i:s'),
             ]);
 
@@ -282,7 +301,7 @@ class WhatsappGroupTest extends BaseFeatureTest
 
         $response->assertCreated();
 
-        $this->assertDatabaseHas('whatsapp_group_users', $whatsappGroupUserData);
+        $this->assertDatabaseHas('user_course', $whatsappGroupUserData);
 
         $response->assertJsonFragment(WhatsappGroupUser::find($response->json('id'))->toArray());
     }
@@ -302,6 +321,7 @@ class WhatsappGroupTest extends BaseFeatureTest
                 'user_id' => User::factory()->create()->id,
                 'whatsapp_group_id' => $whatsappGroup->id,
                 'course_id' => $whatsappGroup->course_id,
+                'course_type_id' => $whatsappGroup->course_type_id,
                 'joined_at' => $now->format('Y-m-d H:i:s'),
             ]);
 
@@ -310,7 +330,7 @@ class WhatsappGroupTest extends BaseFeatureTest
 
         $response->assertCreated();
 
-        $this->assertDatabaseHas('whatsapp_group_users', $whatsappGroupUserData);
+        $this->assertDatabaseHas('user_course', $whatsappGroupUserData);
 
         $response->assertJsonFragment(WhatsappGroupUser::find($response->json('id'))->toArray());
     }
@@ -328,7 +348,7 @@ class WhatsappGroupTest extends BaseFeatureTest
 
         $whatsappGroupUserNewData = Arr::only(
             WhatsappGroupUser::factory()->raw(),
-            ['role_type', 'is_moderator', 'moderation_started_at']
+            ['is_teacher', 'is_moderator', 'moderation_started_at']
         );
 
         $response = $this->actingAs($user)
@@ -341,7 +361,7 @@ class WhatsappGroupTest extends BaseFeatureTest
         $response->assertSuccessful();
 
         $this->assertDatabaseHas(
-            'whatsapp_group_users',
+            'user_course',
             array_merge($whatsappGroupUser->only('id', 'user_id'), $whatsappGroupUserNewData)
         );
     }
@@ -365,7 +385,7 @@ class WhatsappGroupTest extends BaseFeatureTest
 
         $whatsappGroupUserNewData = Arr::only(
             WhatsappGroupUser::factory()->raw(),
-            ['role_type', 'is_moderator', 'moderation_started_at']
+            ['is_teacher', 'is_moderator', 'moderation_started_at']
         );
 
         $response = $this->actingAs($user)
@@ -378,7 +398,7 @@ class WhatsappGroupTest extends BaseFeatureTest
         $response->assertSuccessful();
 
         $this->assertDatabaseHas(
-            'whatsapp_group_users',
+            'user_course',
             array_merge($whatsappGroupUser->only('id', 'user_id'), $whatsappGroupUserNewData)
         );
     }
@@ -397,7 +417,7 @@ class WhatsappGroupTest extends BaseFeatureTest
 
         $response->assertSuccessful();
 
-        $this->assertSoftDeleted('whatsapp_group_users', ['id' => $whatsappGroupUser->id]);
+        $this->assertSoftDeleted('user_course', ['id' => $whatsappGroupUser->id]);
     }
 
     /** @test */
@@ -420,6 +440,6 @@ class WhatsappGroupTest extends BaseFeatureTest
 
         $response->assertSuccessful();
 
-        $this->assertSoftDeleted('whatsapp_group_users', ['id' => $whatsappGroupUser->id]);
+        $this->assertSoftDeleted('user_course', ['id' => $whatsappGroupUser->id]);
     }
 }

@@ -4,6 +4,7 @@ namespace Tests\Feature\Jobs;
 
 use App\Jobs\CourseTeacherStudentsMatcher;
 use App\Models\Course;
+use App\Models\CourseType;
 use App\Models\TeacherStudent;
 use App\Models\User;
 use App\Models\UserCourse;
@@ -20,14 +21,22 @@ class CourseTeacherStudentsMatcherTest extends BaseFeatureTest
         $userCourseForTeachers = UserCourse::factory()
             ->withNewUser()
             ->count(rand(18, 75))
-            ->create(['type' => 'whatshafiz', 'course_id' => $course->id, 'is_teacher' => true]);
+            ->create([
+                'course_type_id' => CourseType::where('slug', 'whatshafiz')->value('id'),
+                'course_id' => $course->id,
+                'is_teacher' => true,
+            ]);
         $userCourseForStudents = [];
 
         foreach ($userCourseForTeachers as $userCourseForTeacher) {
             $userCourseForStudentsRelated = UserCourse::factory()
                 ->withNewUser()
                 ->count(rand(1, 3))
-                ->create(['type' => 'whatshafiz', 'course_id' => $course->id, 'is_teacher' => false]);
+                ->create([
+                    'course_type_id' => CourseType::where('slug', 'whatshafiz')->value('id'),
+                    'course_id' => $course->id,
+                    'is_teacher' => false,
+                ]);
 
             foreach ($userCourseForStudentsRelated as $userCourseForStudent) {
                 $userCourseForStudents[] = $userCourseForStudent;
@@ -45,7 +54,11 @@ class CourseTeacherStudentsMatcherTest extends BaseFeatureTest
         UserCourse::factory()
             ->withNewUser()
             ->count(rand(75, 150))
-            ->create(['type' => 'whatshafiz', 'course_id' => $course->id, 'is_teacher' => false]);
+            ->create([
+                'course_type_id' => CourseType::where('slug', 'whatshafiz')->value('id'),
+                'course_id' => $course->id,
+                'is_teacher' => false,
+            ]);
 
         $instance = resolve(CourseTeacherStudentsMatcher::class, ['course' => $course]);
         app()->call([$instance, 'handle']);
@@ -72,13 +85,21 @@ class CourseTeacherStudentsMatcherTest extends BaseFeatureTest
         $course = Course::factory()->whatshafiz()->create();
         $userCourseForTeacher = UserCourse::factory()
             ->withNewUser()
-            ->create(['type' => 'whatshafiz', 'course_id' => $course->id, 'is_teacher' => true]);
+            ->create([
+                'course_type_id' => CourseType::where('slug', 'whatshafiz')->value('id'),
+                'course_id' => $course->id,
+                'is_teacher' => true,
+            ]);
         $teacher = $userCourseForTeacher->user;
 
         $standartStudents = UserCourse::factory()
             ->withNewUser()
             ->count(rand(1, 3))
-            ->create(['type' => 'whatshafiz', 'course_id' => $course->id, 'is_teacher' => false]);
+            ->create([
+                'course_type_id' => CourseType::where('slug', 'whatshafiz')->value('id'),
+                'course_id' => $course->id,
+                'is_teacher' => false,
+            ]);
 
         $mostRelatedStudent = User::factory()
             ->create([
@@ -91,7 +112,7 @@ class CourseTeacherStudentsMatcherTest extends BaseFeatureTest
 
         UserCourse::factory()
             ->create([
-                'type' => 'whatshafiz',
+                'course_type_id' => CourseType::where('slug', 'whatshafiz')->value('id'),
                 'course_id' => $course->id,
                 'user_id' => $mostRelatedStudent->id,
                 'is_teacher' => false,
@@ -113,12 +134,21 @@ class CourseTeacherStudentsMatcherTest extends BaseFeatureTest
         $course = Course::factory()->whatshafiz()->create();
         $userCourseForTeacher = UserCourse::factory()
             ->withNewUser()
-            ->create(['type' => 'whatshafiz', 'course_id' => $course->id, 'is_teacher' => true]);
+            ->create([
+                'course_type_id' => CourseType::where('slug', 'whatshafiz')->value('id'),
+                'course_id' => $course->id,
+                'is_teacher' => true,
+            ]);
         $teacher = $userCourseForTeacher->user;
-        UserCourse::factory()
-            ->withNewUser()
+        $students = UserCourse::factory()
+            ->withNewUser($teacher->gender)
             ->count(rand(1, 3))
-            ->create(['type' => 'whatshafiz', 'course_id' => $course->id, 'is_teacher' => false]);
+            ->create([
+                'course_type_id' => CourseType::where('slug', 'whatshafiz')->value('id'),
+                'course_id' => $course->id,
+                'is_teacher' => false,
+                'whatsapp_group_id' => null,
+            ]);
         $lessRelatedStudent = User::factory()
             ->create([
                 'gender' => $teacher->gender,
@@ -127,19 +157,29 @@ class CourseTeacherStudentsMatcherTest extends BaseFeatureTest
             ]);
         UserCourse::factory()
             ->create([
-                'type' => 'whatshafiz',
+                'course_type_id' => CourseType::where('slug', 'whatshafiz')->value('id'),
                 'course_id' => $course->id,
                 'user_id' => $lessRelatedStudent->id,
                 'is_teacher' => false,
+                'whatsapp_group_id' => null,
             ]);
 
-        $instance = resolve(CourseTeacherStudentsMatcher::class, ['course' => $course]);
-        app()->call([$instance, 'handle']);
+        for ($i = 0; $i <= $students->count() ; $i++) {
+            $instance = resolve(CourseTeacherStudentsMatcher::class, ['course' => $course]);
+            app()->call([$instance, 'handle']);
+        }
 
         $this->assertDatabaseHas(
             'teacher_students',
             ['course_id' => $course->id, 'teacher_id' => $teacher->id, 'student_id' => $lessRelatedStudent->id]
         );
+
+        foreach ($students as $student) {
+            $this->assertDatabaseHas(
+                'teacher_students',
+                ['course_id' => $course->id, 'teacher_id' => $teacher->id, 'student_id' => $student->user_id]
+            );
+        }
     }
 
     /** @test */
@@ -148,7 +188,11 @@ class CourseTeacherStudentsMatcherTest extends BaseFeatureTest
         $course = Course::factory()->whatshafiz()->create();
         $userCourseForTeacher = UserCourse::factory()
             ->withNewUser()
-            ->create(['type' => 'whatshafiz', 'course_id' => $course->id, 'is_teacher' => true]);
+            ->create([
+                'course_type_id' => CourseType::where('slug', 'whatshafiz')->value('id'),
+                'course_id' => $course->id,
+                'is_teacher' => true,
+            ]);
         $teacher = $userCourseForTeacher->user;
 
         $students = User::factory()->count(rand(2, 5))->create(['gender' => $teacher->gender]);
@@ -156,7 +200,7 @@ class CourseTeacherStudentsMatcherTest extends BaseFeatureTest
         foreach ($students as $student) {
             UserCourse::factory()
                 ->create([
-                    'type' => 'whatshafiz',
+                    'course_type_id' => CourseType::where('slug', 'whatshafiz')->value('id'),
                     'course_id' => $course->id,
                     'user_id' => $student->id,
                     'is_teacher' => false,

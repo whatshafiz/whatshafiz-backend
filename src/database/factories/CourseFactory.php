@@ -2,8 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\CourseType;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Course>
@@ -17,9 +19,11 @@ class CourseFactory extends Factory
      */
     public function definition()
     {
+        $courseType = CourseType::inRandomOrder()->first();
+
         return [
-            'type' => $this->faker->randomElement(['whatshafiz', 'whatsenglish', 'whatsarapp']),
-            'name' => $this->faker->numerify('WhatsHafız-######'),
+            'course_type_id' => $courseType->id,
+            'name' => $this->faker->numerify(Str::studly($courseType->name) . '-######'),
             'whatsapp_channel_join_url' => $this->faker->optional(0.7)->url,
             'is_active' => $this->faker->boolean,
             'can_be_applied' => $this->faker->boolean,
@@ -34,7 +38,7 @@ class CourseFactory extends Factory
     public function whatshafiz()
     {
         return $this->state(fn (array $attributes) => [
-            'type' => 'whatshafiz',
+            'course_type_id' => CourseType::where('slug', 'whatshafiz')->value('id'),
             'proficiency_exam_start_time' => Carbon::now()->addDays(rand(1, 14)),
             'students_matchings_started_at' => $this->faker->boolean ? Carbon::now()->subDays(rand(1, 14)) : null,
         ]);
@@ -46,7 +50,7 @@ class CourseFactory extends Factory
     public function whatsarapp()
     {
         return $this->state(fn (array $attributes) => [
-            'type' => 'whatsarapp',
+            'course_type_id' => CourseType::where('slug', 'whatsarapp')->value('id'),
         ]);
     }
 
@@ -56,7 +60,7 @@ class CourseFactory extends Factory
     public function whatsenglish()
     {
         return $this->state(fn (array $attributes) => [
-            'type' => 'whatsenglish',
+            'course_type_id' => CourseType::where('slug', 'whatsenglish')->value('id'),
         ]);
     }
 

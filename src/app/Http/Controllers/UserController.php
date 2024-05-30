@@ -326,16 +326,16 @@ class UserController extends Controller
     public function saveCourse(Request $request): JsonResponse
     {
         $request->validate([
-            'type' => 'required|string|in:whatshafiz,whatsenglish,whatsarapp',
+            'course_id' => 'required|integer|min:1|exists:courses,id',
             'is_teacher' => 'required_if:type,whatshafiz|boolean',
         ]);
 
         $user = Auth::user();
-        $course = Course::where('type', $request->type)->active()->available()->first();
+        $course = Course::where('id', $request->course_id)->active()->available()->first();
 
         if (!$course) {
             return response()->json(
-                ['message' => "Şuan {$request->type} için başvuruya açık dönem bulunmuyor."],
+                ['message' => 'Şuan bu kurs için başvuru kabul edilmiyor.'],
                 Response::HTTP_BAD_REQUEST
             );
         }
@@ -347,7 +347,7 @@ class UserController extends Controller
             );
         }
 
-        if ($user->courses()->active()->where('courses.type', $course->type)->exists()) {
+        if ($user->courses()->active()->where('courses.course_type_id', $course->course_type_id)->exists()) {
             return response()->json(
                 ['message' => 'Başvuru yaptığınız kurs tipinde zaten kaydınız var.'],
                 Response::HTTP_BAD_REQUEST
@@ -357,27 +357,28 @@ class UserController extends Controller
         DB::beginTransaction();
 
         try {
-            $user->courses()->attach(
-                $course->id,
-                [
-                    'type' => $course->type,
-                    'is_teacher' => $request->is_teacher ?? false,
-                    'applied_at' => Carbon::now(),
-                ]
-            );
+            $user->courses()
+                ->attach(
+                    $course->id,
+                    [
+                        'course_type_id' => $course->course_type_id,
+                        'is_teacher' => $request->is_teacher ?? false,
+                        'applied_at' => Carbon::now(),
+                    ]
+                );
 
 
-            if ($course->type === 'whatshafiz') {
+            if ($course->courseType->slug === 'whatshafiz') {
                 $user->assignRole($request->is_teacher ? 'HafızKal' : 'HafızOl');
             } else {
-                $user->assignRole(Str::ucfirst($course->type));
+                $user->assignRole(Str::ucfirst($course->courseType->slug));
             }
 
             DB::commit();
 
             $message = '<br> <strong>Kaydınız başarılı şekilde oluşturuldu.</strong> <br><br> ';
 
-            if ($course->type === 'whatshafiz') {
+            if ($course->courseType->slug === 'whatshafiz') {
                 if ($request->is_teacher) {
                     $message .= 'Öğrenci atamalarınız HafızOl Kabul Sınavı tarihinde yapılacaktır. <br><br>' .
                         'Kabul sınavı başlangıç zamanından sonra, bu sisteme giriş yaparak size atanan öğrencileri görebilirsiniz. <br><br>' .
@@ -392,7 +393,7 @@ class UserController extends Controller
 
             if ($course->whatsapp_channel_join_url) {
                 $user->sendMessage(
-                    'Aşağıdaki linki kullanarak *' . $course->type .
+                    'Aşağıdaki linki kullanarak *' . $course->name .
                         '* kursu için whatsapp duyuru kanalına katılın ve buradan duyuruları takip edin. ↘️ ' .
                         $course->whatsapp_channel_join_url
                 );
@@ -545,6 +546,25 @@ class UserController extends Controller
     /**
      * @param  Request  $request
      * @param  User  $user
+     * @return JsonResponse
+     * @throws AuthorizationException
+     */
+    public function attachCourse(Request $request, User $user): JsonResponse
+    {
+        $this->authorize('update', User::class);
+
+        $request->validate(['course_id' => 'required|integer|min:1|exists:courses,id']);
+
+        $course = Course::find($request->course_id);
+
+        $user->courses()->attach($request->course_id, ['course_type_id' => $course->course_type_id]);
+
+        return response()->json(null, Response::HTTP_NO_CONTENT);
+    }
+
+    /**
+     * @param  Request  $request
+     * @param  User  $user
      * @param  Course  $course
      * @return JsonResponse
      * @throws AuthorizationException
@@ -554,6 +574,25 @@ class UserController extends Controller
         $this->authorize('update', User::class);
 
         $user->courses()->detach($course);
+
+        return response()->json(null, Response::HTTP_NO_CONTENT);
+    }
+
+    /**
+     * @param  Request  $request
+     * @param  User  $user
+     * @return JsonResponse
+     * @throws AuthorizationException
+     */
+    public function attachWhatsappGroup(Request $request, User $user): JsonResponse
+    {
+        $this->authorize('update', User::class);
+
+        $request->validate(['whatsapp_group_id' => 'required|integer|min:1|exists:whatsapp_groups,id']);
+
+        $whatsappGroup = WhatsappGroup::find($request->whatsapp_group_id);
+
+        $user->whatsappGroups()->attach($request->whatsapp_group_id, $whatsappGroup->only('course_id', 'course_type_id'));
 
         return response()->json(null, Response::HTTP_NO_CONTENT);
     }

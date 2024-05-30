@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Course;
+use App\Models\CourseType;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
@@ -75,13 +76,13 @@ class ProfileTest extends BaseFeatureTest
     public function it_should_not_save_user_course_application_when_course_can_not_be_applied()
     {
         $user = User::factory()->create();
-        Course::query()->update(['can_be_applied' => false]);
-        $data = UserCourse::factory()->make()->only('type', 'is_teacher');
+        $course = Course::query()->update(['can_be_applied' => false]);
+        $data = UserCourse::factory()->make()->only('course_id', 'is_teacher');
 
         $response = $this->actingAs($user)->json('POST', $this->uri . '/courses', $data);
 
         $response->assertStatus(Response::HTTP_BAD_REQUEST)
-            ->assertJsonFragment(['message' => "Şuan {$data['type']} için başvuruya açık dönem bulunmuyor."]);
+            ->assertJsonFragment(['message' => 'Şuan bu kurs için başvuru kabul edilmiyor.']);
     }
 
     /** @test */
@@ -90,17 +91,18 @@ class ProfileTest extends BaseFeatureTest
         $user = User::factory()->create();
         Course::query()->update(['can_be_applied' => false]);
         $availableCourse = Course::factory()->available()->create(['is_active' => true]);
-        UserCourse::factory()->create([
-            'type' => $availableCourse->type,
-            'user_id' => $user->id,
-            'course_id' => $availableCourse->id
-        ]);
+        UserCourse::factory()
+            ->create([
+                'user_id' => $user->id,
+                'course_id' => $availableCourse->id,
+                'course_type_id' => $availableCourse->course_type_id,
+            ]);
 
         $response = $this->actingAs($user)
             ->json(
                 'POST',
                 $this->uri . '/courses',
-                ['type' => $availableCourse->type, 'is_teacher' => $this->faker->boolean]
+                ['course_id' => $availableCourse->id, 'is_teacher' => $this->faker->boolean]
             );
 
         $response->assertStatus(Response::HTTP_BAD_REQUEST)
@@ -115,18 +117,19 @@ class ProfileTest extends BaseFeatureTest
         $availableCourse = Course::factory()->available()->create(['is_active' => true]);
         $userExistingCourse = Course::factory()
             ->unavailable()
-            ->create(['type' => $availableCourse->type, 'is_active' => true]);
-        UserCourse::factory()->create([
-            'type' => $availableCourse->type,
-            'user_id' => $user->id,
-            'course_id' => $userExistingCourse->id
-        ]);
+            ->create(['course_type_id' => $availableCourse->course_type_id, 'is_active' => true]);
+        UserCourse::factory()
+            ->create([
+                'user_id' => $user->id,
+                'course_id' => $userExistingCourse->id,
+                'course_type_id' => $availableCourse->course_type_id,
+            ]);
 
         $response = $this->actingAs($user)
             ->json(
                 'POST',
                 $this->uri . '/courses',
-                ['type' => $availableCourse->type, 'is_teacher' => $this->faker->boolean]
+                ['course_id' => $availableCourse->id, 'is_teacher' => $this->faker->boolean]
             );
 
         $response->assertStatus(Response::HTTP_BAD_REQUEST)
@@ -140,14 +143,16 @@ class ProfileTest extends BaseFeatureTest
         Carbon::setTestNow($now);
         $user = User::factory()->create();
         Course::query()->update(['can_be_applied' => false]);
-        $availableCourse = Course::factory()->available()->create(['type' => 'whatshafiz', 'is_active' => true]);
+        $availableCourse = Course::factory()
+            ->available()
+            ->create(['course_type_id' => CourseType::where('slug', 'whatshafiz')->value('id'), 'is_active' => true]);
         $isTeacher = $this->faker->boolean;
 
         $response = $this->actingAs($user)
             ->json(
                 'POST',
                 $this->uri . '/courses',
-                ['type' => $availableCourse->type, 'is_teacher' => $isTeacher]
+                ['course_id' => $availableCourse->id, 'is_teacher' => $isTeacher]
             );
 
         $response->assertOk()
@@ -160,7 +165,7 @@ class ProfileTest extends BaseFeatureTest
             [
                 'user_id' => $user->id,
                 'course_id' => $availableCourse->id,
-                'type' => $availableCourse->type,
+                'course_type_id' => $availableCourse->course_type_id,
                 'is_teacher' => $isTeacher,
                 'applied_at' => $now->format('Y-m-d H:i:s'),
                 'removed_at' => null,
@@ -180,7 +185,9 @@ class ProfileTest extends BaseFeatureTest
         $availableCourse = Course::factory()
             ->available()
             ->create([
-                'type' => $this->faker->randomElement(['whatsenglish', 'whatsarapp']),
+                'course_type_id' => CourseType::whereIn('slug', ['whatsenglish', 'whatsarapp'])
+                    ->inRandomOrder()
+                    ->value('id'),
                 'whatsapp_channel_join_url' => $this->faker->url,
                 'is_active' => true,
             ]);
@@ -190,7 +197,7 @@ class ProfileTest extends BaseFeatureTest
             ->once()
             ->with(json_encode([
                 'phone' => $user->phone_number,
-                'text' => 'Aşağıdaki linki kullanarak *' . $availableCourse->type .
+                'text' => 'Aşağıdaki linki kullanarak *' . $availableCourse->name .
                     '* kursu için whatsapp duyuru kanalına katılın ve buradan duyuruları takip edin. ↘️ ' .
                     $availableCourse->whatsapp_channel_join_url
             ]));
@@ -199,7 +206,7 @@ class ProfileTest extends BaseFeatureTest
             ->json(
                 'POST',
                 $this->uri . '/courses',
-                ['type' => $availableCourse->type]
+                ['course_id' => $availableCourse->id]
             );
 
         $response->assertOk()
@@ -219,12 +226,12 @@ class ProfileTest extends BaseFeatureTest
             [
                 'user_id' => $user->id,
                 'course_id' => $availableCourse->id,
-                'type' => $availableCourse->type,
+                'course_type_id' => $availableCourse->course_type_id,
                 'applied_at' => $now->format('Y-m-d H:i:s'),
                 'removed_at' => null,
             ]
         );
-        $this->assertTrue($user->hasRole(Str::ucfirst($availableCourse->type)));
+        $this->assertTrue($user->hasRole(Str::ucfirst($availableCourse->courseType->slug)));
     }
 
     /** @test */

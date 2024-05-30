@@ -214,7 +214,7 @@ class CountryTest extends BaseFeatureTest
         $city = City::inRandomOrder()->first();
         $newCityData = [
             'country_id' => Country::inRandomOrder()->first('id')->id,
-            'name' => $this->faker->words(5, true),
+            'name' => $this->faker->words(3, true),
         ];
 
         $response = $this->actingAs($user)->json('PUT', self::BASE_URI . '/cities/' . $city->id, $newCityData);
@@ -231,7 +231,7 @@ class CountryTest extends BaseFeatureTest
         $city = City::inRandomOrder()->first();
         $newCityData = [
             'country_id' => Country::inRandomOrder()->first('id')->id,
-            'name' => $this->faker->words(5, true),
+            'name' => $this->faker->city,
         ];
 
         $response = $this->actingAs($user)->json('PUT', self::BASE_URI . '/cities/' . $city->id, $newCityData);
@@ -248,7 +248,7 @@ class CountryTest extends BaseFeatureTest
 
         $country = Country::where('name', '!=', 'Türkiye')->inRandomOrder()->first();
         $newCountryData = [
-            'name' => $this->faker->words(5, true),
+            'name' => $this->faker->words(3, true),
             'iso' => $this->faker->lexify('iso-???'),
             'phone_code' => $this->faker->numerify('+###'),
         ];
@@ -266,7 +266,7 @@ class CountryTest extends BaseFeatureTest
 
         $country = Country::where('name', '!=', 'Türkiye')->inRandomOrder()->first();
         $newCountryData = [
-            'name' => $this->faker->words(5, true),
+            'name' => $this->faker->words(3, true),
             'iso' => $this->faker->lexify('iso-???'),
             'phone_code' => $this->faker->numerify('+###'),
         ];
@@ -346,7 +346,7 @@ class CountryTest extends BaseFeatureTest
         $user = User::factory()->create();
         $user->givePermissionTo('countries.delete');
 
-        $city = City::whereDoesntHave('users')->inRandomOrder()->first();
+        $city = City::factory()->create();
 
         $response = $this->actingAs($user)->json('DELETE', self::BASE_URI . '/cities/' . $city->id);
 
