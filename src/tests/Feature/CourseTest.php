@@ -170,13 +170,13 @@ class CourseTest extends BaseFeatureTest
         $courses = Course::factory()
             ->count(rand(2, 5))
             ->create()
-            ->each(function ($course) use ($user) {;
-              UserCourse::factory()
-                ->create([
-                    'user_id' => $user->id,
-                    'course_id' => $course->id,
-                    'course_type_id' => $course->course_type_id,
-                ]);
+            ->each(function ($course) use ($user) {
+                UserCourse::factory()
+                    ->create([
+                        'user_id' => $user->id,
+                        'course_id' => $course->id,
+                        'course_type_id' => $course->course_type_id,
+                    ]);
             });
 
         $response = $this->actingAs($user)->json('GET', self::BASE_URI . '/my/courses');
