@@ -140,13 +140,14 @@ class CourseTeacherStudentsMatcherTest extends BaseFeatureTest
                 'is_teacher' => true,
             ]);
         $teacher = $userCourseForTeacher->user;
-        UserCourse::factory()
-            ->withNewUser()
+        $students = UserCourse::factory()
+            ->withNewUser($teacher->gender)
             ->count(rand(1, 3))
             ->create([
                 'course_type_id' => CourseType::where('slug', 'whatshafiz')->value('id'),
                 'course_id' => $course->id,
                 'is_teacher' => false,
+                'whatsapp_group_id' => null,
             ]);
         $lessRelatedStudent = User::factory()
             ->create([
@@ -160,15 +161,25 @@ class CourseTeacherStudentsMatcherTest extends BaseFeatureTest
                 'course_id' => $course->id,
                 'user_id' => $lessRelatedStudent->id,
                 'is_teacher' => false,
+                'whatsapp_group_id' => null,
             ]);
 
-        $instance = resolve(CourseTeacherStudentsMatcher::class, ['course' => $course]);
-        app()->call([$instance, 'handle']);
+        for ($i = 0; $i <= $students->count() ; $i++) {
+            $instance = resolve(CourseTeacherStudentsMatcher::class, ['course' => $course]);
+            app()->call([$instance, 'handle']);
+        }
 
         $this->assertDatabaseHas(
             'teacher_students',
             ['course_id' => $course->id, 'teacher_id' => $teacher->id, 'student_id' => $lessRelatedStudent->id]
         );
+
+        foreach ($students as $student) {
+            $this->assertDatabaseHas(
+                'teacher_students',
+                ['course_id' => $course->id, 'teacher_id' => $teacher->id, 'student_id' => $student->user_id]
+            );
+        }
     }
 
     /** @test */
