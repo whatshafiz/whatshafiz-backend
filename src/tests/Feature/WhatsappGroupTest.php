@@ -93,7 +93,7 @@ class WhatsappGroupTest extends BaseFeatureTest
         $whatsappGroups = WhatsappGroup::factory()->count(2, 5)->create();
         $whatsappGroups->each(function ($whatsappGroup) use ($user) {
             WhatsappGroupUser::factory()->create([
-                'user_id' => $user->id, 
+                'user_id' => $user->id,
                 'whatsapp_group_id' => $whatsappGroup->id,
                 'course_id' => $whatsappGroup->course_id,
                 'course_type_id' => $whatsappGroup->course_type_id,
@@ -118,7 +118,7 @@ class WhatsappGroupTest extends BaseFeatureTest
         $user->givePermissionTo('whatsappGroups.list');
         $filteredWhatsappGroups->each(function ($whatsappGroup) use ($user) {
             WhatsappGroupUser::factory()->create([
-                'user_id' => $user->id, 
+                'user_id' => $user->id,
                 'whatsapp_group_id' => $whatsappGroup->id,
                 'course_id' => $whatsappGroup->course_id,
                 'course_type_id' => $whatsappGroup->course_type_id,

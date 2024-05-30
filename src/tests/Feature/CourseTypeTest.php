@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Models\CourseType;
 use App\Models\User;
-use Illuminate\Support\Str;
 use Tests\BaseFeatureTest;
 
 class CourseTypeTest extends BaseFeatureTest

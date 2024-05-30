@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Models\EducationLevel;
 use App\Models\User;
-use Illuminate\Support\Str;
 use Tests\BaseFeatureTest;
 
 class EducationLevelTest extends BaseFeatureTest

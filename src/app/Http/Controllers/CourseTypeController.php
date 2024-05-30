@@ -27,7 +27,7 @@ class CourseTypeController extends Controller
                 'courses',
                 'whatsappGroups',
                 'userCourses as total_users_count',
-                'userCourses as active_users_count' => fn($query) => $query->whereNull('removed_at'),
+                'userCourses as active_users_count' => fn ($query) => $query->whereNull('removed_at'),
                 'comments',
             ])
             ->with('parent', 'regulation:id,name,course_type_id')

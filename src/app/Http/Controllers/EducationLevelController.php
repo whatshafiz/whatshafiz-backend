@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\EducationLevel;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class EducationLevelController extends Controller
 {
